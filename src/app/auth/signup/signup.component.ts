@@ -13,7 +13,10 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.maxDate = new Date(); // Today
-    this.maxDate.setFullYear(this.maxDate.getFullYear() - 10);
+    // Minimum age 10 years for now; Might be rised to local maturity age (18?)
+    // TODO - Logic to have here the local minimum age for Maturity (18?) 
+    // - to allow automatic patenting on user name
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 10); 
   }
 
   onSubmit(form: NgForm) {
