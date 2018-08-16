@@ -28,7 +28,7 @@
     <mat-form-field hintLabel="Maturity age required for voting and auto patenting.">
       <input 
       matInput 
-      placeholder="Your birthdate" 
+      placeholder="Your birthdate: mm/dd/yyyy" 
       [matDatepicker]="picker"
       [max]="maxDate" ngModel name="birthdate" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
