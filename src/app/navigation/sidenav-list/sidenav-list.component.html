@@ -1,3 +1,21 @@
-<p>
-  sidenav-list works!
-</p>
+<mat-nav-list>
+    <a mat-list-item routerLink="/signup" (click)="onClose()">
+        <mat-icon>face</mat-icon>
+        <span class="nav-caption">Signup</span>
+    </a>
+    <a mat-list-item routerLink="/login" (click)="onClose()">
+        <mat-icon>input</mat-icon>
+        <span class="nav-caption">Login</span>            
+    </a>
+    <a mat-list-item routerLink="/project" (click)="onClose()">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">TeamHub</span>            
+    </a>
+    <mat-list-item>
+        <button mat-icon-button (click)="onClose()">
+            <mat-icon>eject</mat-icon>
+            <span class="nav-caption">Logout</span>  
+        </button>
+    </mat-list-item>
+</mat-nav-list>
+
