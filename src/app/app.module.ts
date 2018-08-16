@@ -22,6 +22,8 @@ import { PastSkillComponent } from './skill/past-skill/past-skill.component';
 import { PastVentureComponent } from './venture/past-venture/past-venture.component';
 import { NewVentureComponent } from './venture/new-venture/new-venture.component';
 import { CurrentVentureComponent } from './venture/current-venture/current-venture.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CurrentVentureComponent } from './venture/current-venture/current-ventu
     PastSkillComponent,
     PastVentureComponent,
     NewVentureComponent,
-    CurrentVentureComponent
+    CurrentVentureComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
