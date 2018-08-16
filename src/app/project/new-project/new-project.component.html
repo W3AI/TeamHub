@@ -1,10 +1,28 @@
 <section class="new-project" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex="400px">
-    <mat-card-title>Add the cool Project Idea!</mat-card-title>
-    <mat-card-content>
-      Select type of project
+  <mat-card  fxFlex.xs="100%" fxFlex="400px">
+    <mat-card-title fxLayoutAlign="center">Add cool project idea!</mat-card-title>
+    <mat-card-content fxLayoutAlign="center">
+      <mat-form-field>
+        <mat-select placeholder="Favorite tags">
+          <mat-option value="coding">
+            Coding
+          </mat-option>
+          <mat-option value="gardening">
+            Gardening
+          </mat-option>
+          <mat-option value="cooking">
+            Cooking
+          </mat-option>
+          <mat-option value="upgrade">
+            Upgrade
+          </mat-option>
+          <mat-option value="integration">
+            Integration  
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions fxLayoutAlign="center">
       <button type="submit" mat-button>Budget</button>
     </mat-card-actions>
   </mat-card>
