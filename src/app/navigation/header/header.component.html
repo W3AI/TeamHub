@@ -7,14 +7,16 @@
     <div><a routerLink="/">World Team Hub</a></div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-            <li><a routerLink="/project">Problems</a></li>
-            <li><a routerLink="/skill">Services</a></li>
-            <li><a routerLink="/venture">Ventures</a></li>
-            <li><a routerLink="/signup">Signup</a></li>
-            <li><a routerLink="/login">Login</a></li>
-            <!--
-            <li><a><mat-icon>eject</mat-icon></a></li>
-            -->
+
+            <li *ngIf="isAuth"><a routerLink="/project">Problems</a></li>
+            <li *ngIf="isAuth"><a routerLink="/skill">Services</a></li>
+            <li *ngIf="isAuth"><a routerLink="/venture">Ventures</a></li>
+
+            <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
+            <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
+            
+            <li *ngIf="isAuth"><a><mat-icon>eject</mat-icon></a></li>
+            
         </ul>
     </div>
 </mat-toolbar>
