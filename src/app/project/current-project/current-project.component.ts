@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentProjectComponent implements OnInit {
 
+  progress = 0;
+
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.progress = this.progress + 5;
+    }, 1000);
   }
 
 }

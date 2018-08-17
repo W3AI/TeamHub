@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
+  // TODO - Ongoing should be a list of projects not just one
+  ongoingProject = false;
+
   constructor() { }
 
   ngOnInit() {

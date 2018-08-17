@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-new-project',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProjectComponent implements OnInit {
 
+   @Output() projectStart = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onStartTraining() {
+    this.projectStart.emit();
+  }
 }
