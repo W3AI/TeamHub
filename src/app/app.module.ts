@@ -24,6 +24,7 @@ import { NewVentureComponent } from './venture/new-venture/new-venture.component
 import { CurrentVentureComponent } from './venture/current-venture/current-venture.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StopProjectComponent } from './project/current-project/stop-project.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     NewVentureComponent,
     CurrentVentureComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    StopProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StopProjectComponent]
 })
 export class AppModule { }

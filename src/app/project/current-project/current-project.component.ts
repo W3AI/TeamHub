@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+
+import { StopProjectComponent } from './stop-project.component';
 
 @Component({
   selector: 'app-current-project',
@@ -10,7 +13,9 @@ export class CurrentProjectComponent implements OnInit {
   progress = 0;
   timer: number;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) {
+
+  }
 
   ngOnInit() {
     this.timer = setInterval(() => {
@@ -23,6 +28,7 @@ export class CurrentProjectComponent implements OnInit {
 
   onStop() {
     clearInterval(this.timer);
+    this.dialog.open(StopProjectComponent);
   }
 }
  
