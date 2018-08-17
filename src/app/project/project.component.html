@@ -6,4 +6,4 @@
     <app-past-project></app-past-project>
   </mat-tab>
 </mat-tab-group>
-<app-current-project *ngIf="ongoingProject"></app-current-project>
+<app-current-project *ngIf="ongoingProject" (projectExit)="ongoingProject = false"></app-current-project>
