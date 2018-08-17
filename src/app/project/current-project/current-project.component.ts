@@ -28,7 +28,16 @@ export class CurrentProjectComponent implements OnInit {
 
   onStop() {
     clearInterval(this.timer);
-    this.dialog.open(StopProjectComponent);
+    const dialogRef = this.dialog.open(StopProjectComponent, {
+      data: {
+        progress: this.progress
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO - include this in a Project Log
+      console.log(result);
+    });
   }
 }
  
