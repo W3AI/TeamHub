@@ -4,20 +4,8 @@
     <mat-card-content fxLayoutAlign="center">
       <mat-form-field>
         <mat-select placeholder="Favorite tags">
-          <mat-option value="coding">
-            Coding
-          </mat-option>
-          <mat-option value="gardening">
-            Gardening
-          </mat-option>
-          <mat-option value="cooking">
-            Cooking
-          </mat-option>
-          <mat-option value="upgrade">
-            Upgrade
-          </mat-option>
-          <mat-option value="integration">
-            Integration  
+          <mat-option *ngFor="let task of tasks" [value]="task.id">
+            {{ task.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

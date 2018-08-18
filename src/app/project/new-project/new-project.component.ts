@@ -1,5 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
+import { ProjectService } from '../project.service';
+import { Task } from '../task.model';
+
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
@@ -8,10 +11,13 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class NewProjectComponent implements OnInit {
 
    @Output() projectStart = new EventEmitter<void>();
+   // 
+   tasks: Task[] = [];
 
-  constructor() { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
+    this.tasks = this.projectService.getAvailableTasks();
   }
 
   onStartTraining() {

@@ -8,10 +8,16 @@ import { Task } from "./task.model";
 // as per Max S. training project
 
 export class ProjectService {
-    availableTasks: Task[] = [
-        { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
-        { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15 },
-        { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18 },
-        { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
+    private availableTasks: Task[] = [
+        { id: 'coding', name: 'Coding', duration: 30, calories: 8 },
+        { id: 'cooking', name: 'Cooking', duration: 180, calories: 15 },
+        { id: 'gardening', name: 'Gardening', duration: 120, calories: 18 },
+        { id: 'planning', name: 'Planning', duration: 60, calories: 8 }
     ];
+
+    getAvailableTasks() {
+        // slice creates a real copy of the availableTasks array
+        // in oreder to be able to edit it without affecting the original array
+        return this.availableTasks.slice();
+    }
 }

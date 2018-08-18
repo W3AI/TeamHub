@@ -26,6 +26,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopProjectComponent } from './project/current-project/stop-project.component';
 import { AuthService } from './auth/auth.service';
+import { ProjectService } from './project/project.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { AuthService } from './auth/auth.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ProjectService],
   bootstrap: [AppComponent],
   entryComponents: [StopProjectComponent]
 })
