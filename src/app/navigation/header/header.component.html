@@ -15,7 +15,9 @@
             <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
             
-            <li *ngIf="isAuth"><a><mat-icon>eject</mat-icon></a></li>
+            <li *ngIf="isAuth">
+                <a style="cursor: pointer" (click)="onLogout">Logout</a>
+            </li>
             
         </ul>
     </div>
