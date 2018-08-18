@@ -33,7 +33,7 @@ export class AuthService {
 
     logout() {
         this.user = null;
-        this.authChange.next(true);
+        this.authChange.next(false);
         this.router.navigate(['/login']);
     }
 
