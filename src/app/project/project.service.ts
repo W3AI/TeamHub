@@ -14,10 +14,15 @@ export class ProjectService {
         { id: 'gardening', name: 'Gardening', duration: 120, calories: 18 },
         { id: 'planning', name: 'Planning', duration: 60, calories: 8 }
     ];
+    private runningTask: Task;
 
     getAvailableTasks() {
         // slice creates a real copy of the availableTasks array
         // in oreder to be able to edit it without affecting the original array
         return this.availableTasks.slice();
+    }
+
+    startTask(selectedId: string) {
+        this.runningTask = this.availableTasks.find(task => task.id === selectedId);
     }
 }
