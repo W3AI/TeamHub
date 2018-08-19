@@ -18,6 +18,7 @@ export class ProjectService {
         { id: 'planning', name: 'Planning', duration: 60, calories: 8 }
     ];
     private runningTask: Task;
+    private tasks: Task[] = [];
 
     getAvailableTasks() {
         // slice creates a real copy of the availableTasks array
@@ -29,6 +30,26 @@ export class ProjectService {
         this.runningTask = this.availableTasks.find(
             task => task.id === selectedId);
         this.taskChanged.next({ ...this.runningTask });
+    }
+
+    completeTask() {
+        this.tasks.push({ 
+            ...this.runningTask, 
+            date: new Date(), 
+            state: 'completed' });
+        this.runningTask = null;
+        this.taskChanged.next(null);
+    }
+
+    cancelTask(progress: number) {
+        this.tasks.push({ 
+            ...this.runningTask, 
+            duration: this.runningTask.duration * (progress / 100),
+            calories: this.runningTask.calories * (progress / 100),
+            date: new Date(), 
+            state: 'cancelled' });
+        this.runningTask = null;
+        this.taskChanged.next(null);
     }
 
     getRunningTask() {

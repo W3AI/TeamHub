@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { StopProjectComponent } from './stop-project.component';
@@ -10,11 +10,10 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./current-project.component.css']
 })
 export class CurrentProjectComponent implements OnInit {
-  @Output() projectExit = new EventEmitter();
   progress = 0;
   timer: number;
 
-  constructor(private dialog: MatDialog private projectService: ProjectService) {}
+  constructor(private dialog: MatDialog, private projectService: ProjectService) {}
 
   ngOnInit() {
     this.startOrResumeTimer();
@@ -28,6 +27,7 @@ export class CurrentProjectComponent implements OnInit {
     this.timer = setInterval(() => {
       this.progress = this.progress + 1;
       if (this.progress >= 100) {
+        this.projectService.completeTask();
         clearInterval(this.timer);
       }
     }, step);
@@ -45,7 +45,7 @@ export class CurrentProjectComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // TODO - include this in a Project Log
       if (result) {
-        this.projectExit.emit();
+        this.projectService.cancelTask(this.progress);
       } else {
         this.startOrResumeTimer();
       }
