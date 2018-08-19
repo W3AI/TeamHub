@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { ProjectService } from '../project.service';
 import { Task } from '../task.model';
@@ -10,8 +11,6 @@ import { Task } from '../task.model';
 })
 export class NewProjectComponent implements OnInit {
 
-   @Output() projectStart = new EventEmitter<void>();
-   // 
    tasks: Task[] = [];
 
   constructor(private projectService: ProjectService) { }
@@ -20,7 +19,7 @@ export class NewProjectComponent implements OnInit {
     this.tasks = this.projectService.getAvailableTasks();
   }
 
-  onStartTraining() {
-    this.projectStart.emit();
+  onStartProject(form: NgForm) {
+    this.projectService.startTask( form.value.task );
   }
 }

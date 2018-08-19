@@ -1,6 +1,6 @@
 <mat-tab-group *ngIf="!ongoingProject">
   <mat-tab label="New Project">
-    <app-new-project (projectStart)="ongoingProject = true"></app-new-project>
+    <app-new-project></app-new-project>
   </mat-tab>
   <mat-tab label="Past Projects">
     <app-past-project></app-past-project>

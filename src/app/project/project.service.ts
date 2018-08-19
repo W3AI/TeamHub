@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs/Subject';
+
 import { Task } from "./task.model";
 
 // Naming Convention:
@@ -8,6 +10,7 @@ import { Task } from "./task.model";
 // as per Max S. training project
 
 export class ProjectService {
+    taskChanged = new Subject<Task>();
     private availableTasks: Task[] = [
         { id: 'coding', name: 'Coding', duration: 30, calories: 8 },
         { id: 'cooking', name: 'Cooking', duration: 180, calories: 15 },
@@ -24,5 +27,6 @@ export class ProjectService {
 
     startTask(selectedId: string) {
         this.runningTask = this.availableTasks.find(task => task.id === selectedId);
+        this.taskChanged.next({ ...this.runningTask });
     }
 }
