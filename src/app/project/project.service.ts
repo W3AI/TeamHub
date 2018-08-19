@@ -55,4 +55,8 @@ export class ProjectService {
     getRunningTask() {
         return { ...this.runningTask };
     }
+
+    getCompletedOrCancelledTasks() {
+        return this.tasks.slice();
+    }
 }
