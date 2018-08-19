@@ -7,6 +7,8 @@ export interface Task {
     costCurrency?: string;
     providerName?: string;  // name of service provider for the task - Who executes the task: self | own script/service | 3rd party service provider
     providerId?: string;
+    providerEmail?: string;
+    providerTaskCommandFormat?: string;  // the expected format of the command to execute task
     providerIndustry?: string; // Domain / Industry
     providerCountry?: string;   // Country of the provider - for taxation, etc
     providerProvince?: string;  // Province of the provider - for taxation, etc
@@ -15,7 +17,8 @@ export interface Task {
     providerType?: string;  // Manual | Scripted | Autopilot | web/cloud service | local microservice ...
     providerCalendarURL?: string; //  URL of the Provider calendar where task can be booked
     providerToDoListURL?: string;   // URL of the ToDo List of the provider
-    providerEstimatedDelayToStart?: string; // number+ms|sec|min|hours , etc
+    providerEstimatedDelayToStart?: string; // number+ms|sec|min|hours , etc or Daily, hourly, etc
+    prviderEstimatedDelayToConfirmCompletion?: string; // message response immediatelly after completion or secs/mins/hours batch confirmations, etc
     providerEstimatedSpeedPerUnitOfWork?: string; // number of units of work per ms|sec|min|hours , etc  
     providerRate?: number;   // rate per unit of time
     providerUnitOfTime?: string; // sec | min | hour | day | week | ...
