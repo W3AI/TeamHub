@@ -26,7 +26,12 @@ export class ProjectService {
     }
 
     startTask(selectedId: string) {
-        this.runningTask = this.availableTasks.find(task => task.id === selectedId);
+        this.runningTask = this.availableTasks.find(
+            task => task.id === selectedId);
         this.taskChanged.next({ ...this.runningTask });
+    }
+
+    getRunningTask() {
+        return { ...this.runningTask };
     }
 }
