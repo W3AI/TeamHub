@@ -9,9 +9,9 @@ import { Task } from "./task.model";
 export class ProjectService {
     taskChanged = new Subject<Task>();
     tasksChanged = new Subject<Task[]>();
+    finishedTasksChanged = new Subject<Task[]>();
     private availableTasks: Task[] = [];
     private runningTask: Task;
-    private tasks: Task[] = [];
 
     constructor(private db: AngularFirestore) {}
 
@@ -65,8 +65,13 @@ export class ProjectService {
         return { ...this.runningTask };
     }
 
-    getCompletedOrCancelledTasks() {
-        return this.tasks.slice();
+    fetchCompletedOrCancelledTasks() {
+        this.db
+        .collection('finishedTasks')
+        .valueChanges()
+        .subscribe((tasks: Task[]) => {
+            this.finishedTasksChanged.next(tasks);
+        });
     }
 
     private addDataToDatabase(task: Task) {
