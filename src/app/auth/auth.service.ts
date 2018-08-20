@@ -25,8 +25,8 @@ export class AuthService {
                 this.isAuthenticated = true;
                 // not emit but next as per rxjs
                 this.authChange.next(true);
-                // TODO: Change to go to Welcome page or the last project, skill, venture visited
-                this.router.navigate(['/project']);
+                // Changed /project to / to go to Welcome page or the last project, skill, venture visited
+                this.router.navigate(['/']);
             } else {
                 this.projectService.cancelSubscriptions();
                 this.authChange.next(false);
