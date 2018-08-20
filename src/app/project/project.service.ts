@@ -1,29 +1,38 @@
+import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject } from 'rxjs/Subject';
 
 import { Task } from "./task.model";
 
-// Naming Convention:
-// project.service is meant To manage all tasks/services/skills we know 
-// as well as completed and cancelled tasks/steps
-// named project.service instead of task.service
-// in order to keep the naming rule/convention of: training ~ project 
-// as per Max S. training project
-
+@Injectable()
 export class ProjectService {
     taskChanged = new Subject<Task>();
-    private availableTasks: Task[] = [
-        { id: 'coding', name: 'Coding', duration: 30, calories: 8 },
-        { id: 'cooking', name: 'Cooking', duration: 180, calories: 15 },
-        { id: 'gardening', name: 'Gardening', duration: 120, calories: 18 },
-        { id: 'planning', name: 'Planning', duration: 60, calories: 8 }
-    ];
+    tasksChanged = new Subject<Task[]>();
+    private availableTasks: Task[] = [];
     private runningTask: Task;
     private tasks: Task[] = [];
 
-    getAvailableTasks() {
-        // slice creates a real copy of the availableTasks array
-        // in oreder to be able to edit it without affecting the original array
-        return this.availableTasks.slice();
+    constructor(private db: AngularFirestore) {}
+
+    fetchAvailableTasks() {
+        this.db
+        .collection('availableTasks')
+        .snapshotChanges()               
+        .pipe(map(docArray => {
+          return docArray.map(doc => {
+            return {
+              id: doc.payload.doc.id,
+              name: doc.payload.doc.data()["name"],
+              duration: doc.payload.doc.data()["duration"],
+              calories: doc.payload.doc.data()["calories"]
+            };
+          });
+        }))
+        .subscribe((tasks: Task[]) => {
+            this.availableTasks = tasks;
+            this.tasksChanged.next([...this.availableTasks]);
+        });  
     }
 
     startTask(selectedId: string) {
