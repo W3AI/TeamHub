@@ -36,6 +36,9 @@ export class ProjectService {
     }
 
     startTask(selectedId: string) {
+        // this.db.doc('availableTasks/' + selectedId).update({
+        //     lastSelected: new Date()
+        // });
         this.runningTask = this.availableTasks.find(
             task => task.id === selectedId);
         this.taskChanged.next({ ...this.runningTask });
