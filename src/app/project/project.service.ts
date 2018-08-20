@@ -42,7 +42,7 @@ export class ProjectService {
     }
 
     completeTask() {
-        this.tasks.push({ 
+        this.addDataToDatabase({ 
             ...this.runningTask, 
             date: new Date(), 
             state: 'completed' });
@@ -51,7 +51,7 @@ export class ProjectService {
     }
 
     cancelTask(progress: number) {
-        this.tasks.push({ 
+        this.addDataToDatabase({ 
             ...this.runningTask, 
             duration: this.runningTask.duration * (progress / 100),
             calories: this.runningTask.calories * (progress / 100),
@@ -67,5 +67,9 @@ export class ProjectService {
 
     getCompletedOrCancelledTasks() {
         return this.tasks.slice();
+    }
+
+    private addDataToDatabase(task: Task) {
+        this.db.collection('finishedTasks').add(task);
     }
 }
