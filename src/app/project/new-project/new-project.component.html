@@ -5,7 +5,7 @@
       <mat-card-content fxLayoutAlign="center">
         <mat-form-field>
           <mat-select placeholder="Favorite tags" ngModel name="task" required>
-            <mat-option *ngFor="let task of tasks" [value]="task.id">
+            <mat-option *ngFor="let task of tasks | async" [value]="task.name">
               {{ task.name }}
             </mat-option>
           </mat-select>
