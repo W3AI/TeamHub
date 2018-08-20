@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { User } from "./user.model";
 import { AuthData } from "./auth-data.model";
+import { ProjectService } from '../project/project.service';
 
 
 @Injectable()
@@ -12,7 +13,11 @@ export class AuthService {
     authChange = new Subject<boolean>();
     private isAuthenticated = false;
 
-    constructor(private router: Router, private afAuth: AngularFireAuth) {}
+    constructor(
+        private router: Router, 
+        private afAuth: AngularFireAuth, 
+        private projectService: ProjectService
+    ) {}
 
     registerUser(authData: AuthData) {
         this.afAuth.auth
@@ -37,6 +42,7 @@ export class AuthService {
     }
 
     logout() {
+        this.projectService.cancelSubscriptions();
         this.authChange.next(false);
         this.router.navigate(['/login']);
         this.isAuthenticated = false;
