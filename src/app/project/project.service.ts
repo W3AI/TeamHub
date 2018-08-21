@@ -24,6 +24,8 @@ export class ProjectService {
         .collection('availableTasks')
         .snapshotChanges()               
         .pipe(map(docArray => {
+        // For testing fetching the tags from Firestore
+        //   throw(new Error());
           return docArray.map(doc => {
             return {
               id: doc.payload.doc.id,
@@ -37,6 +39,11 @@ export class ProjectService {
             this.uiService.loadingStateChanged.next(false);
             this.availableTasks = tasks;
             this.tasksChanged.next([...this.availableTasks]);
+        }, error => {
+            this.uiService.loadingStateChanged.next(false);
+            this.uiService.showSnackbar(
+                'Fetching Tags failed, please try again later', null, 3000);
+            this.tasksChanged.next(null);
         }));  
     }
 

@@ -31,7 +31,12 @@ export class NewProjectComponent implements OnInit, OnDestroy {
         this.tasks = tasks 
       }
     ); 
-    this.projectService.fetchAvailableTasks();    
+    this.fetchTasks();   
+  }
+
+  // TODO ? - Change Task / Tasks to Tags - ? what about Calories, Duration for tags? generic cost? timeframe?
+  fetchTasks() {
+    this.projectService.fetchAvailableTasks(); 
   }
 
   onStartProject(form: NgForm) {
