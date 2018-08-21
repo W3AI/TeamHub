@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -52,7 +51,6 @@ import { ProjectModule } from './project/project.module';
     AngularFireModule.initializeApp(environment.firebase),
     ProjectModule,
     AngularFirestoreModule,
-    AngularFireAuthModule,
     AuthModule
   ],
   providers: [AuthService, ProjectService, UIService],

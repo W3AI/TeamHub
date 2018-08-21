@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ProjectService } from './project.service';
@@ -8,7 +8,7 @@ import { ProjectService } from './project.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 
   // TODO - Ongoing should be a list of projects not just one
   ongoingProject = false;
@@ -28,4 +28,9 @@ export class ProjectComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    if (this.taskSubscription) {
+      this.taskSubscription.unsubscribe();
+    }
+  }
 }

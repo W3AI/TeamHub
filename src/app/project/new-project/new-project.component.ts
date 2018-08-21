@@ -44,7 +44,11 @@ export class NewProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.taskSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    if (this.taskSubscription) {
+      this.taskSubscription.unsubscribe();
+    }
+    if (this.loadingSubscription) {
+      this.loadingSubscription.unsubscribe();
+    }
   }
 }
