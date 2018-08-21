@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 
 import { ProjectService } from '../project.service';
 import { Task } from '../task.model';
+import { UIService } from '../../shared/ui.service';
+
 
 @Component({
   selector: 'app-new-project',
@@ -12,13 +14,22 @@ import { Task } from '../task.model';
 })
 export class NewProjectComponent implements OnInit, OnDestroy {
   tasks: Task[];
-  taskSubscription: Subscription;
+  private taskSubscription: Subscription;
+  isLoading = true;
+  private loadingSubscription: Subscription;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private uiService:  UIService) { }
 
   ngOnInit() {
+    this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(
+      isLoading => {
+        this.isLoading = isLoading;
+      }
+    );
     this.taskSubscription = this.projectService.tasksChanged.subscribe(
-      tasks => (this.tasks = tasks)
+      tasks => {
+        this.tasks = tasks 
+      }
     ); 
     this.projectService.fetchAvailableTasks();    
   }
@@ -29,5 +40,6 @@ export class NewProjectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.taskSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }

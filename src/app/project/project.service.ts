@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
 
 import { Task } from "./task.model";
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class ProjectService {
@@ -15,9 +16,10 @@ export class ProjectService {
     private runningTask: Task;
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
 
-    constructor(private db: AngularFirestore) {}
+    constructor(private db: AngularFirestore, private uiService: UIService) {}
 
     fetchAvailableTasks() {
+        this.uiService.loadingStateChanged.next(true);
         this.fbSubs.push(this.db
         .collection('availableTasks')
         .snapshotChanges()               
@@ -32,6 +34,7 @@ export class ProjectService {
           });
         }))
         .subscribe((tasks: Task[]) => {
+            this.uiService.loadingStateChanged.next(false);
             this.availableTasks = tasks;
             this.tasksChanged.next([...this.availableTasks]);
         }));  

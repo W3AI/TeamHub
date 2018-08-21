@@ -3,17 +3,21 @@
     <mat-card  fxFlex.xs="100%" fxFlex="400px">
       <mat-card-title fxLayoutAlign="center">Add problem or project:</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field>
+
+        <mat-form-field *ngIf="!isLoading">
           <mat-select placeholder="Favorite tags" ngModel name="task" required>
             <mat-option *ngFor="let task of tasks" [value]="task.id">
               {{ task.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
+
+      <mat-card-actions  *ngIf="!isLoading" fxLayoutAlign="center">
         <button type="submit" mat-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
       </mat-card-actions>
+
     </mat-card>
   </form>
 </section>
