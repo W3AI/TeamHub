@@ -9,8 +9,6 @@ import { AuthData } from "./auth-data.model";
 import { ProjectService } from '../project/project.service';
 import { UIService } from '../shared/ui.service';
 
-
-
 @Injectable()
 export class AuthService {
     authChange = new Subject<boolean>();
@@ -20,7 +18,6 @@ export class AuthService {
         private router: Router, 
         private afAuth: AngularFireAuth, 
         private projectService: ProjectService,
-        private snackbar: MatSnackBar,
         private uiService: UIService
     ) {}
 
@@ -50,9 +47,7 @@ export class AuthService {
         })
         .catch(error => {
             this.uiService.loadingStateChanged.next(false);
-            this.snackbar.open(error.message, null, {
-               duration: 3000 
-            });
+            this.uiService.showSnackbar(error.message, null, 3000);
         });
     }
 
@@ -65,9 +60,7 @@ export class AuthService {
         })
         .catch(error => {
             this.uiService.loadingStateChanged.next(false);
-            this.snackbar.open(error.message, null, {
-                duration: 3000 
-             });
+            this.uiService.showSnackbar(error.message, null, 3000);
          });
     }
 
