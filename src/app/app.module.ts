@@ -31,6 +31,7 @@ import { StopProjectComponent } from './project/current-project/stop-project.com
 import { AuthService } from './auth/auth.service';
 import { ProjectService } from './project/project.service';
 import { environment } from '../environments/environment';
+import { UIService } from './shared/ui.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, ProjectService],
+  providers: [AuthService, ProjectService, UIService],
   bootstrap: [AppComponent],
   entryComponents: [StopProjectComponent]
 })
