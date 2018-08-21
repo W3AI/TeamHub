@@ -1,15 +1,27 @@
 <div class="welcome" fxLayout="column" fxLayout.gt-md="row"  fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
   <!-- Add LOGO + Text: Solve World's Top Problems -->
   <section>
-    <h1>INNOVATE</h1>
-    <p>Run your own innovation projects for fun and money!</p>
+    <h1>Team Up to Solve</h1>
+    <a routerLink="/signup">
+      <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
+    </a>
+    <h1>World's Top Problems</h1>
+    <a routerLink="/login"><button mat-button>Sign In</button></a>
+    <a routerLink="/signup"><button mat-button>Sign Up</button></a>
   </section>
   <section>
     <h1>COMMUNITY</h1>
-    <p>Collaborate in global teams to solve World's Top Problems!</p>
+    <a routerLink="/project"><button mat-button>Add Problem</button></a>
+    <a routerLink="/project"><button mat-button>Add Project</button></a>
   </section>
   <section>
-    <h1>CHALLENGES</h1>
-    <p>Never stop! Browse and fix a world issue every day!</p>
+    <h1>INNOVATE</h1>
+    <a routerLink="/skill"><button mat-button>Add Skill</button></a>
+    <a routerLink="/skill"><button mat-button>Add Service</button></a>
+  </section>
+  <section>
+    <h1>SOLUTIONS</h1>
+    <a routerLink="/venture"><button mat-button>Add Friend</button></a>
+    <a routerLink="/venture"><button mat-button>Add Team</button></a>
   </section>  
 </div>
