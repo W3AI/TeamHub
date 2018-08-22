@@ -40,7 +40,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
       <mat-checkbox ngModel name="agree" required color="primary">Agree to Terms and Conditions.</mat-checkbox>
-    <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="f.invalid" >Sign up</button>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="f.invalid" >Sign up</button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
   </form>
 </section>

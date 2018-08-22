@@ -3,9 +3,12 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Task } from "./task.model";
 import { UIService } from '../shared/ui.service';
+import * as UI from '../shared/ui.actions';
+import * as fromRoot from '../app.reducer';
 
 @Injectable()
 export class ProjectService {
@@ -16,11 +19,16 @@ export class ProjectService {
     private runningTask: Task;
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
 
-    constructor(private db: AngularFirestore, private uiService: UIService) {}
+    constructor(
+        private db: AngularFirestore, 
+        private uiService: UIService, 
+        private store: Store<fromRoot.State>
+    ) {}
 
     fetchAvailableTasks() {
-        this.uiService.loadingStateChanged.next(true);
-        this.fbSubs.push(this.db
+      this.store.dispatch(new UI.StartLoading());
+      this.fbSubs.push(
+        this.db
         .collection('availableTasks')
         .snapshotChanges()               
         .pipe(map(docArray => {
@@ -36,11 +44,11 @@ export class ProjectService {
           });
         }))
         .subscribe((tasks: Task[]) => {
-            this.uiService.loadingStateChanged.next(false);
+            this.store.dispatch(new UI.StopLoading());
             this.availableTasks = tasks;
             this.tasksChanged.next([...this.availableTasks]);
         }, error => {
-            this.uiService.loadingStateChanged.next(false);
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
                 'Fetching Tags failed, please try again later', null, 3000);
             this.tasksChanged.next(null);
