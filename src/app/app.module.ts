@@ -24,7 +24,6 @@ import { ProjectService } from './project/project.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
-import { ProjectModule } from './project/project.module';
 
 @NgModule({
   declarations: [
@@ -48,9 +47,8 @@ import { ProjectModule } from './project/project.module';
     AppRoutingModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    ProjectModule,
-    AngularFirestoreModule,
-    AuthModule
+    AuthModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService, ProjectService, UIService],
   bootstrap: [AppComponent],
