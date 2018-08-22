@@ -1,9 +1,4 @@
-<section class="login-form">
-  <div class="login">
-    <h1>Login to Solve</h1>
-      <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
-    <h1>Your World Problems</h1>
-  </div>
+<section>
     <form 
       fxLayout="column" 
       fxLayoutAlign="center center" 
@@ -16,7 +11,7 @@
           matInput 
           placeholder="Your email" 
           formControlName="email">
-          <mat-hint>Please enter your email.</mat-hint>
+          <mat-hint>Please enter a valid email.</mat-hint>
           <mat-error>Invalid or missing email.</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -28,8 +23,7 @@
           <mat-hint>Please enter your password.</mat-hint>
           <mat-error>Missing password.</mat-error>
       </mat-form-field>
-      <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary"
-      [disabled]="loginForm.invalid">Login</button>
-      <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+      <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
     </form>
 </section>

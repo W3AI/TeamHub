@@ -1,16 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { SkillComponent } from './skill/skill.component';
-import { VentureComponent } from './venture/venture.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SkillComponent } from './skill/skill.component';
+import { VentureComponent } from './venture/venture.component';
 import { CurrentSkillComponent } from './skill/current-skill/current-skill.component';
 import { NewSkillComponent } from './skill/new-skill/new-skill.component';
 import { PastSkillComponent } from './skill/past-skill/past-skill.component';
@@ -24,13 +26,14 @@ import { ProjectService } from './project/project.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
+import { reducers } from './app.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
+    WelcomeComponent,
     SkillComponent,
     VentureComponent,
-    WelcomeComponent,
     CurrentSkillComponent,
     NewSkillComponent,
     PastSkillComponent,
@@ -48,10 +51,10 @@ import { AuthModule } from './auth/auth.module';
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, ProjectService, UIService],
-  bootstrap: [AppComponent],
-  entryComponents: []
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
