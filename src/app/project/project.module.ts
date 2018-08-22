@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2';
-import { environment } from '../../environments/environment';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { ProjectComponent } from './project.component';
 import { CurrentProjectComponent } from './current-project/current-project.component';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { PastProjectComponent } from './past-project/past-project.component';
 import { StopProjectComponent } from './current-project/stop-project.component';
-import { AuthModule } from '../auth/auth.module';
+import { MaterialModule } from '../material.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -24,15 +21,8 @@ import { AuthModule } from '../auth/auth.module';
         StopProjectComponent
     ],
     imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        FlexLayoutModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        AngularFireAuthModule,
-        AuthModule
+        SharedModule,
+        AngularFirestoreModule
     ],
     entryComponents: [StopProjectComponent]
 })
