@@ -1,7 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -14,11 +13,6 @@ import * as fromProject from './project.reducer';
 
 @Injectable()
 export class ProjectService {
-    taskChanged = new Subject<Task>();
-    tasksChanged = new Subject<Task[]>();
-    finishedTasksChanged = new Subject<Task[]>();
-    private availableTasks: Task[] = [];
-    private runningTask: Task;
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
 
     constructor(
@@ -52,7 +46,6 @@ export class ProjectService {
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
                 'Fetching Tags failed, please try again later', null, 3000);
-            this.tasksChanged.next(null);
         }));  
     }
 
@@ -77,7 +70,7 @@ export class ProjectService {
                 duration: ex.duration * (progress / 100),
                 calories: ex.calories * (progress / 100),
                 date: new Date(), 
-                state: 'completed' 
+                state: 'cancelled' 
             });
             this.store.dispatch(new Project.StopProject());    
         });
