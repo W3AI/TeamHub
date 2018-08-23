@@ -8,7 +8,8 @@ import { Store } from '@ngrx/store';
 import { Task } from "./task.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
-import * as fromRoot from '../app.reducer';
+import * as Project from './project.actions';
+import * as fromProject from './project.reducer';
 
 @Injectable()
 export class ProjectService {
@@ -22,7 +23,7 @@ export class ProjectService {
     constructor(
         private db: AngularFirestore, 
         private uiService: UIService, 
-        private store: Store<fromRoot.State>
+        private store: Store<fromProject.State>
     ) {}
 
     fetchAvailableTasks() {
@@ -45,8 +46,7 @@ export class ProjectService {
         }))
         .subscribe((tasks: Task[]) => {
             this.store.dispatch(new UI.StopLoading());
-            this.availableTasks = tasks;
-            this.tasksChanged.next([...this.availableTasks]);
+            this.store.dispatch(new Project.SetAvailableProjects(tasks));
         }, error => {
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
@@ -56,12 +56,7 @@ export class ProjectService {
     }
 
     startTask(selectedId: string) {
-        // this.db.doc('availableTasks/' + selectedId).update({
-        //     lastSelected: new Date()
-        // });
-        this.runningTask = this.availableTasks.find(
-            task => task.id === selectedId);
-        this.taskChanged.next({ ...this.runningTask });
+        this.store.dispatch(new Project.StartProject(selectedId));
     }
 
     completeTask() {
@@ -69,8 +64,7 @@ export class ProjectService {
             ...this.runningTask, 
             date: new Date(), 
             state: 'completed' });
-        this.runningTask = null;
-        this.taskChanged.next(null);
+            this.store.dispatch(new Project.StopProject());
     }
 
     cancelTask(progress: number) {
@@ -80,8 +74,7 @@ export class ProjectService {
             calories: this.runningTask.calories * (progress / 100),
             date: new Date(), 
             state: 'cancelled' });
-        this.runningTask = null;
-        this.taskChanged.next(null);
+            this.store.dispatch(new Project.StopProject());
     }
 
     getRunningTask() {
@@ -93,7 +86,7 @@ export class ProjectService {
         .collection('finishedTasks')
         .valueChanges()
         .subscribe((tasks: Task[]) => {
-            this.finishedTasksChanged.next(tasks);
+            this.store.dispatch(new Project.SetFinishedProjects(tasks));
         }));
     }
 

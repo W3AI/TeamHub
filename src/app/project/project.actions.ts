@@ -22,7 +22,7 @@ export class SetFinishedProjects implements Action {
 export class StartProject implements Action {
     readonly type = START_PROJECT;
 
-    constructor(public payload: Task) {}
+    constructor(public payload: string) {}
 }
 
 export class StopProject implements Action {

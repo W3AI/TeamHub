@@ -41,7 +41,7 @@ export function projectReducer(state = initialState, action: ProjectActions) {
             case START_PROJECT:
             return {
                 ...state,
-                activeProject: action.payload
+                activeProject: { ...state.availableTasks.find(ex => ex.id === action.payload) }
             };
             case STOP_PROJECT:
             return {
