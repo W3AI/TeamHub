@@ -8,14 +8,14 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
 
-            <li *ngIf="isAuth"><a routerLink="/project">Problems</a></li>
-            <li *ngIf="isAuth"><a routerLink="/skill">Services</a></li>
-            <li *ngIf="isAuth"><a routerLink="/venture">Ventures</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/project">Problems</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/skill">Services</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/venture">Ventures</a></li>
 
-            <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
-            <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
+            <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
+            <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
             
-            <li *ngIf="isAuth">
+            <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
             </li>
             
