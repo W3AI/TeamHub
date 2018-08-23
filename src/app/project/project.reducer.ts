@@ -1,4 +1,4 @@
-import { Action } from "@ngrx/store";
+import { Action, createFeatureSelector, createSelector } from "@ngrx/store";
 
 import { 
     ProjectActions, 
@@ -26,7 +26,7 @@ const initialState: ProjectState = {
     activeProject: null
 };
 
-export function authReducer(state = initialState, action: ProjectActions) {
+export function projectReducer(state = initialState, action: ProjectActions) {
     switch (action.type) {
         case SET_AVAILABLE_PROJECTS:
             return {
@@ -54,6 +54,8 @@ export function authReducer(state = initialState, action: ProjectActions) {
     }
 };
 
-export const getAvailableTasks = (state: ProjectState) => state.availableTasks;
-export const getFinishedTasks = (state: ProjectState) => state.finishedTasks;
-export const getActiveProject = (state: ProjectState) => state.activeProject;
+export const getProjectState = createFeatureSelector<ProjectState>('project');
+
+export const getAvailableTasks = createSelector(getProjectState, (state: ProjectState) => state.availableTasks);
+export const getFinishedTasks = createSelector(getProjectState, (state: ProjectState) => state.finishedTasks);
+export const getActiveProject = createSelector(getProjectState, (state: ProjectState) => state.activeProject);
