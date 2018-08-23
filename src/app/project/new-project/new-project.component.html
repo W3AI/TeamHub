@@ -4,9 +4,9 @@
       <mat-card-title fxLayoutAlign="center">Add problem or project:</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
 
-        <mat-form-field *ngIf="!(isLoading$ | async) && tasks">
+        <mat-form-field *ngIf="!(isLoading$ | async) && tasks$ | async">
           <mat-select placeholder="Favorite tags" ngModel name="task" required>
-            <mat-option *ngFor="let task of tasks" [value]="task.id">
+            <mat-option *ngFor="let task of tasks$ | async" [value]="task.id">
               {{ task.name }}
             </mat-option>
           </mat-select>
@@ -15,8 +15,8 @@
       </mat-card-content>
 
       <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
-        <button *ngIf="tasks" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
-        <button *ngIf="!tasks" type="button" mat-stroked-button color="accent" (click)="fetchTasks()">Fetch Tags Again</button>
+        <button *ngIf="tasks$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
+        <button *ngIf="!(tasks$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchTasks()">Fetch Tags Again</button>
       </mat-card-actions>
 
     </mat-card>

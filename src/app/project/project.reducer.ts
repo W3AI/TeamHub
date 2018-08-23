@@ -59,3 +59,5 @@ export const getProjectState = createFeatureSelector<ProjectState>('project');
 export const getAvailableTasks = createSelector(getProjectState, (state: ProjectState) => state.availableTasks);
 export const getFinishedTasks = createSelector(getProjectState, (state: ProjectState) => state.finishedTasks);
 export const getActiveProject = createSelector(getProjectState, (state: ProjectState) => state.activeProject);
+export const getIsProject = createSelector(getProjectState, (state: ProjectState) => state.activeProject != null);
+

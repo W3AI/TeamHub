@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Task } from "./task.model";
@@ -60,25 +61,26 @@ export class ProjectService {
     }
 
     completeTask() {
-        this.addDataToDatabase({ 
-            ...this.runningTask, 
-            date: new Date(), 
-            state: 'completed' });
-            this.store.dispatch(new Project.StopProject());
+        this.store.select(fromProject.getActiveProject).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({ 
+                ...ex, 
+                date: new Date(), 
+                state: 'completed' });
+                this.store.dispatch(new Project.StopProject());    
+        });
     }
 
     cancelTask(progress: number) {
-        this.addDataToDatabase({ 
-            ...this.runningTask, 
-            duration: this.runningTask.duration * (progress / 100),
-            calories: this.runningTask.calories * (progress / 100),
-            date: new Date(), 
-            state: 'cancelled' });
-            this.store.dispatch(new Project.StopProject());
-    }
-
-    getRunningTask() {
-        return { ...this.runningTask };
+        this.store.select(fromProject.getActiveProject).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({ 
+                ...ex, 
+                duration: ex.duration * (progress / 100),
+                calories: ex.calories * (progress / 100),
+                date: new Date(), 
+                state: 'completed' 
+            });
+            this.store.dispatch(new Project.StopProject());    
+        });
     }
 
     fetchCompletedOrCancelledTasks() {

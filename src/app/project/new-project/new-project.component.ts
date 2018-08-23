@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -6,32 +6,27 @@ import { Store } from '@ngrx/store';
 import { ProjectService } from '../project.service';
 import { Task } from '../task.model';
 import { UIService } from '../../shared/ui.service';
+import * as fromProject from '../project.reducer';
 import * as fromRoot from '../../app.reducer';
-
 
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.css']
 })
-export class NewProjectComponent implements OnInit, OnDestroy {
-  tasks: Task[];
+export class NewProjectComponent implements OnInit {
+  tasks$: Observable<Task[]>;
   isLoading$: Observable<boolean>;
-  private taskSubscription: Subscription;
 
   constructor(
     private projectService: ProjectService, 
     private uiService:  UIService, 
-    private store: Store<fromRoot.State>
+    private store: Store<fromProject.State>
   ) {}
 
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    this.taskSubscription = this.projectService.tasksChanged.subscribe(
-      tasks => {
-        this.tasks = tasks 
-      }
-    ); 
+    this.tasks$ = this.store.select(fromProject.getAvailableTasks);
     this.fetchTasks();   
   }
 
@@ -42,11 +37,5 @@ export class NewProjectComponent implements OnInit, OnDestroy {
 
   onStartProject(form: NgForm) {
     this.projectService.startTask( form.value.task );
-  }
-
-  ngOnDestroy() {
-    if (this.taskSubscription) {
-      this.taskSubscription.unsubscribe();
-    }
   }
 }
