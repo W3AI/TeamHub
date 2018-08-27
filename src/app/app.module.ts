@@ -11,30 +11,23 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
-import { VentureComponent } from './venture/venture.component';
-import { PastVentureComponent } from './venture/past-venture/past-venture.component';
-import { NewVentureComponent } from './venture/new-venture/new-venture.component';
-import { CurrentVentureComponent } from './venture/current-venture/current-venture.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { AuthService } from './auth/auth.service';
 import { ProjectService } from './project/project.service';
 import { SkillService } from './skill/skill.service';
+import { VentureService } from './venture/venture.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './app.reducer';
 
-// TODO - set Skill and Venture same as Project
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    VentureComponent,
-    PastVentureComponent,
-    NewVentureComponent,
-    CurrentVentureComponent,
     HeaderComponent,
     SidenavListComponent
   ],
@@ -49,7 +42,7 @@ import { reducers } from './app.reducer';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, ProjectService, SkillService, UIService],
+  providers: [AuthService, ProjectService, SkillService, VentureService, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

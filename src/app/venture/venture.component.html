@@ -1,3 +1,9 @@
-<p>
-  venture works!
-</p>
+<mat-tab-group *ngIf="!(ongoingVenture$ | async)">
+  <mat-tab label="New Venture">
+    <app-new-venture></app-new-venture>
+  </mat-tab>
+  <mat-tab label="Past Ventures">
+    <app-past-venture></app-past-venture>
+  </mat-tab>
+</mat-tab-group>
+<app-current-venture *ngIf="ongoingVenture$ | async"></app-current-venture>

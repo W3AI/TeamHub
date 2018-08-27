@@ -1,3 +1,24 @@
-<p>
-  new-venture works!
-</p>
+<section class="new-venture" fxLayout fxLayoutAlign="center">
+  <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
+    <mat-card  fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title fxLayoutAlign="center">Add venture activity:</mat-card-title>
+      <mat-card-content fxLayoutAlign="center">
+
+        <mat-form-field *ngIf="!(isLoading$ | async) && tests$ | async">
+          <mat-select placeholder="Favorite tags" ngModel name="test" required>
+            <mat-option *ngFor="let test of tests$ | async" [value]="test.id">
+              {{ test.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+      </mat-card-content>
+
+      <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
+        <button *ngIf="tests$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
+        <button *ngIf="!(tests$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchTests()">Fetch Tags Again</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</section>
