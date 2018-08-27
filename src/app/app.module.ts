@@ -11,11 +11,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SkillComponent } from './skill/skill.component';
 import { VentureComponent } from './venture/venture.component';
-import { CurrentSkillComponent } from './skill/current-skill/current-skill.component';
-import { NewSkillComponent } from './skill/new-skill/new-skill.component';
-import { PastSkillComponent } from './skill/past-skill/past-skill.component';
 import { PastVentureComponent } from './venture/past-venture/past-venture.component';
 import { NewVentureComponent } from './venture/new-venture/new-venture.component';
 import { CurrentVentureComponent } from './venture/current-venture/current-venture.component';
@@ -23,20 +19,19 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { AuthService } from './auth/auth.service';
 import { ProjectService } from './project/project.service';
+import { SkillService } from './skill/skill.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './app.reducer';
 
+// TODO - set Skill and Venture same as Project
+
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    SkillComponent,
     VentureComponent,
-    CurrentSkillComponent,
-    NewSkillComponent,
-    PastSkillComponent,
     PastVentureComponent,
     NewVentureComponent,
     CurrentVentureComponent,
@@ -54,7 +49,7 @@ import { reducers } from './app.reducer';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, ProjectService, UIService],
+  providers: [AuthService, ProjectService, SkillService, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

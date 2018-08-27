@@ -12,7 +12,7 @@ import * as fromProject from './project.reducer';
 })
 export class ProjectComponent implements OnInit {
 
-  // TODO - Ongoing should be a list of projects not just one
+  // TODO - Ongoing should be a list of Projects not just one
   ongoingProject$: Observable<boolean>;
 
   constructor(private projectService: ProjectService, private store: Store<fromProject.State>) { }
