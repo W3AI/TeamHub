@@ -1,7 +1,21 @@
 <section class="new-venture" fxLayout fxLayoutAlign="center">
+
+  <form>
+
+    <mat-card fxFlex.xs="100%" fxFlex="500px">
+      <mat-card-title>
+        Venture Info 
+      </mat-card-title>
+      <mat-form-field>
+        <input matInput placeholder="Venture name" name="name">
+      </mat-form-field>
+    </mat-card>
+
+  </form>
+
   <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
     <mat-card  fxFlex.xs="100%" fxFlex="400px">
-      <mat-card-title fxLayoutAlign="center">Add venture activity:</mat-card-title>
+      <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
 
         <mat-form-field *ngIf="!(isLoading$ | async) && tests$ | async">

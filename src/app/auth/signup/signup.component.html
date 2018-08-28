@@ -1,8 +1,8 @@
 <section class="signup-form">
   <div class="signup">
-    <h1>Team Up to Solve</h1>
+    <h3>Team Up to Solve</h3>
       <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
-    <h1>Your World Problems</h1>
+    <h3>Your World Problems</h3>
   </div>
   <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <mat-form-field>
@@ -43,4 +43,10 @@
     <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="f.invalid" >Sign up</button>
     <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
   </form>
+  <div class="signup">
+      <h3>Make Money & Friends 24/7</h3>
+  </div>
+  <div class="signup-footer">
+    <p>© Ianta Labs / MIT License</p>
+  </div>
 </section>

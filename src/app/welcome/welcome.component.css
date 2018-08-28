@@ -4,4 +4,15 @@
 
 a {    
     text-decoration: none; /* no underline */
+    color: grey;
   }
+
+.footer {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+}
+
+li {
+    padding: 5px;
+}

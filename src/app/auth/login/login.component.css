@@ -2,6 +2,6 @@ mat-form-field {
     width: 300px;
 }
 
-.login {
+.login, .login-footer {
     text-align: center;
 }
