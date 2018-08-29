@@ -12,20 +12,15 @@
 <div class="welcome" fxLayout="row" fxLayoutGap="10px"  fxLayoutGap.gt-xs="30px" fxLayoutAlign="center center">
   <section>
     <h3>INNOVATE</h3>
-      <div *ngIf="(isAuth$ | async); else loggedOutProject">
         <a routerLink="/project"><button mat-button>Add Project</button></a>
-      </div>
-      <ng-template #loggedOutProject>
-        <a routerLink="/login"><button mat-button>Add Project</button></a>
-      </ng-template>
   </section>
   <section>
     <h3>PROGRESS</h3>
-    <a routerLink="/login"><button mat-button>Add Skill</button></a>
+    <a routerLink="/skill"><button mat-button>Add Skill</button></a>
   </section>
   <section>
     <h3>VENTURE</h3>
-    <a routerLink="/login"><button mat-button>Add Team</button></a>
+    <a routerLink="/venture"><button mat-button>Add Team</button></a>
   </section>
 </div>
 <div class="welcome" fxLayout="column" fxLayout.gt-md="row"  fxLayoutGap.gt-md="30px" fxLayoutAlign="center center">
