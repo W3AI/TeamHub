@@ -12,7 +12,12 @@
 <div class="welcome" fxLayout="row" fxLayoutGap="10px"  fxLayoutGap.gt-xs="30px" fxLayoutAlign="center center">
   <section>
     <h3>INNOVATE</h3>
-    <a routerLink="/login"><button mat-button>Add Project</button></a>
+      <div *ngIf="(isAuth$ | async); else loggedOutProject">
+        <a routerLink="/project"><button mat-button>Add Project</button></a>
+      </div>
+      <ng-template #loggedOutProject>
+        <a routerLink="/login"><button mat-button>Add Project</button></a>
+      </ng-template>
   </section>
   <section>
     <h3>PROGRESS</h3>
