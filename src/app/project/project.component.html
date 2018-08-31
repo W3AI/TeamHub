@@ -1,9 +1,16 @@
 <mat-tab-group *ngIf="!(ongoingProject$ | async)">
-  <mat-tab label="New Project">
+
+  <mat-tab label="Add Project">
+    <app-add-project></app-add-project>
+  </mat-tab>
+
+  <mat-tab label="Kickoff">
     <app-new-project></app-new-project>
   </mat-tab>
+
   <mat-tab label="Past Projects">
     <app-past-project></app-past-project>
   </mat-tab>
+
 </mat-tab-group>
 <app-current-project *ngIf="ongoingProject$ | async"></app-current-project>

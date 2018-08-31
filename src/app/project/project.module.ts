@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { ProjectComponent } from './project.component';
 import { CurrentProjectComponent } from './current-project/current-project.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { PastProjectComponent } from './past-project/past-project.component';
 import { StopProjectComponent } from './current-project/stop-project.component';
@@ -17,7 +18,8 @@ import { projectReducer } from './project.reducer';
 @NgModule({
     declarations: [
         ProjectComponent,
-        CurrentProjectComponent, 
+        CurrentProjectComponent,
+        AddProjectComponent,
         NewProjectComponent, 
         PastProjectComponent,
         StopProjectComponent
