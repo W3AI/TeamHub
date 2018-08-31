@@ -2,10 +2,9 @@
 [live pre-alpha](https://teamhub.w3ai.net)
 
 TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
-It consists of a trinity of modules that interact automatically to build the progressive nature of your network.
-1. Skills
-2. Projects
-3. Ventures
+It consists of a trinity of modules that interact automatically to build the progressive nature of your network:
+
+### Skills - Projects - Ventures
 
 TeamHub is being built to be used on any mobile device or desktop or as a side app in Microsoft Excel or Google Sheets.
 
