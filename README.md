@@ -1,4 +1,4 @@
-# Teamhub - Make Money & Friends 24/7
+# TeamHub - Make Money & Friends 24/7
 [live pre-alpha](https://teamhub.w3ai.net)
 
 TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
