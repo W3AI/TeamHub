@@ -8,7 +8,7 @@ It consists of a trinity of modules that add realtime interactions to build the 
 
 TeamHub is being built to be used on any mobile device or desktop or as a side app in Microsoft Excel or Google Sheets.
 
-TeamHub is developed by Agile teams from the W3AI Meetup network in:
+The TeamHub web app is developed dynamically by Agile teams of volunteers from the W3AI Meetups network in:
 - Toronto - [TCP1P - Transformative Code Pile 1 Programing Meetup](https://www.meetup.com/SocialAI/)
 - New York - [Manhatan AIR - Algorithmic Innovations Reactor](https://www.meetup.com/Manhattan-AIR/)
 - Halifax - [AIG - Halifax Algorithmic Innovation Group](https://www.meetup.com/HalifaxAIG/)
