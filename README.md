@@ -17,7 +17,7 @@ Team up with us to build together the fastest social business networks meant to 
 
 ## For Coders:
 
-TeamHub project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
+The TeamHub project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
 
 ## Development server
 
