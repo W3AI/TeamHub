@@ -21,6 +21,9 @@ import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './app.reducer';
+import { AddProjectComponent } from './project/add-project/add-project.component';
+import { AddTaskComponent } from './project/add-task/add-task.component';
+import { AddTestComponent } from './project/add-test/add-test.component';
 
 
 
@@ -29,7 +32,10 @@ import { reducers } from './app.reducer';
     AppComponent,
     WelcomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    AddProjectComponent,
+    AddTaskComponent,
+    AddTestComponent
   ],
   imports: [
     BrowserModule,
