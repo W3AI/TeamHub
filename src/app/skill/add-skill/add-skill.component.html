@@ -1,20 +1,20 @@
 <section class="add-skill-form">
-    <form fxLayout="column" fxLayoutAlign="center center">
+    <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
-        <input type="text" matInput placeholder="Skill Name" value="demo: Sharing Innovation Juice">
+        <input type="text" matInput ngModel name="name" placeholder="Skill Name" value="demo: Sharing Innovation Juice">
       </mat-form-field>
   
       <mat-form-field>
-        <textarea matInput placeholder="Brief description">demo: You got 8L of Innovation Sauce in a 8L jar & 2 empty jars of 5L & 3L. How to share 4L with a friend that needs Innovation Sauce?
+        <textarea matInput ngModel name="description" placeholder="Brief description">demo: You got 8L of Innovation Sauce in a 8L jar & 2 empty jars of 5L & 3L. How to share 4L with a friend that needs Innovation Sauce?
         </textarea>
       </mat-form-field>
   
       <mat-form-field>
-        <input type="text" matInput placeholder="Change tags">
+        <input type="text" matInput ngModel name="tags" placeholder="Change tags">
       </mat-form-field>
   
       <mat-form-field>
-        <input type="url" matInput placeholder="URL of your skill/service">
+        <input type="url" matInput ngModel name="url" placeholder="URL of your skill/service">
       </mat-form-field>
   <!--
       <mat-form-field>
@@ -25,6 +25,7 @@
         <input type="radio" matInput name="privacy" value="business">
       </mat-form-field>
     -->
+    <button type="submit" mat-raised-button color="primary">Submit</button>
     </form>
   </section>
   
