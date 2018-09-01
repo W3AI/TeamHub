@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { VentureComponent } from './venture.component';
 import { CurrentVentureComponent } from './current-venture/current-venture.component';
+import { AddVentureComponent } from './add-venture/add-venture.component';
 import { NewVentureComponent } from './new-venture/new-venture.component';
 import { PastVentureComponent } from './past-venture/past-venture.component';
 import { StopVentureComponent } from './current-venture/stop-venture.component';
@@ -17,7 +18,8 @@ import { ventureReducer } from './venture.reducer';
 @NgModule({
     declarations: [
         VentureComponent,
-        CurrentVentureComponent, 
+        CurrentVentureComponent,
+        AddVentureComponent,
         NewVentureComponent, 
         PastVentureComponent,
         StopVentureComponent

@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { SkillComponent } from './skill.component';
 import { CurrentSkillComponent } from './current-skill/current-skill.component';
+import { AddSkillComponent } from './add-skill/add-skill.component';
 import { NewSkillComponent } from './new-skill/new-skill.component';
 import { PastSkillComponent } from './past-skill/past-skill.component';
 import { StopSkillComponent } from './current-skill/stop-skill.component';
@@ -17,7 +18,8 @@ import { skillReducer } from './skill.reducer';
 @NgModule({
     declarations: [
         SkillComponent,
-        CurrentSkillComponent, 
+        CurrentSkillComponent,
+        AddSkillComponent,
         NewSkillComponent, 
         PastSkillComponent,
         StopSkillComponent

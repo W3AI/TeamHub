@@ -24,8 +24,6 @@ import { reducers } from './app.reducer';
 import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
