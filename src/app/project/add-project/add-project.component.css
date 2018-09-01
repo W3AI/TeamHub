@@ -5,3 +5,11 @@
 .mat-form-field {
     width: 87%;
 }
+
+.radio-button {
+    padding: 10px;
+}
+
+.submit-button {
+    margin: 10px;
+}
