@@ -1,4 +1,10 @@
 <mat-nav-list>
+
+    <a mat-list-item routerLink="/about">
+        <mat-icon>info_outline</mat-icon>
+        <span class="nav-caption">About Progressive Teams</span>
+    </a>
+
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>face</mat-icon>
         <span class="nav-caption">Signup</span>
