@@ -1,0 +1,142 @@
+.welcome {
+    text-align: center;
+}
+
+a {    
+    text-decoration: none; /* no underline */
+    color: grey;
+  }
+
+.footer {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+}
+
+li {
+    padding: 5px;
+}
+
+.animate-in1 {
+    animation: fade-slide 1.5s forwards;
+  }
+
+  .animate-in2 {
+    animation: fade-slide 3s forwards;
+  }
+
+  .animate-in3 {
+    animation: fade-slide 4.5s forwards;
+  }
+  
+  .animate-in4 {
+    animation: fade-slide 6s forwards;
+  }
+
+  .animate-in5 {
+    animation: fade-slide 7.5s forwards;
+  }
+
+  .animate-in6 {
+    animation: fade-slide 9s forwards;
+  }
+
+  .animate-in7 {
+    animation: fade-slide 10.5s forwards;
+  }
+
+  .animate-in8 {
+    animation: fade-slide 12s forwards;
+  }
+
+  .title {
+    width: 100%;
+    background-color: grey;
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .title h1 {
+    margin: 0;
+    color: white;
+    font-size: 1.8em;
+  }
+  
+  .title, .ai-hub-feature {
+    opacity: 0;
+  }
+  
+  .content, .start-over {
+    margin: 5px auto;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  .ai-hub-feature {
+    padding: 2px;
+    -webkit-box-shadow: 2px 2px 1px #ccc;
+    -moz-box-shadow: 2px 2px 1px #ccc;
+    box-shadow: 2px 2px 1px #ccc;
+  }
+  
+  .ai-hub-feature {
+    margin: 10px auto;
+  }
+  
+  #mobile-office {
+    background-color: #9ce9ff;
+  }
+  
+  #offline {
+    background-color: #d3ff7b;
+  }
+  
+  #share {
+    background-color: #F0B2C1;
+  }
+  
+  #realtime {
+    background-color: #fff395;
+  }
+  
+  #notifications {
+    background-color: #ABD3DE;
+  }
+  
+  #innovation-browser {
+    background-color: #afffc3;
+  }
+  
+  #innovation-teams {
+    background-color: #ddb5ff;
+  }
+  
+  .start-over button {
+    background-color: #fa923f;
+    border: 1px solid #fa923f;
+    -webkit-box-shadow: 2px 2px 2px #ccc;
+    -moz-box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 2px 2px #ccc;
+    padding: 5px;
+    color: white;
+    opacity: 0;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .start-over button:hover {
+    background-color: #ff7f16;
+  }
+  
+  @keyframes fade-slide {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
