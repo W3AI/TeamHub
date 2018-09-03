@@ -1,13 +1,17 @@
-// TODO - To modify/adapt from Task model to Project Model
+// TODO - To modify/adapt from Task model to Plan Model - under Project domain name
 
-export interface Project {
+export interface Plan {
     id: string;
-    name: string;       
-    duration: number;
-    calories: number;
+    name: string;
+    tags: string;
+    privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
+    description?: string;
+    url?: string;
+    duration?: number;
+    budget?: number;
     date?: Date;
-    state?: 'completed' | 'cancelled' | null;
-    actualCost?: number;       // actual spent cost
+    state?: 'in preparation' | 'in progress' | 'completed' | 'cancelled' | null;
+    actualCost?: number;       // actual spent cost - TODO - to review from here
     costCurrency?: string;
     providerName?: string;  // name of service provider for the task - Who executes the task: self | own script/service | 3rd party service provider
     providerId?: string;

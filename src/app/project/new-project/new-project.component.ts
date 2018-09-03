@@ -9,6 +9,8 @@ import { UIService } from '../../shared/ui.service';
 import * as fromProject from '../project.reducer';
 import * as fromRoot from '../../app.reducer';
 
+// TODO - ? Refactor new-project to launch or start project?
+
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',

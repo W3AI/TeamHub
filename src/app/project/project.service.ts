@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
+import { Plan } from "./plan.model";
 import { Task } from "./task.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
@@ -47,6 +48,10 @@ export class ProjectService {
             this.uiService.showSnackbar(
                 'Fetching Tags failed, please try again later', null, 3000);
         }));  
+    }
+
+    addProject(project: Plan) {
+        this.addProjectToDatabase(project);
     }
 
     startTask(selectedId: string) {
@@ -92,4 +97,9 @@ export class ProjectService {
     private addDataToDatabase(task: Task) {
         this.db.collection('finishedTasks').add(task);
     }
+
+    private addProjectToDatabase(project: Plan) {
+        this.db.collection('Projects').add(project);
+    }
+
 }
