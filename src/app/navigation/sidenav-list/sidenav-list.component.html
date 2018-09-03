@@ -4,6 +4,10 @@
         <mat-icon>info_outline</mat-icon>
         <span class="nav-caption">About Progressive Teams</span>
     </a>
+    <a mat-list-item routerLink="/market">
+        <mat-icon>language</mat-icon>
+        <span class="nav-caption">Service Market</span>
+    </a>
 
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>face</mat-icon>
@@ -12,6 +16,10 @@
     <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>            
+    </a>
+    <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>attach_money</mat-icon>
+        <span class="nav-caption">My Accounts</span>            
     </a>
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>

@@ -26,5 +26,5 @@ export interface Task {
     providerUnitOfTime?: string; // sec | min | hour | day | week | ...
     providerCurrency?: string;  // USD, CAD, EUR, Bitcoin, etc - should use a currency standard
     startTime?: Date;       // Start Date/time of the task
-    finisTime?: Date;         // End/Finish Date/time of the task
+    finishTime?: Date;         // End/Finish Date/time of the task
 }
