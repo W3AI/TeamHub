@@ -4,20 +4,20 @@
     <mat-form-field hintLabel="Short & memorable.">
       <input 
       type="text" 
-      matInput ngModel 
+      matInput [ngModel]="'eg: Self-updating Business Platform'" 
       name="name" 
       required
       maxlength="40"
       #nameInput="ngModel"
       placeholder="Project Name" 
-      value="Self-replicating Business Platform">
+      value="Self-updating Business Platform">
       <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
       <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
     </mat-form-field>
 
     <mat-form-field hintLabel="What is changed by the project?">
       <input type="text" 
-      matInput ngModel 
+      matInput [ngModel]="'eg: code, performance, functionalities'"
       name="tags" 
       required 
       maxlength="40" 
@@ -30,7 +30,7 @@
 
     <mat-form-field>
       <textarea 
-      matInput ngModel 
+      matInput [ngModel]="'eg: Infrastructure automation project'" 
       name="description" 
       rows="4" 
       placeholder="Brief description">
@@ -39,7 +39,7 @@
 
     <mat-form-field>
       <input type="url" 
-      matInput ngModel 
+      matInput [ngModel]="'https://teamhub.w3ai.net/self-maintenance-quine'" 
       name="url" 
       placeholder="URL of your project">
     </mat-form-field>
