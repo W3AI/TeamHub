@@ -14,6 +14,9 @@ import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { VentureRoutingModule } from './venture-routing.module';
 import { ventureReducer } from './venture.reducer';
+import { ShortenPipe } from './shorten.pipe';
+import { FilterPipe } from './filter.pipe';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
     declarations: [
@@ -22,7 +25,10 @@ import { ventureReducer } from './venture.reducer';
         AddVentureComponent,
         NewVentureComponent, 
         PastVentureComponent,
-        StopVentureComponent
+        StopVentureComponent,
+        ShortenPipe,
+        FilterPipe,
+        SortPipe
     ],
     imports: [
         SharedModule,

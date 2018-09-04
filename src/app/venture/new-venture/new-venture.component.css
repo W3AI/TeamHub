@@ -9,3 +9,7 @@
 mat-grid-tile {
   background: white;
 }
+
+.container {
+  margin-top: 50px;
+}

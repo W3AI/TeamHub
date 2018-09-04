@@ -1,235 +1,41 @@
 
-<section class="add-venture">
-  <form>
-    <mat-card fxLayout="column">
-      <mat-card-title>
-        Add Venture 
-      </mat-card-title>
+<h1>TeamHub X Combinator</h1>
 
-      <mat-form-field>
-        <input matInput placeholder="Venture name" name="name">
-      </mat-form-field>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 
-      <mat-form-field>
-          <input matInput placeholder="Change tags " name="tags">
-      </mat-form-field>
+        <h2>Project Initial Context</h2>
+        <input type="text" [(ngModel)]="contextIni">   
+  
+        <h2>Project Complete Tests - filter</h2>
+        <input type="text" [(ngModel)]="filteredStatus">
+        <br>
+        <h2>Services matching Tests</h2>
+        <button class="btn btn-primary" (click)="onAddContexts()">Transform Context(s)</button>
+        <br><br>
+        <h3>App Status: {{ appStatus | async}} </h3>
+        <hr>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let context of contexts | filter:filteredStatus:'status' | sort:'name'"
+            [ngClass]="getStatusClasses(context)">
+            <span
+              class="badge">
+              {{ context.status }}
+            </span>
+            <strong>{{ context.name | shorten: 17 }}</strong> | 
+            {{ context.instanceType }} | 
+            {{ context.started | date:'fullDate' }}
+          </li>
+        </ul>
 
-      <mat-form-field>
-          <input matInput placeholder="Budget" name="budget">
-      </mat-form-field>
+    </div>
+  </div>
+</div>
 
-      <mat-form-field>
-          <input matInput placeholder="URI" name="uri">
-      </mat-form-field>
-
-      <mat-card-actions fxLayoutAlign="center">
-        <button type="submit" mat-raised-button color="accent">Approve Spending</button>
-      </mat-card-actions>
-
-    </mat-card>
-  </form>
-</section>
-
-<section class="add-venture-details">
-  <form>
-    <mat-card>
-
-    <mat-grid-list cols="14" rowHeight="2:1">
-
-        <mat-grid-tile class="header">A</mat-grid-tile>
-        <mat-grid-tile class="header">B</mat-grid-tile>
-        <mat-grid-tile class="header">C</mat-grid-tile>
-        <mat-grid-tile class="header">D</mat-grid-tile>
-        <mat-grid-tile class="header">E</mat-grid-tile>
-        <mat-grid-tile class="header">F</mat-grid-tile>
-        <mat-grid-tile class="header">G</mat-grid-tile>
-        <mat-grid-tile class="header">H</mat-grid-tile>
-        <mat-grid-tile class="header">I</mat-grid-tile>
-        <mat-grid-tile class="header">J</mat-grid-tile>
-        <mat-grid-tile class="header">K</mat-grid-tile>
-        <mat-grid-tile class="header">L</mat-grid-tile>
-        <mat-grid-tile class="header">M</mat-grid-tile>
-        <mat-grid-tile class="header">N</mat-grid-tile>
-
-<!-- Row # 1  of 14 cells  ---------------- --> 
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row # 2  of 14 cells  ---------------- --> 
-<mat-grid-tile>2</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row # 3  of 14 cells  ---------------- --> 
-<mat-grid-tile>3</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row # 4  of 14 cells  ---------------- --> 
-<mat-grid-tile>4</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>5</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>6</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>7</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>8</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>9</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-<!-- Row #   of 14 cells  ---------------- --> 
-<mat-grid-tile>10</mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<mat-grid-tile></mat-grid-tile>
-<!-- Row #   of 14 cells  ---------------- --> 
-
-      </mat-grid-list>
-
-      <mat-card-actions fxLayoutAlign="center">
-        <button type="submit" mat-raised-button color="accent">Edit Venture</button>
-      </mat-card-actions>
-
-    </mat-card>
-  </form>
-</section>
+<hr>
 
 <section class="new-venture" fxLayout="column" fxLayoutAlign="center">
   <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
