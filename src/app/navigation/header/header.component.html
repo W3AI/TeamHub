@@ -1,12 +1,18 @@
 <mat-toolbar color="primary">
-    <div fxHide.gt-xs>
+    <div fxHide.gt-sm>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
-    <div><a routerLink="/">Progressive Team Players</a></div>
-    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <div><a routerLink="/">Progressive Teams</a></div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.sm>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+
+
+            <li><a routerLink="/about">About</a></li>
+            <li><a routerLink="/market">Service Market</a></li>
+
+            <li *ngIf="isAuth$ | async"><a routerLink="/account">My Accounts</a></li>
 
             <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/skill">Services</a></li>
