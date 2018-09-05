@@ -1,0 +1,8 @@
+.market-card {
+    max-width: 400px;
+  }
+  
+  .market-header-image {
+    background-image: url('https://teamhub.w3ai.net/assets/icons/icon_192.png');
+    background-size: cover;
+  }
