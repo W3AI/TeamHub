@@ -1,6 +1,6 @@
 // TODO - To modify/adapt from Task model to Plan Model - under Project domain name
 
-export interface Plan {
+export interface SkillOrService {
     id: string;
     name: string;
     tags: string;
@@ -11,7 +11,7 @@ export interface Plan {
     description?: string;
     url?: string;
     duration?: number;
-    budget?: number;
+    price?: number;
     date?: Date;
     state?: 'in preparation' | 'in progress' | 'completed' | 'cancelled' | null;
     actualCost?: number;       // actual spent cost - TODO - to review from here

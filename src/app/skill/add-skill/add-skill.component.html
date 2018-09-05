@@ -1,31 +1,55 @@
 <section class="add-skill-form">
-    <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <mat-form-field>
-        <input type="text" matInput ngModel name="name" placeholder="Skill Name" value="demo: Sharing Innovation Juice">
-      </mat-form-field>
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onAddSkill(f)">
+
+    <mat-form-field hintLabel="Short & memorable.">
+      <input type="text" 
+      matInput [ngModel]="'eg: Top Innovation Sauce'" 
+      name="name" 
+      required 
+      maxlength="40"
+      #nameInput="ngModel"
+      placeholder="Skill Name" 
+      value="eg: Top Innovation Sauce">
+      <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+      <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
+    </mat-form-field>
   
-      <mat-form-field>
-        <textarea matInput ngModel name="description" placeholder="Brief description">demo: You got 8L of Innovation Sauce in a 8L jar & 2 empty jars of 5L & 3L. How to share 4L with a friend that needs Innovation Sauce?
-        </textarea>
-      </mat-form-field>
+    <mat-form-field hintLabel="What does the skill/service change?">
+      <input type="text" 
+      matInput [ngModel]="'eg: content, plan, strategy'" 
+      name="tags" 
+      required 
+      maxlength="40" 
+      #tagsInput="ngModel"
+      placeholder="Change tags">
+      <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+      <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty. Add eg: docs</mat-error>
+      <mat-error *ngIf="tagsInput.hasError('required')">The smart market algo uses tags to promote your services.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea 
+      matInput [ngModel]="'Pour Innovation Sauce in available recipients'" 
+      name="description" 
+      rows="4" 
+      placeholder="Brief description">
+      </textarea>
+    </mat-form-field>
   
-      <mat-form-field>
-        <input type="text" matInput ngModel name="tags" placeholder="Change tags">
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input type="url" matInput ngModel name="url" placeholder="URL of your skill/service">
-      </mat-form-field>
-  <!--
-      <mat-form-field>
-        <input type="radio" matInput name="privacy" value="public" checked>
-        <input type="radio" matInput name="privacy" value="private">
-        <input type="radio" matInput name="privacy" value="family">
-        <input type="radio" matInput name="privacy" value="friends">
-        <input type="radio" matInput name="privacy" value="business">
-      </mat-form-field>
-    -->
-    <button type="submit" mat-raised-button color="primary">Submit</button>
-    </form>
-  </section>
+    <mat-form-field>
+      <input type="url" 
+      matInput [ngModel]="'https://teamhub.w3ai.net/top-innovation-sauce/'"  
+      name="url" 
+      placeholder="URL of your skill/service">
+    </mat-form-field>
+
+    <mat-radio-group ngModel name="privacy" required>
+      <mat-radio-button class="radio-button" color="primary" value="private">private</mat-radio-button>
+      <mat-radio-button class="radio-button" color="primary" value="business" focus>business</mat-radio-button>
+      <mat-radio-button class="radio-button" color="primary" value="public">public</mat-radio-button>
+    </mat-radio-group>
+
+    <button type="submit" class="submit-button" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+  </form>
+</section>
   
