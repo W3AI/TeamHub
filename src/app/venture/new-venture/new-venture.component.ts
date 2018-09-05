@@ -54,6 +54,8 @@ export class NewVentureComponent implements OnInit {
     }
   ];
 
+  contextIni = '';
+
   filteredStatus = '';
 
   getStatusClasses(context: {instanceType: string, name: string, status: string, started: Date}) {

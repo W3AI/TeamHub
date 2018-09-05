@@ -1,6 +1,6 @@
-// TODO - To modify/adapt from Task model to Plan Model - under Project domain name
+// TODO - To modify/adapt from Task model to Plan Model - under Skill/Service domain name
 
-export interface SkillOrService {
+export interface Talent {
     id: string;
     name: string;
     tags: string;

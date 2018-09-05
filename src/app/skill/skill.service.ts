@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
+import { Talent } from "./talent.model";
 import { Activity } from "./activity.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
@@ -47,6 +48,10 @@ export class SkillService {
             this.uiService.showSnackbar(
                 'Fetching Tags failed, please try again later', null, 3000);
         }));  
+    }
+
+    addSkill(skill: Talent) {
+        this.addSkillToDatabase(skill);
     }
 
     startActivity(selectedId: string) {
@@ -92,4 +97,9 @@ export class SkillService {
     private addDataToDatabase(activity: Activity) {
         this.db.collection('finishedActivities').add(activity);
     }
+
+    private addSkillToDatabase(skill: Talent) {
+        this.db.collection('Skills').add(skill);
+    }
+
 }
