@@ -81,6 +81,15 @@ export class ProjectService {
         });
     }
 
+    fetchAvailablePlans() {
+        this.fbSubs.push(this.db
+        .collection('Projects')
+        .valueChanges()
+        .subscribe((plans: Plan[]) => {
+            this.store.dispatch(new Project.SetAvailablePlans(plans));
+        }));
+    }
+
     fetchCompletedOrCancelledTasks() {
         this.fbSubs.push(this.db
         .collection('finishedTasks')
