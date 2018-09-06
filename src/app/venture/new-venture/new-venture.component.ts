@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { VentureService } from '../venture.service';
-import { Test } from '../test.model';
+import { Control } from '../control.model';
 import { UIService } from '../../shared/ui.service';
 import * as fromVenture from '../venture.reducer';
 import * as fromRoot from '../../app.reducer';
@@ -15,7 +15,7 @@ import * as fromRoot from '../../app.reducer';
   styleUrls: ['./new-venture.component.css']
 })
 export class NewVentureComponent implements OnInit {
-  tests$: Observable<Test[]>;
+  controls$: Observable<Control[]>;
   isLoading$: Observable<boolean>;
 
 
@@ -48,7 +48,7 @@ export class NewVentureComponent implements OnInit {
     },
     {
       instanceType: 'small',
-      name: 'Testing Environment Server',
+      name: 'Controling Environment Server',
       status: 'stable',
       started: new Date(15, 1, 2017)
     }
@@ -84,16 +84,16 @@ export class NewVentureComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    this.tests$ = this.store.select(fromVenture.getAvailableTests);
-    this.fetchTests();   
+    this.controls$ = this.store.select(fromVenture.getAvailableControls);
+    this.fetchControls();   
   }
 
-  // TODO ? - Change Test / Tests to Tags - ? what about Calories, Duration for tags? generic cost? timeframe?
-  fetchTests() {
-    this.ventureService.fetchAvailableTests(); 
+  // TODO ? - Change Control / Controls to Tags - ? what about Calories, Duration for tags? generic cost? timeframe?
+  fetchControls() {
+    this.ventureService.fetchAvailableControls(); 
   }
 
   onStartVenture(form: NgForm) {
-    this.ventureService.startTest( form.value.test );
+    this.ventureService.startControl( form.value.control );
   }
 }

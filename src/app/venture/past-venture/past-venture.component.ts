@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Store } from '@ngrx/store';
 
-import { Test } from '../test.model';
+import { Control } from '../control.model';
 import { VentureService } from '../venture.service';
 import * as fromVenture from '../venture.reducer';
 
@@ -14,7 +14,7 @@ import * as fromVenture from '../venture.reducer';
 export class PastVentureComponent implements OnInit, AfterViewInit {
   // the displayedColumns array keeps the order of the columns on the screen mat-table
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
-  dataSource = new MatTableDataSource<Test>();
+  dataSource = new MatTableDataSource<Control>();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,12 +25,12 @@ export class PastVentureComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.store.select(fromVenture.getFinishedTests).subscribe(
-      (tests: Test[]) => {
+    this.store.select(fromVenture.getFinishedControls).subscribe(
+      (tests: Control[]) => {
         this.dataSource.data = tests;
       }
     );
-    this.ventureService.fetchCompletedOrCancelledTests();
+    this.ventureService.fetchCompletedOrCancelledControls();
   }
 
   ngAfterViewInit() {

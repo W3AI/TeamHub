@@ -34,7 +34,7 @@ export class CurrentVentureComponent implements OnInit {
       this.timer = setInterval(() => {
         this.progress = this.progress + 1;
         if (this.progress >= 100) {
-          this.ventureService.completeTest();
+          this.ventureService.completeControl();
           clearInterval(this.timer);
         }
       }, step);  
@@ -52,7 +52,7 @@ export class CurrentVentureComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // TODO - include this in a Venture Log
       if (result) {
-        this.ventureService.cancelTest(this.progress);
+        this.ventureService.cancelControl(this.progress);
       } else {
         this.startOrResumeTimer();
       }

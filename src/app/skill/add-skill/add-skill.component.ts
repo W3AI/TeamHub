@@ -9,7 +9,7 @@ import { UIService } from '../../shared/ui.service';
 import * as fromSkill from '../skill.reducer';
 import * as fromRoot from '../../app.reducer';
 
-// TODO - Refactoring on Skill / Talent / Service
+// TODO - Refactoring on Skill ~? Talent / Service
 
 @Component({
   selector: 'app-add-skill',

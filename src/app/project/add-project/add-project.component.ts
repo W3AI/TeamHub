@@ -9,7 +9,7 @@ import { UIService } from '../../shared/ui.service';
 import * as fromProject from '../project.reducer';
 import * as fromRoot from '../../app.reducer';
 
-// TODO - Refactoring under Project domain w Plan n Task
+// TODO - Refactoring under Project ~? Plan n Task
 
 @Component({
   selector: 'app-add-project',

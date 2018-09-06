@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Test } from "./test.model";
+import { Investment } from "./investment.model";
+import { Control } from "./control.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as Venture from './venture.actions';
@@ -21,27 +22,27 @@ export class VentureService {
         private store: Store<fromVenture.State>
     ) {}
 
-    fetchAvailableTests() {
+    fetchAvailableControls() {
       this.store.dispatch(new UI.StartLoading());
       this.fbSubs.push(
         this.db
-        .collection('availableTests')
+        .collection('availableControls')
         .snapshotChanges()               
         .pipe(map(docArray => {
-        // For testing fetching the tags from Firestore
+        // For controling fetching the tags from Firestore
         //   throw(new Error());
           return docArray.map(doc => {
             return {
               id: doc.payload.doc.id,
               name: doc.payload.doc.data()["name"],
               duration: doc.payload.doc.data()["duration"],
-              calories: doc.payload.doc.data()["calories"]
+              cost: doc.payload.doc.data()["cost"]
             };
           });
         }))
-        .subscribe((tests: Test[]) => {
+        .subscribe((controls: Control[]) => {
             this.store.dispatch(new UI.StopLoading());
-            this.store.dispatch(new Venture.SetAvailableVentures(tests));
+            this.store.dispatch(new Venture.SetAvailableVentures(controls));
         }, error => {
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
@@ -49,11 +50,15 @@ export class VentureService {
         }));  
     }
 
-    startTest(selectedId: string) {
+    addVenture(venture: Investment) {
+        this.addVentureToDatabase(venture);
+    }
+
+    startControl(selectedId: string) {
         this.store.dispatch(new Venture.StartVenture(selectedId));
     }
 
-    completeTest() {
+    completeControl() {
         this.store.select(fromVenture.getActiveVenture).pipe(take(1)).subscribe(ex => {
             this.addDataToDatabase({ 
                 ...ex, 
@@ -63,12 +68,12 @@ export class VentureService {
         });
     }
 
-    cancelTest(progress: number) {
+    cancelControl(progress: number) {
         this.store.select(fromVenture.getActiveVenture).pipe(take(1)).subscribe(ex => {
             this.addDataToDatabase({ 
                 ...ex, 
                 duration: ex.duration * (progress / 100),
-                calories: ex.calories * (progress / 100),
+                cost: ex.cost * (progress / 100),
                 date: new Date(), 
                 state: 'cancelled' 
             });
@@ -76,12 +81,12 @@ export class VentureService {
         });
     }
 
-    fetchCompletedOrCancelledTests() {
+    fetchCompletedOrCancelledControls() {
         this.fbSubs.push(this.db
-        .collection('finishedTests')
+        .collection('finishedControls')
         .valueChanges()
-        .subscribe((tests: Test[]) => {
-            this.store.dispatch(new Venture.SetFinishedVentures(tests));
+        .subscribe((controls: Control[]) => {
+            this.store.dispatch(new Venture.SetFinishedVentures(controls));
         }));
     }
 
@@ -89,7 +94,12 @@ export class VentureService {
         this.fbSubs.forEach(sub => sub.unsubscribe());
     }
 
-    private addDataToDatabase(test: Test) {
-        this.db.collection('finishedTests').add(test);
+    private addDataToDatabase(control: Control) {
+        this.db.collection('finishedControls').add(control);
     }
+
+    private addVentureToDatabase(venture: Investment) {
+        this.db.collection('Ventures').add(venture);
+    }
+
 }
