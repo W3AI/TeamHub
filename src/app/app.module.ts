@@ -26,6 +26,7 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
+import { ListSkillComponent } from './skill/list-skill/list-skill.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MarketComponent } from './market/market.component';
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent
+    MarketComponent,
+    ListSkillComponent
   ],
   imports: [
     BrowserModule,
