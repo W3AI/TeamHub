@@ -2,11 +2,11 @@
 
     <a mat-list-item routerLink="/about">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About Progressive Teams</span>
+        <span class="nav-caption">About TeamWork App</span>
     </a>
     <a mat-list-item routerLink="/market">
         <mat-icon>language</mat-icon>
-        <span class="nav-caption">Service Market</span>
+        <span class="nav-caption">Jobs & Skills Market</span>
     </a>
 
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
@@ -19,7 +19,7 @@
     </a>
     <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>attach_money</mat-icon>
-        <span class="nav-caption">My Account</span>            
+        <span class="nav-caption">Accounts</span>            
     </a>
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
@@ -44,7 +44,7 @@
 <div>
     <ul class="nav-footer">
         <li>Make Money & Friends 24/7</li>
-        <li>Join W3AI Meetups</li>
+        <li>Join our W3AI Meetups</li>
         <li>
             <a href="https://www.meetup.com/SocialAI/">Toronto</a> - 
             <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
