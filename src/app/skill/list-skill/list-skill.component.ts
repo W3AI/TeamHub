@@ -19,7 +19,7 @@ export class ListSkillComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private projectService: SkillService, 
+    private skillService: SkillService, 
     private store: Store<fromSkill.State>
   ) {}
 
@@ -29,7 +29,7 @@ export class ListSkillComponent implements OnInit, AfterViewInit {
         this.dataSource.data = talents;
       }
     );
-    this.projectService.fetchAvailableTalents();
+    this.skillService.fetchAvailableTalents();
   }
 
   ngAfterViewInit() {

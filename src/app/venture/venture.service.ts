@@ -81,6 +81,15 @@ export class VentureService {
         });
     }
 
+    fetchAvailableInvestments() {
+        this.fbSubs.push(this.db
+        .collection('Ventures')
+        .valueChanges()
+        .subscribe((investments: Investment[]) => {
+            this.store.dispatch(new Venture.SetAvailableInvestments(investments));
+        }));
+    }
+
     fetchCompletedOrCancelledControls() {
         this.fbSubs.push(this.db
         .collection('finishedControls')
