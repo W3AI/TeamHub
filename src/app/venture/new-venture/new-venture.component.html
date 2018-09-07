@@ -8,10 +8,10 @@
         <h2>Project Initial Context</h2>
         <input type="text" [(ngModel)]="contextIni">   
   
-        <h2>Project Complete Tests - filter</h2>
+        <h2>Project Complete Controls - filter</h2>
         <input type="text" [(ngModel)]="filteredStatus">
         <br>
-        <h2>Services matching Tests</h2>
+        <h2>Services matching Controls</h2>
         <button class="btn btn-primary" (click)="onAddContexts()">Transform Context(s)</button>
         <br><br>
         <h3>App Status: {{ appStatus | async}} </h3>
@@ -43,18 +43,18 @@
       <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
 
-        <mat-form-field *ngIf="!(isLoading$ | async) && tests$ | async">
-          <mat-select placeholder="Favorite tags" ngModel name="test" required>
-            <mat-option *ngFor="let test of tests$ | async" [value]="test.id">
-              {{ test.name }}
+        <mat-form-field *ngIf="!(isLoading$ | async) && controls$ | async">
+          <mat-select placeholder="Favorite tags" ngModel name="control" required>
+            <mat-option *ngFor="let control of controls$ | async" [value]="control.id">
+              {{ control.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
       </mat-card-content>
       <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
-        <button *ngIf="tests$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
-        <button *ngIf="!(tests$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchTests()">Fetch Tags Again</button>
+        <button *ngIf="controls$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
+        <button *ngIf="!(controls$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchControls()">Fetch Tags Again</button>
       </mat-card-actions>
     </mat-card>
   </form>
