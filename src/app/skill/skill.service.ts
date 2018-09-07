@@ -81,6 +81,15 @@ export class SkillService {
         });
     }
 
+    fetchAvailableTalents() {
+        this.fbSubs.push(this.db
+        .collection('Skills')
+        .valueChanges()
+        .subscribe((talents: Talent[]) => {
+            this.store.dispatch(new Skill.SetAvailableTalents(talents));
+        }));
+    }
+
     fetchCompletedOrCancelledActivitys() {
         this.fbSubs.push(this.db
         .collection('finishedActivities')

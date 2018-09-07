@@ -40,4 +40,5 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  
 }
