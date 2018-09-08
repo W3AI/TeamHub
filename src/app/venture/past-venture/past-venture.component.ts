@@ -13,7 +13,7 @@ import * as fromVenture from '../venture.reducer';
 })
 export class PastVentureComponent implements OnInit, AfterViewInit {
   // the displayedColumns array keeps the order of the columns on the screen mat-table
-  displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
+  displayedColumns = ['date', 'name', 'duration', 'cost', 'state'];
   dataSource = new MatTableDataSource<Control>();
 
   @ViewChild(MatSort) sort: MatSort;

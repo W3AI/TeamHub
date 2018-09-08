@@ -36,7 +36,7 @@ export class VentureService {
               id: doc.payload.doc.id,
               name: doc.payload.doc.data()["name"],
               duration: doc.payload.doc.data()["duration"],
-              calories: doc.payload.doc.data()["calories"]
+              cost: doc.payload.doc.data()["cost"]
             };
           });
         }))
@@ -73,7 +73,7 @@ export class VentureService {
             this.addDataToDatabase({ 
                 ...ex, 
                 duration: ex.duration * (progress / 100),
-                calories: ex.calories * (progress / 100),
+                cost: ex.cost * (progress / 100),
                 date: new Date(), 
                 state: 'cancelled' 
             });

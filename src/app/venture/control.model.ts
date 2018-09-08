@@ -2,7 +2,7 @@ export interface Control {
     id: string;
     name: string;       
     duration: number;
-    calories: number;
+    cost: number;
     date?: Date;
     state?: 'completed' | 'cancelled' | null;
     actualCost?: number;       // actual spent cost
