@@ -1,50 +1,12 @@
-
-<h1>TeamHub X Combinator</h1>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-
-        <h2>Project Initial Context</h2>
-        <input type="text" [(ngModel)]="contextIni">   
-  
-        <h2>Project Complete Controls - filter</h2>
-        <input type="text" [(ngModel)]="filteredStatus">
-        <br>
-        <h2>Services matching Controls</h2>
-        <button class="btn btn-primary" (click)="onAddContexts()">Transform Context(s)</button>
-        <br><br>
-        <h3>App Status: {{ appStatus | async}} </h3>
-        <hr>
-        <ul class="list-group">
-          <li
-            class="list-group-item"
-            *ngFor="let context of contexts | filter:filteredStatus:'status' | sort:'name'"
-            [ngClass]="getStatusClasses(context)">
-            <span
-              class="badge">
-              {{ context.status }}
-            </span>
-            <strong>{{ context.name | shorten: 17 }}</strong> | 
-            {{ context.instanceType }} | 
-            {{ context.started | date:'fullDate' }}
-          </li>
-        </ul>
-
-    </div>
-  </div>
-</div>
-
-<hr>
-
 <section class="new-venture" fxLayout="column" fxLayoutAlign="center">
   <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
-    <mat-card  fxFlex="100%">
-      <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
-      <mat-card-content fxLayoutAlign="center">
 
-        <mat-form-field *ngIf="!(isLoading$ | async) && controls$ | async">
-          <mat-select placeholder="Favorite tags" ngModel name="control" required>
+    <mat-card  fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
+      <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
+      <mat-card-content fxFlex="100%" fxLayoutAlign="center">
+
+        <mat-form-field fxFlex="100%" *ngIf="!(isLoading$ | async) && controls$ | async">
+          <mat-select placeholder="Next steps" ngModel name="control" required>
             <mat-option *ngFor="let control of controls$ | async" [value]="control.id">
               {{ control.name }}
             </mat-option>
@@ -52,6 +14,7 @@
         </mat-form-field>
         <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
       </mat-card-content>
+
       <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
         <button *ngIf="controls$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
         <button *ngIf="!(controls$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchControls()">Fetch Tags Again</button>

@@ -26,8 +26,8 @@ export class PastVentureComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.store.select(fromVenture.getFinishedControls).subscribe(
-      (tests: Control[]) => {
-        this.dataSource.data = tests;
+      (controls: Control[]) => {
+        this.dataSource.data = controls;
       }
     );
     this.ventureService.fetchCompletedOrCancelledControls();

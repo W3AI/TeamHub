@@ -5,15 +5,21 @@
             <!-- <mat-icon>language</mat-icon> -->
         </button>
     </div>
-    <div><a routerLink="/">TeamWork</a></div>
+    <div>
+        <a routerLink="/">
+            <button mat-icon-button fxHide.lt-md>
+                <mat-icon class="teamhub-header-icon"></mat-icon>
+            </button>TeamWork
+        </a>
+    </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
 
 
             <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/market">Service Market</a></li>
+            <li><a routerLink="/market">Jobs Market</a></li>
 
-            <li *ngIf="isAuth$ | async"><a routerLink="/account">My Account</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li>
 
             <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/skill">Services</a></li>

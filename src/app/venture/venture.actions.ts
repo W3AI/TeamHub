@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { Investment } from './investment.model';
 import { Control } from './control.model';
 
-export const SET_AVAILABLE_INVESTMENTS = '[Venture] Set Available Ventures';
+export const SET_AVAILABLE_INVESTMENTS = '[Venture] Set Available Investments';
 export const SET_AVAILABLE_VENTURES = '[Venture] Set Available Ventures';
 export const SET_FINISHED_VENTURES = '[Venture] Set Finished Ventures';
 export const ADD_VENTURE = '[Venture] Add Venture';
