@@ -1,9 +1,56 @@
 <section class="new-venture" fxLayout="column" fxLayoutAlign="center">
+
   <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
 
     <mat-card  fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
+
       <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
-      <mat-card-content fxFlex="100%" fxLayoutAlign="center">
+      <mat-card-content fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
+
+        <mat-form-field>
+          <textarea 
+            matInput [ngModel]="'Paste Initial Context here:'" 
+            name="contextIni" 
+            rows="4" 
+            placeholder="Initial Context:">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [ngModel]="'Paste Test List here:'" 
+            name="testList" 
+            rows="2" 
+            placeholder="Test List:">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [ngModel]="'Paste Input Query here:'" 
+            name="inputQuery" 
+            rows="2" 
+            placeholder="Input Query:">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [ngModel]="'Paste Transformation Function here:'" 
+            name="transform" 
+            rows="2" 
+            placeholder="Function:">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [ngModel]="'Paste Update Query here:'" 
+            name="updateQuery" 
+            rows="2" 
+            placeholder="Update Query:">
+          </textarea>
+        </mat-form-field>
 
         <mat-form-field fxFlex="100%" *ngIf="!(isLoading$ | async) && controls$ | async">
           <mat-select placeholder="Next steps" ngModel name="control" required>
@@ -13,12 +60,16 @@
           </mat-select>
         </mat-form-field>
         <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
       </mat-card-content>
 
-      <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
+      <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center center">
         <button *ngIf="controls$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
         <button *ngIf="!(controls$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchControls()">Fetch Tags Again</button>
       </mat-card-actions>
+
     </mat-card>
+
   </form>
+
 </section>
