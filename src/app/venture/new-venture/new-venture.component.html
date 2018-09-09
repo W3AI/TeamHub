@@ -4,33 +4,29 @@
 
     <mat-card  fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
 
-      <mat-card-title fxLayoutAlign="center">Start venture activity:</mat-card-title>
+      <mat-card-title fxLayoutAlign="center">Start Venture activity:</mat-card-title>
       <mat-card-content fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
 
         <mat-list>
-          <mat-list-item>ContextIni: {{ contextIni | shorten: 30 }}</mat-list-item>
-          <mat-list-item>Test List: {{ testList | shorten: 30 }}</mat-list-item>
-          <mat-list-item>Input Query: {{ inputQuery | shorten: 30 }}</mat-list-item>
-          <mat-list-item>Transformation: {{ transform | shorten: 30 }}</mat-list-item>
-          <mat-list-item>Update Query: {{ updateQuery | shorten: 30 }}</mat-list-item>
-          <mat-list-item>Search Result: {{ searchResult | shorten: 30 }}</mat-list-item>
+          <mat-list-item>Find Solution: {{ (searchResult | shorten: 30) || "Fill in fields below from Excel Venture tab" }}</mat-list-item>
         </mat-list>
 
         <mat-form-field>
           <textarea 
-            matInput [(ngModel)]="contextIni"
+            matInput [(ngModel)]="cI"
             name="contextIni" 
             rows="4" 
-            placeholder="Initial Context: (contextIni)">
+            #nameInput="ngModel"
+            placeholder="Initial Context (cI), for Demo type eg: World">
           </textarea>
         </mat-form-field>
 
         <mat-form-field>
           <textarea 
-            matInput [(ngModel)]="testList" 
+            matInput [(ngModel)]="tL" 
             name="testList" 
             rows="2" 
-            placeholder="Test List: (testList)">
+            placeholder="Test List (tL), for Demo type eg: !">
           </textarea>
         </mat-form-field>
 
@@ -39,29 +35,29 @@
             matInput [(ngModel)]="inputQuery" 
             name="inputQuery" 
             rows="2" 
-            placeholder="Input Query: (inputQuery)">
+            placeholder="Input Query (iQ), for Demo type eg: Roman greeting ">
           </textarea>
         </mat-form-field>
 
         <mat-form-field>
           <textarea 
-            matInput [(ngModel)]="transform" 
+            matInput [(ngModel)]="tF" 
             name="transform" 
             rows="2" 
-            placeholder="Function: (transform)">
+            placeholder="Function (tF), for Demo type eg: this.uC + this.cI + this.tL">
           </textarea>
         </mat-form-field>
 
         <mat-form-field>
           <textarea 
-            matInput [(ngModel)]="updateQuery" 
+            matInput [(ngModel)]="uC" 
             name="updateQuery" 
             rows="2" 
-            placeholder="Update Query: (updateQuery)">
+            placeholder="Update Command (uC), for Demo type eg: Servus">
           </textarea>
         </mat-form-field>
 
-        <h1>Launch</h1>
+        <h1>Launch Venture</h1>
 
         <mat-form-field fxFlex="100%" *ngIf="!(isLoading$ | async) && controls$ | async">
           <mat-select placeholder="Next steps" ngModel name="control" required>

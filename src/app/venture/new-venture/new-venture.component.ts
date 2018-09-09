@@ -43,15 +43,16 @@ export class NewVentureComponent implements OnInit {
 
   // Here below are the elements of the DNA, RNA process/algo
 
-  contextIni: '1';
-  testList: '2';
-  inputQuery: '3';
-  transform: 'Math.min( this.property1, this. property2)';
-  updateQuery: '4';
+  cI: '';
+  tL: '';
+  iQ: '';
+  tF: '';
+  uC: '';
   searchResult: '';
 
-  property1: number = 10;
-  property2: number = 99;
+  //  transform: 'Math.min( this.property1, this. property2)';
+  // property1: number = 10;
+  // property2: number = 99;
 
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
@@ -61,7 +62,7 @@ export class NewVentureComponent implements OnInit {
     // console.log(this.updateQuery);  
     // console.log( eval( this.transform ) );
 
-    this.searchResult = eval( this.transform  );
+    this.searchResult = eval( this.tF  );
   }
 
 }
