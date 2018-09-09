@@ -20,6 +20,8 @@ export class NewVentureComponent implements OnInit {
   controls$: Observable<Control[]>;
   isLoading$: Observable<boolean>;
 
+  contextIni: '';
+
   constructor(
     private ventureService: VentureService, 
     private uiService:  UIService, 
