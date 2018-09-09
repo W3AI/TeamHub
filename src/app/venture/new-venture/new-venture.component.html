@@ -13,6 +13,7 @@
           <mat-list-item>Input Query: {{ inputQuery | shorten: 30 }}</mat-list-item>
           <mat-list-item>Transformation: {{ transform | shorten: 30 }}</mat-list-item>
           <mat-list-item>Update Query: {{ updateQuery | shorten: 30 }}</mat-list-item>
+          <mat-list-item>Search Result: {{ searchResult | shorten: 30 }}</mat-list-item>
         </mat-list>
 
         <mat-form-field>
@@ -20,7 +21,7 @@
             matInput [(ngModel)]="contextIni"
             name="contextIni" 
             rows="4" 
-            placeholder="Initial Context:">
+            placeholder="Initial Context: (contextIni)">
           </textarea>
         </mat-form-field>
 
@@ -29,7 +30,7 @@
             matInput [(ngModel)]="testList" 
             name="testList" 
             rows="2" 
-            placeholder="Test List:">
+            placeholder="Test List: (testList)">
           </textarea>
         </mat-form-field>
 
@@ -38,7 +39,7 @@
             matInput [(ngModel)]="inputQuery" 
             name="inputQuery" 
             rows="2" 
-            placeholder="Input Query:">
+            placeholder="Input Query: (inputQuery)">
           </textarea>
         </mat-form-field>
 
@@ -47,7 +48,7 @@
             matInput [(ngModel)]="transform" 
             name="transform" 
             rows="2" 
-            placeholder="Function:">
+            placeholder="Function: (transform)">
           </textarea>
         </mat-form-field>
 
@@ -56,7 +57,7 @@
             matInput [(ngModel)]="updateQuery" 
             name="updateQuery" 
             rows="2" 
-            placeholder="Update Query:">
+            placeholder="Update Query: (updateQuery)">
           </textarea>
         </mat-form-field>
 

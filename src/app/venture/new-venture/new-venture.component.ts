@@ -20,12 +20,6 @@ export class NewVentureComponent implements OnInit {
   controls$: Observable<Control[]>;
   isLoading$: Observable<boolean>;
 
-  contextIni: '';
-  testList: '';
-  inputQuery: '';
-  transform: '';
-  updateQuery: '';
-
   constructor(
     private ventureService: VentureService, 
     private uiService:  UIService, 
@@ -47,16 +41,27 @@ export class NewVentureComponent implements OnInit {
     this.ventureService.startControl( form.value.control );
   }
 
+  // Here below are the elements of the DNA, RNA process/algo
 
+  contextIni: '1';
+  testList: '2';
+  inputQuery: '3';
+  transform: 'Math.min( this.property1, this. property2)';
+  updateQuery: '4';
+  searchResult: '';
 
+  property1: number = 10;
+  property2: number = 99;
+
+  // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
-    console.log(this.contextIni);
-    console.log(this.testList);
-    console.log(this.inputQuery);
-    console.log(this.updateQuery);
+    // console.log(this.contextIni);
+    // console.log(this.testList);
+    // console.log(this.inputQuery);
+    // console.log(this.updateQuery);  
+    // console.log( eval( this.transform ) );
 
-      // ToDo: Test Sanitizer / Angular Elements, etc   
-//    console.log( eval(  '3Jars ' + this.transform + ' 8' ) );
+    this.searchResult = eval( this.transform  );
   }
 
 }
