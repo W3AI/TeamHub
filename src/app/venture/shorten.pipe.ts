@@ -1,6 +1,10 @@
 import { PipeTransform, Pipe } from "@angular/core";
 
+import { NewVentureComponent } from "./new-venture/new-venture.component";
+
 // Pipe Template to apply on Context & Entity strings
+// Should also make updates to Contexts & Transformation Classes 
+// ToDo: Create Contexts & Transformation Classes <<<---------<<<< !!!
 
 let newContext = '';
 
@@ -9,19 +13,23 @@ let newContext = '';
 })
 export class ShortenPipe implements PipeTransform {
 
-    transform(contextString: any, param1: number) {
+    transform(value: any, param1: number) {
 
         
         // conditional - if condition => apply transformation
-        if (contextString.length > param1) {
+        if ( (value != undefined ) && (value.length > param1) ) {
 
             // update conttext string
-            newContext = contextString.substr(0, param1) + ' ...';
+            newContext = value.substr(0, param1) + ' ...';
+ 
+            // NewVentureComponent.contexts = newContext + ' cool stuff';
+            // contexts += value;
+            // console.log(contexts);
 
             // apply transformation and return
             return newContext;
         }
-        return contextString;
+        return value;
 
     }
 

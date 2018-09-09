@@ -21,6 +21,10 @@ export class NewVentureComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
   contextIni: '';
+  testList: '';
+  inputQuery: '';
+  transform: '';
+  updateQuery: '';
 
   constructor(
     private ventureService: VentureService, 
@@ -42,4 +46,17 @@ export class NewVentureComponent implements OnInit {
   onStartVenture(form: NgForm) {
     this.ventureService.startControl( form.value.control );
   }
+
+
+
+  onSearchStep() {
+    console.log(this.contextIni);
+    console.log(this.testList);
+    console.log(this.inputQuery);
+    console.log(this.updateQuery);
+
+      // ToDo: Test Sanitizer / Angular Elements, etc   
+//    console.log( eval(  '3Jars ' + this.transform + ' 8' ) );
+  }
+
 }
