@@ -55,6 +55,12 @@ export class AccountService {
         }));  
     }
 
+
+    addAccount(account: Bank) {
+        this.addAccountToDatabase(account);
+    }
+
+
     activateAccount(selectedId: string) {
         this.store.dispatch(new Account.ActivateAccount(selectedId));
     }

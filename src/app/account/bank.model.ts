@@ -1,6 +1,8 @@
 export interface Bank {
     id: string;
     name: string;   
+    rpDisplayName: string;      // ToDo - Check these conenctions to user
+    displayName: string;
     type?: 'credit' | 'debit' | null; 
     accountNo?: number;
     address?: string;   

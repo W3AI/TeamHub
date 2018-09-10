@@ -1,3 +1,20 @@
-<p>
-  account works!
-</p>
+<mat-tab-group *ngIf="!(ongoingAccount$ | async)">
+
+    <mat-tab label="Balance">
+        <app-current-account></app-current-account>
+      </mat-tab>
+
+    <mat-tab label="Add Account">
+      <app-add-account></app-add-account>
+    </mat-tab>
+  
+    <mat-tab label="List">
+      <app-list-account></app-list-account>
+    </mat-tab>
+  
+    <mat-tab label="Profile">
+      <app-user-account></app-user-account>
+    </mat-tab>
+  
+  </mat-tab-group>
+  <app-current-account *ngIf="ongoingAccount$ | async"></app-current-account>

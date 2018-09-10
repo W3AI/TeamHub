@@ -26,9 +26,6 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
-import { UserAccountComponent } from './account/user-account/user-account.component';
-import { ListAccountComponent } from './account/list-account/list-account.component';
-import { BalanceAccountComponent } from './account/balance-account/balance-account.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +36,7 @@ import { BalanceAccountComponent } from './account/balance-account/balance-accou
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent,
-    UserAccountComponent,
-    ListAccountComponent,
-    BalanceAccountComponent
+    MarketComponent
   ],
   imports: [
     BrowserModule,
