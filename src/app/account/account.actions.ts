@@ -6,12 +6,19 @@ import { Currency } from './currency.model';
 import { Group } from './group.model';
 import { Organization } from './organization.model';
 
+export const SET_AVAILABLE_BANKS = '[Account] Set Available Banks';
 export const SET_AVAILABLE_CARDS = '[Account] Set Available Cards';
 export const SET_AVAILABLE_ACCOUNTS = '[Account] Set Available Accounts';
 export const SET_FINISHED_ACCOUNTS = '[Account] Set Finished Accounts';
 export const ADD_ACCOUNT = '[Account] Add Account';
 export const ACTIVATE_ACCOUNT = '[Account] Activate Account';
 export const CANCEL_ACCOUNT = '[Account] Cancell Account';
+
+export class SetAvailableBanks implements Action {
+    readonly type = SET_AVAILABLE_BANKS;
+
+    constructor(public payload: Bank[]) {}
+}
 
 export class SetAvailableCards implements Action {
     readonly type = SET_AVAILABLE_CARDS;
@@ -48,6 +55,7 @@ export class CancelAccount implements Action {
 }
 
 export type AccountActions = 
+    | SetAvailableBanks    
     | SetAvailableCards 
     | SetAvailableAccounts 
     | SetFinishedAccounts 

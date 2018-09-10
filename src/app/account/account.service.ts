@@ -27,6 +27,34 @@ export class AccountService {
         private store: Store<fromAccount.State>
     ) {}
 
+    // fetchAvailableBanks() {
+    //     this.store.dispatch(new UI.StartLoading());
+    //     this.fbSubs.push(
+    //       this.db
+    //       .collection('availableBanks')
+    //       .snapshotChanges()               
+    //       .pipe(map(docArray => {
+    //       // For testing fetching the cards from Firestore
+    //       //   throw(new Error());
+    //         return docArray.map(doc => {
+    //           return {
+    //             id: doc.payload.doc.id,
+    //             name: doc.payload.doc.data()["name"],
+    //             bank: doc.payload.doc.data()["bank"],
+    //             balance: doc.payload.doc.data()["balance"]
+    //           };
+    //         });
+    //       }))
+    //       .subscribe((banks: Bank[]) => {
+    //           this.store.dispatch(new UI.StopLoading());
+    //           this.store.dispatch(new Account.SetAvailableBanks(banks));
+    //       }, error => {
+    //           this.store.dispatch(new UI.StopLoading());
+    //           this.uiService.showSnackbar(
+    //               'Fetching data failed, please try again later', null, 3000);
+    //       }));  
+    //   }
+
     fetchAvailableCards() {
       this.store.dispatch(new UI.StartLoading());
       this.fbSubs.push(
@@ -103,7 +131,7 @@ export class AccountService {
         this.db.collection('Transactions').add(transaction);
     }
 
-    private addAccountToDatabase(account: Account) {
+    private addAccountToDatabase(account: Bank) {
         this.db.collection('Accounts').add(account);
     }
 

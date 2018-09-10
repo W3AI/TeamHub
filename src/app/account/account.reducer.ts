@@ -2,6 +2,7 @@ import { Action, createFeatureSelector, createSelector } from "@ngrx/store";
 
 import { 
     AccountActions, 
+    SET_AVAILABLE_BANKS,
     SET_AVAILABLE_CARDS,
     SET_AVAILABLE_ACCOUNTS,
     SET_FINISHED_ACCOUNTS, 
@@ -17,6 +18,7 @@ import { Organization } from './organization.model';
 import * as fromRoot from '../app.reducer';
 
 export interface AccountState {
+    availableBanks: Bank[];
     availableCards: Card[];
     availableAccounts: Account[];
     finishedAccounts: Account[];
@@ -24,10 +26,11 @@ export interface AccountState {
 }
 
 export interface State extends fromRoot.State {
-    project: AccountState;
+    account: AccountState;
 }
 
 const initialState: AccountState = {
+    availableBanks: [],
     availableCards: [],
     availableAccounts: [],
     finishedAccounts: [],
@@ -36,6 +39,11 @@ const initialState: AccountState = {
 
 export function accountReducer(state = initialState, action: AccountActions) {
     switch (action.type) {
+            case SET_AVAILABLE_BANKS:
+            return {
+                ...state,
+                availableBanks: action.payload
+            };
             case SET_AVAILABLE_CARDS:
             return {
                 ...state,
@@ -74,6 +82,7 @@ export function accountReducer(state = initialState, action: AccountActions) {
 
 export const getAccountState = createFeatureSelector<AccountState>('account');
 
+export const getAvailableBanks = createSelector(getAccountState, (state: AccountState) => state.availableBanks);
 export const getAvailableCards = createSelector(getAccountState, (state: AccountState) => state.availableCards);
 export const getAvailableAccounts = createSelector(getAccountState, (state: AccountState) => state.availableAccounts);
 export const getFinishedAccounts = createSelector(getAccountState, (state: AccountState) => state.finishedAccounts);
