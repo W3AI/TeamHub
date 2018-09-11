@@ -6,7 +6,11 @@
     </a>
     <a mat-list-item routerLink="/market">
         <mat-icon>language</mat-icon>
-        <span class="nav-caption">Jobs & Skills Market</span>
+        <span class="nav-caption">Jobs</span>
+    </a>
+    <a mat-list-item routerLink="/friend">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Friends</span>
     </a>
 
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">

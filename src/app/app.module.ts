@@ -26,6 +26,10 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
+import { FriendComponent } from './friend/friend.component';
+import { AddFriendComponent } from './friend/add-friend/add-friend.component';
+import { ListFriendComponent } from './friend/list-friend/list-friend.component';
+import { BrowseFriendComponent } from './friend/browse-friend/browse-friend.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { MarketComponent } from './market/market.component';
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent
+    MarketComponent,
+    FriendComponent,
+    AddFriendComponent,
+    ListFriendComponent,
+    BrowseFriendComponent
   ],
   imports: [
     BrowserModule,

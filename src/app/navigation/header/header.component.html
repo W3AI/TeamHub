@@ -17,9 +17,8 @@
 
 
             <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/market">Jobs Market</a></li>
-
-            <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li>
+            <li><a routerLink="/market">Jobs</a></li>
+            <li><a routerLink="/friend">Friends</a></li>
 
             <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/skill">Services</a></li>
@@ -27,6 +26,7 @@
 
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li>
             
             <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
