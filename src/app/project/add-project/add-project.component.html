@@ -3,7 +3,7 @@
 
     <mat-form-field hintLabel="Short & memorable.">
       <input type="text" 
-      matInput [ngModel]="'eg: Self-updating Business Platform'" 
+      matInput [ngModel]="'eg: $ocial Blockchain Network'" 
       name="name" 
       required 
       maxlength="40"
@@ -16,7 +16,7 @@
 
     <mat-form-field hintLabel="What is changed by the project?">
       <input type="text" 
-      matInput [ngModel]="'eg: code, performance, functionalities'"
+      matInput [ngModel]="'eg: realtime, scalability, services'"
       name="tags" 
       required 
       maxlength="40" 
@@ -29,19 +29,43 @@
 
     <mat-form-field>
       <textarea 
-      matInput [ngModel]="'eg: Infrastructure automation project'" 
+      matInput [ngModel]="'eg: RealTime solutions from friendly distributed networks'" 
       name="description" 
-      rows="3" 
+      rows="2" 
       placeholder="Brief description">
     </textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="url" 
-      matInput [ngModel]="'https://teamhub.w3ai.net/top/projects/self-maintenance-quine/'" 
-      name="url" 
-      placeholder="URL of your project">
+      <input type="url" matInput [ngModel]="'https://teamhub.w3ai.net/top/projects/teamup-social-web/'" name="url" placeholder="URL of your project">
     </mat-form-field>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Paste Details
+          </mat-panel-title>
+          <mat-panel-description>
+            from TeamUp Project Spreadsheet > {{panelOpenState ? 'close' : 'open'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="textarea-expansion-panel">
+          <textarea 
+            matInput [ngModel]="'Replace this with the Start Range Cells'" 
+            name="start" rows="2" placeholder="The Initial Project Context">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="textarea-expansion-panel">
+          <textarea matInput [ngModel]="'Replace this with the Done Range Cells'" 
+          name="doneTests" rows="2" placeholder="The Done Test List">
+          </textarea>
+        </mat-form-field>
+
+      </mat-expansion-panel>
+    </mat-accordion>
 
     <mat-radio-group ngModel name="privacy" required>
       <mat-radio-button class="radio-button" color="primary" value="private">private</mat-radio-button>

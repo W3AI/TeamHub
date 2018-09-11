@@ -2,8 +2,8 @@
     padding-top: 10px;
 }
 
-.mat-form-field {
-    width: 87%;
+.mat-form-field, .mat-accordion, .mat-expantion-panel, .mat-expansion-panel-header {
+    width: 90%;
 }
 
 .radio-button {
@@ -12,4 +12,8 @@
 
 .submit-button {
     margin: 10px;
+}
+
+.textarea-expansion-panel {
+    width: 100%;
 }
