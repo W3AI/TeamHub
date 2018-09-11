@@ -18,6 +18,7 @@ import * as fromRoot from '../../app.reducer';
 })
 export class AddSkillComponent implements OnInit {
   talents$: Observable<Talent[]>;
+  panelOpenState = false;
   // isLoading$: Observable<boolean>;
 
   constructor(

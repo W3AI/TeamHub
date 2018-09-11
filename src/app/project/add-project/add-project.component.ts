@@ -18,6 +18,7 @@ import * as fromRoot from '../../app.reducer';
 })
 export class AddProjectComponent implements OnInit {
   plans$: Observable<Plan[]>;
+  panelOpenState = false;
   // isLoading$: Observable<boolean>;
 
   constructor(
