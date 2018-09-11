@@ -2,7 +2,7 @@
     padding-top: 10px;
 }
 
-.mat-form-field {
+.mat-form-field, .mat-accordion, .mat-expantion-panel, .mat-expansion-panel-header {
     width: 87%;
 }
 
@@ -12,4 +12,8 @@
 
 .submit-button {
     margin: 10px;
+}
+
+.textarea-expansion-panel {
+    width: 100%;
 }
