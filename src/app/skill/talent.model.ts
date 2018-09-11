@@ -5,6 +5,9 @@ export interface Talent {
     name: string;
     tags: string;
     privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
+    inputScript?: string;
+    transScript?: string;
+    outputScript?: string;
     ownerId?: string;
     ownerEmail?: string;
     ownerDisplayName: string;

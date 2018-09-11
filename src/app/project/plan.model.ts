@@ -5,6 +5,8 @@ export interface Plan {
     name: string;
     tags: string;
     privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
+    startScript?: string;
+    checkScript?: string;
     ownerId?: string;
     ownerEmail?: string;
     ownerDisplayName: string;
