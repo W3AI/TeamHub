@@ -9,6 +9,7 @@ import { Investment } from "./investment.model";
 import { Control } from "./control.model";
 import { Plan } from "../project/plan.model";
 import { Talent } from "../skill/talent.model";
+import { Adventure } from "../logic/Adventure";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as Venture from './venture.actions';
@@ -18,14 +19,22 @@ import * as fromVenture from './venture.reducer';
 export class VentureService {
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
     projectDoc: AngularFirestoreDocument;
-    projects: Plan[];
-    services: Talent[]; 
+
+    dbProjects: Plan[] = [];
+    dbServices: Talent[] = [];
+
+    adventures: Adventure[] = [];
+    newAdventure: Adventure;
 
     constructor(
         private db: AngularFirestore, 
         private uiService: UIService, 
         private store: Store<fromVenture.State>
     ) {}
+
+    startAdventure() {
+        this.newAdventure = new Adventure();
+    }
 
     // fetch all projects from Projects collection
     fetchAvailableProjects() {
@@ -49,7 +58,8 @@ export class VentureService {
                 this.store.dispatch(new UI.StopLoading());
                 this.store.dispatch(new Venture.SetAvailableProjects(plans));
                 // plans contain all projects in FS Projects collection
-                console.log(plans);
+                this.dbProjects.push(...plans);
+                console.log(this.dbProjects[0]);
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackbar(
@@ -76,11 +86,12 @@ export class VentureService {
                 };
               });
             }))
-            .subscribe((services: Talent[]) => {
+            .subscribe((talents: Talent[]) => {
                 this.store.dispatch(new UI.StopLoading());
-                this.store.dispatch(new Venture.SetAvailableServices(services));
-                // plans contain all projects in FS Projects collection
-                console.log(services);
+                this.store.dispatch(new Venture.SetAvailableServices(talents));
+                // services contain all services in FS Skills collection
+                this.dbServices.push(...talents);
+                console.log(this.dbServices[0]);
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackbar(

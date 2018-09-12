@@ -22,9 +22,6 @@ export class NewVentureComponent implements OnInit {
   controls$: Observable<Control[]>;
   isLoading$: Observable<boolean>;
 
-  project: Plan;
-  service: Talent;
-
   cI: '';           // contextIni - startScript
   tL: '';           // testList   - checkScript
   iQ: '';           // inputquery
@@ -71,13 +68,14 @@ export class NewVentureComponent implements OnInit {
 
   // Here below are the elements of the DNA, RNA process/algo
 
-  //  transform: 'Math.min( this.property1, this. property2)';
+  // 3Jars Transform: 'Math.min( this.property1, this. property2)';   // It works written like this
   // property1: number = 10;
   // property2: number = 99;
 
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
     this.searchResult = eval( this.tF  );
+    this.ventureService.startAdventure();
   }
 
 }
