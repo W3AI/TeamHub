@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { VentureService } from '../venture.service';
 import { Control } from '../control.model';
 import { Plan } from "../../project/plan.model";
+import { Talent } from "../../skill/talent.model";
 import { UIService } from '../../shared/ui.service';
 import * as fromVenture from '../venture.reducer';
 import * as fromRoot from '../../app.reducer';
@@ -22,6 +23,7 @@ export class NewVentureComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
   project: Plan;
+  service: Talent;
 
   cI: '';           // contextIni - startScript
   tL: '';           // testList   - checkScript
@@ -43,7 +45,8 @@ export class NewVentureComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetchProject();
+    this.fetchProjects();
+    this.fetchServices();
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.controls$ = this.store.select(fromVenture.getAvailableControls);
     this.fetchControls();   
@@ -54,8 +57,12 @@ export class NewVentureComponent implements OnInit {
     this.ventureService.fetchAvailableControls(); 
   }
 
-  fetchProject(projectId: string = 'Vkz6btCEbWd5uEbo7s9D') {
-    this.ventureService.fetchAvailableProjects(projectId); 
+  fetchProjects() {
+    this.ventureService.fetchAvailableProjects(); 
+  }
+
+  fetchServices() {
+    this.ventureService.fetchAvailableServices(); 
   }
 
   onStartVenture(form: NgForm) {
@@ -71,7 +78,6 @@ export class NewVentureComponent implements OnInit {
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
     this.searchResult = eval( this.tF  );
-    this.fetchProject();
   }
 
 }

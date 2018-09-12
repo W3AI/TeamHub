@@ -7,11 +7,11 @@ export interface Plan {
     privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
     startScript?: string;
     checkScript?: string;
+    description?: string;
+    url?: string;
     // ownerId?: string;           // owner or from whom we learned about this project
     // ownerEmail?: string;
     // ownerDisplayName: string;
-    // description?: string;
-    // url?: string;
     // duration?: number;
     // budget?: number;
     // date?: Date;

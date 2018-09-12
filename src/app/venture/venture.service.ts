@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { Investment } from "./investment.model";
 import { Control } from "./control.model";
 import { Plan } from "../project/plan.model";
+import { Talent } from "../skill/talent.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as Venture from './venture.actions';
@@ -18,6 +19,7 @@ export class VentureService {
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
     projectDoc: AngularFirestoreDocument;
     projects: Plan[];
+    services: Talent[]; 
 
     constructor(
         private db: AngularFirestore, 
@@ -25,8 +27,8 @@ export class VentureService {
         private store: Store<fromVenture.State>
     ) {}
 
-    // fetch data from one Project document from Firestore Projects collection
-    fetchAvailableProjects(selectedId: string) {
+    // fetch all projects from Projects collection
+    fetchAvailableProjects() {
         this.fbSubs.push(
             this.db
             .collection('Projects')
@@ -46,13 +48,43 @@ export class VentureService {
             .subscribe((plans: Plan[]) => {
                 this.store.dispatch(new UI.StopLoading());
                 this.store.dispatch(new Venture.SetAvailableProjects(plans));
-
+                // plans contain all projects in FS Projects collection
                 console.log(plans);
-
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackbar(
-                    'Fetching Tags failed, please try again later', null, 3000);
+                    'Fetching Projects failed, please try again later', null, 3000);
+            })); 
+    }
+
+    // fetch all services/skills from Skills collection in FS
+    fetchAvailableServices() {
+        this.fbSubs.push(
+            this.db
+            .collection('Skills')
+            .snapshotChanges()               
+            .pipe(map(docArray => {
+              return docArray.map(doc => {
+                return {
+                  id: doc.payload.doc.id,
+                  name: doc.payload.doc.data()["name"],
+                  tags: doc.payload.doc.data()["tags"],
+                  inputScript: doc.payload.doc.data()["inputScript"],
+                  transScript: doc.payload.doc.data()["transScript"],
+                  outputScript: doc.payload.doc.data()["outputScript"],
+                  privacy: doc.payload.doc.data()["privacy"],
+                };
+              });
+            }))
+            .subscribe((services: Talent[]) => {
+                this.store.dispatch(new UI.StopLoading());
+                this.store.dispatch(new Venture.SetAvailableServices(services));
+                // plans contain all projects in FS Projects collection
+                console.log(services);
+            }, error => {
+                this.store.dispatch(new UI.StopLoading());
+                this.uiService.showSnackbar(
+                    'Fetching Services failed, please try again later', null, 3000);
             })); 
     }
 
