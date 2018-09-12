@@ -1,12 +1,12 @@
-# TeamHub Web App - Make Money & Friends 24/7
+# TeamHub 24/7 - Make Money & Friends 24/7
 [live pre-alpha](https://teamhub.w3ai.net)
 
 TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
 It consists of a trinity of modules that add realtime interactions to build the progressive nature of your network:
 
-### Skills + Projects + Ventures
+### Skills + Projects => Ventures
 
-TeamHub is being built to be used on any mobile device or desktop or as a side app in Microsoft Excel or Google Sheets.
+TeamHub is being built to be used on any mobile device or desktop or as a side app to Microsoft Excel or Google Sheets.
 
 The TeamHub web app is developed dynamically by Agile teams of volunteers from the W3AI Meetups network in:
 - Toronto - [TCP1P - Transformative Code Pile 1 Programing Meetup](https://www.meetup.com/SocialAI/)
