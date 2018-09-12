@@ -1,12 +1,13 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Investment } from "./investment.model";
 import { Control } from "./control.model";
+import { Plan } from "../project/plan.model";
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as Venture from './venture.actions';
@@ -15,12 +16,45 @@ import * as fromVenture from './venture.reducer';
 @Injectable()
 export class VentureService {
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
+    projectDoc: AngularFirestoreDocument;
+    projects: Plan[];
 
     constructor(
         private db: AngularFirestore, 
         private uiService: UIService, 
         private store: Store<fromVenture.State>
     ) {}
+
+    // fetch data from one Project document from Firestore Projects collection
+    fetchAvailableProjects(selectedId: string) {
+        this.fbSubs.push(
+            this.db
+            .collection('Projects')
+            .snapshotChanges()               
+            .pipe(map(docArray => {
+              return docArray.map(doc => {
+                return {
+                  id: doc.payload.doc.id,
+                  name: doc.payload.doc.data()["name"],
+                  tags: doc.payload.doc.data()["tags"],
+                  startScript: doc.payload.doc.data()["startScript"],
+                  checkScript: doc.payload.doc.data()["checkScript"],
+                  privacy: doc.payload.doc.data()["privacy"],
+                };
+              });
+            }))
+            .subscribe((plans: Plan[]) => {
+                this.store.dispatch(new UI.StopLoading());
+                this.store.dispatch(new Venture.SetAvailableProjects(plans));
+
+                console.log(plans);
+
+            }, error => {
+                this.store.dispatch(new UI.StopLoading());
+                this.uiService.showSnackbar(
+                    'Fetching Tags failed, please try again later', null, 3000);
+            })); 
+    }
 
     fetchAvailableControls() {
       this.store.dispatch(new UI.StartLoading());

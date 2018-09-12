@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { VentureService } from '../venture.service';
 import { Control } from '../control.model';
+import { Plan } from "../../project/plan.model";
 import { UIService } from '../../shared/ui.service';
 import * as fromVenture from '../venture.reducer';
 import * as fromRoot from '../../app.reducer';
@@ -20,6 +21,21 @@ export class NewVentureComponent implements OnInit {
   controls$: Observable<Control[]>;
   isLoading$: Observable<boolean>;
 
+  project: Plan;
+
+  cI: '';           // contextIni - startScript
+  tL: '';           // testList   - checkScript
+  iQ: '';           // inputquery
+  tF: '';           // transformFunction
+  uC: '';           // updateQuery
+  searchResult: '';
+
+    // console.log(this.contextIni);
+    // console.log(this.testList);
+    // console.log(this.inputQuery);
+    // console.log(this.updateQuery);  
+    // console.log( eval( this.transform ) );
+
   constructor(
     private ventureService: VentureService, 
     private uiService:  UIService, 
@@ -27,6 +43,7 @@ export class NewVentureComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.fetchProject();
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.controls$ = this.store.select(fromVenture.getAvailableControls);
     this.fetchControls();   
@@ -37,18 +54,15 @@ export class NewVentureComponent implements OnInit {
     this.ventureService.fetchAvailableControls(); 
   }
 
+  fetchProject(projectId: string = 'Vkz6btCEbWd5uEbo7s9D') {
+    this.ventureService.fetchAvailableProjects(projectId); 
+  }
+
   onStartVenture(form: NgForm) {
     this.ventureService.startControl( form.value.control );
   }
 
   // Here below are the elements of the DNA, RNA process/algo
-
-  cI: '';
-  tL: '';
-  iQ: '';
-  tF: '';
-  uC: '';
-  searchResult: '';
 
   //  transform: 'Math.min( this.property1, this. property2)';
   // property1: number = 10;
@@ -56,13 +70,8 @@ export class NewVentureComponent implements OnInit {
 
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
-    // console.log(this.contextIni);
-    // console.log(this.testList);
-    // console.log(this.inputQuery);
-    // console.log(this.updateQuery);  
-    // console.log( eval( this.transform ) );
-
     this.searchResult = eval( this.tF  );
+    this.fetchProject();
   }
 
 }
