@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BrowseFriendComponent } from './browse-friend.component';
+import { EditFriendComponent } from './edit-friend.component';
 
-describe('BrowseFriendComponent', () => {
-  let component: BrowseFriendComponent;
-  let fixture: ComponentFixture<BrowseFriendComponent>;
+describe('EditFriendComponent', () => {
+  let component: EditFriendComponent;
+  let fixture: ComponentFixture<EditFriendComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrowseFriendComponent ]
+      declarations: [ EditFriendComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BrowseFriendComponent);
+    fixture = TestBed.createComponent(EditFriendComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

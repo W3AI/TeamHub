@@ -30,6 +30,7 @@ import { FriendComponent } from './friend/friend.component';
 import { AddFriendComponent } from './friend/add-friend/add-friend.component';
 import { ListFriendComponent } from './friend/list-friend/list-friend.component';
 import { BrowseFriendComponent } from './friend/browse-friend/browse-friend.component';
+import { EditFriendComponent } from './friend/edit-friend/edit-friend.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BrowseFriendComponent } from './friend/browse-friend/browse-friend.comp
     FriendComponent,
     AddFriendComponent,
     ListFriendComponent,
-    BrowseFriendComponent
+    BrowseFriendComponent,
+    EditFriendComponent
   ],
   imports: [
     BrowserModule,
