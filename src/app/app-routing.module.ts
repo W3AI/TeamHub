@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: '', component: WelcomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'market', component: MarketComponent },
+    { path: 'friend', loadChildren: './friend/friend.module#FriendModule', canLoad: [AuthGuard] },
     { path: 'account', loadChildren: './account/account.module#AccountModule', canLoad: [AuthGuard] },
     { path: 'project', loadChildren: './project/project.module#ProjectModule', canLoad: [AuthGuard] },
     { path: 'skill', loadChildren: './skill/skill.module#SkillModule', canLoad: [AuthGuard] },

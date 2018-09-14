@@ -1,0 +1,19 @@
+.add-friend-form {
+    padding-top: 10px;
+}
+
+.mat-form-field, .mat-accordion, .mat-expantion-panel, .mat-expansion-panel-header {
+    width: 87%;
+}
+
+.radio-button {
+    padding: 10px;
+}
+
+.submit-button {
+    margin: 10px;
+}
+
+.textarea-expansion-panel {
+    width: 100%;
+}

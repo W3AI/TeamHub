@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { FriendService } from './friend.service';
+import * as fromFriend from './friend.reducer';
 
 @Component({
   selector: 'app-friend',
@@ -7,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendComponent implements OnInit {
 
-  constructor() { }
+  friend$: Observable<boolean>;
+
+  constructor(private skillService: FriendService, private store: Store<fromFriend.State>) { }
 
   ngOnInit() {
+    this.friend$ = this.store.select(fromFriend.getIsFriend)
   }
-
 }

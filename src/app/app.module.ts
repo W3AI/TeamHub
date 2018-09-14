@@ -13,6 +13,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { FriendService } from './friend/friend.service';
 import { AccountService } from './account/account.service';
 import { AuthService } from './auth/auth.service';
 import { ProjectService } from './project/project.service';
@@ -26,11 +27,6 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
-import { FriendComponent } from './friend/friend.component';
-import { AddFriendComponent } from './friend/add-friend/add-friend.component';
-import { ListFriendComponent } from './friend/list-friend/list-friend.component';
-import { BrowseFriendComponent } from './friend/browse-friend/browse-friend.component';
-import { EditFriendComponent } from './friend/edit-friend/edit-friend.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +37,7 @@ import { EditFriendComponent } from './friend/edit-friend/edit-friend.component'
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent,
-    FriendComponent,
-    AddFriendComponent,
-    ListFriendComponent,
-    BrowseFriendComponent,
-    EditFriendComponent
+    MarketComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +50,7 @@ import { EditFriendComponent } from './friend/edit-friend/edit-friend.component'
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, AccountService, ProjectService, SkillService, VentureService, UIService],
+  providers: [AuthService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
