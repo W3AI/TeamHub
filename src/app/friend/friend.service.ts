@@ -68,14 +68,14 @@ export class FriendService {
     //     });
     // }
 
-    // fetchAvailableTalents() {
-    //     this.fbSubs.push(this.db
-    //     .collection('Skills')
-    //     .valueChanges()
-    //     .subscribe((talents: Talent[]) => {
-    //         this.store.dispatch(new Skill.SetAvailableTalents(talents));
-    //     }));
-    // }
+    fetchAvailableRelations() {
+        this.fbSubs.push(this.db
+        .collection('Friends')
+        .valueChanges()
+        .subscribe((relations: Relation[]) => {
+            this.store.dispatch(new Friend.SetAvailableRelations(relations));
+        }));
+    }
 
     cancelSubscriptions() {
         this.fbSubs.forEach(sub => sub.unsubscribe());
