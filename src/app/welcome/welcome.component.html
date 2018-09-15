@@ -1,6 +1,7 @@
 <div class="header" fxLayout="row" fxLayoutAlign="center top">
 <div id="left" fxFlex="33%"><p>
-  friends<sup>2</sup><br>{{ friendsNo }}
+  friends<sup>2</sup><br>{{ friendsNo }}<br>
+  $/min: {{ ratePerMin  | currency }}
 </p></div>
 <div id="center" fxFlex="34%">
   <div class="welcome">
@@ -21,7 +22,8 @@
   projects : {{ projectsNo }}<br>
   services : {{ servicesNo }}<br>
   tasks/ms: {{ realtimeTx }}<br>
-  <button (click)="onStartRealtime()">TeamUp</button> | <button (click)="onStopRealtime()">down</button>
+  {{ thetimer }}
+  <button (click)="onStartRealtime()">Team Up</button> | <button (click)="onStopRealtime()">Down</button>
 </p></div>
 </div>
 

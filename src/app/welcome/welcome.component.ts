@@ -7,35 +7,97 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
+  timer: number;
+
   // TODO - Build Account Setup page to setup like these
   friendsNo = 532134;
+  ratePerMin = 8.7;
   projectsNo = 1364;
   servicesNo = 2734;
   realtimeTx = 1567;
+
   realtime = false;
 
   constructor() {
+
+    this.realtimeTx = Math.floor(this.realtimeTx / 10);
+
+    this.ratePerMin = this.ratePerMin / 10;
+
+    this.timer = setInterval( ()=> {
+
+      this.friendsNo = this.friendsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(1));
+
+      this.ratePerMin = this.ratePerMin + (Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2))) / 100;
+
+      this.projectsNo = this.projectsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+
+      this.servicesNo = this.servicesNo + Math.floor(Math.random() * Math.floor(2))
+    - Math.floor(Math.random() * Math.floor(2));
+
+      this.realtimeTx = this.realtimeTx + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    }, 300);
+
   }
 
   ngOnInit() {
   }
 
   onStartRealtime() {
-    this.realtime = true;
+    clearInterval(this.timer);
 
-    this.realtimeTx = 100;
+    this.realtimeTx = this.realtimeTx * 10;
 
-    // while(this.realtime) {
-    //   setTimeout(() => {
-    //     this.realtimeTx = this.realtimeTx + Math.floor(Math.random() * Math.floor(10));
-    //   }, Math.floor(Math.random() * Math.floor(1000)));
-    // }
+    this.ratePerMin = this.ratePerMin * 10;
+
+    this.timer = setInterval(()=> {
+
+      this.friendsNo = this.friendsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(1));
+
+      this.ratePerMin = this.ratePerMin + (Math.floor(Math.random() * Math.floor(10))
+      - Math.floor(Math.random() * Math.floor(10))) / 100;
+
+      this.projectsNo = this.projectsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+
+      this.servicesNo = this.servicesNo + Math.floor(Math.random() * Math.floor(2))
+    - Math.floor(Math.random() * Math.floor(2));
+
+      this.realtimeTx = this.realtimeTx + Math.floor(Math.random() * Math.floor(5))
+      - Math.floor(Math.random() * Math.floor(5));
+    }, 100);
+
   }
 
   onStopRealtime() {
-    this.realtime = false;
+    clearInterval(this.timer);
 
-    this.realtimeTx = 200;
+    this.realtimeTx = Math.floor(this.realtimeTx / 10);
+
+    this.ratePerMin = this.ratePerMin / 10;
+
+    this.timer = setInterval( ()=> {
+
+      this.friendsNo = this.friendsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(1));
+
+      this.ratePerMin = this.ratePerMin + (Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2))) / 100;
+
+      this.projectsNo = this.projectsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+
+      this.servicesNo = this.servicesNo + Math.floor(Math.random() * Math.floor(2))
+    - Math.floor(Math.random() * Math.floor(2));
+
+      this.realtimeTx = this.realtimeTx + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    }, 300);
   }
 
 }
