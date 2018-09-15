@@ -12,11 +12,11 @@ import * as fromFriend from './friend.reducer';
 })
 export class FriendComponent implements OnInit {
 
-  friend$: Observable<boolean>;
+  ongoingFriend$: Observable<boolean>;
 
   constructor(private skillService: FriendService, private store: Store<fromFriend.State>) { }
 
   ngOnInit() {
-    this.friend$ = this.store.select(fromFriend.getIsFriend)
+    this.ongoingFriend$ = this.store.select(fromFriend.getIsFriend)
   }
 }

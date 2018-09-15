@@ -1,31 +1,57 @@
-<div class="header" fxLayout="row" fxLayoutAlign="center top">
-<div id="left" fxFlex="33%"><p>
-  friends<sup>2</sup><br>{{ friendsNo }}<br>
-  $/min: {{ ratePerMin  | currency }}
+<section>
+
+<div class="quote">
+    <p><q>We are all now connected by the Internet, like neurons in a giant brain.</q><br>
+      <i>Stephen Hawking</i></p>
+</div>
+<h3 id="main-title">Team Up to Solve</h3>
+
+<div class="header" fxLayout="row" fxLayoutAlign="center center">
+
+<div id="left" fxFlex="25%"><p>
+  <span class="side-title">Super Teams</span><br>
+
+  friends<sup>2</sup>: {{ superFriendsNo }}<br>
+  projects: {{ superProjectsNo }}<br>
+  skills: {{ superServicesNo }}<br>
+  tasks/ms: {{ superTxPerMs }}<br>
+  $/min: {{ superRatePerMin  | currency }}<br>
+
+  <span class="side-title">web neurons</span><br>
 </p></div>
-<div id="center" fxFlex="34%">
+
+<div id="center" fxFlex="50%">
   <div class="welcome">
-    <section>
-      <h3>Team Up to Solve</h3>
+
       <a routerLink="/signup">
         <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
       </a>
-      <h3>Your World Problems</h3>
-      <div fxLayout="row">
-          <a routerLink="/login"><button mat-button>Sign In</button></a>
-          <a routerLink="/signup"><button mat-button>Sign Up</button></a>
-      </div>
-    </section>
+
   </div>
 </div>
-<div id="right" fxFlex="33%"><p>
-  projects : {{ projectsNo }}<br>
-  services : {{ servicesNo }}<br>
-  tasks/ms: {{ realtimeTx }}<br>
-  {{ thetimer }}
-  <button (click)="onStartRealtime()">Team Up</button> | <button (click)="onStopRealtime()">Down</button>
+
+<div id="right" fxFlex="25%"><p>
+  <span class="side-title">Office Teams</span><br>
+
+  friends<sup>2</sup>: {{ officeFriendsNo }}<br>
+  projects: {{ officeProjectsNo }}<br>
+  skills: {{ officeServicesNo }}<br>
+  tasks/ms: {{ officeTxPerMs }}<br>
+  $/min: {{ officeRatePerMin  | currency }}<br>
+
+  <span class="side-title">office networks</span><br>
 </p></div>
 </div>
+
+<div id="south-globe">
+<h3>Your World Problems</h3>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <a routerLink="/login"><button mat-button>Sign In</button></a>
+    <a routerLink="/signup"><button mat-button>Sign Up</button></a>
+</div>
+</div>
+
+</section>
 
 <div class="welcome" fxLayout="row" fxLayoutGap="10px"  fxLayoutGap.gt-xs="30px" fxLayoutAlign="center center">
   <section>

@@ -1,19 +1,47 @@
-.welcome {
+.quote {
+    text-align: center; 
+    color: gray;
+    font-size: 60%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#main-title {
     text-align: center;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.header {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.side-title {
+    color: gray;
+    font-size: 60%;
 }
 
 #left {
     color: lightgray;
     text-align: left;
-    font-size: 100%;
+    font-size: 60%;
     margin-left: 20px;
 }
 
 #right {
     color: lightgrey;
     text-align: right;
-    font-size: 100%;
+    font-size: 60%;
     margin-right: 20px;
+}
+
+#south-globe {
+    text-align: center;
+}
+
+.welcome {
+    text-align: center;
 }
 
 a {    
