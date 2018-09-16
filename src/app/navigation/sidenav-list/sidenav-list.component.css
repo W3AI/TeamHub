@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color: white;
+    color: grey;
 }
 
 a:hover,
@@ -11,4 +11,16 @@ a:active {
 .nav-caption {
     display: inline-block;
     padding-left: 6px;
+}
+
+.nav-footer {
+    position: fixed;
+    bottom: 10px;
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+}
+
+li {
+    padding: 10px;
 }

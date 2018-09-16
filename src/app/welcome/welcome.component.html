@@ -1,31 +1,105 @@
-<div class="welcome" fxLayout="column" fxLayout.gt-md="row"  fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
-  <!-- Add LOGO + Text: Solve World's Top Problems -->
-  <section>
-    <h1>Team Up to Solve</h1>
-    <a routerLink="/signup">
-      <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
-    </a>
-    <h1>Your World Problems</h1>
+<section>
+
+<div class="quote">
+    <p><q>We are all now connected by the Internet, like neurons in a giant brain.</q><br>
+      <i>Stephen Hawking</i></p>
+</div>
+<h3 id="main-title">Team Up to Solve</h3>
+
+<div class="header" fxLayout="row" fxLayoutAlign="center center">
+
+<div id="left" fxFlex="25%"><p>
+  <span class="side-title">Super Teams</span><br>
+
+  friends<sup>2</sup>: {{ superFriendsNo }}<br>
+  projects: {{ superProjectsNo }}<br>
+  skills: {{ superServicesNo }}<br>
+  tasks/ms: {{ superTxPerMs }}<br>
+  $/min: {{ superRatePerMin  | currency }}<br>
+
+  <span class="side-title">web neurons</span><br>
+</p></div>
+
+<div id="center" fxFlex="50%">
+  <div class="welcome">
+
+      <a routerLink="/signup">
+        <img src="assets/icons/icon_512.png" alt="Solve World's Problems" height="96" width="96">
+      </a>
+
+  </div>
+</div>
+
+<div id="right" fxFlex="25%"><p>
+  <span class="side-title">Office Teams</span><br>
+
+  friends<sup>2</sup>: {{ officeFriendsNo }}<br>
+  projects: {{ officeProjectsNo }}<br>
+  skills: {{ officeServicesNo }}<br>
+  tasks/ms: {{ officeTxPerMs }}<br>
+  $/min: {{ officeRatePerMin  | currency }}<br>
+
+  <span class="side-title">office networks</span><br>
+</p></div>
+</div>
+
+<div id="south-globe">
+<h3>Your World Problems</h3>
+<div fxLayout="row" fxLayoutAlign="center center">
     <a routerLink="/login"><button mat-button>Sign In</button></a>
     <a routerLink="/signup"><button mat-button>Sign Up</button></a>
-  </section>
-  <section>
-    <h1>COMMUNITY</h1>
-    <a routerLink="/project"><button mat-button>Add Problem</button></a>
-    <a routerLink="/project"><button mat-button>Add Project</button></a>
-  </section>
-  <section>
-    <h1>INNOVATE</h1>
-    <a routerLink="/skill"><button mat-button>Add Skill</button></a>
-    <a routerLink="/skill"><button mat-button>Add Service</button></a>
-  </section>
-  <section>
-    <h1>SOLUTIONS</h1>
-    <a routerLink="/venture"><button mat-button>Add Friend</button></a>
-    <a routerLink="/venture"><button mat-button>Add Team</button></a>
-  </section>  
-  <section>
-    <h1>The Game We are All In</h1>
-    <p>Figure out the best way to combine available skills and services to solve top problems.</p>
-  </section>  
 </div>
+</div>
+
+</section>
+
+<div class="welcome" fxLayout="row" fxLayoutGap="10px"  fxLayoutGap.gt-xs="30px" fxLayoutAlign="center center">
+  <section>
+    <h3>INNOVATE</h3>
+        <a routerLink="/project"><button mat-button>Add Project</button></a>
+  </section>
+  <section>
+    <h3>PROGRESS</h3>
+    <a routerLink="/skill"><button mat-button>Add Skill</button></a>
+  </section>
+  <section>
+    <h3>VENTURE</h3>
+    <a routerLink="/venture"><button mat-button>Add Team</button></a>
+  </section>
+</div>
+<div class="welcome" fxLayout="column" fxLayout.gt-md="row"  fxLayoutGap.gt-md="30px" fxLayoutAlign="center center">
+  <section>
+    <h3>How It Works</h3>
+    <p>1. Add your list of projects and ideas.</p>
+    <p>2. Add your list of skills and services.</p>
+    <p>3. Team up to find the best solutions.</p>
+  </section>
+  <section>
+      <h3>Available</h3>
+      <p>Worldwide 24/7.</p>
+      <p>Online and Offline.</p>
+      <p>In the cloud and on all your devices.</p>
+    </section>
+  <section>
+    <h3>What You Need</h3>
+    <p>Cloud email: Signup with Gmail or Outlook</p>
+    <p>Cloud office: Google Sheets or Microsoft Excel</p>
+    <p>Basic to intermediate office spreadsheet skills.</p>
+  </section>
+</div>
+<div class="welcome">
+  <section>
+    <h1>Make Money & Friends 24/7</h1>
+  </section>
+</div>
+  <ul class="footer">
+    <li>Join our W3AI Meetups</li>  
+    <li>
+        <a href="https://www.meetup.com/SocialAI/">Toronto</a> - 
+        <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
+        <a href="https://www.meetup.com/HalifaxAIG/">Halifax</a>
+    </li>
+    <li><a href="https://github.com/W3AI/TeamHub">Clone TeamHub @ GitHub</a></li>
+    <li>pre-alpha</li>
+    <li>© Ianta Labs / MIT License</li>  
+</ul>

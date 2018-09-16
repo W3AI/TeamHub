@@ -1,3 +1,6 @@
-<p>
-  current-venture works!
-</p>
+<section class="current-venture" fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <h1>{{ progress }}%</h1>
+  <p>Keep on going, make it work!</p>
+  <button mat-raised-button color="accent" (click)="onStop()">Stop</button>
+</section>

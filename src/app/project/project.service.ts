@@ -1,26 +1,31 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
+import { Plan } from "./plan.model";
 import { Task } from "./task.model";
 import { UIService } from '../shared/ui.service';
+import * as UI from '../shared/ui.actions';
+import * as Project from './project.actions';
+import * as fromProject from './project.reducer';
 
 @Injectable()
 export class ProjectService {
-    taskChanged = new Subject<Task>();
-    tasksChanged = new Subject<Task[]>();
-    finishedTasksChanged = new Subject<Task[]>();
-    private availableTasks: Task[] = [];
-    private runningTask: Task;
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
 
-    constructor(private db: AngularFirestore, private uiService: UIService) {}
+    constructor(
+        private db: AngularFirestore, 
+        private uiService: UIService, 
+        private store: Store<fromProject.State>
+    ) {}
 
     fetchAvailableTasks() {
-        this.uiService.loadingStateChanged.next(true);
-        this.fbSubs.push(this.db
+      this.store.dispatch(new UI.StartLoading());
+      this.fbSubs.push(
+        this.db
         .collection('availableTasks')
         .snapshotChanges()               
         .pipe(map(docArray => {
@@ -36,48 +41,53 @@ export class ProjectService {
           });
         }))
         .subscribe((tasks: Task[]) => {
-            this.uiService.loadingStateChanged.next(false);
-            this.availableTasks = tasks;
-            this.tasksChanged.next([...this.availableTasks]);
+            this.store.dispatch(new UI.StopLoading());
+            this.store.dispatch(new Project.SetAvailableProjects(tasks));
         }, error => {
-            this.uiService.loadingStateChanged.next(false);
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
                 'Fetching Tags failed, please try again later', null, 3000);
-            this.tasksChanged.next(null);
         }));  
     }
 
+    addProject(project: Plan) {
+        this.addProjectToDatabase(project);
+    }
+
     startTask(selectedId: string) {
-        // this.db.doc('availableTasks/' + selectedId).update({
-        //     lastSelected: new Date()
-        // });
-        this.runningTask = this.availableTasks.find(
-            task => task.id === selectedId);
-        this.taskChanged.next({ ...this.runningTask });
+        this.store.dispatch(new Project.StartProject(selectedId));
     }
 
     completeTask() {
-        this.addDataToDatabase({ 
-            ...this.runningTask, 
-            date: new Date(), 
-            state: 'completed' });
-        this.runningTask = null;
-        this.taskChanged.next(null);
+        this.store.select(fromProject.getActiveProject).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({ 
+                ...ex, 
+                date: new Date(), 
+                state: 'completed' });
+                this.store.dispatch(new Project.StopProject());    
+        });
     }
 
     cancelTask(progress: number) {
-        this.addDataToDatabase({ 
-            ...this.runningTask, 
-            duration: this.runningTask.duration * (progress / 100),
-            calories: this.runningTask.calories * (progress / 100),
-            date: new Date(), 
-            state: 'cancelled' });
-        this.runningTask = null;
-        this.taskChanged.next(null);
+        this.store.select(fromProject.getActiveProject).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({ 
+                ...ex, 
+                duration: ex.duration * (progress / 100),
+                calories: ex.calories * (progress / 100),
+                date: new Date(), 
+                state: 'cancelled' 
+            });
+            this.store.dispatch(new Project.StopProject());    
+        });
     }
 
-    getRunningTask() {
-        return { ...this.runningTask };
+    fetchAvailablePlans() {
+        this.fbSubs.push(this.db
+        .collection('Projects')
+        .valueChanges()
+        .subscribe((plans: Plan[]) => {
+            this.store.dispatch(new Project.SetAvailablePlans(plans));
+        }));
     }
 
     fetchCompletedOrCancelledTasks() {
@@ -85,7 +95,7 @@ export class ProjectService {
         .collection('finishedTasks')
         .valueChanges()
         .subscribe((tasks: Task[]) => {
-            this.finishedTasksChanged.next(tasks);
+            this.store.dispatch(new Project.SetFinishedProjects(tasks));
         }));
     }
 
@@ -96,4 +106,9 @@ export class ProjectService {
     private addDataToDatabase(task: Task) {
         this.db.collection('finishedTasks').add(task);
     }
+
+    private addProjectToDatabase(project: Plan) {
+        this.db.collection('Projects').add(project);
+    }
+
 }

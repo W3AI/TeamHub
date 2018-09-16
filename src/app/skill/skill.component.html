@@ -1,3 +1,20 @@
-<p>
-  skill works!
-</p>
+<mat-tab-group *ngIf="!(ongoingSkill$ | async)">
+
+  <mat-tab label="Add Skill">
+    <app-add-skill></app-add-skill>
+  </mat-tab>
+
+  <mat-tab label="List">
+    <app-list-skill></app-list-skill>
+  </mat-tab>
+
+  <mat-tab label="Learn">
+    <app-new-skill></app-new-skill>
+  </mat-tab>
+
+  <mat-tab label="Status">
+    <app-past-skill></app-past-skill>
+  </mat-tab>
+
+</mat-tab-group>
+<app-current-skill *ngIf="ongoingSkill$ | async"></app-current-skill>

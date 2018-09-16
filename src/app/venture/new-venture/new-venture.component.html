@@ -1,3 +1,83 @@
-<p>
-  new-venture works!
-</p>
+<section class="new-venture" fxLayout="column" fxLayoutAlign="center">
+
+  <form (ngSubmit)="onStartVenture(f)" #f="ngForm">
+
+    <mat-card  fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
+
+      <mat-card-title fxLayoutAlign="center">Start Venture activity:</mat-card-title>
+      <mat-card-content fxFlex="100%" fxLayout="column" fxLayoutAlign="center">
+
+        <mat-list>
+          <mat-list-item>Find Solution: {{ (searchResult | shorten: 30) || "Fill in fields below from Excel Venture tab" }}</mat-list-item>
+        </mat-list>
+
+        <mat-form-field>
+          <textarea 
+            matInput [(ngModel)]="cI"
+            name="contextIni" 
+            rows="4" 
+            #nameInput="ngModel"
+            placeholder="Initial Context (cI), for Demo type eg: World">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [(ngModel)]="tL" 
+            name="testList" 
+            rows="2" 
+            placeholder="Test List (tL), for Demo type eg: !">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [(ngModel)]="iQ" 
+            name="inputQuery" 
+            rows="2" 
+            placeholder="Input Query (iQ), for Demo type eg: Roman greeting ">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [(ngModel)]="tF" 
+            name="transform" 
+            rows="2" 
+            placeholder="Function (tF), for Demo type eg: this.uC + this.cI + this.tL">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea 
+            matInput [(ngModel)]="uC" 
+            name="updateQuery" 
+            rows="2" 
+            placeholder="Update Command (uC), for Demo type eg: Servus">
+          </textarea>
+        </mat-form-field>
+
+        <h1>Launch Venture</h1>
+
+        <mat-form-field fxFlex="100%" *ngIf="!(isLoading$ | async) && controls$ | async">
+          <mat-select placeholder="Next steps" ngModel name="control" required>
+            <mat-option *ngFor="let control of controls$ | async" [value]="control.id">
+              {{ control.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
+      </mat-card-content>
+
+      <mat-card-actions  *ngIf="!(isLoading$ | async)" fxLayoutAlign="center center">
+        <button type="button" mat-raised-button color="accent" (click)="onSearchStep()">Search Solution</button>
+        <button *ngIf="controls$ | async" type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Approve Budget to Start</button>
+        <button *ngIf="!(controls$ | async)" type="button" mat-stroked-button color="accent" (click)="fetchControls()">Fetch Tags Again</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </form>
+
+</section>

@@ -1,36 +1,34 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { ProjectService } from '../project.service';
 import { Task } from '../task.model';
 import { UIService } from '../../shared/ui.service';
+import * as fromProject from '../project.reducer';
+import * as fromRoot from '../../app.reducer';
 
+// TODO - ? Refactor new-project to launch or start project?
 
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.css']
 })
-export class NewProjectComponent implements OnInit, OnDestroy {
-  tasks: Task[];
-  private taskSubscription: Subscription;
-  isLoading = true;
-  private loadingSubscription: Subscription;
+export class NewProjectComponent implements OnInit {
+  tasks$: Observable<Task[]>;
+  isLoading$: Observable<boolean>;
 
-  constructor(private projectService: ProjectService, private uiService:  UIService) { }
+  constructor(
+    private projectService: ProjectService, 
+    private uiService:  UIService, 
+    private store: Store<fromProject.State>
+  ) {}
 
   ngOnInit() {
-    this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(
-      isLoading => {
-        this.isLoading = isLoading;
-      }
-    );
-    this.taskSubscription = this.projectService.tasksChanged.subscribe(
-      tasks => {
-        this.tasks = tasks 
-      }
-    ); 
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.tasks$ = this.store.select(fromProject.getAvailableTasks);
     this.fetchTasks();   
   }
 
@@ -41,14 +39,5 @@ export class NewProjectComponent implements OnInit, OnDestroy {
 
   onStartProject(form: NgForm) {
     this.projectService.startTask( form.value.task );
-  }
-
-  ngOnDestroy() {
-    if (this.taskSubscription) {
-      this.taskSubscription.unsubscribe();
-    }
-    if (this.loadingSubscription) {
-      this.loadingSubscription.unsubscribe();
-    }
   }
 }

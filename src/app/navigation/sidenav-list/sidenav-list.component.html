@@ -1,29 +1,63 @@
 <mat-nav-list>
-    <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!isAuth">
+
+    <a mat-list-item routerLink="/about">
+        <mat-icon>info_outline</mat-icon>
+        <span class="nav-caption">About TeamHub 24/7</span>
+    </a>
+    <a mat-list-item routerLink="/market">
+        <mat-icon>language</mat-icon>
+        <span class="nav-caption">Jobs</span>
+    </a>
+    <a mat-list-item routerLink="/friend">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Friends</span>
+    </a>
+
+    <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>face</mat-icon>
         <span class="nav-caption">Signup</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!isAuth">
+    <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>            
     </a>
-    <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth">
+    <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>attach_money</mat-icon>
+        <span class="nav-caption">Accounts</span>            
+    </a>
+    <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Projects</span>            
     </a>
-    <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth">
+    <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Skills</span>            
     </a>
-    <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth">
+    <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Ventures</span>            
     </a>
     <mat-list-item> 
-        <button mat-icon-button (click)="onLogout()" *ngIf="isAuth">
+        <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
             <mat-icon>eject</mat-icon>
             <span class="nav-caption">Logout</span>  
         </button>
     </mat-list-item>
 </mat-nav-list>
+
+<div>
+    <ul class="nav-footer">
+        <li>Make Money & Friends 24/7</li>
+        <li>Join our W3AI Meetups</li>
+        <li>
+            <a href="https://www.meetup.com/SocialAI/">Toronto</a> - 
+            <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
+            <a href="https://www.meetup.com/HalifaxAIG/">Halifax</a>
+        </li>
+        <li><a href="https://github.com/W3AI/TeamHub">Clone TeamHub @ GitHub</a></li>
+        <li>pre-alpha</li>
+        <li>© Ianta Labs / MIT License</li>
+    </ul>
+</div>
+
 

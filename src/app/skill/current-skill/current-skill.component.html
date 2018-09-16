@@ -1,3 +1,6 @@
-<p>
-  current-skill works!
-</p>
+<section class="current-skill" fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <h1>{{ progress }}%</h1>
+  <p>Keep on going, learn new skills!</p>
+  <button mat-raised-button color="accent" (click)="onStop()">Stop</button>
+</section>

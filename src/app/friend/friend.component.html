@@ -1,0 +1,20 @@
+<mat-tab-group *ngIf="!(ongoingFriend$ | async)">
+
+  <mat-tab label="Add Conenction">
+    <app-add-friend></app-add-friend>
+  </mat-tab>
+
+  <mat-tab label="Friends">
+    <app-list-friend></app-list-friend>
+  </mat-tab>
+<!--
+  <mat-tab label="Skills">
+    <app-ops-friend></app-ops-friend>
+  </mat-tab>
+
+  <mat-tab label="Projects">
+    <app-ops-friend></app-ops-friend>
+  </mat-tab>
+-->
+</mat-tab-group>
+<app-current-friend *ngIf="ongoingFriend$ | async"></app-current-friend>

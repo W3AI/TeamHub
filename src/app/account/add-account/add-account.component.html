@@ -1,0 +1,56 @@
+<section class="add-account-form">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onAddAccount(f)">
+  
+      <mat-form-field hintLabel="Short & memorable.">
+        <input type="text" 
+        matInput [ngModel]="'eg: My World Bank Account'" 
+        name="name" 
+        required 
+        maxlength="40"
+        #nameInput="ngModel"
+        placeholder="Account Name" 
+        value="">
+        <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+        <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field hintLabel="Add your fiat currency or $econds account number">
+        <input type="text" 
+        matInput [ngModel]="'eg: 1234567890-World-Bank'" 
+        name="id" 
+        required 
+        maxlength="40" 
+        #tagsInput="ngModel"
+        placeholder="Account Number">
+        <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+        <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
+        <mat-error *ngIf="tagsInput.hasError('required')">If this is a $econds credit account - here you'll get time credits.</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <textarea 
+        matInput [ngModel]="'eg: To keep count of the seconds spent on My World Bank services'" 
+        name="description" 
+        rows="2" 
+        placeholder="Brief description">
+        </textarea>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input type="url" 
+        matInput [ngModel]="'https://teamhub.w3ai.net/accounts/my-world-bank-account/'"  
+        name="url" 
+        placeholder="URL of your account">
+      </mat-form-field>
+  
+      <mat-radio-group ngModel name="privacy" required>
+        <mat-radio-button class="radio-button" color="primary" value="private">private</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="business" focus>business</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="public">public</mat-radio-button>
+      </mat-radio-group>
+  
+      <button type="submit" class="submit-button" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+    </form>
+  </section>
+    
+  

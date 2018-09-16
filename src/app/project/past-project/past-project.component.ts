@@ -1,28 +1,31 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Task } from '../task.model';
 import { ProjectService } from '../project.service';
+import * as fromProject from '../project.reducer';
 
 @Component({
   selector: 'app-past-project',
   templateUrl: './past-project.component.html',
   styleUrls: ['./past-project.component.css']
 })
-export class PastProjectComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PastProjectComponent implements OnInit, AfterViewInit {
   // the displayedColumns array keeps the order of the columns on the screen mat-table
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
   dataSource = new MatTableDataSource<Task>();
-  private exChangedSubscription: Subscription;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(
+    private projectService: ProjectService, 
+    private store: Store<fromProject.State>
+  ) {}
 
   ngOnInit() {
-    this.exChangedSubscription = this.projectService.finishedTasksChanged.subscribe(
+    this.store.select(fromProject.getFinishedTasks).subscribe(
       (tasks: Task[]) => {
         this.dataSource.data = tasks;
       }
@@ -37,11 +40,5 @@ export class PastProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  ngOnDestroy() {
-    if (this.exChangedSubscription) {
-      this.exChangedSubscription.unsubscribe();
-    }
   }
 }

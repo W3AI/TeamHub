@@ -1,0 +1,91 @@
+<section class="add-friend-form">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onAddFriend(f)">
+  
+      <mat-form-field hintLabel="Your friend's name">
+        <input type="text" 
+        matInput [ngModel]="'eg: Stephen Hawking'" 
+        name="name" 
+        required 
+        maxlength="40"
+        #nameInput="ngModel"
+        placeholder="Your Connection Name" 
+        value="">
+        <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+        <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Your friend's email">
+          <input type="email" 
+          matInput [ngModel]="'eg: Stephen.Hawking@w3ai.net'" 
+          name="email" 
+          maxlength="40"
+          #nameInput="ngModel"
+          placeholder="Your Connection Email" 
+          value="">
+          <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+          <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty for private & business connections.</mat-error>
+        </mat-form-field>
+    
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Copy / Paste
+            </mat-panel-title>
+            <mat-panel-description>
+              from your TeamUp Connections file 
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field class="textarea-expansion-panel">
+            <textarea matInput [ngModel]="'Add here your friend projects'" name="projects" rows="2" placeholder="Your friend projects:">
+                        </textarea>
+          </mat-form-field>
+      
+          <mat-form-field class="textarea-expansion-panel">
+            <textarea matInput [ngModel]="'Add here your friend services'" name="services" rows="2" placeholder="Your friend services:">
+                        </textarea>
+          </mat-form-field>
+      
+        </mat-expansion-panel>
+      </mat-accordion>
+  
+      <mat-form-field hintLabel="What type of projects and services are of interest for your freind?">
+        <input type="text" 
+        matInput [ngModel]="'eg: universe, time, physics'" 
+        name="tags" 
+        maxlength="40" 
+        #tagsInput="ngModel"
+        placeholder="Your friend's interests">
+        <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+        <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty. Add eg: docs</mat-error>
+        <mat-error *ngIf="tagsInput.hasError('required')">The smart market algo uses tags to link common interests.</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <textarea 
+        matInput [ngModel]="'How you met, connected, learned about'" 
+        name="description" 
+        rows="2" 
+        placeholder="When and how you connected.">
+        </textarea>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input type="url" 
+        matInput [ngModel]="'https://teamhub.w3ai.net/public/stephen-hawking/'"  
+        name="url" 
+        placeholder="URL">
+      </mat-form-field>
+  
+      <mat-radio-group ngModel name="privacy" required>
+        <mat-radio-button class="radio-button" color="primary" value="friend">private</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="business" focus>business</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="public">public</mat-radio-button>
+      </mat-radio-group>
+  
+      <button type="submit" class="submit-button" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+    </form>
+  </section>
+    
+  
