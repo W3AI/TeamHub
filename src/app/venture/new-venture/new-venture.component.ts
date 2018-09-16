@@ -20,6 +20,8 @@ import * as fromRoot from '../../app.reducer';
 })
 export class NewVentureComponent implements OnInit {
   controls$: Observable<Control[]>;
+  projects$: Observable<Plan[]>;
+  services$: Observable<Talent[]>;
   isLoading$: Observable<boolean>;
 
   cI: '';           // contextIni - startScript
@@ -29,12 +31,6 @@ export class NewVentureComponent implements OnInit {
   uC: '';           // updateQuery
   searchResult: '';
 
-    // console.log(this.contextIni);
-    // console.log(this.testList);
-    // console.log(this.inputQuery);
-    // console.log(this.updateQuery);  
-    // console.log( eval( this.transform ) );
-
   constructor(
     private ventureService: VentureService, 
     private uiService:  UIService, 
@@ -42,11 +38,20 @@ export class NewVentureComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetchProjects();
-    this.fetchServices();
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.controls$ = this.store.select(fromVenture.getAvailableControls);
-    this.fetchControls();   
+    this.fetchControls();  
+    
+    this.projects$ = this.store.select(fromVenture.getAvailableProjects);
+    this.fetchProjects();
+    
+    this.services$ = this.store.select(fromVenture.getAvailableServices);
+    this.fetchServices();
+
+    console.log(this.controls$);
+    console.log(this.projects$);
+    console.log(this.services$);
+
   }
 
   // TODO ? - Change Control / Controls to Tags - ? what about Calories, Duration for tags? generic cost? timeframe?

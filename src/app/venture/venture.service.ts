@@ -22,8 +22,8 @@ export class VentureService {
 
     // Projects and Services read/returned from db on selections from 
     // the dual flipper / browser
-    dbProjects: Array<Plan> = [];
-    dbServices: Array<Talent> = [];
+    public dbProjects: Array<Plan> = [];
+    public dbServices: Array<Talent> = [];
 
     adventures: Adventure[] = [];
     newAdventure: Adventure;
@@ -38,9 +38,9 @@ export class VentureService {
         this.newAdventure = new Adventure();
     }
 
-    getProject( index: number ): Plan {
-        return this.dbProjects[index];
-    }
+    // getProject( index: number ): Plan {
+    //     return this.dbProjects[index];
+    // }
 
     // fetch all projects from Projects collection
     fetchAvailableProjects() {
@@ -65,7 +65,7 @@ export class VentureService {
                 this.store.dispatch(new Venture.SetAvailableProjects(plans));
                 // plans contain all projects in FS Projects collection
                 this.dbProjects.push(...plans);
-                console.log(this.dbProjects[0]);
+                // console.log(this.dbProjects[0]);
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackbar(
@@ -97,7 +97,7 @@ export class VentureService {
                 this.store.dispatch(new Venture.SetAvailableServices(talents));
                 // services contain all services in FS Skills collection
                 this.dbServices.push(...talents);
-                console.log(this.dbServices[0]);
+                // console.log(this.dbServices[0]);
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackbar(

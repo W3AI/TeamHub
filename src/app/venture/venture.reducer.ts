@@ -1,9 +1,14 @@
 import { Action, createFeatureSelector, createSelector } from "@ngrx/store";
 
+import { Plan } from "../project/plan.model";
+import { Talent } from "../skill/talent.model";
+
 import { 
     VentureActions, 
     SET_AVAILABLE_INVESTMENTS,
     SET_AVAILABLE_VENTURES,
+    SET_AVAILABLE_PROJECTS,
+    SET_AVAILABLE_SERVICES,
     SET_FINISHED_VENTURES, 
     ADD_VENTURE,
     START_VENTURE, 
@@ -15,9 +20,13 @@ import * as fromRoot from '../app.reducer';
 
 export interface VentureState {
     availableInvestments: Investment[];
+    availableProjects: Plan[];
+    availableServices: Talent[];
     availableControls: Control[];
     finishedControls: Control[];
     activeVenture: Control;
+    activeProject: Plan;
+    activeService: Talent;
 }
 
 export interface State extends fromRoot.State {
@@ -26,9 +35,13 @@ export interface State extends fromRoot.State {
 
 const initialState: VentureState = {
     availableInvestments: [],
+    availableProjects: [],
+    availableServices: [],
     availableControls: [],
     finishedControls: [],
-    activeVenture: null
+    activeVenture: null,
+    activeProject: null,
+    activeService: null
 };
 
 export function ventureReducer(state = initialState, action: VentureActions) {
@@ -43,6 +56,16 @@ export function ventureReducer(state = initialState, action: VentureActions) {
             ...state,
            availableControls: action.payload
         };
+        case SET_AVAILABLE_PROJECTS:
+        return {
+            ...state,
+           availableProjects: action.payload
+        };
+        case SET_AVAILABLE_SERVICES:
+        return {
+            ...state,
+           availableServices: action.payload
+        };
         case SET_FINISHED_VENTURES:
         return {
             ...state,
@@ -56,7 +79,9 @@ export function ventureReducer(state = initialState, action: VentureActions) {
         case START_VENTURE:
         return {
             ...state,
-            activeVenture: { ...state.availableControls.find(ex => ex.id === action.payload) }
+            activeVenture: { ...state.availableControls.find(ex => ex.id === action.payload) },
+            activeProject: { ...state.availableProjects.find(ex => ex.id === 'Vkz6btCEbWd5uEbo7s9D') },
+            activeService: { ...state.availableServices.find(ex => ex.id === 'vXVcbiPTc0bowX2aoxEC') }
         };
         case STOP_VENTURE:
         return {
@@ -72,6 +97,10 @@ export function ventureReducer(state = initialState, action: VentureActions) {
 export const getVentureState = createFeatureSelector<VentureState>('venture');
 
 export const getAvailableInvestments = createSelector(getVentureState, (state: VentureState) => state.availableInvestments);
+
+export const getAvailableProjects = createSelector(getVentureState, (state: VentureState) => state.availableProjects);
+export const getAvailableServices = createSelector(getVentureState, (state: VentureState) => state.availableServices);
+
 export const getAvailableControls = createSelector(getVentureState, (state: VentureState) => state.availableControls);
 export const getFinishedControls = createSelector(getVentureState, (state: VentureState) => state.finishedControls);
 export const getActiveVenture = createSelector(getVentureState, (state: VentureState) => state.activeVenture);
