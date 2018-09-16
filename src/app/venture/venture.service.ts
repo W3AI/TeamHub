@@ -20,8 +20,10 @@ export class VentureService {
     private fbSubs: Subscription[] = [];    // Firebase subscriptions
     projectDoc: AngularFirestoreDocument;
 
-    dbProjects: Plan[] = [];
-    dbServices: Talent[] = [];
+    // Projects and Services read/returned from db on selections from 
+    // the dual flipper / browser
+    dbProjects: Array<Plan> = [];
+    dbServices: Array<Talent> = [];
 
     adventures: Adventure[] = [];
     newAdventure: Adventure;
@@ -34,6 +36,10 @@ export class VentureService {
 
     startAdventure() {
         this.newAdventure = new Adventure();
+    }
+
+    getProject( index: number ): Plan {
+        return this.dbProjects[index];
     }
 
     // fetch all projects from Projects collection

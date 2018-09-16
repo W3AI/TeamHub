@@ -7,7 +7,7 @@ export class Test {
     entityType: string;
     propertyName: string;
     conditionalTest: string;
-    propertyValue
+    propertyValue: any;
 
 }
 
