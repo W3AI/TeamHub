@@ -77,6 +77,8 @@ export function ventureReducer(state = initialState, action: VentureActions) {
             activeInvestment: { ...state.availableInvestments.find(ex => ex.id === action.payload) }
         };
         case START_VENTURE:
+        // TODO: Build the Venture/Investment structure that includes one Project and 
+        // a set of services that have the change tags of the Project
         return {
             ...state,
             activeVenture: { ...state.availableControls.find(ex => ex.id === action.payload) },

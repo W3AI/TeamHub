@@ -48,9 +48,11 @@ export class NewVentureComponent implements OnInit {
     this.services$ = this.store.select(fromVenture.getAvailableServices);
     this.fetchServices();
 
-    console.log(this.controls$);
-    console.log(this.projects$);
-    console.log(this.services$);
+    console.log(this.store);
+
+    // console.log(this.controls$);
+    // console.log(this.projects$);
+    // console.log(this.services$);
 
   }
 
