@@ -6,7 +6,7 @@ export interface Talent {
     tags: string;
     privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
     inputScript?: string;
-    transScript?: string;
+    changeScript?: string;
     outputScript?: string;
     description?: string;
     url?: string;

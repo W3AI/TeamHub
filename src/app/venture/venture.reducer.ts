@@ -81,9 +81,7 @@ export function ventureReducer(state = initialState, action: VentureActions) {
         // a set of services that have the change tags of the Project
         return {
             ...state,
-            activeVenture: { ...state.availableControls.find(ex => ex.id === action.payload) },
-            activeProject: { ...state.availableProjects.find(ex => ex.id === 'Vkz6btCEbWd5uEbo7s9D') },
-            activeService: { ...state.availableServices.find(ex => ex.id === 'vXVcbiPTc0bowX2aoxEC') }
+            activeVenture: { ...state.availableControls.find(ex => ex.id === action.payload) }
         };
         case STOP_VENTURE:
         return {

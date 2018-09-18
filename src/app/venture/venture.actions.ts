@@ -23,7 +23,7 @@ export class SetAvailableInvestments implements Action {
 export class SetAvailableVentures implements Action {
     readonly type = SET_AVAILABLE_VENTURES;
 
-    constructor(public payload: Control[]) {}
+    constructor(public payload: Investment[]) {}
 }
 
 export class SetAvailableProjects implements Action {

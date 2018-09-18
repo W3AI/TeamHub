@@ -2,7 +2,13 @@ export interface Investment {
     id: string;
     name: string;       
     duration: number;
-    funds: number;
+    cost: number;
+    startScript?: string;
+    checkScript?: string;
+    inputScript?: string;
+    changeScript?: string;
+    outputScript?: string;
+    funds?: number;
     date?: Date;
     state?: 'completed' | 'cancelled' | null;
     actualCost?: number;       // actual spent cost

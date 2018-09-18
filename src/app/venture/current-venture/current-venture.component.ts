@@ -30,6 +30,9 @@ export class CurrentVentureComponent implements OnInit {
     // step is the duration of an unit of work 
     // - the 1 to increase the progress up to 100%
     this.store.select(fromVenture.getActiveVenture).pipe(take(1)).subscribe(ex => {
+      
+      console.log(ex);
+
       const step = ex.duration / 100 * 1000;
       this.timer = setInterval(() => {
         this.progress = this.progress + 1;

@@ -105,11 +105,14 @@ export class VentureService {
             })); 
     }
 
+    // initially from collection: 'availableControls' 
+    // changed to 'Ventures'
+    // TODO - Add some initial venture "duration" and "cost" to Add Venture Form
     fetchAvailableControls() {
       this.store.dispatch(new UI.StartLoading());
       this.fbSubs.push(
         this.db
-        .collection('availableControls')
+        .collection('Ventures')
         .snapshotChanges()               
         .pipe(map(docArray => {
         // For controling fetching the tags from Firestore
@@ -119,13 +122,18 @@ export class VentureService {
               id: doc.payload.doc.id,
               name: doc.payload.doc.data()["name"],
               duration: doc.payload.doc.data()["duration"],
-              cost: doc.payload.doc.data()["cost"]
+              cost: doc.payload.doc.data()["cost"],
+              startScript: doc.payload.doc.data()["startScript"],
+              checkScript: doc.payload.doc.data()["checkScript"],
+              inputScript: doc.payload.doc.data()["inputScript"],
+              changeScript: doc.payload.doc.data()["changeScript"],
+              outputScript: doc.payload.doc.data()["outputScript"]
             };
           });
         }))
-        .subscribe((controls: Control[]) => {
+        .subscribe((investments: Investment[]) => {
             this.store.dispatch(new UI.StopLoading());
-            this.store.dispatch(new Venture.SetAvailableVentures(controls));
+            this.store.dispatch(new Venture.SetAvailableVentures(investments));
         }, error => {
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(

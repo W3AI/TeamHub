@@ -10,6 +10,7 @@ import { Talent } from "../../skill/talent.model";
 import { UIService } from '../../shared/ui.service';
 import * as fromVenture from '../venture.reducer';
 import * as fromRoot from '../../app.reducer';
+import { Investment } from '../investment.model';
 
 // TODO - ? Refactor new-venture to launch or start TeamWork Combinations
 
@@ -19,6 +20,7 @@ import * as fromRoot from '../../app.reducer';
   styleUrls: ['./new-venture.component.css']
 })
 export class NewVentureComponent implements OnInit {
+  investments$: Observable<Investment[]>
   controls$: Observable<Control[]>;
   projects$: Observable<Plan[]>;
   services$: Observable<Talent[]>;
@@ -42,13 +44,16 @@ export class NewVentureComponent implements OnInit {
     this.controls$ = this.store.select(fromVenture.getAvailableControls);
     this.fetchControls();  
     
-    this.projects$ = this.store.select(fromVenture.getAvailableProjects);
-    this.fetchProjects();
+    // this.projects$ = this.store.select(fromVenture.getAvailableProjects);
+    // this.fetchProjects();
     
-    this.services$ = this.store.select(fromVenture.getAvailableServices);
-    this.fetchServices();
+    // this.services$ = this.store.select(fromVenture.getAvailableServices);
+    // this.fetchServices();
 
-    console.log(this.store);
+    // this.investments$ = this.store.select(fromVenture.getAvailableInvestments);
+    // this.fetchInvestments();
+
+    // console.log(this.store);
 
     // console.log(this.controls$);
     // console.log(this.projects$);
@@ -69,6 +74,10 @@ export class NewVentureComponent implements OnInit {
     this.ventureService.fetchAvailableServices(); 
   }
 
+  fetchInvestments() {
+    this.ventureService.fetchAvailableInvestments(); 
+  }
+
   onStartVenture(form: NgForm) {
     this.ventureService.startControl( form.value.control );
   }
@@ -82,6 +91,9 @@ export class NewVentureComponent implements OnInit {
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
     this.searchResult = eval( this.tF  );
+
+
+
     this.ventureService.startAdventure();
   }
 
