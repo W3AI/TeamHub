@@ -15,8 +15,7 @@ export class TestList {
     // ? - list of statuses?
     status: string;
 
-    // ?
-    inputList: string;
+    metaData: string;
 
     tests: Set<Test>;
 

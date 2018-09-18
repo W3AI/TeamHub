@@ -1,12 +1,15 @@
 import { Plan } from "../project/plan.model";
 import { Talent } from "../skill/talent.model";
 import { Context } from "./Context";
+import { Problem } from "./Problem";
 import { VentureService } from "../venture/venture.service";
 import * as ops from "../logic/helper";
 
 export class Adventure {
 
     private ventureService: VentureService;
+
+    problem: Problem;
 
     dbProject: Plan;
 
@@ -26,28 +29,8 @@ export class Adventure {
         changeScript: string,
         outputScript: string
     ) {
-
-        console.log('Servus from the Adventure constructor');
-
-        // console.log(name);
-        // console.log(duration);
-        // console.log(cost);
-
-        console.log(startScript);
-
-        this.contexts[0].dbLines = ops.lines(startScript);
+        // First Generate a Plan via the Problem Solver
+        this.problem = new Problem(startScript, checkScript);
         
-
-        // console.log(checkScript);
-        // console.log(inputScript);
-        // console.log(changeScript);
-        // console.log(outputScript);
-
-        // Initialize dbProject with selected project from db
-
-        // Initialize dbServices with selected services from db
-    
-        // TODO - Check implementation of Iterators and Generators in TS
-
     }
 }
