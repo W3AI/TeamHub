@@ -12,11 +12,13 @@ export class Test {
 }
 
 export class TestList {
+    // ? - list of statuses?
     status: string;
 
+    // ?
     inputList: string;
 
-    tests: Array<Test>;
+    tests: Set<Test>;
 
     
 }

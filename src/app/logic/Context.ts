@@ -13,7 +13,8 @@ export class Entity {
 }
 
 export class Context {
-    // Here below should be a context header - that could be a row
+    dbLines: Array<string>;
+    metaData: string = '';
     type: string = 'Ctxt';
     nrEntities: number;
     step: number = 0;
