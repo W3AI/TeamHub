@@ -6,6 +6,7 @@ import { take } from 'rxjs/operators';
 import { StopVentureComponent } from './stop-venture.component';
 import { VentureService } from '../venture.service';
 import * as fromVenture from '../venture.reducer';
+import { Adventure } from '../../logic/Adventure';
 
 @Component({
   selector: 'app-current-venture',
@@ -31,18 +32,17 @@ export class CurrentVentureComponent implements OnInit {
     // - the 1 to increase the progress up to 100%
     this.store.select(fromVenture.getActiveVenture).pipe(take(1)).subscribe(ex => {
       
-      let ctxtLines = [];
-      let ctxtLine = '';
-      let ctxtObj = [];
-
-      ctxtLines = ex.startScript.split("\n");
-      console.log(ctxtLines[0]);
-
-      ctxtLine = ctxtLines[0].replace(/[^ -~]+/g, '|');
-      console.log(ctxtLine);
-
-      ctxtObj = ctxtLine.split('|');
-      console.log(ctxtObj);
+      // Start new Adventure / Constructor
+      const adventure = new Adventure(
+        ex.name,
+        ex.duration,
+        ex.cost,
+        ex.startScript,
+        ex.checkScript,
+        ex.inputScript,
+        ex.changeScript,
+        ex.outputScript
+      );
 
       const step = ex.duration / 100 * 1000;
       this.timer = setInterval(() => {

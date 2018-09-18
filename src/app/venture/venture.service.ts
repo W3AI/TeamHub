@@ -34,14 +34,6 @@ export class VentureService {
         private store: Store<fromVenture.State>
     ) {}
 
-    startAdventure() {
-        this.newAdventure = new Adventure();
-    }
-
-    // getProject( index: number ): Plan {
-    //     return this.dbProjects[index];
-    // }
-
     // fetch all projects from Projects collection
     fetchAvailableProjects() {
         this.fbSubs.push(

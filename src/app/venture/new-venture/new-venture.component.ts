@@ -43,25 +43,12 @@ export class NewVentureComponent implements OnInit {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.controls$ = this.store.select(fromVenture.getAvailableControls);
     this.fetchControls();  
-    
-    // this.projects$ = this.store.select(fromVenture.getAvailableProjects);
-    // this.fetchProjects();
-    
-    // this.services$ = this.store.select(fromVenture.getAvailableServices);
-    // this.fetchServices();
-
-    // this.investments$ = this.store.select(fromVenture.getAvailableInvestments);
-    // this.fetchInvestments();
-
-    // console.log(this.store);
-
-    // console.log(this.controls$);
-    // console.log(this.projects$);
-    // console.log(this.services$);
-
   }
 
-  // TODO ? - Change Control / Controls to Tags - ? what about Calories, Duration for tags? generic cost? timeframe?
+
+
+  // TODO ? Cleanup - do we need all these fetches 
+  // since we get everything in controls (Project data and service lists)?
   fetchControls() {
     this.ventureService.fetchAvailableControls(); 
   }
@@ -82,19 +69,9 @@ export class NewVentureComponent implements OnInit {
     this.ventureService.startControl( form.value.control );
   }
 
-  // Here below are the elements of the DNA, RNA process/algo
-
-  // 3Jars Transform: 'Math.min( this.property1, this. property2)';   // It works written like this
-  // property1: number = 10;
-  // property2: number = 99;
-
   // ToDo: Test Sanitizer / Angular Elements, etc 
   onSearchStep() {
     this.searchResult = eval( this.tF  );
-
-
-
-    this.ventureService.startAdventure();
   }
 
 }

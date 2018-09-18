@@ -3,34 +3,6 @@ import { Talent } from "../skill/talent.model";
 import { Context } from "./Context";
 import { VentureService } from "../venture/venture.service";
 
-
-// let array = [1, 2, 3, 4];
-
-// array[Symbol.iterator] = function () {
-//     let nextValue = 10;
-//     return {
-//         next: function () {
-//             nextValue++;
-//             return {
-//                 done: nextValue > 15 ? true : false,
-//                 value: nextValue
-//             };
-//         }
-//     };
-// }
-
-function *gen(end) {
-    for (let i = 0; i < end; i++) {
-        try {
-            yield i;
-        } catch (e) {
-            console.log(e);
-        }
-    }
-}
-
-let it = gen(2);
-
 export class Adventure {
 
     private ventureService: VentureService;
@@ -40,22 +12,35 @@ export class Adventure {
 
     contexts: Array<Context>;
 
-    constructor() {
+    // Constrictor for the case of one service/function/operator to be apply for the problem
+    // TODO - extend constructor for Array of services relevant(by tags) to project 
+    constructor(
+        name: string,
+        duration: number,
+        cost: number,
+        startScript: string,
+        checkScript: string,
+        inputScript: string,
+        changeScript: string,
+        outputScript: string
+    ) {
+
+        console.log('Servus from the Adventure constructor');
+
+        console.log(name);
+        console.log(duration);
+        console.log(cost);
+        console.log(startScript);
+        console.log(checkScript);
+        console.log(inputScript);
+        console.log(changeScript);
+        console.log(outputScript);
 
         // Initialize dbProject with selected project from db
 
         // Initialize dbServices with selected services from db
-
-        console.log('Servus from the Adventure constructor');
     
         // TODO - Check implementation of Iterators and Generators in TS
-
-        console.log(it.next());
-        console.log(it.return('An error occured'));
-        console.log(it.next());
-        console.log(it.next());
-
-        // console.log(this.ventureService.getProject(0));
 
     }
 }
