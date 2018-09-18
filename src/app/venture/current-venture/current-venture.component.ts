@@ -31,7 +31,18 @@ export class CurrentVentureComponent implements OnInit {
     // - the 1 to increase the progress up to 100%
     this.store.select(fromVenture.getActiveVenture).pipe(take(1)).subscribe(ex => {
       
-      console.log(ex);
+      let ctxtLines = [];
+      let ctxtLine = '';
+      let ctxtObj = [];
+
+      ctxtLines = ex.startScript.split("\n");
+      console.log(ctxtLines[0]);
+
+      ctxtLine = ctxtLines[0].replace(/[^ -~]+/g, '|');
+      console.log(ctxtLine);
+
+      ctxtObj = ctxtLine.split('|');
+      console.log(ctxtObj);
 
       const step = ex.duration / 100 * 1000;
       this.timer = setInterval(() => {

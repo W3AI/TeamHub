@@ -3,6 +3,11 @@ export interface Control {
     name: string;       
     duration: number;
     cost: number;
+    startScript?: string;
+    checkScript?: string;
+    inputScript?: string;
+    changeScript?: string;
+    outputScript?: string;
     date?: Date;
     state?: 'completed' | 'cancelled' | null;
     actualCost?: number;       // actual spent cost
