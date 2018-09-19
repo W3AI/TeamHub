@@ -30,9 +30,9 @@ export class Problem {
 
     // Initialize Problem Context
     this.contextRows = ops.lines(startScript);
-    this.initialContext = new Context();
-    this.initialContext.metaData = ops.pipes(this.contextRows[0]);
-    console.log(this.initialContext.metaData);
+    this.initialContext = new Context(this.contextRows);
+    this.initialContext.contextRow = ops.pipes(this.contextRows[0]);
+    console.log(this.initialContext.contextRow);
 
     // Initialize Test List
     this.testRows = ops.lines(checkScript);
