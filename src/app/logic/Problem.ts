@@ -3,8 +3,6 @@ import { TestList } from "./TestList";
 import { Solution } from "./Solution";
 import * as ops from "../logic/helper";
 
-
-
 export class Problem {
   // Problem class is similar to Project - might merge if possible 
   name: string;

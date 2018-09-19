@@ -1,10 +1,4 @@
-export class Operation {
-    name: string;
-    inputQuery: string;
-    outputQuery: string;
-}
-
-export class Task {
+class Task {
     name: string;
     operation: string;
 }
@@ -16,8 +10,6 @@ export class Plan {
 
     tasks: Array<Task>;
 }
-
-
 
 export class Schedule {
 

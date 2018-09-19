@@ -19,5 +19,4 @@ export class TestList {
 
     tests: Set<Test>;
 
-    
 }

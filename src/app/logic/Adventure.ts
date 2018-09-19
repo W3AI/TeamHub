@@ -1,7 +1,8 @@
-import { Plan } from "../project/plan.model";
+import { Plan}  from "../project/plan.model";
 import { Talent } from "../skill/talent.model";
 import { Context } from "./Context";
 import { Problem } from "./Problem";
+import { Operation } from "./Operation";
 import { VentureService } from "../venture/venture.service";
 import * as ops from "../logic/helper";
 
@@ -11,13 +12,16 @@ export class Adventure {
 
     problem: Problem;
 
+    operation: Operation;
+    // operations: Array<Operation>
+
     dbProject: Plan;
 
     dbServices: Array<Talent>;
 
-    contexts: Array<Context> = [];
+    // contexts: Array<Context> = [];
 
-    // Constrictor for the case of one service/function/operator to be apply for the problem
+    // Constructor for the case of one service/function/operator to be apply for the problem
     // TODO - extend constructor for Array of services relevant(by tags) to project 
     constructor(
         name: string,
@@ -31,6 +35,8 @@ export class Adventure {
     ) {
         // First Generate a Plan via the Problem Solver
         this.problem = new Problem(startScript, checkScript);
+
+        this.operation = new Operation(inputScript, changeScript, outputScript);
         
     }
 }
