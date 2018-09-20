@@ -28,6 +28,12 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
+import { TeamComponent } from './team/team.component';
+import { AddTeamComponent } from './team/add-team/add-team.component';
+import { ListTeamComponent } from './team/list-team/list-team.component';
+import { SelectPlayerComponent } from './team/select-player/select-player.component';
+import { InvitePlayerComponent } from './team/invite-player/invite-player.component';
+import { ListPlayerComponent } from './team/list-player/list-player.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,13 @@ import { MarketComponent } from './market/market.component';
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent
+    MarketComponent,
+    TeamComponent,
+    AddTeamComponent,
+    ListTeamComponent,
+    SelectPlayerComponent,
+    InvitePlayerComponent,
+    ListPlayerComponent
   ],
   imports: [
     BrowserModule,
