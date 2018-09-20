@@ -13,6 +13,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { TeamService } from './team/team.service';
 import { FriendService } from './friend/friend.service';
 import { AccountService } from './account/account.service';
 import { AuthService } from './auth/auth.service';
@@ -28,12 +29,6 @@ import { AddTaskComponent } from './project/add-task/add-task.component';
 import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
-import { TeamComponent } from './team/team.component';
-import { AddTeamComponent } from './team/add-team/add-team.component';
-import { ListTeamComponent } from './team/list-team/list-team.component';
-import { SelectPlayerComponent } from './team/select-player/select-player.component';
-import { InvitePlayerComponent } from './team/invite-player/invite-player.component';
-import { ListPlayerComponent } from './team/list-player/list-player.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +39,7 @@ import { ListPlayerComponent } from './team/list-player/list-player.component';
     AddTaskComponent,
     AddTestComponent,
     AboutComponent,
-    MarketComponent,
-    TeamComponent,
-    AddTeamComponent,
-    ListTeamComponent,
-    SelectPlayerComponent,
-    InvitePlayerComponent,
-    ListPlayerComponent
+    MarketComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +52,7 @@ import { ListPlayerComponent } from './team/list-player/list-player.component';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
+  providers: [AuthService, TeamService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

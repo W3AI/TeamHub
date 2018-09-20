@@ -25,7 +25,6 @@ export class CurrentVentureComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog, 
-    private updates: LoggerService,
     private ventureService: VentureService, 
     private store: Store<fromVenture.State>
   ) {}

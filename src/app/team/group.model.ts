@@ -1,15 +1,15 @@
-// TODO - To modify/adapt from Task model to Plan Model - under Skill/Service domain name
+// TODO - To modify/adapt from Task model to Plan Model - under Team/Group / Player domain name
 
-export interface Talent {
-    id: string;
-    name: string;
-    tags: string;
-    privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
-    inputScript?: string;
-    changeScript?: string;
-    outputScript?: string;
-    description?: string;
-    url?: string;
+export interface Group {
+  id: string;
+  name: string;
+  tags: string;
+  privacy: 'private' | 'family' | 'friends' | 'business' | 'public';
+  joinScript?: string;
+  rulesScript?: string;
+  doneScript?: string;
+  description?: string;
+  url?: string;
     // ownerId?: string;
     // ownerEmail?: string;
     // ownerDisplayName: string;
@@ -39,4 +39,5 @@ export interface Talent {
     // providerCurrency?: string;  // USD, CAD, EUR, Bitcoin, etc - should use a currency standard
     // startTime?: Date;       // Start Date/time of the task
     // finishTime?: Date;         // End/Finish Date/time of the task
+
 }

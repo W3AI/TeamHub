@@ -1,3 +1,20 @@
-<p>
-  team works!
-</p>
+<mat-tab-group *ngIf="!(ongoingTeam$ | async)">
+
+  <mat-tab label="Add Team">
+    <app-add-team></app-add-team>
+  </mat-tab>
+
+  <mat-tab label="List">
+    <app-list-team></app-list-team>
+  </mat-tab>
+
+  <mat-tab label="Invite">
+    <app-select-player></app-select-player>
+  </mat-tab>
+
+  <mat-tab label="Players">
+    <app-list-player></app-list-player>
+  </mat-tab>
+
+</mat-tab-group>
+<app-invite-player *ngIf="ongoingTeam$ | async"></app-invite-player>

@@ -1,3 +1,85 @@
-<p>
-  add-team works!
-</p>
+<section class="add-team-form">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onAddTeam(f)">
+
+    <mat-form-field hintLabel="Short & memorable.">
+      <input type="text" 
+      matInput [ngModel]="'eg: Global Innovation Team or Fastest Agile Team'" 
+      name="name" 
+      required 
+      maxlength="40"
+      #nameInput="ngModel"
+      placeholder="Team Name" 
+      value="">
+      <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+      <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
+    </mat-form-field>
+  
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Copy / Paste
+          </mat-panel-title>
+          <mat-panel-description>
+            from Team Rules file 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <mat-form-field class="textarea-expansion-panel">
+          <textarea matInput [ngModel]="'Copy here the JOIN cells'" name="joinScript" rows="2" placeholder="JOIN Team:">
+                      </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="textarea-expansion-panel">
+          <textarea matInput [ngModel]="'Copy here the RULES cells'" name="rulesScript" rows="2" placeholder="Team RULES:">
+                      </textarea>
+        </mat-form-field>
+    
+        <mat-form-field class="textarea-expansion-panel">
+          <textarea matInput [ngModel]="'Copy here the DONE cells'" name="doneScript" rows="2" placeholder="DONE when:">
+                      </textarea>
+        </mat-form-field>
+    
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-form-field hintLabel="What does the team change?">
+      <input type="text" 
+      matInput [ngModel]="'eg: world, industry, service'" 
+      name="tags" 
+      required 
+      maxlength="40" 
+      #tagsInput="ngModel"
+      placeholder="Change tags">
+      <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
+      <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty. Add eg: docs</mat-error>
+      <mat-error *ngIf="tagsInput.hasError('required')">The smart market algo uses tags to promote your services.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea 
+      matInput [ngModel]="'Fastest Agile Team possible in the current labour market'" 
+      name="description" 
+      rows="2" 
+      placeholder="Brief description">
+      </textarea>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input type="url" 
+      matInput [ngModel]="'https://teamlab.w3ai.net/teams/fastest-innovation-team/'"  
+      name="url" 
+      placeholder="URL of your team">
+    </mat-form-field>
+
+    <mat-radio-group ngModel name="privacy" required>
+      <mat-radio-button class="radio-button" color="primary" value="private">private</mat-radio-button>
+      <mat-radio-button class="radio-button" color="primary" value="business" focus>business</mat-radio-button>
+      <mat-radio-button class="radio-button" color="primary" value="public">public</mat-radio-button>
+    </mat-radio-group>
+
+    <button type="submit" class="submit-button" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+  </form>
+</section>
+  
+
