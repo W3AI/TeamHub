@@ -40,7 +40,9 @@ export class Adventure {
 
         this.operation = new Operation(inputScript, changeScript, outputScript);
         
-        this.logger.updates.push({
+        this.logger = new LoggerService;
+
+        this.logger.getLog().push({
             id: this.logger.updates.length + 1,
             name: '[Adventure]', 
             message: 'Problem & Operation ', 
