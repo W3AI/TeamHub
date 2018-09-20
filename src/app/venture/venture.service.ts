@@ -14,6 +14,7 @@ import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as Venture from './venture.actions';
 import * as fromVenture from './venture.reducer';
+import { Update } from '../logic/update.model';
 
 @Injectable()
 export class VentureService {
@@ -25,8 +26,10 @@ export class VentureService {
     public dbProjects: Array<Plan> = [];
     public dbServices: Array<Talent> = [];
 
-    adventures: Adventure[] = [];
-    newAdventure: Adventure;
+    private logger: Update[] = [];
+
+    // adventures: Adventure[] = [];
+    // newAdventure: Adventure;
 
     constructor(
         private db: AngularFirestore, 
@@ -192,6 +195,10 @@ export class VentureService {
 
     private addVentureToDatabase(venture: Investment) {
         this.db.collection('Ventures').add(venture);
+    }
+
+    getUpdates() {
+        return this.logger.slice();
     }
 
 }

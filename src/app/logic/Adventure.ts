@@ -10,7 +10,7 @@ import { LoggerService } from "./logger.service";
 
 export class Adventure {
 
-    logger: LoggerService;
+    // ventureService: VentureService;
 
     problem: Problem;
 
@@ -26,6 +26,7 @@ export class Adventure {
     // Constructor for the case of one service/function/operator to be apply for the problem
     // TODO - extend constructor for Array of services relevant(by tags) to project 
     constructor(
+        private ventureService: VentureService, 
         name: string,
         duration: number,
         cost: number,
@@ -39,11 +40,11 @@ export class Adventure {
         this.problem = new Problem(startScript, checkScript);
 
         this.operation = new Operation(inputScript, changeScript, outputScript);
-        
-        this.logger = new LoggerService;
 
-        this.logger.getLog().push({
-            id: this.logger.updates.length + 1,
+        
+
+        this.ventureService.getUpdates().push({
+            id: this.ventureService.getUpdates().length + 1,
             name: '[Adventure]', 
             message: 'Problem & Operation ', 
             state: 'Constructed'});

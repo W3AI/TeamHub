@@ -33,7 +33,7 @@ export class CurrentVentureComponent implements OnInit {
   ngOnInit() {
     this.startOrResumeTimer();
 
-    this.dataUpdates.data = this.updates.getLog();
+    this.dataUpdates.data = this.ventureService.getUpdates();
   }
 
   startOrResumeTimer() {
@@ -43,6 +43,7 @@ export class CurrentVentureComponent implements OnInit {
       
       // Start new Adventure / Constructor
       const adventure = new Adventure(
+        this.ventureService, 
         ex.name,
         ex.duration,
         ex.cost,
