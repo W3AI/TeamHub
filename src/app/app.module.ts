@@ -19,6 +19,7 @@ import { AuthService } from './auth/auth.service';
 import { ProjectService } from './project/project.service';
 import { SkillService } from './skill/skill.service';
 import { VentureService } from './venture/venture.service';
+import { LoggerService } from './logic/logger.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
@@ -50,7 +51,7 @@ import { MarketComponent } from './market/market.component';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService],
+  providers: [AuthService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

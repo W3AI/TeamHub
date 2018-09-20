@@ -4,11 +4,13 @@ import { Context } from "./Context";
 import { Problem } from "./Problem";
 import { Operation } from "./Operation";
 import { VentureService } from "../venture/venture.service";
+import { CurrentVentureComponent } from "../venture/current-venture/current-venture.component";
 import * as ops from "../logic/helper";
+import { LoggerService } from "./logger.service";
 
 export class Adventure {
 
-    private ventureService: VentureService;
+    logger: LoggerService;
 
     problem: Problem;
 
@@ -38,5 +40,11 @@ export class Adventure {
 
         this.operation = new Operation(inputScript, changeScript, outputScript);
         
+        this.logger.updates.push({
+            id: this.logger.updates.length + 1,
+            name: '[Adventure]', 
+            message: 'Problem & Operation ', 
+            state: 'Constructed'});
+
     }
 }

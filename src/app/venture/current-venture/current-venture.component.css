@@ -1,3 +1,11 @@
 .current-venture {
     padding: 30px;
   }
+
+  .current-adventure {
+    font-size: 60%;
+  }
+
+  table {
+    width: 100%;
+  }

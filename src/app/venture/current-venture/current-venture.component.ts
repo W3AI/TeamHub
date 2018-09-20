@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
@@ -7,6 +7,8 @@ import { StopVentureComponent } from './stop-venture.component';
 import { VentureService } from '../venture.service';
 import * as fromVenture from '../venture.reducer';
 import { Adventure } from '../../logic/Adventure';
+import { Update } from '../../logic/update.model';
+import { LoggerService } from '../../logic/logger.service';
 
 @Component({
   selector: 'app-current-venture',
@@ -14,17 +16,24 @@ import { Adventure } from '../../logic/Adventure';
   styleUrls: ['./current-venture.component.css']
 })
 export class CurrentVentureComponent implements OnInit {
+
+  displayedColumns = ['id', 'name', 'message', 'state'];
+  public dataUpdates = new MatTableDataSource<Update>();
+
   progress = 0;
   timer: number;
 
   constructor(
     private dialog: MatDialog, 
+    private updates: LoggerService,
     private ventureService: VentureService, 
     private store: Store<fromVenture.State>
   ) {}
 
   ngOnInit() {
     this.startOrResumeTimer();
+
+    this.dataUpdates.data = this.updates.getLog();
   }
 
   startOrResumeTimer() {
