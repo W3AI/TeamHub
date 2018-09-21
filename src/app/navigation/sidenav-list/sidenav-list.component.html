@@ -1,18 +1,18 @@
 <mat-nav-list>
 
-    <a mat-list-item routerLink="/about">
+    <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About Agile Teams</span>
+        <span class="nav-caption">About Agile Teams Lab</span>
     </a>
-    <a mat-list-item routerLink="/team">
+    <a mat-list-item routerLink="/team" (click)="onClose()">
         <mat-icon>code</mat-icon>
-        <span class="nav-caption">My Team Rules</span>
+        <span class="nav-caption">Set Teams Rules</span>
     </a>
-    <a mat-list-item routerLink="/market">
+    <a mat-list-item routerLink="/market" (click)="onClose()">
         <mat-icon>language</mat-icon>
         <span class="nav-caption">Jobs</span>
     </a>
-    <a mat-list-item routerLink="/friend">
+    <a mat-list-item routerLink="/friend" (click)="onClose()">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Friends</span>
     </a>
@@ -51,6 +51,7 @@
 
 <div>
     <ul class="nav-footer">
+        <li>THINK &nbsp;LIKE &nbsp;A &nbsp;NEURON!</li>
         <li>Make Money & Friends 24/7</li>
         <li>- Join our W3AI Meetups -</li>
         <li>

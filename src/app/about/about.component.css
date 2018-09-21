@@ -2,6 +2,12 @@
     text-align: center;
 }
 
+.quote {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
 a {    
     text-decoration: none; /* no underline */
     color: grey;
@@ -53,13 +59,14 @@ li {
     width: 100%;
     background-color: grey;
     text-align: center;
-    padding: 30px 0;
+    padding: 15px 0;
+    margin: 0px;
   }
   
   .title h1 {
-    margin: 0;
+    margin: 0px;
     color: white;
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
   
   .title, .ai-hub-feature {
@@ -67,7 +74,7 @@ li {
   }
   
   .content, .start-over {
-    margin: 5px auto;
+    margin: 0px auto;
     text-align: center;
     width: 80%;
     max-width: 500px;
@@ -81,7 +88,7 @@ li {
   }
   
   .ai-hub-feature {
-    margin: 10px auto;
+    margin: 0px auto;
   }
   
   #mobile-office {

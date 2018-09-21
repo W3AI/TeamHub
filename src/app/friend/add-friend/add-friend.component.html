@@ -33,24 +33,24 @@
               Copy / Paste
             </mat-panel-title>
             <mat-panel-description>
-              from your TeamUp Connections file 
+              from Connections file 
             </mat-panel-description>
           </mat-expansion-panel-header>
       
           <mat-form-field class="textarea-expansion-panel">
-            <textarea matInput [ngModel]="'Add here your friend projects'" name="projects" rows="2" placeholder="Your friend projects:">
+            <textarea matInput [ngModel]="'Add here your friend shared projects'" name="projects" rows="2" placeholder="Your friend projects:">
                         </textarea>
           </mat-form-field>
       
           <mat-form-field class="textarea-expansion-panel">
-            <textarea matInput [ngModel]="'Add here your friend services'" name="services" rows="2" placeholder="Your friend services:">
+            <textarea matInput [ngModel]="'Add here your friend shared services'" name="services" rows="2" placeholder="Your friend services:">
                         </textarea>
           </mat-form-field>
       
         </mat-expansion-panel>
       </mat-accordion>
   
-      <mat-form-field hintLabel="What type of projects and services are of interest for your freind?">
+      <mat-form-field hintLabel="What projects&services are of interest for your friend?">
         <input type="text" 
         matInput [ngModel]="'eg: universe, time, physics'" 
         name="tags" 
