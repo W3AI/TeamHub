@@ -22,7 +22,7 @@ export class TeamService {
         private store: Store<fromTeam.State>
     ) {}
 
-    fetchAvailableActivitys() {
+    fetchAvailablePlayers() {
       this.store.dispatch(new UI.StartLoading());
       this.fbSubs.push(
         this.db
