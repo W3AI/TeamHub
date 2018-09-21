@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
@@ -15,10 +15,13 @@ import { LoggerService } from '../../logic/logger.service';
   templateUrl: './current-venture.component.html',
   styleUrls: ['./current-venture.component.css']
 })
-export class CurrentVentureComponent implements OnInit {
+export class CurrentVentureComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['id', 'name', 'message', 'state'];
   public dataUpdates = new MatTableDataSource<Update>();
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   progress = 0;
   timer: number;
@@ -80,6 +83,15 @@ export class CurrentVentureComponent implements OnInit {
         this.startOrResumeTimer();
       }
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataUpdates.sort = this.sort;
+    this.dataUpdates.paginator = this.paginator;
+  }
+
+  doFilter(filterValue: string) {
+    this.dataUpdates.filter = filterValue.trim().toLowerCase();
   }
 }
  
