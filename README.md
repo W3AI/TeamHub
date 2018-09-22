@@ -1,4 +1,4 @@
-# TeamHub Repo for Agile Teams Web App for the Internet Brain
+# TeamHub Repo for Agile Teams Web App / Internet Brain
 [live POC 0.21](https://teamhub.w3ai.net)
 
 TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
