@@ -1,5 +1,5 @@
-# TeamHub 24/7 - Make Money & Friends 24/7
-[live pre-alpha](https://teamhub.w3ai.net)
+# TeamHub Repo for Agile Teams Web App for the Internet Brain
+[live POC 0.21](https://teamhub.w3ai.net)
 
 TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
 It consists of a trinity of modules that add realtime interactions to build the progressive nature of your network:
