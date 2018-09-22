@@ -34,8 +34,13 @@ export class CurrentVentureComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.startOrResumeTimer();
-
-    this.dataUpdates.data = this.ventureService.getUpdates();
+    
+    this.dataUpdates.data = this.ventureService.getUpdates({
+      id: 0,
+      name: '3Jars',
+      message: 'from ngOnInit',
+      state: 'launched'
+    });
   }
 
   startOrResumeTimer() {
@@ -55,6 +60,13 @@ export class CurrentVentureComponent implements OnInit, AfterViewInit {
         ex.changeScript,
         ex.outputScript
       );
+
+      this.ventureService.getUpdates({
+        id: 1,
+        name: '3Jars',
+        message: 'from startOrResumeTimer',
+        state: 'constructed'
+      }); 
 
       const step = ex.duration / 100 * 1000;
       this.timer = setInterval(() => {

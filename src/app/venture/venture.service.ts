@@ -197,7 +197,10 @@ export class VentureService {
         this.db.collection('Ventures').add(venture);
     }
 
-    getUpdates() {
+    getUpdates(updates: Update) {
+
+        this.logger.push(updates);
+
         return this.logger.slice();
     }
 

@@ -41,10 +41,11 @@ export class Adventure {
 
         this.operation = new Operation(inputScript, changeScript, outputScript);
 
-        
+        // TODO - [ ] Find how to link the algo to the Venture Component: ?in venture.service?
+        // ToDo :      
 
-        this.ventureService.getUpdates().push({
-            id: this.ventureService.getUpdates().length + 1,
+        this.ventureService.getUpdates({
+            id: 2,
             name: '[Adventure]', 
             message: 'Problem & Operation ', 
             state: 'Constructed'});
