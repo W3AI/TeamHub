@@ -2,11 +2,11 @@
 
     <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About W3AI Teams</span>
+        <span class="nav-caption">About n Teams</span>
     </a>
     <a mat-list-item routerLink="/team" (click)="onClose()">
         <mat-icon>code</mat-icon>
-        <span class="nav-caption">Teams Rules</span>
+        <span class="nav-caption">n Teams Rules</span>
     </a>
     <a mat-list-item routerLink="/market" (click)="onClose()">
         <mat-icon>language</mat-icon>
@@ -31,15 +31,15 @@
     </a>
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Projects</span>            
+        <span class="nav-caption">n Projects</span>            
     </a>
     <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Skills</span>            
+        <span class="nav-caption">n Skills</span>            
     </a>
     <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Ventures</span>            
+        <span class="nav-caption">n Ventures</span>            
     </a>
     <mat-list-item> 
         <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
