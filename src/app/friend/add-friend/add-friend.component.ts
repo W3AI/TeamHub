@@ -20,6 +20,13 @@ import * as fromRoot from '../../app.reducer';
 export class AddFriendComponent implements OnInit {
   relations$: Observable<Relation[]>;
   panelOpenState = false;
+  defaultName = 'Stephen Hawking';
+  defaultEmail = 'Stephen.Hawking@w3ai.net';
+  defaultProjects = 'Add here your friend shared projects';
+  defaultServices = 'Add here your friend shared services';
+  defaultInterests = 'universe, time, physics';
+  defaultDescription = 'How you met, connected, learned about';
+  defaultUrl = 'https://teamhub.w3ai.net/stephen-hawking/';
   // isLoading$: Observable<boolean>;
 
   constructor(

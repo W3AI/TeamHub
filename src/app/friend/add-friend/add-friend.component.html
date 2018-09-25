@@ -3,25 +3,29 @@
   
       <mat-form-field hintLabel="Your friend's name">
         <input type="text" 
-        matInput [ngModel]="'eg: Stephen Hawking'" 
+        matInput [(ngModel)]="defaultName" 
         name="name" 
         required 
         maxlength="40"
         #nameInput="ngModel"
-        placeholder="Your Connection Name" 
-        value="">
+        placeholder="Your Connection Name">
+        <button mat-button *ngIf="defaultName" matSuffix mat-icon-button aria-label="Clear" (click)="defaultName=''">
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
         <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty.</mat-error>
       </mat-form-field>
 
       <mat-form-field hintLabel="Your friend's email">
           <input type="email" 
-          matInput [ngModel]="'eg: Stephen.Hawking@w3ai.net'" 
+          matInput [(ngModel)]="defaultEmail" 
           name="email" 
           maxlength="40"
           #nameInput="ngModel"
-          placeholder="Your Connection Email" 
-          value="">
+          placeholder="Your Connection Email">
+          <button mat-button *ngIf="defaultEmail" matSuffix mat-icon-button aria-label="Clear" (click)="defaultEmail=''">
+            <mat-icon>close</mat-icon>
+          </button>
           <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
           <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty for private & business connections.</mat-error>
         </mat-form-field>
@@ -38,25 +42,34 @@
           </mat-expansion-panel-header>
       
           <mat-form-field class="textarea-expansion-panel">
-            <textarea matInput [ngModel]="'Add here your friend shared projects'" name="projects" rows="2" placeholder="Your friend projects:">
-                        </textarea>
+            <textarea matInput [(ngModel)]="defaultProjects" name="projects" rows="2" placeholder="Your friend projects:">
+            </textarea>
+            <button mat-button *ngIf="defaultProjects" matSuffix mat-icon-button aria-label="Clear" (click)="defaultProjects=''">
+              <mat-icon>close</mat-icon>
+            </button>
           </mat-form-field>
       
           <mat-form-field class="textarea-expansion-panel">
-            <textarea matInput [ngModel]="'Add here your friend shared services'" name="services" rows="2" placeholder="Your friend services:">
-                        </textarea>
+            <textarea matInput [(ngModel)]="defaultServices" name="services" rows="2" placeholder="Your friend services:">
+            </textarea>
+            <button mat-button *ngIf="defaultServices" matSuffix mat-icon-button aria-label="Clear" (click)="defaultServices=''">
+              <mat-icon>close</mat-icon>
+            </button>
           </mat-form-field>
       
         </mat-expansion-panel>
       </mat-accordion>
   
-      <mat-form-field hintLabel="What projects&services are of interest for your friend?">
+      <mat-form-field hintLabel="What projects are of interest for your friend?">
         <input type="text" 
-        matInput [ngModel]="'eg: universe, time, physics'" 
+        matInput [(ngModel)]="defaultInterests" 
         name="tags" 
         maxlength="40" 
         #tagsInput="ngModel"
         placeholder="Your friend's interests">
+        <button mat-button *ngIf="defaultInterests" matSuffix mat-icon-button aria-label="Clear" (click)="defaultInterests=''">
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-hint align="end">{{ nameInput.value?.length }} / 40</mat-hint>
         <mat-error *ngIf="tagsInput.hasError('required')">Must not be empty. Add eg: docs</mat-error>
         <mat-error *ngIf="tagsInput.hasError('required')">The smart market algo uses tags to link common interests.</mat-error>
@@ -64,18 +77,24 @@
   
       <mat-form-field>
         <textarea 
-        matInput [ngModel]="'How you met, connected, learned about'" 
+        matInput [(ngModel)]="defaultDescription" 
         name="description" 
         rows="2" 
         placeholder="When and how you connected.">
         </textarea>
+        <button mat-button *ngIf="defaultDescription" matSuffix mat-icon-button aria-label="Clear" (click)="defaultDescription=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     
       <mat-form-field>
         <input type="url" 
-        matInput [ngModel]="'https://teamhub.w3ai.net/public/stephen-hawking/'"  
+        matInput [(ngModel)]="defaultUrl"  
         name="url" 
         placeholder="URL">
+        <button mat-button *ngIf="defaultUrl" matSuffix mat-icon-button aria-label="Clear" (click)="defaultUrl=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
   
       <mat-radio-group ngModel name="privacy" required>
