@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { TeamService } from './team/team.service';
+import { SessionService } from './session/session.service';
 import { FriendService } from './friend/friend.service';
 import { AccountService } from './account/account.service';
 import { AuthService } from './auth/auth.service';
@@ -52,7 +53,7 @@ import { MarketComponent } from './market/market.component';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, TeamService, FriendService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
+  providers: [AuthService, TeamService, FriendService, SessionService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+<mat-tab-group *ngIf="!(ongoingSession$ | async)">
+
+  <mat-tab label="nt Sessions">
+    <app-add-session></app-add-session>
+  </mat-tab>
+
+  <mat-tab label="Sessions">
+    <app-list-session></app-list-session>
+  </mat-tab>
+<!--
+  <mat-tab label="Resume">
+    <app-current-session></app-current-session>
+  </mat-tab>
+
+  <mat-tab label="Edit">
+    <app-edit-session></app-edit-session>
+  </mat-tab>
+-->
+</mat-tab-group>
+<app-current-session *ngIf="ongoingSession$ | async"></app-current-session>

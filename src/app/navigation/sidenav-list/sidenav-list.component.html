@@ -4,9 +4,13 @@
         <mat-icon>info_outline</mat-icon>
         <span class="nav-caption">About n Teams</span>
     </a>
-    <a mat-list-item routerLink="/team" (click)="onClose()">
+    <a mat-list-item routerLink="/session" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>code</mat-icon>
-        <span class="nav-caption">n Teams Rules</span>
+        <span class="nav-caption">nt Cloud Console</span>            
+    </a>
+    <a mat-list-item routerLink="/team" (click)="onClose()">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">n Teams</span>
     </a>
     <a mat-list-item routerLink="/market" (click)="onClose()">
         <mat-icon>language</mat-icon>
@@ -52,8 +56,6 @@
 <div>
     <ul class="nav-footer">
         <li>SOCIAL INNOVATION TEAMS</li>
-        <li>24/7</li>
-        <li>- Join our W3AI Meetups -</li>
         <li>
             <a href="https://www.meetup.com/SocialAI/">Toronto</a> - 
             <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
