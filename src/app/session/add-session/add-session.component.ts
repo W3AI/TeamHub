@@ -25,7 +25,16 @@ export class AddSessionComponent implements OnInit {
   defaultProjects = 'Intl Edu Project';
   defaultServices = 'NS, ON, NY Edu';
   defaultInterests = 'fast, social, innovation, student, teams';
-  defaultConsole = 'GIT(master)$> nt generate venture Edu';
+  defaultConsole = `GIT(master)$> nt generate venture Edu
+GIT(master)$> venture Edu created
+GIT(master)$> nt generate skills Edu
+GIT(master)$> skills Edu created
+GIT(master)$> nt generate teams Edu
+GIT(master)$> teams Edu created
+GIT(master)$> nt generate project Edu
+GIT(master)$> project Edu created
+GIT(master)$>
+  `;
   defaultUrl = 'https://nteams.w3ai.net/GIT/';
   // isLoading$: Observable<boolean>;
 
