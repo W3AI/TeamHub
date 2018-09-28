@@ -10,6 +10,8 @@ import { AddSessionComponent } from './add-session/add-session.component';
 import { ListSessionComponent } from './list-session/list-session.component';
 import { EditSessionComponent } from './edit-session/edit-session.component';
 import { DnaControlComponent } from './dna-control/dna-control.component';
+import { DnaProblemComponent } from './dna-problem/dna-problem.component';
+import { DnaOperationComponent } from './dna-operation/dna-operation.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { SessionRoutingModule } from './session-routing.module';
@@ -22,7 +24,9 @@ import { sessionReducer } from './session.reducer';
         AddSessionComponent,
         ListSessionComponent,
         EditSessionComponent,
-        DnaControlComponent
+        DnaControlComponent,
+        DnaProblemComponent,
+        DnaOperationComponent
     ],
     imports: [
         SharedModule,
