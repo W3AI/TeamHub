@@ -6,26 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-session.component.css']
 })
 export class EditSessionComponent implements OnInit {
-  defaultProject = `INPUT	3	Terms	:	CAD	,	cent	:	10	,	Seconds	:	60				
-  Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	 = 	3
-  Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	 = 	5
-  Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	 = 	0
+  defaultProject = `Distributing Innovation Sauce
+  tags : content
+  INPUT	3 Terms:CAD, cent:10, secs:60
+  Jar, n:Jar3L, vol:3, content:0, available:3
+  Jar, n:Jar5L, vol:5, content:0, available:5
+  Jar, n:Jar8L, vol:8, content:8, available:0
                                   
-  SOLUTIONS   1
+  SOLUTIONS 1
   
-  OUTPUT	1
-  Jar				WITH		content	 = 	4`;
+  OUTPUT 1
+  Jar	WITH content = 4`;
 
-  defaultOperation = `INPUT	2	Terms	:	CAD	,	cent	:	1	, 	Seconds	:	2
-  Jar	1	name	:	from_Jar	,	content	>	0				
-  Jar	2	name	:	to_Jar	,	available	>	0				
+  defaultOperation = `Top Innovation Sauce
+  tags : content
+  INPUT	2	Terms:CAD, cent:1, secs:2
+  Jar	1	n:fromJar,	content>0				
+  Jar	2	n:toJar,	available>0				
                           
-  FUNCTIONS		1										
-  poured	 = 	MIN	(	from_Jar	.	content	,	to_Jar	.	available	)	
+  FUNCTIONS 1
+poured=MIN(fromJar.content,toJar.available)
                           
-  OUTPUT	2											
-  from_Jar	.	content	-=	poured	,	available	 +=	poured				
-  to_Jar	.	content	 +=	poured	,	available	-=	poured				`;
+  OUTPUT 2
+fromJar.content-=poured,available+=poured				
+toJar.content+=poured,available-=poured`;
 
 
   // TODO - [ ] Change oddNumbers[] to Problem Class structures:
