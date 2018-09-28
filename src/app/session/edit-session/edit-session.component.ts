@@ -11,7 +11,7 @@ export class EditSessionComponent implements OnInit {
   Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	 = 	5
   Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	 = 	0
                                   
-  SOLUTIONS
+  SOLUTIONS   1
   
   OUTPUT	1
   Jar				WITH		content	 = 	4`;
@@ -20,7 +20,7 @@ export class EditSessionComponent implements OnInit {
   Jar	1	name	:	from_Jar	,	content	>	0				
   Jar	2	name	:	to_Jar	,	available	>	0				
                           
-  FUNCTIONS												
+  FUNCTIONS		1										
   poured	 = 	MIN	(	from_Jar	.	content	,	to_Jar	.	available	)	
                           
   OUTPUT	2											
