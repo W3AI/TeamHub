@@ -12,4 +12,8 @@ export class EditSessionComponent implements OnInit {
   ngOnInit() {
   }
 
+  onIntervalFired(firedNumber: number) {
+    console.log(firedNumber);
+  }
+
 }

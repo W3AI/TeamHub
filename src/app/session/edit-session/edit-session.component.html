@@ -5,9 +5,11 @@
   
   <section class="venture">
     <section id="control" class="venture">
-      <h3>Chain Reaction Control</h3>
+      <h3>DNA Chain Reaction Control</h3>
 
-      <app-dna-control></app-dna-control>
+      <app-dna-control 
+      (intervalFired)="onIntervalFired($event)">
+    </app-dna-control>
 
     </section>
   
