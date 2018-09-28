@@ -19,15 +19,15 @@ export class EditSessionComponent implements OnInit {
   Jar	WITH content = 4`;
 
   defaultOperation = `Top Innovation Sauce
-  tags : content
-  INPUT	2	Terms:CAD, cent:1, secs:2
-  Jar	1	n:fromJar,	content>0				
-  Jar	2	n:toJar,	available>0				
+tags : content
+INPUT	2	Terms:CAD, cent:1, secs:2
+Jar	1	n:fromJar,	content>0				
+Jar	2	n:toJar,	available>0				
                           
-  FUNCTIONS 1
+FUNCTIONS 1
 poured=MIN(fromJar.content,toJar.available)
                           
-  OUTPUT 2
+OUTPUT 2
 fromJar.content-=poured,available+=poured				
 toJar.content+=poured,available-=poured`;
 
