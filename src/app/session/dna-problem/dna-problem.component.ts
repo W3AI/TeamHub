@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dna-problem',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dna-problem.component.css']
 })
 export class DnaProblemComponent implements OnInit {
+  @Input() number: number;
 
   constructor() { }
 

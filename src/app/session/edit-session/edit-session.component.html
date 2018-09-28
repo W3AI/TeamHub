@@ -25,8 +25,6 @@
       <textarea input="text" rows="5"> Insert Project cells
       </textarea>
 
-      <app-dna-problem></app-dna-problem>
-
     </section>
 
     <section id="iteam" fxLayout fxLayoutAlign="center center">
@@ -38,14 +36,43 @@
       <textarea input="text" rows="5"> Insert Service cells
       </textarea>
 
-      <app-dna-operation></app-dna-operation>
-
     </section>
   
   </section>
 
   <section id="log">
     <h3>Chain Reaction Log</h3>
+
+    <div id="logHeader">
+
+    </div>
+
+    <div id="logTx" fxLayout="row">
+
+      <div id="Contexts" fxLayout="column">
+
+        <app-dna-problem
+        *ngFor="let oddNumber of oddNumbers" 
+        [number]="oddNumber">
+        </app-dna-problem>
+
+      </div>
+
+      <div id="Transactions" fxLayout="column">
+
+        <app-dna-operation
+        *ngFor="let evenNumber of evenNumbers" 
+        [number]="evenNumber">
+        </app-dna-operation>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="footer">
+    Ianta Labs / MIT License
   </section>
 
 </section>
