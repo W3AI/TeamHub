@@ -9,6 +9,7 @@ import { CurrentSessionComponent } from './current-session/current-session.compo
 import { AddSessionComponent } from './add-session/add-session.component';
 import { ListSessionComponent } from './list-session/list-session.component';
 import { EditSessionComponent } from './edit-session/edit-session.component';
+import { DnaControlComponent } from './dna-control/dna-control.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { SessionRoutingModule } from './session-routing.module';
@@ -20,7 +21,8 @@ import { sessionReducer } from './session.reducer';
         CurrentSessionComponent,
         AddSessionComponent,
         ListSessionComponent,
-        EditSessionComponent
+        EditSessionComponent,
+        DnaControlComponent
     ],
     imports: [
         SharedModule,
