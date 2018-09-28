@@ -1,29 +1,40 @@
 <section id="session" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-
-  <h1>Dynamic Natural Activation (DNA)</h1>
-  <p>W3AI Core DNA Algorithm</p>
-  
   <section class="venture">
-    <section id="control" class="venture">
-      <h3>DNA Chain Reaction Control</h3>
-
-      <app-dna-control 
-      (intervalFired)="onIntervalFired($event)">
-    </app-dna-control>
-
-    </section>
-  
-    <section id="solutions" class="venture">
-      <h3>Solutions</h3>
+    <section id="control" class="venture" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <h1>Programmatic Venture Control</h1>
+      <app-dna-control (intervalFired)="onIntervalFired($event)">
+      </app-dna-control>
     </section>
   </section>
 
-  <section id="reactor" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <section id="reactor" background="assets/img/World-W3AI-800.gif" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
   
-    <section id="project">
+    <section id="problem">
       <h3>Project</h3>
-      <textarea input="text" rows="5"> Insert Project cells
-      </textarea>
+
+      <mat-form-field class="right">
+        <textarea 
+        matInput [(ngModel)]="defaultProject"
+        name="problem"
+        rows="10"
+        placeholder="Insert Project cells">
+        </textarea>
+        <button mat-button *ngIf="defaultProject" matSuffix mat-icon-button aria-label="Clear" (click)="defaultProject=''">
+          <mat-icon class="iconLeft">close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <section id="contexts" class="problem">
+        <h3>Contexts - INPUT</h3>
+      </section>
+
+      <section id="solutions" class="problem">
+        <h3>Solutions - CHANGES</h3>
+      </section>
+
+      <section id="tests" class="problem">
+        <h3>Tests - OUTPUT</h3>
+      </section>
 
     </section>
 
@@ -32,16 +43,38 @@
     </section>
   
     <section id="operation">
-      <h3>Operation</h3>
-      <textarea input="text" rows="5"> Insert Service cells
-      </textarea>
+      <h3>Operations</h3>
+
+      <mat-form-field>
+        <textarea 
+        matInput [(ngModel)]="defaultOperation"
+        name="operation"
+        rows="10"
+        placeholder="Insert Service cells">
+        </textarea>
+        <button mat-button *ngIf="defaultOperation" matSuffix mat-icon-button aria-label="Clear" (click)="defaultOperation=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <section id="contexts" class="operation">
+        <h3>INPUT - Queries</h3>
+      </section>
+
+      <section id="solutions" class="operation">
+        <h3>CHANGES - Functions</h3>
+      </section>
+
+      <section id="tests" class="operation">
+        <h3>OUTPUT - Queries</h3>
+      </section>
 
     </section>
   
   </section>
 
   <section id="log">
-    <h3>Chain Reaction Log</h3>
+    <h3>Tx Blockchains Ranking</h3>
 
     <div id="logHeader">
 
