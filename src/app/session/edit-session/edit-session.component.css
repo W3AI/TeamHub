@@ -1,0 +1,36 @@
+.venture {
+  background-color: lightgoldenrodyellow;
+  width: 100%;
+  padding: 10px;
+}
+
+#reactor {
+  display: flex;
+  background-color: whitesmoke;
+  width: 100%;
+  border: 1px solid black;
+}
+
+#project {
+  flex: 5;
+  padding: 10px;
+  background-color: lightcoral;
+  text-align: right;
+}
+
+#iteam {
+  flex: 1;
+}
+
+#operation {
+  flex:5;
+  padding: 10px;
+  background-color: lightblue;
+  text-align: left;
+}
+
+textarea {
+  width: 100%;
+  border: 0px;
+}
+
