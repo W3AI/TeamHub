@@ -1,0 +1,46 @@
+.venture {
+  width: 100%;
+  padding: 10px;
+}
+
+#reactor {
+  display: flex;
+
+  width: 100%;
+  border: 1px solid black;
+}
+
+#problem {
+  flex: 5;
+  padding: 10px;
+  text-align: right;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.right {
+  text-align: right;
+}
+
+.iconLeft {
+  align-items : left;
+}
+
+#iteam {
+  flex: 1;
+}
+
+#operation {
+  flex:5;
+  padding: 10px;
+  text-align: left;
+}
+
+textarea {
+  width: 100%;
+  border: 0px;
+  font-size: 50%;
+}
+
