@@ -9,14 +9,12 @@
 <div class="header" fxLayout="row" fxLayoutAlign="center center">
 
 <div id="left" fxFlex="25%"><p>
-  <span class="side-title">Social Neural Nets</span><br>
-
+  <br><span class="side-title">Social Neural Nets</span><br>
   friends<sup>2</sup>: {{ superFriendsNo }}<br>
   projects: {{ superProjectsNo }}<br>
   skills: {{ superServicesNo }}<br>
   tasks/ms: {{ superTxPerMs }}<br>
   $/min: {{ superRatePerMin  | currency }}<br>
-
   <span class="side-title">Internet Brain</span><br>
 </p></div>
 
@@ -28,18 +26,42 @@
   </div>
 </div>
 
-<div id="right" fxFlex="25%"><p>
-  <span class="side-title">Office Teams</span><br>
-
-  friends<sup>2</sup>: {{ officeFriendsNo }}<br>
-  projects: {{ officeProjectsNo }}<br>
-  skills: {{ officeServicesNo }}<br>
-  tasks/ms: {{ officeTxPerMs }}<br>
-  $/min: {{ officeRatePerMin  | currency }}<br>
-
-  <span class="side-title">Office Networks</span><br>
-</p></div>
+<div id="right" fxFlex="25%">
+  <div fxLayout fxLayoutAlign="end end">
+    <p>
+      <br><span class="side-title">Office Teams</span><br>
+      friends<sup>2</sup>: {{ officeFriendsNo }}<br>
+      projects: {{ officeProjectsNo }}<br>
+      skills: {{ officeServicesNo }}<br>
+      tasks/ms: {{ officeTxPerMs }}<br>
+      $/min: {{ officeRatePerMin | currency }}<br>
+      <span class="side-title">Office Networks</span><br>
+    </p>
+  </div>
 </div>
+</div>
+
+  <ul class="lang" fxLayout fxLayoutAlign="center center">
+    <li>pa</li>
+    <li>zh</li>
+    <li>hi</li>
+    <li>pt</li>
+    <li>es</li>
+    <li>ar</li>
+    <li>ru</li>
+    <li>fr</li>
+    <li>en</li>
+    <li>ro</li>
+    <li>de</li>
+    <li>it</li>
+    <li>iw</li>
+    <li>cs</li>
+    <li>hu</li>
+    <li>tr</li>
+    <li>ko</li>
+    <li>ja</li>
+  </ul>
+
 
 <div id="south-globe">
 <h3>World's N Teams</h3>

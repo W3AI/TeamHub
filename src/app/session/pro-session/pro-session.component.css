@@ -44,3 +44,10 @@ textarea {
   font-size: 50%;
 }
 
+.lang {
+  color: #8c828c;
+  font-size: 60%;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
