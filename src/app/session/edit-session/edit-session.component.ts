@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import * as helper from "../../logic/helper";
+
 @Component({
   selector: 'app-edit-session',
   templateUrl: './edit-session.component.html',
   styleUrls: ['./edit-session.component.css']
 })
 export class EditSessionComponent implements OnInit {
-  defaultProject = `Distributing Innovation Sauce
+  defaultProject = `Share Innovation Sauce
   tags : content
   INPUT	3 Terms:CAD, cent:10, secs:60
   Jar, n:Jar3L, vol:3, content:0, available:3
@@ -31,22 +33,39 @@ OUTPUT 2
 fromJar.content-=poured,available+=poured				
 toJar.content+=poured,available-=poured`;
 
+  // Problem Class structures:
+  problemRows: string[] = [];
+  problemTitle: string = '';
+  problemTags: string = '';
+  problemTerms: {currency: string, bid: number, timeframe: number};
+  contextRows: string[] = [];
+  solutionRows: string[] = []; 
+  testRows: string[] = [];
 
-  // TODO - [ ] Change oddNumbers[] to Problem Class structures:
-  // ContextsScripts[]
-  // SolutionScripts[] 
-  // TestScripts[]
   oddNumbers: number[] = [];
 
-  // TODO - [ ] Change evenNumbers[] to Operation Class structures:
-  // InputScripts[]
-  // OperationScripts[] 
-  // OutputScripts[]
+  // Operation Class structures:
+  operationRows: string[] = [];
+  operationTitle: string = '';
+  operationTags: string = '';
+  operationTerms: {currency: string, bid: number, timeframe: number};
+  inputRows: string[] = [];
+  functionRows: string[] = []; 
+  outputRows: string[] = [];
+
   evenNumbers: number[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    // Initialize Problem structures from defaultProject
+    this.problemRows = helper.lines(this.defaultProject);
+    this.problemTitle = this.problemRows[0];
+
+    // Initialize Operation structures from defaultOperation
+    this.operationRows = helper.lines(this.defaultOperation);
+    this.operationTitle = this.operationRows[0];
+
   }
 
   onIntervalFired(firedNumber: number) {
