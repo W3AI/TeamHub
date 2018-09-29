@@ -20,7 +20,7 @@ export class EditSessionComponent implements OnInit {
 
   defaultOperation = `Top Innovation Sauce
 tags : content
-INPUT	2	Terms:CAD, cent:1, secs:2
+INPUT 2 Terms:CAD, cent:1, secs:2
 Jar	1	n:fromJar,	content>0				
 Jar	2	n:toJar,	available>0				
                           

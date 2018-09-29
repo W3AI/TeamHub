@@ -1,14 +1,86 @@
-<div class="welcome">
+<section id="session" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px">
+    <h1>Free Consumer iTeam</h1>
+  <section class="venture">
+    <section id="control" class="venture" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px">
+      <app-dna-control (intervalFired)="onIntervalFired($event)">
+      </app-dna-control>
+    </section>
+  </section>
 
-<h3>
-  Team up in Realtime<br>with your friends<br>and their friends worldwide
-</h3>
-<p>
-  Come here to see how<br>friendly collaboration propagates<br>around the globe 
-</p>
+  <section id="reactor" background="assets/img/World-W3AI-800.gif" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+  
+    <section id="problem">
+      <h3>Project</h3>
 
-<h3>
-  Win big time together<br>with all contributing friends 
-</h3>
+      <mat-form-field class="right">
+        <textarea 
+        matInput [(ngModel)]="defaultProject"
+        name="problem"
+        rows="20"
+        placeholder="Insert Project cells">
+        </textarea>
+        <button mat-button *ngIf="defaultProject" matPrefix mat-icon-button aria-label="Clear" (click)="defaultProject=''">
+          <mat-icon class="iconLeft">close</mat-icon>
+        </button>
+      </mat-form-field>
 
-</div>
+    </section>
+
+    <section id="operation">
+      <h3>Operations</h3>
+
+      <mat-form-field>
+        <textarea 
+        matInput [(ngModel)]="defaultOperation"
+        name="operation"
+        rows="20"
+        placeholder="Insert Service cells">
+        </textarea>
+        <button mat-button *ngIf="defaultOperation" matSuffix mat-icon-button aria-label="Clear" (click)="defaultOperation=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </section>
+  
+  </section>
+
+  <section id="log">
+    <h3>Transformations Ranking</h3>
+
+    <div id="logHeader">
+
+    </div>
+
+    <div id="logTx" fxLayout="row">
+
+      <div id="Contexts" fxLayout="column">
+
+        <app-dna-problem
+        *ngFor="let oddNumber of oddNumbers" 
+        [number]="oddNumber">
+        </app-dna-problem>
+
+      </div>
+
+      <div id="Transformations" fxLayout="column">
+
+        <app-dna-operation
+        *ngFor="let evenNumber of evenNumbers" 
+        [number]="evenNumber">
+        </app-dna-operation>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="footer">
+      © Ianta Labs / MIT License
+  </section>
+
+</section>
+
+
+

@@ -29,12 +29,12 @@ export class AddSessionComponent implements OnInit {
 GIT(master)$> venture Edu created
 GIT(master)$> nt generate skills Edu
 GIT(master)$> skills Edu created
-GIT(master)$> nt generate teams Edu
+GIT(master)$> nt g teams Edu
 GIT(master)$> teams Edu created
-GIT(master)$> nt generate project Edu
+GIT(master)$> nt g project Edu
 GIT(master)$> project Edu created
-GIT(master)$>
-  `;
+GIT(DNA)$> nt g p PMO
+GIT(DNA)$> nt g p COE`;
   defaultUrl = 'https://nteams.w3ai.net/GIT/';
   // isLoading$: Observable<boolean>;
 
