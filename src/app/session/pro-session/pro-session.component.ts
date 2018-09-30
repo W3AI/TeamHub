@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pro-session.component.css']
 })
 export class ProSessionComponent implements OnInit {
-  defaultProject = `Distributing Innovation Sauce
-  tags : content
+  defaultProject = `Computational Politics DoS Bot
+  tags : DoS, Denial of Service, generator
   INPUT	3 Terms:CAD, cent:10, secs:60
   Jar, n:Jar3L, vol:3, content:0, available:3
   Jar, n:Jar5L, vol:5, content:0, available:5
@@ -18,8 +18,8 @@ export class ProSessionComponent implements OnInit {
   OUTPUT 1
   Jar	WITH content = 4`;
 
-  defaultOperation = `Top Innovation Sauce
-tags : content
+  defaultOperation = `Contextual DoS Attack Generator
+tags : DoS, Denial of Service, generator
 INPUT 2 Terms:CAD, cent:1, secs:2
 Jar	1	n:fromJar,	content>0				
 Jar	2	n:toJar,	available>0				

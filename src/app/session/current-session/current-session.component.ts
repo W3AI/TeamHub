@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./current-session.component.css']
 })
 export class CurrentSessionComponent implements OnInit {
-  defaultProject = `Distributing Innovation Sauce
-  tags : content
+  defaultProject = `Conversational Bullying Tagger
+  tags : bullying, tagger
   INPUT	3 Terms:CAD, cent:10, secs:60
   Jar, n:Jar3L, vol:3, content:0, available:3
   Jar, n:Jar5L, vol:5, content:0, available:5
@@ -18,8 +18,8 @@ export class CurrentSessionComponent implements OnInit {
   OUTPUT 1
   Jar	WITH content = 4`;
 
-  defaultOperation = `Top Innovation Sauce
-tags : content
+  defaultOperation = `Contextual Bullying Analyzer
+tags : bullying, analyzer, contextual
 INPUT 2 Terms:CAD, cent:1, secs:2
 Jar	1	n:fromJar,	content>0				
 Jar	2	n:toJar,	available>0				
