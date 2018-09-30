@@ -48,6 +48,7 @@ toJar.content+=poured,available-=poured`;
   operationRows: string[] = [];
   operationTitle: string = '';
   operationTags: string = '';
+  operationInputFunction: string = '';
   operationTerms: {currency: string, bid: number, timeframe: number};
   inputRows: string[] = [];
   functionRows: string[] = []; 
@@ -65,6 +66,12 @@ toJar.content+=poured,available-=poured`;
     // Initialize Operation structures from defaultOperation
     this.operationRows = helper.lines(this.defaultOperation);
     this.operationTitle = this.operationRows[0];
+
+    console.log("Test from ngOnInit / edit-session");
+
+    this.operationInputFunction = helper.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + helper.nForFooter(2, '  ');
+
+    console.log(this.operationInputFunction);
 
   }
 

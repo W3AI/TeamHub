@@ -26,14 +26,12 @@ function tokens(str: string): Array<string> {
 // Future implementations could include matrices for these arguments
 function nForHeader(n: number, indent: string, index: string, start: number, compare: string, stop: string, increment: string): string {
 
-    let i = 0;
     let nForHeader = '';
     const iB = 'n';
-    const forStatement = `
-for ( let ${iB + index}${i} = ${start}; ${iB + index}${i} ${compare} ${stop} ; ${iB + index}${i}${increment} ) {
-${indent}`;
 
-    for ( i = 1; i <= n; i++) {
+    for ( let i = 1; i <= n; i++) {
+        const forStatement = `for ( let ${iB + index}${i} = ${start}; ${iB + index}${i} ${compare} ${stop} ; ${iB + index}${i}${increment} ) {
+${indent}`;
         nForHeader += forStatement;
     }
 
@@ -51,15 +49,18 @@ function nForFooter(n: number, indent: string) {
         footer = indent + footer;
     }
 
-    nForFooter = footer;
+    // nForFooter = footer;
+
     const newLine = `
 `;
 
-    for ( let i = 1; i <= n ;  ) {
-        nForFooter = footer + newLine
+    for ( let i = 1; i <= n ;  i++) {
+        nForFooter += newLine;
 
         let shorterFooter = footer.substring(indent.length, footer.length);
         footer = shorterFooter;
+
+        nForFooter += footer;
     }
 
     return nForFooter;

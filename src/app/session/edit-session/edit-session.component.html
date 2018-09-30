@@ -7,7 +7,7 @@
     </section>
   </section>
 
-  <section id="reactor" background="assets/img/World-W3AI-800.gif" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <section id="reactor" background="assets/img/World-W3AI-800.gif" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
   
     <section id="problem">
       <h3>Project</h3>
@@ -24,7 +24,7 @@
         </button>
       </mat-form-field>
 
-      <p>{{ problemTitle }}</p>
+      <h5>{{ problemTitle }}</h5>
 
       <section id="contexts" class="problem">
         <h5>Contexts - INPUT</h5>
@@ -39,11 +39,7 @@
       </section>
 
     </section>
-<!--
-    <section id="iteam" fxLayout fxLayoutAlign="center center">
-      <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="30" width="30">
-    </section>
-  -->
+
     <section id="operation">
       <h3>Operations</h3>
 
@@ -59,7 +55,10 @@
         </button>
       </mat-form-field>
 
-      <p>{{ operationTitle }}</p>
+      <h5>{{ operationTitle }}</h5>
+
+      <h5>operationInputFunction</h5>
+      <textarea rows="4"> {{ operationInputFunction }} </textarea>
 
       <section id="contexts" class="operation">
         <h5>INPUT - Queries</h5>
