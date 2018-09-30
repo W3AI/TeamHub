@@ -34,13 +34,14 @@ fromJar.content-=poured,available+=poured
 toJar.content+=poured,available-=poured`;
 
   // Problem Class structures:
-  problemRows: string[] = [];
-  problemTitle: string = '';
-  problemTags: string = '';
-  problemTerms: {currency: string, bid: number, timeframe: number};
-  contextRows: string[] = [];
-  solutionRows: string[] = []; 
-  testRows: string[] = [];
+  pRows: string[] = [];
+  pTitle: string = '';
+  pTags: string = '';
+  pTerms: {currency: string, bid: number, timeframe: number};
+  ctxtRows: string[] = [];        // contextRows
+  ctxtEntitiesNo: number = 3; // 3 for testing eval, etc
+  solRows: string[] = [];         // solutionRows
+  testRows: string[] = [];        
 
   oddNumbers: number[] = [];
 
@@ -56,22 +57,40 @@ toJar.content+=poured,available-=poured`;
 
   evenNumbers: number[] = [];
 
+  solution: any = '';
+  planFStart: string = `solution = function( `;  // the start string for JS planner function
+  planFBody: string = '';
+  planFEnd: string = `;`;
+  result: string = 'console.log("Eval solution = ") + this.solution;'; 
+
+  sum: any = 0;
+  testSumString: string = 'this.sum += 10;';
+
   constructor() { }
 
   ngOnInit() {
     // Initialize Problem structures from defaultProject
-    this.problemRows = helper.lines(this.defaultProject);
-    this.problemTitle = this.problemRows[0];
+    this.pRows = helper.lines(this.defaultProject);
+    this.pTitle = this.pRows[0];
 
     // Initialize Operation structures from defaultOperation
     this.operationRows = helper.lines(this.defaultOperation);
     this.operationTitle = this.operationRows[0];
 
-    console.log("Test from ngOnInit / edit-session");
+    console.log("Test eval Solver function from ngOnInit / edit-session");
 
-    this.operationInputFunction = helper.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + helper.nForFooter(2, '  ');
+    // Test eval Solver function - to be launched from Project Start / Stop button(s)
+
+    let entitiesNo = this.ctxtEntitiesNo;   // should be 3 in eval
+
+    this.operationInputFunction = 
+    helper.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
+    this.testSumString + 
+    helper.nForFooter(2, '  ');
 
     console.log(this.operationInputFunction);
+
+    this.solution = eval(this.operationInputFunction);
 
   }
 
