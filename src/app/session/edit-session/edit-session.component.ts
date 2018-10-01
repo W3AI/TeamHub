@@ -11,10 +11,10 @@ import * as helper from "../../logic/helper";
 export class EditSessionComponent implements OnInit {
   defaultProject = `Share Innovation Sauce
   tags : content
-  INPUT	3 Terms:CAD, cent:10, secs:60
-  Jar, n:Jar3L, vol:3, content:0, available:3
-  Jar, n:Jar5L, vol:5, content:0, available:5
-  Jar, n:Jar8L, vol:8, content:8, available:0
+  INPUT	3 Terms : CAD , cent : 10 , secs : 60
+  Jar , name : Jar3L , vol : 3 , content : 0 , available : 3
+  Jar , name : Jar5L , vol : 5 , content : 0 , available : 5
+  Jar , name : Jar8L , vol : 8 , content : 8 , available : 0
                                   
   SOLUTIONS 1
   
@@ -23,16 +23,16 @@ export class EditSessionComponent implements OnInit {
 
   defaultOperation = `Top Innovation Sauce
 tags : content
-INPUT 2 Terms:CAD, cent:1, secs:2
-Jar	1	n:fromJar,	content>0				
-Jar	2	n:toJar,	available>0				
+INPUT 2 Terms : CAD , cent : 1 , secs : 2
+Jar	1	name : fromJar , content > 0				
+Jar	2	name : toJar ,	available > 0				
                           
 FUNCTIONS 1
-poured=MIN(fromJar.content,toJar.available)
+top = MIN ( fromJar . content , toJar . available )
                           
 OUTPUT 2
-fromJar.content-=poured,available+=poured				
-toJar.content+=poured,available-=poured`;
+fromJar . content -= top , available += top				
+toJar . content += top , available -= top`;
 
   // Problem Class structures:
   pRows: string[] = [];
