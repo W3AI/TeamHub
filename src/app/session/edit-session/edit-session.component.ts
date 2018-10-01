@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import * as dna from "../../logic/DNA";
 import * as helper from "../../logic/helper";
 
 @Component({
@@ -84,9 +85,9 @@ toJar.content+=poured,available-=poured`;
     let entitiesNo = this.ctxtEntitiesNo;   // should be 3 in eval
 
     this.operationInputFunction = 
-    helper.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
+    dna.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
     this.testSumString + 
-    helper.nForFooter(2, '  ');
+    dna.nForFooter(2, '  ');
 
     console.log(this.operationInputFunction);
 
