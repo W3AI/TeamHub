@@ -74,5 +74,21 @@ function nQFooter(): string {
   return nQFooter;
 }
 
+// Build the Operation/Service string function to evaluate and assign to intermediary var
+// eg: bellow line 518 from dnas.js
+// var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
+function nFunctions(): Array<string> {
+  let nFunction: string[] = [];
+
+  return nFunction;
+}
+
+// n Update Query/Script string
+function nUpdates(): Array<string> {
+  let nUpdates: string[] = [];
+
+  return nUpdates;
+}
+
 // export all helper functions
 export { nForHeader, nForFooter };
