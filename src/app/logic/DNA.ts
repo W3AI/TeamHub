@@ -51,6 +51,12 @@ function nQHeader(n: number, index: string, ): string {
   // TODO - [ ] - add first the condition of different entities
   // ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] )
   // TODO - [ ] - how to check difference / unique for n > 2 ? => some kind of combinatorics of pairs?
+  // difference is important only if querying entities of the same type ...
+  // We could have different type of queries generated:
+  // 1 - on several entities of the same type
+  // 2 -  multiple entities of unique types
+  // 3 - some combination
+  // for now we should implement only for 2 ent of same type and unique entities with 1 or multiple properties
   let nQHeader = ` ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) `;
 
   for ( let i = 1; i <= n;  i++) {
