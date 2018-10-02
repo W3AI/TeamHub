@@ -24,7 +24,9 @@
         </button>
       </mat-form-field>
 
-      <h6>{{ pTitle }}</h6>
+      <h6>{{ prTitle }}</h6>
+
+      <textarea class="right" rows="12"> {{ prFormatted }} </textarea>
 
       <section id="contexts" class="problem">
         <h6>Contexts - INPUT</h6>
@@ -55,10 +57,12 @@
         </button>
       </mat-form-field>
 
-      <h6>{{ operationTitle }}</h6>
+      <h6>{{ opTitle }}</h6>
+
+      <textarea rows="12"> {{ opFormatted }} </textarea>
 
       <h6>operationInputFunction</h6>
-      <textarea rows="5"> {{ operationInputFunction }} </textarea>
+      <textarea rows="5"> {{ opInputFunction }} </textarea>
 
       <h6>solution = {{ solution }} </h6>
 

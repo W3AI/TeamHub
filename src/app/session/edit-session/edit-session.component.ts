@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as dna from "../../logic/DNA";
-import * as helper from "../../logic/helper";
+import * as h from "../../logic/helper";
 
 @Component({
   selector: 'app-edit-session',
@@ -35,26 +35,28 @@ fromJar . content -= top , available += top
 toJar . content += top , available -= top`;
 
   // Problem Class structures:
-  pRows: string[] = [];
-  pTitle: string = '';
-  pTags: string = '';
-  pTerms: {currency: string, bid: number, timeframe: number};
-  ctxtRows: string[] = [];        // contextRows
-  ctxtEntitiesNo: number = 3; // 3 for testing eval, etc
-  solRows: string[] = [];         // solutionRows
-  testRows: string[] = [];        
+  prRows: string[] = [];
+  prTitle: string = '';
+  prTags: string = '';
+  prTerms: {currency: string, bid: number, timeframe: number};
+  prCtxtRows: string[] = [];        // contextRows
+  prCtxtEntitiesNo: number = 3; // 3 for testing eval, etc
+  prSolRows: string[] = [];         // solutionRows
+  prTestRows: string[] = [];
+  prFormatted: string = '';     
 
   oddNumbers: number[] = [];
 
   // Operation Class structures:
-  operationRows: string[] = [];
-  operationTitle: string = '';
-  operationTags: string = '';
-  operationInputFunction: string = '';
-  operationTerms: {currency: string, bid: number, timeframe: number};
-  inputRows: string[] = [];
-  functionRows: string[] = []; 
-  outputRows: string[] = [];
+  opRows: string[] = [];
+  opTitle: string = '';
+  opTags: string = '';
+  opInputFunction: string = '';
+  opTerms: {currency: string, bid: number, timeframe: number};
+  opInputRows: string[] = [];
+  opFunctionRows: string[] = []; 
+  opOutputRows: string[] = [];
+  opFormatted: string = '';
 
   evenNumbers: number[] = [];
 
@@ -71,27 +73,27 @@ toJar . content += top , available -= top`;
 
   ngOnInit() {
     // Initialize Problem structures from defaultProject
-    this.pRows = helper.lines(this.defaultProject);
-    this.pTitle = this.pRows[0];
+    this.prRows = h.lines(this.defaultProject);
+    this.prTitle = this.prRows[0];
 
     // Initialize Operation structures from defaultOperation
-    this.operationRows = helper.lines(this.defaultOperation);
-    this.operationTitle = this.operationRows[0];
+    this.opRows = h.lines(this.defaultOperation);
+    this.opTitle = this.opRows[0];
 
     console.log("Test eval Solver function from ngOnInit / edit-session");
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
 
-    let entitiesNo = this.ctxtEntitiesNo;   // should be 3 in eval
+    let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval
 
-    this.operationInputFunction = 
+    this.opInputFunction = 
     dna.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
     this.testSumString + 
     dna.nForFooter(2, '  ');
 
-    console.log(this.operationInputFunction);
+    console.log(this.opInputFunction);
 
-    this.solution = eval(this.operationInputFunction);
+    this.solution = eval(this.opInputFunction);
 
   }
 
