@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
 
+// l = new line - used in formatting
+const l = `
+`;
+
 @Component({
   selector: 'app-edit-session',
   templateUrl: './edit-session.component.html',
@@ -10,33 +14,36 @@ import * as h from "../../logic/helper";
 })
 export class EditSessionComponent implements OnInit {
   defaultProject = `Share Innovation Sauce
+  description : Share 4 Liters of Juice 
   tags : content
   INPUT	3 Terms : CAD , cent : 10 , secs : 60
-  Jar , name : Jar3L , vol : 3 , content : 0 , available : 3
-  Jar , name : Jar5L , vol : 5 , content : 0 , available : 5
-  Jar , name : Jar8L , vol : 8 , content : 8 , available : 0
+  Jar , name : Jar3L , vol = 3 , content = 0 , available = 3
+  Jar , name : Jar5L , vol = 5 , content = 0 , available = 5
+  Jar , name : Jar8L , vol = 8 , content = 8 , available = 0
                                   
-  SOLUTIONS 1
+  SOLUTIONS ? 1
   
   OUTPUT 1
   Jar	WITH content = 4`;
 
   defaultOperation = `Top Innovation Sauce
-tags : content
-INPUT 2 Terms : CAD , cent : 1 , secs : 2
+description : top recipient
+tags : content, available
+INPUT 2 Terms : CAD , cent = 1 , secs = 2
 Jar	1	name : fromJar , content > 0				
 Jar	2	name : toJar ,	available > 0				
                           
 FUNCTIONS 1
-top = MIN ( fromJar . content , toJar . available )
+nr  name : top = MIN ( fromJar . content , toJar . available )
                           
 OUTPUT 2
-fromJar . content -= top , available += top				
-toJar . content += top , available -= top`;
+name : fromJar . content -= top , available += top				
+name: toJar . content += top , available -= top`;
 
   // Problem Class structures:
   prRows: string[] = [];
   prTitle: string = '';
+  prDescription: string = '';
   prTags: string = '';
   prTerms: {currency: string, bid: number, timeframe: number};
   prCtxtRows: string[] = [];        // contextRows
@@ -50,6 +57,7 @@ toJar . content += top , available -= top`;
   // Operation Class structures:
   opRows: string[] = [];
   opTitle: string = '';
+  opDescription: string = '';
   opTags: string = '';
   opInputFunction: string = '';
   opTerms: {currency: string, bid: number, timeframe: number};
@@ -75,25 +83,29 @@ toJar . content += top , available -= top`;
     // Initialize Problem structures from defaultProject
     this.prRows = h.lines(this.defaultProject);
     this.prTitle = this.prRows[0];
+    this.prDescription = this.prRows[1];
+    this.prTags = this.prRows[2];
+
+    this.prFormatted = this.prTitle + l + this.prDescription + l + this.prTags;
+
 
     // Initialize Operation structures from defaultOperation
     this.opRows = h.lines(this.defaultOperation);
     this.opTitle = this.opRows[0];
+    this.opDescription = this.opRows[1];
+    this.opTags = this.opRows[2];
 
-    console.log("Test eval Solver function from ngOnInit / edit-session");
+    this.opFormatted = this.opTitle + l + this.opDescription + l + this.opTags;
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
-
     let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval
-
     this.opInputFunction = 
     dna.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
     this.testSumString + 
     dna.nForFooter(2, '  ');
-
     console.log(this.opInputFunction);
-
     this.solution = eval(this.opInputFunction);
+    // End Test eval
 
   }
 

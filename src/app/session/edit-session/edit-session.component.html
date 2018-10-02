@@ -16,7 +16,7 @@
         <textarea 
         matInput [(ngModel)]="defaultProject"
         name="problem"
-        rows="12"
+        rows="15"
         placeholder="Insert Project cells">
         </textarea>
         <button mat-button *ngIf="defaultProject" matPrefix mat-icon-button aria-label="Clear" (click)="defaultProject=''">
@@ -26,7 +26,7 @@
 
       <h6>{{ prTitle }}</h6>
 
-      <textarea class="right" rows="12"> {{ prFormatted }} </textarea>
+      <textarea class="right" rows="15"> {{ prFormatted }} </textarea>
 
       <section id="contexts" class="problem">
         <h6>Contexts - INPUT</h6>
@@ -49,7 +49,7 @@
         <textarea 
         matInput [(ngModel)]="defaultOperation"
         name="operation"
-        rows="12"
+        rows="15"
         placeholder="Insert Service cells">
         </textarea>
         <button mat-button *ngIf="defaultOperation" matSuffix mat-icon-button aria-label="Clear" (click)="defaultOperation=''">
@@ -59,7 +59,7 @@
 
       <h6>{{ opTitle }}</h6>
 
-      <textarea rows="12"> {{ opFormatted }} </textarea>
+      <textarea rows="15"> {{ opFormatted }} </textarea>
 
       <h6>operationInputFunction</h6>
       <textarea rows="5"> {{ opInputFunction }} </textarea>
