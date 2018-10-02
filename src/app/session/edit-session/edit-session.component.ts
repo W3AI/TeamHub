@@ -4,8 +4,7 @@ import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
 
 // l = new line - used in formatting
-const l = `
-`;
+const l = '\n';
 
 @Component({
   selector: 'app-edit-session',
@@ -13,20 +12,20 @@ const l = `
   styleUrls: ['./edit-session.component.css']
 })
 export class EditSessionComponent implements OnInit {
-  defaultProject = `Share Innovation Sauce
-  description : Share 4 Liters of Juice 
-  tags : content
-  INPUT	3 
-  Jar , name : Jar3L , vol = 3 , content = 0 , available = 3
-  Jar , name : Jar5L , vol = 5 , content = 0 , available = 5
-  Jar , name : Jar8L , vol = 8 , content = 8 , available = 0
-                                  
-  SOLUTIONS ? 1
-  
-  OUTPUT 1
-  Jar	WITH content = 4
-  
-  T&C : CAD , cent : 10 , secs : 60`;
+  defaultProject = `Title	Share Innovation Juice																			
+  Description	Find a way to share 4 Liters of Innovation Sauce with a friend when you have 3 recipients of 3, 5 and 8 liters and 8 liters of Innovation Sauce in the largest recipient.																			
+  Tags	content, available																			
+  INPUT	1	3																		
+	Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3
+	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
+	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
+                                          
+  SOLUTIONS	?	1																		
+                                          
+  OUTPUT		1																		
+    Jar				WITH		content	 = 	4											
+                                          
+  T&C			Terms	:	CAD	,	cent	 = 	10	,	Seconds	 = 	60							`;
 
   defaultOperation = `Top Innovation Sauce
 description : top recipient
@@ -45,12 +44,15 @@ name: toJar . content += top , available -= top
 T&C : CAD , cent = 1 , secs = 2`;
 
   // Problem Class structures:
+  // m is the memory of contexts and entities - initialized with context id = 0 ;
+  m: any[] = ["id",	0, "type", "Ctxt", "entities", 3,"step",   0,  "branch",   0, "status",     "ToDo", "path",""];
   prRows: any[] = [];
   prTitle: string = '';
   prDescription: string = '';
   prTags: string = '';
-  prCtxtEntitiesNo: number = 3; // 3 for testing eval, etc
+  prCtxtEntitiesNo: any = 0; // 3 for testing eval, etc
   prCtxtRows: any[] = [];        // contextRows
+  prSolNo: any = 0;
   prSolRows: any[] = [];         // solutionRows
   prTestRows: any[] = [];
   prTerms: {currency: string, bid: number, timeframe: number};
@@ -63,7 +65,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   opTitle: string = '';
   opDescription: string = '';
   opTags: string = '';
-  opInputEntitiesNo: number = 2;
+  opInputEntitiesNo: number = 0;
   opInputRows: any[] = [];
   opFunctionRows: any[] = []; 
   opOutputRows: any[] = [];
@@ -87,13 +89,35 @@ T&C : CAD , cent = 1 , secs = 2`;
   ngOnInit() {
     // Initialize Problem structures from defaultProject
     this.prRows = h.lines(this.defaultProject);
-    this.prTitle = this.prRows[0];
-    this.prDescription = this.prRows[1];
-    this.prTags = this.prRows[2];
-    this.prCtxtEntitiesNo = this.prRows[3][8];
+    this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
+    this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
+    this.prTags = h.tokens(h.pipes(this.prRows[2]))[1];
+    this.prCtxtEntitiesNo = h.tokens(h.pipes(this.prRows[3]))[2];
+    this.prSolNo = h.tokens(h.pipes(this.prRows[5+Number(this.prCtxtEntitiesNo)]))[2];
 
-    this.prFormatted = this.prTitle + l + this.prDescription + l + this.prTags + l
-    + 'INPUT ' + this.prCtxtEntitiesNo;
+    for ( let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
+      let row = '';
+      let rowl = '';
+      let rowA = [];
+      row = h.pipes(this.prRows[4 + entities]);
+      row = row.replace(/[|:|]+/g,'|');
+      row = row.replace(/[|,|]+/g,'|');
+      row = row.replace('|','');
+      rowA = h.tokens(row);
+      rowA.splice(0,0,'id', entities + 1, 'type');
+      console.log(rowA);
+      rowl = row + l;
+      this.prCtxtRows.push(rowl);
+    }
+    
+    this.prFormatted = 
+    'Title: ' + this.prTitle + l +
+    'Description: '+ this.prDescription + l + 
+    'Tags: '+ this.prTags + l +
+    'INPUT ' + this.prCtxtEntitiesNo + l +
+    this.prCtxtRows +
+    l +
+    'SOLUTIONS ? ' + this.prSolNo;
 
 
     // Initialize Operation structures from defaultOperation

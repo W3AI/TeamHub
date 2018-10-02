@@ -17,7 +17,12 @@ function pipes(str: string): string {
 
 // Split string into token strings
 function tokens(str: string): Array<string> {
-    return str.split('|');
+    if (str.includes('|')) {
+      return str.split('|');  
+    } else {
+      return str.split(' ');
+    }
+    
 }
 
 // export all helper functions
