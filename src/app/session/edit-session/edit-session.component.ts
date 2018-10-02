@@ -16,7 +16,7 @@ export class EditSessionComponent implements OnInit {
   defaultProject = `Share Innovation Sauce
   description : Share 4 Liters of Juice 
   tags : content
-  INPUT	3 Terms : CAD , cent : 10 , secs : 60
+  INPUT	3 
   Jar , name : Jar3L , vol = 3 , content = 0 , available = 3
   Jar , name : Jar5L , vol = 5 , content = 0 , available = 5
   Jar , name : Jar8L , vol = 8 , content = 8 , available = 0
@@ -24,12 +24,14 @@ export class EditSessionComponent implements OnInit {
   SOLUTIONS ? 1
   
   OUTPUT 1
-  Jar	WITH content = 4`;
+  Jar	WITH content = 4
+  
+  T&C : CAD , cent : 10 , secs : 60`;
 
   defaultOperation = `Top Innovation Sauce
 description : top recipient
 tags : content, available
-INPUT 2 Terms : CAD , cent = 1 , secs = 2
+INPUT 2 
 Jar	1	name : fromJar , content > 0				
 Jar	2	name : toJar ,	available > 0				
                           
@@ -38,36 +40,39 @@ nr  name : top = MIN ( fromJar . content , toJar . available )
                           
 OUTPUT 2
 name : fromJar . content -= top , available += top				
-name: toJar . content += top , available -= top`;
+name: toJar . content += top , available -= top
+
+T&C : CAD , cent = 1 , secs = 2`;
 
   // Problem Class structures:
-  prRows: string[] = [];
+  prRows: any[] = [];
   prTitle: string = '';
   prDescription: string = '';
   prTags: string = '';
-  prTerms: {currency: string, bid: number, timeframe: number};
-  prCtxtRows: string[] = [];        // contextRows
   prCtxtEntitiesNo: number = 3; // 3 for testing eval, etc
-  prSolRows: string[] = [];         // solutionRows
-  prTestRows: string[] = [];
+  prCtxtRows: any[] = [];        // contextRows
+  prSolRows: any[] = [];         // solutionRows
+  prTestRows: any[] = [];
+  prTerms: {currency: string, bid: number, timeframe: number};
   prFormatted: string = '';     
 
   oddNumbers: number[] = [];
 
   // Operation Class structures:
-  opRows: string[] = [];
+  opRows: any[] = [];
   opTitle: string = '';
   opDescription: string = '';
   opTags: string = '';
-  opInputFunction: string = '';
-  opTerms: {currency: string, bid: number, timeframe: number};
-  opInputRows: string[] = [];
-  opFunctionRows: string[] = []; 
-  opOutputRows: string[] = [];
+  opInputEntitiesNo: number = 2;
+  opInputRows: any[] = [];
+  opFunctionRows: any[] = []; 
+  opOutputRows: any[] = [];
+  opTerms: {currency: string, ask: number, timeframe: number};
   opFormatted: string = '';
 
   evenNumbers: number[] = [];
 
+  opInputFunction: string = '';
   solution: any = '';
   planFStart: string = `solution = function( `;  // the start string for JS planner function
   planFBody: string = '';
@@ -85,8 +90,10 @@ name: toJar . content += top , available -= top`;
     this.prTitle = this.prRows[0];
     this.prDescription = this.prRows[1];
     this.prTags = this.prRows[2];
+    this.prCtxtEntitiesNo = this.prRows[3][8];
 
-    this.prFormatted = this.prTitle + l + this.prDescription + l + this.prTags;
+    this.prFormatted = this.prTitle + l + this.prDescription + l + this.prTags + l
+    + 'INPUT ' + this.prCtxtEntitiesNo;
 
 
     // Initialize Operation structures from defaultOperation
