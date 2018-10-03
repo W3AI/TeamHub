@@ -23,9 +23,10 @@ export class EditSessionComponent implements OnInit {
   SOLUTIONS	?	1																		
                                           
   OUTPUT		1																		
-    Jar				WITH		content	 = 	4											
+  Jar	,	name	:	ANY	,	content	 = 	4
                                           
-  T&C			Terms	:	CAD	,	cent	 = 	10	,	Seconds	 = 	60							`;
+  T&C			Terms	:	CAD	,	cent	:	10	,	seconds	:	60				
+	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
 
   defaultOperation = `Top Innovation Sauce
 description : top recipient
@@ -53,11 +54,13 @@ T&C : CAD , cent = 1 , secs = 2`;
   prDescription: string = '';
   prTags: string = '';
   prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
-  prCtxtRows: any[] = [];         // contextRows
+  prCtxtRows: string[] = [];         // contextRows
+  prEntArray: any[] = [];         // the entity array to be formatted and added to m - memory Array initiated above
   prSolNo: any = 1;               // usually at least 1 solution is needed
   prSolRows: any[] = [];          // solutionRows
   prTestNo: any = 1;              // at least 1 test is needed in defining a problem/project
-  prTestRows: any[] = [];
+  prTestRows: string[] = [];
+  prTestArray: any[] = [];
   prTerms: {currency: string, bid: number, timeframe: number};
   prFormatted: string = '';     
 
@@ -104,6 +107,11 @@ T&C : CAD , cent = 1 , secs = 2`;
     console.log(this.prRows[this.prDefCounter]);
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
 
+    // TODO - [ ] - transform in function format to be used for formatting 
+    // & printing lists of entities, plans/sol, tests, 
+    // & queries, funnctions, updaters
+    // Input: rows: any[] = prRows/opRows; start: nr, count: nr, 
+    // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
     for ( let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
       let row = '';
       let rowl = '';
@@ -150,6 +158,28 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.solution = eval(this.opInputFunction);
     // End Test eval
 
+  }
+
+  // TODO - [ ] - transform in function format to be used for formatting 
+  // & printing lists of entities, plans/sol, tests, 
+  // & queries, funnctions, updaters
+  // Input: rows: any[] = prRows/opRows; start: nr, count: nr, 
+  // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
+  format() {
+    for (let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
+      let row = '';
+      let rowl = '';
+      let rowA = [];
+      row = h.pipes(this.prRows[4 + entities]);
+      row = row.replace(/[|:|]+/g, '|');
+      row = row.replace(/[|,|]+/g, '|');
+      row = row.replace('|', '');
+      rowA = h.tokens(row);
+      rowA.splice(0, 0, 'id', entities + 1, 'type');
+      console.log(rowA);
+      rowl = row + l;
+      this.prCtxtRows.push(rowl);
+    }
   }
 
   onIntervalFired(firedNumber: number) {
