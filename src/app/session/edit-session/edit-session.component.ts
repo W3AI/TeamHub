@@ -107,26 +107,14 @@ T&C : CAD , cent = 1 , secs = 2`;
     console.log(this.prRows[this.prDefCounter]);
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
 
-    // TODO - [ ] - transform in function format to be used for formatting 
-    // & printing lists of entities, plans/sol, tests, 
-    // & queries, funnctions, updaters
-    // Input: rows: any[] = prRows/opRows; start: nr, count: nr, 
-    // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
-    for ( let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
-      let row = '';
-      let rowl = '';
-      let rowA = [];
-      row = h.pipes(this.prRows[4 + entities]);
-      row = row.replace(/[|:|]+/g,'|');
-      row = row.replace(/[|,|]+/g,'|');
-      row = row.replace('|','');
-      rowA = h.tokens(row);
-      rowA.splice(0,0,'id', entities + 1, 'type');
-      console.log(rowA);
-      rowl = row + l;
-      this.prCtxtRows.push(rowl);
-    }
-    
+  // Function formatRows to be used for formatting 
+  // & printing lists of entities, plans/sol, tests, 
+  // & queries, funnctions, updaters
+  // Input: rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
+  // start: nr, count: nr, 
+  // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
+  this.formatRows(this.prRows, 'type', 4, this.prCtxtEntitiesNo, this.prCtxtRows, this.m);
+
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
     'Description: '+ this.prDescription + l + 
@@ -160,25 +148,25 @@ T&C : CAD , cent = 1 , secs = 2`;
 
   }
 
-  // TODO - [ ] - transform in function format to be used for formatting 
+  // TODO - [X] - transform in function formatRows to be used for formatting 
   // & printing lists of entities, plans/sol, tests, 
   // & queries, funnctions, updaters
-  // Input: rows: any[] = prRows/opRows; start: nr, count: nr, 
+  // Input: rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
+  // start: nr, count: nr, 
   // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
-  format() {
-    for (let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
+  formatRows(eRows: any[], type: string, startRow: number, counter: number, eLines: string[], eArray: any[]) {
+    for (let e = 0; e < counter; e++) {
       let row = '';
-      let rowl = '';
       let rowA = [];
-      row = h.pipes(this.prRows[4 + entities]);
+      row = h.pipes(eRows[startRow + e]);
       row = row.replace(/[|:|]+/g, '|');
       row = row.replace(/[|,|]+/g, '|');
       row = row.replace('|', '');
+      eLines.push(row + l);
       rowA = h.tokens(row);
-      rowA.splice(0, 0, 'id', entities + 1, 'type');
+      rowA.splice(0, 0, 'id', e + 1, type);
       console.log(rowA);
-      rowl = row + l;
-      this.prCtxtRows.push(rowl);
+      eArray = eArray.concat(rowA);
     }
   }
 
