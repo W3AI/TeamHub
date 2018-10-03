@@ -100,20 +100,20 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
     this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
     this.prTags = h.tokens(h.pipes(this.prRows[2]))[1];
-    this.prCtxtEntitiesNo = Number(h.tokens(h.pipes(this.prRows[3]))[2]);
-    this.prSolNo = h.tokens(h.pipes(this.prRows[5+Number(this.prCtxtEntitiesNo)]))[2];
-    this.prDefCounter = 7 + this.prCtxtEntitiesNo;
-    console.log(this.prDefCounter);
-    console.log(this.prRows[this.prDefCounter]);
+    this.prCtxtEntitiesNo = Number(h.tokens(h.pipes(this.prRows[3]))[2]);  
+    this.prDefCounter = 4; // nr of lines until/including INPUT line 
+    // Format Entity rows
+    this.formatRows(this.prRows, 'type', this.prDefCounter, this.prCtxtEntitiesNo, this.prCtxtRows, this.m); 
+    this.prDefCounter += this.prCtxtEntitiesNo + 1;
+    console.log("prDefCounter:" + this.prDefCounter);
+    this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
+    // TODO - [ ] - To Format prSolRows if Any
+    this.prDefCounter += 2;
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
+    this.prDefCounter += 1;
+    // Format prTestRows
+    this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);    
 
-  // Function formatRows to be used for formatting 
-  // & printing lists of entities, plans/sol, tests, 
-  // & queries, funnctions, updaters
-  // Input: rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
-  // start: nr, count: nr, 
-  // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
-  this.formatRows(this.prRows, 'type', 4, this.prCtxtEntitiesNo, this.prCtxtRows, this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -125,7 +125,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     l +
     'SOLUTIONS Min: ' + this.prSolNo + l +
     l + 
-    'OUTPUT Tests: ' + this.prTestNo + l;
+    'OUTPUT Tests: ' + this.prTestNo + l +
+    this.prTestRows;
 
 
     // Initialize Operation structures from defaultOperation
@@ -145,30 +146,31 @@ T&C : CAD , cent = 1 , secs = 2`;
     console.log(this.opInputFunction);
     this.solution = eval(this.opInputFunction);
     // End Test eval
-
   }
 
-  // TODO - [X] - transform in function formatRows to be used for formatting 
-  // & printing lists of entities, plans/sol, tests, 
-  // & queries, funnctions, updaters
-  // Input: rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
-  // start: nr, count: nr, 
-  // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op..
-  formatRows(eRows: any[], type: string, startRow: number, counter: number, eLines: string[], eArray: any[]) {
-    for (let e = 0; e < counter; e++) {
-      let row = '';
-      let rowA = [];
-      row = h.pipes(eRows[startRow + e]);
-      row = row.replace(/[|:|]+/g, '|');
-      row = row.replace(/[|,|]+/g, '|');
-      row = row.replace('|', '');
-      eLines.push(row + l);
-      rowA = h.tokens(row);
-      rowA.splice(0, 0, 'id', e + 1, type);
-      console.log(rowA);
-      eArray = eArray.concat(rowA);
+    // Function formatRows to be used for formatting 
+    // & printing lists of entities, plans/sol, tests, 
+    // & queries, funnctions, updaters - Input: 
+    // rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
+    // start: nr; count: nr; 
+    // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op.. 
+    formatRows(eRows: any[], type: string, 
+      startRow: number, counter: number, 
+      eLines: string[], eArray: any[]) {
+      for (let e = 0; e < counter; e++) {
+        let row = '';
+        let rowA = [];
+        row = h.pipes(eRows[startRow + e]);
+        row = row.replace(/[|:|]+/g, '|');
+        row = row.replace(/[|,|]+/g, '|');
+        row = row.replace('|', '');
+        eLines.push(row + l);
+        rowA = h.tokens(row);
+        rowA.splice(0, 0, 'id', e + 1, type);
+        console.log(rowA);
+        eArray = eArray.concat(rowA);
+      }
     }
-  }
 
   onIntervalFired(firedNumber: number) {
     if (firedNumber % 2 === 0) {
