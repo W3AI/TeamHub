@@ -52,4 +52,16 @@
     margin-top: 10px;
   }
   
+  .footer {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  a {    
+    text-decoration: none; /* no underline */
+    color: grey;
+  }
+  
+  
   

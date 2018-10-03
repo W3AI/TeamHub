@@ -6,8 +6,9 @@
     </a>
     <a mat-list-item routerLink="/session" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>code</mat-icon>
-        <span class="nav-caption">nt Cloud Console</span>            
+        <span class="nav-caption">nBots Factory</span>            
     </a>
+    <!--
     <a mat-list-item routerLink="/team" (click)="onClose()">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">nTeams</span>
@@ -20,7 +21,7 @@
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Friends</span>
     </a>
-
+    -->
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>face</mat-icon>
         <span class="nav-caption">Signup</span>
@@ -29,10 +30,12 @@
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>            
     </a>
+    <!--
     <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>attach_money</mat-icon>
         <span class="nav-caption">Accounts</span>            
     </a>
+    -->
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">n Projects</span>            

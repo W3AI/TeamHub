@@ -23,3 +23,14 @@ textarea {
     color: greenyellow;
     width: 100%;
  }
+
+ .footer {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  a {    
+    text-decoration: none; /* no underline */
+    color: grey;
+  }

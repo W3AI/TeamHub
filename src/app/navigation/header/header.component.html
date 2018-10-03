@@ -16,18 +16,18 @@
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
 
             <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/team">nTeams</a></li>
+        <!--    <li><a routerLink="/team">nBots</a></li>
             <li><a routerLink="/market">Jobs</a></li>
-            <li><a routerLink="/friend">Friends</a></li>
+            <li><a routerLink="/friend">Friends</a></li> -->
 
-            <li *ngIf="isAuth$ | async"><a routerLink="/session">Sessions</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/skill">Services</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/venture">Ventures</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/session">nBots</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/project">nProjects</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/skill">nSkills</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/venture">nVentures</a></li>
 
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li>
+        <!--    <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li> -->
             
             <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
