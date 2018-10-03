@@ -47,13 +47,16 @@ T&C : CAD , cent = 1 , secs = 2`;
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[] = ["id",	0, "type", "Ctxt", "entities", 3,"step",   0,  "branch",   0, "status",     "ToDo", "path",""];
   prRows: any[] = [];
+  prDefLines: number = 0;
+  prDefCounter: number = 0;
   prTitle: string = '';
   prDescription: string = '';
   prTags: string = '';
-  prCtxtEntitiesNo: any = 0; // 3 for testing eval, etc
-  prCtxtRows: any[] = [];        // contextRows
-  prSolNo: any = 0;
-  prSolRows: any[] = [];         // solutionRows
+  prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
+  prCtxtRows: any[] = [];         // contextRows
+  prSolNo: any = 1;               // usually at least 1 solution is needed
+  prSolRows: any[] = [];          // solutionRows
+  prTestNo: any = 1;              // at least 1 test is needed in defining a problem/project
   prTestRows: any[] = [];
   prTerms: {currency: string, bid: number, timeframe: number};
   prFormatted: string = '';     
@@ -89,11 +92,17 @@ T&C : CAD , cent = 1 , secs = 2`;
   ngOnInit() {
     // Initialize Problem structures from defaultProject
     this.prRows = h.lines(this.defaultProject);
+    this.prDefLines = this.prRows.length;
+    console.log("Project definition lines:" + this.prDefLines);
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
     this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
     this.prTags = h.tokens(h.pipes(this.prRows[2]))[1];
-    this.prCtxtEntitiesNo = h.tokens(h.pipes(this.prRows[3]))[2];
+    this.prCtxtEntitiesNo = Number(h.tokens(h.pipes(this.prRows[3]))[2]);
     this.prSolNo = h.tokens(h.pipes(this.prRows[5+Number(this.prCtxtEntitiesNo)]))[2];
+    this.prDefCounter = 7 + this.prCtxtEntitiesNo;
+    console.log(this.prDefCounter);
+    console.log(this.prRows[this.prDefCounter]);
+    this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
 
     for ( let entities = 0; entities < this.prCtxtEntitiesNo; entities++) {
       let row = '';
@@ -114,10 +123,13 @@ T&C : CAD , cent = 1 , secs = 2`;
     'Title: ' + this.prTitle + l +
     'Description: '+ this.prDescription + l + 
     'Tags: '+ this.prTags + l +
+    l +
     'INPUT ' + this.prCtxtEntitiesNo + l +
     this.prCtxtRows +
     l +
-    'SOLUTIONS ? ' + this.prSolNo;
+    'SOLUTIONS Min: ' + this.prSolNo + l +
+    l + 
+    'OUTPUT Tests: ' + this.prTestNo + l;
 
 
     // Initialize Operation structures from defaultOperation
