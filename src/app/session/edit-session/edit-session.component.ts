@@ -17,8 +17,8 @@ Description	Find a way to share 4 Liters of Innovation Sauce with a friend when 
 Tags	content, available																
 INPUT	1	3															
 	Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3
-	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	4	,	available	:	1
-	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	4	,	available	:	4
+	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
+	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
 																	
 nBots	?	1															
 																	
@@ -161,8 +161,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     l + 
     'OUTPUT Tests: ' + this.prTestNo + l +
     this.prTestRows;
-    
-    // TODO - [ ] - add reading and formatting of T&C
+
+    // TODO - [ ] - add reading and formatting of T&C <<< ----------- <<< !!! then do the testing on context ini !!!
 
 
     // Initialize Operation structures from defaultOperation
