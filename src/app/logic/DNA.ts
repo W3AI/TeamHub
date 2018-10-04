@@ -23,9 +23,9 @@ const iB = 'n';   // index Base: ni0, ni1, ni2 ...
 //   }
 //   return result;
 // }
-function nBasicTestsCoder(context: any[], entType: string, propName: string, condition: string, propVal: string ): string {
-  let testFunction: string = `function test(${context}, ${entType}, ${propName}, ${condition}, ${propVal}) {
-    let c = ${context}.slice();
+function nBasicTestsCoder(entType: string, propName: string, condition: string, propVal: string ): string {
+  let testFunction: string = `function test(this.c, ${entType}, ${propName}, ${condition}, ${propVal}) {
+    let c = this.c.slice();
     let result = [];
     let n = 0;  // Number of results
     for (var i = 1; i < c.length; i++) {
@@ -126,4 +126,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nForHeader, nForFooter };
+export { nBasicTestsCoder, nForHeader, nForFooter };

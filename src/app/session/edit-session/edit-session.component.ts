@@ -60,7 +60,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   prSolNo: any = 1;               // usually at least 1 solution is needed
   prSolRows: string[] = [];       // solutionRows
   prSolArray: any[][];         // Here are the plan/path = Sequence of task lines
-  prTestNo: any = 1;              // at least 1 test is needed in defining a problem/project
+  prTestNo: number = 1;              // at least 1 test is needed in defining a problem/project
   prTestRows: string[] = [];
   prTestArray: any[][];
   prTerms: {currency: string, bid: number, timeframe: number};
@@ -101,7 +101,7 @@ T&C : CAD , cent = 1 , secs = 2`;
 }
 
   ngOnInit() {
-    // Initialize Problem structures from defaultProject
+    // Initialize Problem structures from defaultProject in accordance with the Excel/GSheets structure
     this.prRows = h.lines(this.defaultProject);
     this.prDefLines = this.prRows.length;
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
@@ -118,11 +118,16 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
     // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
     this.prDefCounter += 2;
-    this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
+    this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
     this.prDefCounter += 1;
     // Format prTestRows
     this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
-    
+    // Generating the code for each test = the Function code to be added to each test/row of the prTest Array
+    for ( let t = 0; t<this.prTestNo; t++) {
+      this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
+    }
+
+
     console.log('-- After problemIni:');
     console.log('Problem - prEntArray:');
     console.log(this.prEntArray);
