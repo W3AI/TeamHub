@@ -17,8 +17,8 @@ Description	Find a way to share 4 Liters of Innovation Sauce with a friend when 
 Tags	content, available																
 INPUT	1	3															
 	Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3
-	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
-	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
+	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	4	,	available	:	1
+	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	4	,	available	:	4
 																	
 nBots	?	1															
 																	
@@ -122,12 +122,20 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prDefCounter += 1;
     // Format prTestRows
     this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
+    
     // Generating the code for each test = the Function code to be added to each test/row of the prTest Array
     for ( let t = 0; t<this.prTestNo; t++) {
       this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
     }
 
+    // Run all tests on the initial context 
+    // - as coded in nBasicTestsCoder() with 
+    //"... this.prTestArray[t][10 + n] = result[n]; ..." n = nr of results in a context
+    for ( let t = 0; t<this.prTestNo; t++) {
+      eval(this.prTestArray[t][9]);
+    }
 
+    // -- After problemIni:
     console.log('-- After problemIni:');
     console.log('Problem - prEntArray:');
     console.log(this.prEntArray);
@@ -153,6 +161,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     l + 
     'OUTPUT Tests: ' + this.prTestNo + l +
     this.prTestRows;
+    
+    // TODO - [ ] - add reading and formatting of T&C
 
 
     // Initialize Operation structures from defaultOperation
@@ -169,8 +179,12 @@ T&C : CAD , cent = 1 , secs = 2`;
     dna.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
     this.testSumString + 
     dna.nForFooter(2, '  ');
+    console.log('-- String/Function to evaluate: this.opInputFunction');
     console.log(this.opInputFunction);
     this.solution = eval(this.opInputFunction);
+    console.log('-- this.solution:');
+    console.log(this.solution);
+
     // End Test eval
   }
 

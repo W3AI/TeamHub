@@ -24,18 +24,18 @@ const iB = 'n';   // index Base: ni0, ni1, ni2 ...
 //   return result;
 // }
 function nBasicTestsCoder(entType: string, propName: string, condition: string, propVal: string ): string {
-  let testFunction: string = `function test(this.c, ${entType}, ${propName}, ${condition}, ${propVal}) {
+  let testFunction: string = `
     let c = this.c.slice();
     let result = [];
     let n = 0;  // Number of results
     for (var i = 1; i < c.length; i++) {
-      if ( ( c[i][c[i].indexOf("type") + 1] == entType ) & ( c[i][c[i].indexOf(${propName}) + 1] ${condition} ${propVal} )) {
-        result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", ${entType}, ${propName}, ${propVal}];
+      if ( ( c[i][c[i].indexOf("type") + 1] == '${entType}' ) & ( c[i][c[i].indexOf('${propName}') + 1] ${condition} ${propVal} )) {
+        result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", "${entType}", "${propName}", ${propVal}];
+        this.prTestArray[t][10 + n] = result[n];  // 10 is the next available index
         n++;
       }
     }
-    return result;
-  }`;
+  `;
 
   return testFunction;
 }
