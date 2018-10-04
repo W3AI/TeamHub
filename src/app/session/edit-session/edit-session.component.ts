@@ -25,7 +25,8 @@ nBots	?	1
 OUTPUT	1																
 	Jar	,	name	:	ANY	,	content	==	4								
 																	
-T&C			Terms	:	CAD	,	cent	:	10	,	seconds	:	60				
+T&C	2																
+	ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60				
 	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
 
   defaultOperation = `Top Innovation Sauce
@@ -56,14 +57,17 @@ T&C : CAD , cent = 1 , secs = 2`;
   prTags: string = '';
   prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
   prCtxtRows: string[] = [];      // contextRows
-  prEntArray: any[][];         // the entity array to be formatted and added to m - memory Array initiated above
+  prEntArray: any[][];            // the entity array to be formatted and added to m - memory Array initiated above
   prSolNo: any = 1;               // usually at least 1 solution is needed
   prSolRows: string[] = [];       // solutionRows
-  prSolArray: any[][];         // Here are the plan/path = Sequence of task lines
-  prTestNo: number = 1;              // at least 1 test is needed in defining a problem/project
+  prSolArray: any[][];            // Here are the plan/path = Sequence of task lines
+  prTestNo: number = 1;           // at least 1 test is needed in defining a problem/project
   prTestRows: string[] = [];
   prTestArray: any[][];
-  prTerms: {currency: string, bid: number, timeframe: number};
+  prTncNo: number = 1; 
+  prTncRows: string[] = [];
+  prTncArray: any[][];
+  prTnc: {currency: string, bid: number, timeframe: number};
   prFormatted: string = '';     
 
   oddNumbers: number[] = [];
@@ -77,7 +81,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   opInputRows: any[] = [];
   opFunctionRows: any[] = []; 
   opOutputRows: any[] = [];
-  opTerms: {currency: string, ask: number, timeframe: number};
+  opTnC: {currency: string, ask: number, timeframe: number};
   opFormatted: string = '';
 
   evenNumbers: number[] = [];
@@ -98,6 +102,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   this.prEntArray = [];
   this.prSolArray = [];
   this.prTestArray = [];
+  this.prTncArray = [];
 }
 
   ngOnInit() {
@@ -117,12 +122,16 @@ T&C : CAD , cent = 1 , secs = 2`;
     // console.log("prDefCounter:" + this.prDefCounter);
     this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
     // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
-    this.prDefCounter += 2;
+    this.prDefCounter += 2;   // including a blank line to OUTPUT / Tests
     this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
     this.prDefCounter += 1;
     // Format prTestRows
     this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
-    
+    this.prDefCounter += 2;   // including a blank line to T&C
+    this.prTncNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
+    this.prDefCounter += 1;
+    this.prTncArray = this.formatRows(this.prRows, 'TnC', this.prDefCounter, this.prTncNo, this.prTncRows, this.prTncArray);
+
     // Generating the code for each test = the Function code to be added to each test/row of the prTest Array
     for ( let t = 0; t<this.prTestNo; t++) {
       this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
@@ -160,7 +169,10 @@ T&C : CAD , cent = 1 , secs = 2`;
     'SOLUTIONS Min: ' + this.prSolNo + l +
     l + 
     'OUTPUT Tests: ' + this.prTestNo + l +
-    this.prTestRows;
+    this.prTestRows + 
+    l +
+    'T&C: ' + this.prTncNo + l +
+    this.prTncRows;
 
     // TODO - [ ] - add reading and formatting of T&C <<< ----------- <<< !!! then do the testing on context ini !!!
 
