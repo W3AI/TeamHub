@@ -12,20 +12,20 @@ const l = '\n';
   styleUrls: ['./edit-session.component.css']
 })
 export class EditSessionComponent implements OnInit {
-  defaultProject = `Title	Share Innovation Juice																			
-  Description	Find a way to share 4 Liters of Innovation Sauce with a friend when you have 3 recipients of 3, 5 and 8 liters and 8 liters of Innovation Sauce in the largest recipient.																			
-  Tags	content, available																			
-  INPUT	1	3																		
+  defaultProject = `Title	Share Innovation Juice																
+Description	Find a way to share 4 Liters of Innovation Sauce with a friend when you have 3 recipients of 3, 5 and 8 liters and 8 liters of Innovation Sauce in the largest recipient.																
+Tags	content, available																
+INPUT	1	3															
 	Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3
 	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
 	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
-                                          
-  SOLUTIONS	?	1																		
-                                          
-  OUTPUT		1																		
-  Jar	,	name	:	ANY	,	content	 = 	4
-                                          
-  T&C			Terms	:	CAD	,	cent	:	10	,	seconds	:	60				
+																	
+nBots	?	1															
+																	
+OUTPUT	1																
+	Jar	,	name	:	ANY	,	content	 = 	4								
+																	
+T&C			Terms	:	CAD	,	cent	:	10	,	seconds	:	60				
 	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
 
   defaultOperation = `Top Innovation Sauce
@@ -46,7 +46,8 @@ T&C : CAD , cent = 1 , secs = 2`;
 
   // Problem Class structures:
   // m is the memory of contexts and entities - initialized with context id = 0 ;
-  m: any[] = ["id",	0, "type", "Ctxt", "entities", 3,"step",   0,  "branch",   0, "status",     "ToDo", "path",""];
+  m: any[][];                     // the memory array m - as in the dnas.js
+  c: any[][]; 
   prRows: any[] = [];
   prDefLines: number = 0;
   prDefCounter: number = 0;
@@ -54,10 +55,11 @@ T&C : CAD , cent = 1 , secs = 2`;
   prDescription: string = '';
   prTags: string = '';
   prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
-  prCtxtRows: string[] = [];         // contextRows
+  prCtxtRows: string[] = [];      // contextRows
   prEntArray: any[] = [];         // the entity array to be formatted and added to m - memory Array initiated above
   prSolNo: any = 1;               // usually at least 1 solution is needed
-  prSolRows: any[] = [];          // solutionRows
+  prSolRows: string[] = [];       // solutionRows
+  prSolArray: any[] = [];         // Here are the plan/path = Sequence of task lines
   prTestNo: any = 1;              // at least 1 test is needed in defining a problem/project
   prTestRows: string[] = [];
   prTestArray: any[] = [];
@@ -90,7 +92,10 @@ T&C : CAD , cent = 1 , secs = 2`;
   sum: any = 0;
   testSumString: string = 'this.sum += 10;';
 
-  constructor() { }
+  constructor() {
+  this.m = [];
+  this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
+  }
 
   ngOnInit() {
     // Initialize Problem structures from defaultProject
@@ -100,7 +105,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
     this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
     this.prTags = h.tokens(h.pipes(this.prRows[2]))[1];
-    this.prCtxtEntitiesNo = Number(h.tokens(h.pipes(this.prRows[3]))[2]);  
+    this.prCtxtEntitiesNo = Number(h.tokens(h.pipes(this.prRows[3]))[2]);
+    this.c[0][5] = this.prCtxtEntitiesNo;
     this.prDefCounter = 4; // nr of lines until/including INPUT line 
     // Format Entity rows
     this.formatRows(this.prRows, 'type', this.prDefCounter, this.prCtxtEntitiesNo, this.prCtxtRows, this.m); 
@@ -112,8 +118,16 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
     this.prDefCounter += 1;
     // Format prTestRows
-    this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);    
-
+    this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
+    
+    console.log('-- After problemIni:');
+    console.log('Problem - m');
+    console.log(this.c);
+    console.log('Problem - prSolArray');
+    console.log(this.prSolArray);
+    console.log('Problem - prTestArray');
+    console.log(this.prTestArray);
+    
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -167,8 +181,9 @@ T&C : CAD , cent = 1 , secs = 2`;
         eLines.push(row + l);
         rowA = h.tokens(row);
         rowA.splice(0, 0, 'id', e + 1, type);
-        console.log(rowA);
+        // console.log(rowA);
         eArray = eArray.concat(rowA);
+        // console.log(eArray);
       }
     }
 
