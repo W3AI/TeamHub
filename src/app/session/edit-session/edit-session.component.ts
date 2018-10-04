@@ -56,13 +56,13 @@ T&C : CAD , cent = 1 , secs = 2`;
   prTags: string = '';
   prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
   prCtxtRows: string[] = [];      // contextRows
-  prEntArray: any[] = [];         // the entity array to be formatted and added to m - memory Array initiated above
+  prEntArray: any[][];         // the entity array to be formatted and added to m - memory Array initiated above
   prSolNo: any = 1;               // usually at least 1 solution is needed
   prSolRows: string[] = [];       // solutionRows
-  prSolArray: any[] = [];         // Here are the plan/path = Sequence of task lines
+  prSolArray: any[][];         // Here are the plan/path = Sequence of task lines
   prTestNo: any = 1;              // at least 1 test is needed in defining a problem/project
   prTestRows: string[] = [];
-  prTestArray: any[] = [];
+  prTestArray: any[][];
   prTerms: {currency: string, bid: number, timeframe: number};
   prFormatted: string = '';     
 
@@ -95,7 +95,10 @@ T&C : CAD , cent = 1 , secs = 2`;
   constructor() {
   this.m = [];
   this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
-  }
+  this.prEntArray = [];
+  this.prSolArray = [];
+  this.prTestArray = [];
+}
 
   ngOnInit() {
     // Initialize Problem structures from defaultProject
@@ -109,7 +112,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.c[0][5] = this.prCtxtEntitiesNo;
     this.prDefCounter = 4; // nr of lines until/including INPUT line 
     // Format Entity rows
-    this.formatRows(this.prRows, 'type', this.prDefCounter, this.prCtxtEntitiesNo, this.prCtxtRows, this.m); 
+    this.prEntArray = this.formatRows(this.prRows, 'type', this.prDefCounter, this.prCtxtEntitiesNo, this.prCtxtRows, this.prEntArray); 
+    this.c = this.c.concat(this.prEntArray);
     this.prDefCounter += this.prCtxtEntitiesNo + 1;
     console.log("prDefCounter:" + this.prDefCounter);
     this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
@@ -118,16 +122,20 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
     this.prDefCounter += 1;
     // Format prTestRows
-    this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
+    this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
     
     console.log('-- After problemIni:');
-    console.log('Problem - m');
+    console.log('Problem - prEntArray:');
+    console.log(this.prEntArray);
+    console.log('Problem - Context:');
     console.log(this.c);
-    console.log('Problem - prSolArray');
+    console.log('Problem - prSolArray:');
     console.log(this.prSolArray);
-    console.log('Problem - prTestArray');
+    console.log('Problem - prTestArray:');
     console.log(this.prTestArray);
-    
+    this.m = this.c;
+    console.log('Memory - m initialized:');
+    console.log(this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -170,7 +178,7 @@ T&C : CAD , cent = 1 , secs = 2`;
     // lines: string[] = prCtxtRows/prTestRows/op..; array: any[] = prEntArray/prTestArray/op.. 
     formatRows(eRows: any[], type: string, 
       startRow: number, counter: number, 
-      eLines: string[], eArray: any[]) {
+      eLines: string[], eArray: any[][]) {
       for (let e = 0; e < counter; e++) {
         let row = '';
         let rowA = [];
@@ -182,9 +190,10 @@ T&C : CAD , cent = 1 , secs = 2`;
         rowA = h.tokens(row);
         rowA.splice(0, 0, 'id', e + 1, type);
         // console.log(rowA);
-        eArray = eArray.concat(rowA);
-        // console.log(eArray);
+        eArray[e] = rowA;
       }
+      console.log(eArray.length);
+      return eArray;
     }
 
   onIntervalFired(firedNumber: number) {
