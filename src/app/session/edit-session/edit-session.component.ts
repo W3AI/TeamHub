@@ -23,7 +23,7 @@ INPUT	1	3
 nBots	?	1															
 																	
 OUTPUT	1																
-	Jar	,	name	:	ANY	,	content	 = 	4								
+	Jar	,	name	:	ANY	,	content	==	4								
 																	
 T&C			Terms	:	CAD	,	cent	:	10	,	seconds	:	60				
 	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
@@ -104,7 +104,6 @@ T&C : CAD , cent = 1 , secs = 2`;
     // Initialize Problem structures from defaultProject
     this.prRows = h.lines(this.defaultProject);
     this.prDefLines = this.prRows.length;
-    console.log("Project definition lines:" + this.prDefLines);
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
     this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
     this.prTags = h.tokens(h.pipes(this.prRows[2]))[1];
@@ -115,9 +114,9 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prEntArray = this.formatRows(this.prRows, 'type', this.prDefCounter, this.prCtxtEntitiesNo, this.prCtxtRows, this.prEntArray); 
     this.c = this.c.concat(this.prEntArray);
     this.prDefCounter += this.prCtxtEntitiesNo + 1;
-    console.log("prDefCounter:" + this.prDefCounter);
+    // console.log("prDefCounter:" + this.prDefCounter);
     this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
-    // TODO - [ ] - To Format prSolRows if Any
+    // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
     this.prDefCounter += 2;
     this.prTestNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1];
     this.prDefCounter += 1;
@@ -192,7 +191,7 @@ T&C : CAD , cent = 1 , secs = 2`;
         // console.log(rowA);
         eArray[e] = rowA;
       }
-      console.log(eArray.length);
+      // console.log(eArray.length);
       return eArray;
     }
 

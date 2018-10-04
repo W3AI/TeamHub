@@ -1,11 +1,46 @@
 // Dynamic Natural Activation Algorithm - Functional body parts
 // Copyright Ianta Labs / MIT license
 
-const newLine = `
-`;
-const iB = 'n';   // index Base
+const l = '\n';
+const iB = 'n';   // index Base: ni0, ni1, ni2 ...
 
-// nForHeader() - Generate header for an n level nested for loop - for multi entities/dimensional join/queries
+// nBasicTestsCoder() - Generates the code of the test functions to include in the prTestArray
+// based on test_1 template in dnas.js lines 120 - 136
+// function test_1(contextArray, entityType, propertyName, conditionalTest, propertyValue) {
+//   var context = contextArray.slice();
+//   var result = [];
+//   var n = 0;  // Number of results
+//   for (var i = 1; i < context.length; i++) {
+//     // On Server side the if should be inside a case on the conditionalTest e.g. here switch/case = "="
+//     if ( ( context[i][context[i].indexOf("type") + 1] == entityType ) & ( context[i][context[i].indexOf(propertyName) + 1] == propertyValue )) {
+//       // console.log("Test passed in Context id = " + context[0][1] + " at entity name = " + context[i][context[i].indexOf("name") + 1]);
+//       // Write Result structure
+//       // Added Step and branch to result context structure
+//       // TODO - Add time in ms and calculated time similar to nanosecs !!!!!!!!!!!!!!!!!!!!!
+//       result[n] = ["contextId", context[0][1], "step", context[0][context[0].indexOf("step") + 1], "branch", context[0][context[0].indexOf("branch") + 1], "entityId", i, "entityType", entityType, propertyName, propertyValue];
+//       n++;
+//     }
+//   }
+//   return result;
+// }
+function nBasicTestsCoder(context: any[], entType: string, propName: string, condition: string, propVal: string ): string {
+  let testFunction: string = `function test(${context}, ${entType}, ${propName}, ${condition}, ${propVal}) {
+    let c = ${context}.slice();
+    let result = [];
+    let n = 0;  // Number of results
+    for (var i = 1; i < c.length; i++) {
+      if ( ( c[i][c[i].indexOf("type") + 1] == entType ) & ( c[i][c[i].indexOf(${propName}) + 1] ${condition} ${propVal} )) {
+        result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", ${entType}, ${propName}, ${propVal}];
+        n++;
+      }
+    }
+    return result;
+  }`;
+
+  return testFunction;
+}
+
+// nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
 // indexes will have a default const indexBase iB
 // For now all index, start, compare, stop, increment will be the same for all for all generated loops
 // Future implementations could include matrices for these arguments
@@ -30,7 +65,7 @@ function nForFooter(n: number, indent: string): string {
       footer = indent + footer;
   }
   for ( let i = 1; i <= n ;  i++) {
-      nForFooter += newLine;
+      nForFooter += l;
       let shorterFooter = footer.substring(indent.length, footer.length);
       footer = shorterFooter;
       nForFooter += footer;
