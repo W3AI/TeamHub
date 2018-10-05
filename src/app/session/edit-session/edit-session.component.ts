@@ -45,10 +45,11 @@ name: toJar . content += top , available -= top
 
 T&C : CAD , cent = 1 , secs = 2`;
 
-  // Problem Class structures:
   // m is the memory of contexts and entities - initialized with context id = 0 ;
-  m: any[][];                     // the memory array m - as in the dnas.js
-  c: any[][]; 
+  m: any[][];                     // the memory array m - as in the dnas.js - to concatenate all emerging contexts
+  c: any[][];                     // the current context
+
+  // Problem Class structures:
   prRows: any[] = [];
   prDefLines: number = 0;
   prDefCounter: number = 0;
@@ -58,7 +59,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   prCtxtEntitiesNo: number = 1;   // at least 1 entity definition is needed, etc
   prCtxtRows: string[] = [];      // contextRows
   prEntArray: any[][];            // the entity array to be formatted and added to m - memory Array initiated above
-  prSolNo: any = 1;               // usually at least 1 solution is needed
+  prSolNo: number = 1;               // usually at least 1 solution is needed
   prSolRows: string[] = [];       // solutionRows
   prSolArray: any[][];            // Here are the plan/path = Sequence of task lines
   prTestNo: number = 1;           // at least 1 test is needed in defining a problem/project
@@ -74,13 +75,23 @@ T&C : CAD , cent = 1 , secs = 2`;
 
   // Operation Class structures:
   opRows: any[] = [];
+  opDefLines: number = 0;
+  opDefCounter: number = 0;
   opTitle: string = '';
   opDescription: string = '';
   opTags: string = '';
-  opInputEntitiesNo: number = 0;
-  opInputRows: any[] = [];
-  opFunctionRows: any[] = []; 
-  opOutputRows: any[] = [];
+  opInputEntitiesNo: number = 0;  // there might be no innput entities - nGene might generate entities in the context
+  opInputRows: string[] = [];
+  opInputArray: any[][];
+  opFunctionNo: number = 0;
+  opFunctionRows: string[] = []; 
+  opFunctionArray: any[][];
+  opOutputNo: number = 1;
+  opOutputRows: string[] = [];
+  opOutputArray: any[][];
+  opTncNo: number = 1; 
+  opTncRows: string[] = [];
+  opTncArray: any[][];
   opTnC: {currency: string, ask: number, timeframe: number};
   opFormatted: string = '';
 
@@ -121,7 +132,7 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.c = this.c.concat(this.prEntArray);
     this.prDefCounter += this.prCtxtEntitiesNo + 1;
     // console.log("prDefCounter:" + this.prDefCounter);
-    this.prSolNo = h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2];
+    this.prSolNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
     this.prDefCounter += 2;   // including a blank line to OUTPUT / Tests
     this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
@@ -151,18 +162,18 @@ T&C : CAD , cent = 1 , secs = 2`;
     }
 
     // -- After problemIni:
-    console.log('-- After problemIni:');
-    console.log('Problem - prEntArray:');
-    console.log(this.prEntArray);
-    console.log('Problem - Context:');
-    console.log(this.c);
-    console.log('Problem - prSolArray:');
-    console.log(this.prSolArray);
-    console.log('Problem - prTestArray:');
-    console.log(this.prTestArray);
-    this.m = this.c;
-    console.log('Memory - m initialized:');
-    console.log(this.m);
+    // console.log('-- After problemIni:');
+    // console.log('Problem - prEntArray:');
+    // console.log(this.prEntArray);
+    // console.log('Problem - Context:');
+    // console.log(this.c);
+    // console.log('Problem - prSolArray:');
+    // console.log(this.prSolArray);
+    // console.log('Problem - prTestArray:');
+    // console.log(this.prTestArray);
+    // this.m = this.c;
+    // console.log('Memory - m initialized:');
+    // console.log(this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -179,11 +190,9 @@ T&C : CAD , cent = 1 , secs = 2`;
     l +
     'T&C: ' + this.prTncNo + l +
     this.prTncRows;
+    // END Initialize Project structures from --------- defaultProject -------- //
 
-    // TODO - [ ] - add reading and formatting of T&C <<< ----------- <<< !!! then do the testing on context ini !!!
-
-
-    // Initialize Operation structures from defaultOperation
+    // Initialize Operation structures from --------- defaultOperation -------- //
     this.opRows = h.lines(this.defaultOperation);
     this.opTitle = this.opRows[0];
     this.opDescription = this.opRows[1];
