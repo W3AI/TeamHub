@@ -92,11 +92,13 @@ T&C : CAD , cent = 1 , secs = 2`;
   opTncNo: number = 1; 
   opTncRows: string[] = [];
   opTncArray: any[][];
-  opTnC: {currency: string, ask: number, timeframe: number};
+  opTnc: {currency: string, ask: number, timeframe: number};
   opFormatted: string = '';
 
   evenNumbers: number[] = [];
 
+  // TODO - [ ] - finalize Query generation / Results extraction 
+  // from Environment/Current Context 
   opInputFunction: string = '';
   solution: any = '';
   planFStart: string = `solution = function( `;  // the start string for JS planner function
@@ -110,11 +112,18 @@ T&C : CAD , cent = 1 , secs = 2`;
   constructor() {
   this.m = [];
   this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
+  
   this.prEntArray = [];
   this.prSolArray = [];
   this.prTestArray = [];
   this.prTncArray = [];
   this.prTnc = {currency: 'USC', bid: 0, timeframe: 30};
+
+  this.opInputArray = [];
+  this.opFunctionArray = [];
+  this.opOutputArray = [];
+  this.opTncArray = [];
+  this.opTnc = {currency: 'USC', ask: 0, timeframe: 30};
 }
 
   ngOnInit() {
@@ -197,6 +206,8 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.opTitle = this.opRows[0];
     this.opDescription = this.opRows[1];
     this.opTags = this.opRows[2];
+
+    
 
     this.opFormatted = this.opTitle + l + this.opDescription + l + this.opTags;
 
