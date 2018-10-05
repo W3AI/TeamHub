@@ -20,7 +20,7 @@ INPUT	1	3
 	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
 	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
 																	
-nBots	?	1															
+nGenes	?	1															
 																	
 OUTPUT	1																
 	Jar	,	name	:	ANY	,	content	==	4								
@@ -33,19 +33,19 @@ T&C	2
   Description	Top / Pour liquid from a recipient to another																			
   Tags	content, available																			
   INPUT	1	2																		
-    Jar	1	name	:	from_Jar	,	content	>	0											
-    Jar	2	name	:	to_Jar	,	available	>	0											
+    Jar	,	name	:	fromJar	,	content	>	0											
+    Jar	,	name	:	toJar	,	available	>	0											
                                           
   nGenes		1																		
-    nr		name	: 	top	 = 	MIN	(	from_Jar	.	content	,	to_Jar	.	available	)				
+    nr	1	name	: 	top	 = 	MIN ( fromJar.content, toJar.available )													
                                           
   OUTPUT	1	2																		
-    Jar	1	name	:	from_Jar		content	-=	top	,	available	 +=	top							
-    Jar	2	name		to_Jar		content	 +=	top	,	available	-=	top							
+    Jar	1	name	:	fromJar		content	-=	top	,	available	 +=	top							
+    Jar	2	name		toJar		content	 +=	top	,	available	-=	top							
                                           
   T&C	3																			
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
-    Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5			
+    Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			
     Cmd	,	name	:	top	,	sentence	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
@@ -210,10 +210,27 @@ T&C	2
     this.opTitle = h.tokens(h.pipes(this.opRows[0]))[1];
     this.opDescription = h.tokens(h.pipes(this.opRows[1]))[1];
     this.opTags = h.tokens(h.pipes(this.opRows[2]))[1];
+    this.opInputEntitiesNo = Number(h.tokens(h.pipes(this.opRows[3]))[2]);
+    // this.i[0][5] = this.opInputEntitiesNo;   <<---------------------------<< Q: Do we want to manage here multiple Operations? hence multiple Inputs for diff Ops?
+    // TODO - [ ] - add TS/ng Venture component for selecting available Operations on scope/cost/performance/etc criteria
+    this.opDefCounter = 4; // nr of lines until/including INPUT line 
+    // Format Input Entities rows
+    this.opInputArray = this.formatRows(this.opRows, 'input', this.opDefCounter, this.opInputEntitiesNo, this.opInputRows, this.opInputArray); 
+    // Place to add Inputs to the overall list of inputs for the selected operations
+    this.opDefCounter += this.opInputEntitiesNo + 1;
+    // console.log("opDefCounter:" + this.opDefCounter);
+    this.opFunctionNo = Number(h.tokens(h.pipes(this.opRows[this.opDefCounter]))[2]);
 
 
+    this.opFormatted = 
+    'Title: ' + this.opTitle + l +
+    'Description: '+ this.opDescription + l + 
+    'Tags: '+ this.opTags + l +
+    l +
+    'INPUT ' + this.opInputEntitiesNo + l +
+    this.opInputRows +
+    l;
 
-    this.opFormatted = this.opTitle + l + this.opDescription + l + this.opTags;
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
     let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval
