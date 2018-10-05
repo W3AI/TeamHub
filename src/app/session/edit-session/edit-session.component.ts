@@ -29,21 +29,24 @@ T&C	2
 	ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60				
 	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
 
-  defaultOperation = `Top Innovation Sauce
-description : top recipient
-tags : content, available
-INPUT 2 
-Jar	1	name : fromJar , content > 0				
-Jar	2	name : toJar ,	available > 0				
-                          
-FUNCTIONS 1
-nr  name : top = MIN ( fromJar . content , toJar . available )
-                          
-OUTPUT 2
-name : fromJar . content -= top , available += top				
-name: toJar . content += top , available -= top
-
-T&C : CAD , cent = 1 , secs = 2`;
+  defaultOperation = `Title	Top Liquid																			
+  Description	Top / Pour liquid from a recipient to another																			
+  Tags	content, available																			
+  INPUT	1	2																		
+    Jar	1	name	:	from_Jar	,	content	>	0											
+    Jar	2	name	:	to_Jar	,	available	>	0											
+                                          
+  nGenes		1																		
+    nr		name	: 	top	 = 	MIN	(	from_Jar	.	content	,	to_Jar	.	available	)				
+                                          
+  OUTPUT	1	2																		
+    Jar	1	name	:	from_Jar		content	-=	top	,	available	 +=	top							
+    Jar	2	name		to_Jar		content	 +=	top	,	available	-=	top							
+                                          
+  T&C	3																			
+    ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
+    Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5			
+    Cmd	,	name	:	top	,	sentence	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate all emerging contexts
@@ -203,11 +206,12 @@ T&C : CAD , cent = 1 , secs = 2`;
 
     // Initialize Operation structures from --------- defaultOperation -------- //
     this.opRows = h.lines(this.defaultOperation);
-    this.opTitle = this.opRows[0];
-    this.opDescription = this.opRows[1];
-    this.opTags = this.opRows[2];
+    this.opDefLines = this.opRows.length;
+    this.opTitle = h.tokens(h.pipes(this.opRows[0]))[1];
+    this.opDescription = h.tokens(h.pipes(this.opRows[1]))[1];
+    this.opTags = h.tokens(h.pipes(this.opRows[2]))[1];
 
-    
+
 
     this.opFormatted = this.opTitle + l + this.opDescription + l + this.opTags;
 
