@@ -103,6 +103,7 @@ T&C : CAD , cent = 1 , secs = 2`;
   this.prSolArray = [];
   this.prTestArray = [];
   this.prTncArray = [];
+  this.prTnc = {currency: 'USC', bid: 0, timeframe: 30};
 }
 
   ngOnInit() {
@@ -131,13 +132,18 @@ T&C : CAD , cent = 1 , secs = 2`;
     this.prTncNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
     this.prDefCounter += 1;
     this.prTncArray = this.formatRows(this.prRows, 'TnC', this.prDefCounter, this.prTncNo, this.prTncRows, this.prTncArray);
+    this.prTnc.currency = this.prTncArray[0][5];
+    this.prTnc.bid = this.prTncArray[0][7];
+    this.prTnc.timeframe = this.prTncArray[0][9];
+    // console.log(this.prTncArray);
+    // console.log("-- T&C : " + this.prTnc.currency + " , " + this.prTnc.bid +  " , " + this.prTnc.timeframe);
 
     // Generating the code for each test = the Function code to be added to each test/row of the prTest Array
     for ( let t = 0; t<this.prTestNo; t++) {
       this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
     }
 
-    // Run all tests on the initial context 
+    // Run all tests on the initial context - same procedure to run later for all tests on all current contexts
     // - as coded in nBasicTestsCoder() with 
     //"... this.prTestArray[t][10 + n] = result[n]; ..." n = nr of results in a context
     for ( let t = 0; t<this.prTestNo; t++) {
