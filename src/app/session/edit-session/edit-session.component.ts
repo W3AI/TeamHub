@@ -36,8 +36,9 @@ T&C	2
     Jar	,	name	:	fromJar	,	content	>	0											
     Jar	,	name	:	toJar	,	available	>	0											
                                           
-  nGenes		1																		
-    nr	1	name	: 	top	 = 	MIN ( fromJar.content, toJar.available )													
+  nGenes		2																		
+    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	=	MIN( fromJar.content, toJar.available )							
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	=	Math.min( fromJar.content, toJar.available )							
                                           
   OUTPUT	1	2																		
     Jar	1	name	:	fromJar		content	-=	top	,	available	 +=	top							
@@ -45,8 +46,10 @@ T&C	2
                                           
   T&C	3																			
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
-    Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			
-    Cmd	,	name	:	top	,	sentence	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											`;
+  English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
+  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5			
+  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
+  Chinese	ZH	,	动词	:	最佳	,	表达	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate all emerging contexts
