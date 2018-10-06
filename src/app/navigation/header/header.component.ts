@@ -14,6 +14,19 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
   isAuth$: Observable<boolean>;
+  user = {initials: 'SI', default: 'Me'};
+  nTeams = [{langCode: 'en', lang:'en', teams: 514},
+            {langCode: 'ro', lang:'ro', teams: 37},
+            {langCode: 'de', lang:'de', teams: 9},
+            {langCode: 'hi', lang:'हिंदी', teams: 6},
+            {langCode: 'fr', lang:'fr', teams: 5},
+            {langCode: 'zh', lang:'中文', teams: 3},
+            {langCode: 'es', lang:'es', teams: 2},
+            {langCode: 'ar', lang:'عربى', teams: 2},
+            {langCode: 'hu', lang:'hu', teams: 2},
+            {langCode: 'ru', lang:'ru', teams: 2}
+          ];
+  interval;
 
   constructor(private store: Store<fromRoot.State>, private authService: AuthService) { }
 
@@ -27,5 +40,11 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  onResume() {
+    this.interval = setInterval(() => {
+
+    }, 1000);
   }
 }

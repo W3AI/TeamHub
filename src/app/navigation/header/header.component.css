@@ -23,3 +23,12 @@ a:active {
     background-image: url('https://teamhub.w3ai.net/assets/img/icon_154.png');
     background-size: cover;
   }
+
+  .teamhub-user-icon {
+    background-image: url('https://teamhub.w3ai.net/assets/img/icon_154.png');
+    background-size: cover;
+  }
+
+  #user {
+      color: goldenrod;
+  }
