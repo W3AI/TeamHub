@@ -12,24 +12,24 @@ const l = '\n';
   styleUrls: ['./edit-session.component.css']
 })
 export class EditSessionComponent implements OnInit {
-  defaultProject = `Title	Share Innovation Juice																
-Description	Find a way to share 4 Liters of Innovation Sauce with a friend when you have 3 recipients of 3, 5 and 8 liters and 8 liters of Innovation Sauce in the largest recipient.																
-Tags	content, available																
-INPUT	1	3															
-	Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3
-	Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5
-	Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0
-																	
-nGenes	?	1															
-																	
-OUTPUT	1																
-	Jar	,	name	:	ANY	,	content	==	4								
-																	
-T&C	2																
-	ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60				
-	Jar	,	name	:	dict	,	volume	:	5	,	content	:	0	,	available	:	5`;
+  defaultProject = `Title	4l Innovation				4升创新		4L अभिनव		الابتكار 4L		Innovación 4l		4l инноваций		Inovação 4l		Inovație 4L			
+  Description	Find a way to share 4 Liters of Innovation Sauce with a friend when you have 3 recipients of 3, 5 and 8 liters and 8 liters of Innovation Sauce in the largest recipient.																			
+  Tags	content, available																			
+  INPUT	1	3																		
+    Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3			
+    Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	4	,	available	:	1			
+    Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	4	,	available	:	4			
+                                          
+  nGenes	?	1																		
+                                          
+  OUTPUT	1	1																		
+    Jar	,	name	:	ANY	,	content	==	4											
+                                          
+  T&C	2	2																		
+    ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60							
+    Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			`;
 
-  defaultOperation = `Title	Top Liquid																			
+  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple			
   Description	Top / Pour liquid from a recipient to another																			
   Tags	content, available																			
   INPUT	1	2																		
@@ -44,7 +44,7 @@ T&C	2
     Jar	1	name	:	fromJar		content	-=	top	,	available	 +=	top							
     Jar	2	name		toJar		content	 +=	top	,	available	-=	top							
                                           
-  T&C	3																			
+  T&C	5																			
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
   English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
   Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5			
@@ -150,12 +150,12 @@ T&C	2
     this.prSolNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
     this.prDefCounter += 2;   // including a blank line to OUTPUT / Tests
-    this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
+    this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     this.prDefCounter += 1;
     // Format prTestRows
     this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
     this.prDefCounter += 2;   // including a blank line to T&C
-    this.prTncNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[1]);
+    this.prTncNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     this.prDefCounter += 1;
     this.prTncArray = this.formatRows(this.prRows, 'TnC', this.prDefCounter, this.prTncNo, this.prTncRows, this.prTncArray);
     this.prTnc.currency = this.prTncArray[0][5];
@@ -177,18 +177,18 @@ T&C	2
     }
 
     // -- After problemIni:
-    // console.log('-- After problemIni:');
-    // console.log('Problem - prEntArray:');
-    // console.log(this.prEntArray);
-    // console.log('Problem - Context:');
-    // console.log(this.c);
-    // console.log('Problem - prSolArray:');
-    // console.log(this.prSolArray);
-    // console.log('Problem - prTestArray:');
-    // console.log(this.prTestArray);
-    // this.m = this.c;
-    // console.log('Memory - m initialized:');
-    // console.log(this.m);
+    console.log('-- After problemIni:');
+    console.log('Problem - prEntArray:');
+    console.log(this.prEntArray);
+    console.log('Problem - Context:');
+    console.log(this.c);
+    console.log('Problem - prSolArray:');
+    console.log(this.prSolArray);
+    console.log('Problem - prTestArray:');
+    console.log(this.prTestArray);
+    this.m = this.c;
+    console.log('Memory - m initialized:');
+    console.log(this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -265,7 +265,7 @@ T&C	2
         row = h.pipes(eRows[startRow + e]);
         row = row.replace(/[|:|]+/g, '|');
         row = row.replace(/[|,|]+/g, '|');
-        row = row.replace('|', '');
+        row = row.replace('    ', '');
         eLines.push(row + l);
         rowA = h.tokens(row);
         rowA.splice(0, 0, 'id', e + 1, type);
