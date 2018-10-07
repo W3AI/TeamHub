@@ -52,7 +52,8 @@ export class EditSessionComponent implements OnInit {
   Chinese	ZH	,	动词	:	最佳	,	表达	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}												`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
-  m: any[][];                     // the memory array m - as in the dnas.js - to concatenate all emerging contexts
+  m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
+  t: any[];                       // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
 
   // Problem Class structures:
@@ -116,7 +117,8 @@ export class EditSessionComponent implements OnInit {
   testSumString: string = 'this.sum += 10;';
 
   constructor() {
-  this.m = [];
+  this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
+  this.t = [];  // TODO - [ ] - previous transfromations to be eventually added / concat to t in case of previous runs and multiple ini contexts
   this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
   
   this.prEntArray = [];
@@ -236,6 +238,20 @@ export class EditSessionComponent implements OnInit {
     this.opTnc.currency = this.opTncArray[0][5];
     this.opTnc.ask = this.opTncArray[0][7];
     this.opTnc.timeframe = this.opTncArray[0][9];
+
+    // -- After operationIni:
+    console.log('-- After nGeneIni:');
+    console.log('Operation - opInputArray:');
+    console.log(this.opInputArray);
+    console.log('Operation - opFunctionArray:');
+    console.log(this.opFunctionArray);
+    console.log('Operation - opOutputArray:');
+    console.log(this.opOutputArray);
+    console.log('Operation - opTncArray:');
+    console.log(this.opTncArray);
+   
+    console.log('Transformations - t initialized:');
+    console.log(this.t);
 
     this.opFormatted = 
     'Title: ' + this.opTitle + l +
