@@ -228,6 +228,14 @@ export class EditSessionComponent implements OnInit {
     this.opDefCounter += this.opFunctionNo + 1;
     this.opOutputNo = Number(h.tokens(h.pipes(this.opRows[this.opDefCounter]))[2]);
     this.opDefCounter += 1;
+    this.opOutputArray = this.formatRows(this.opRows, 'output', this.opDefCounter, this.opOutputNo, this.opOutputRows, this.opOutputArray); 
+    this.opDefCounter += this.opOutputNo + 1;
+    this.opTncNo = Number(h.tokens(h.pipes(this.opRows[this.opDefCounter]))[2]);
+    this.opDefCounter += 1;
+    this.opTncArray = this.formatRows(this.opRows, 'TnC', this.opDefCounter, this.opTncNo, this.opTncRows, this.opTncArray);
+    this.opTnc.currency = this.opTncArray[0][5];
+    this.opTnc.ask = this.opTncArray[0][7];
+    this.opTnc.timeframe = this.opTncArray[0][9];
 
     this.opFormatted = 
     'Title: ' + this.opTitle + l +
@@ -240,7 +248,11 @@ export class EditSessionComponent implements OnInit {
     'nGenes: ' + this.opFunctionNo + l + 
     this.opFunctionRows +
     l + 
-    'Output: ' + this.opOutputNo + l;
+    'Output: ' + this.opOutputNo + l +
+    this.opOutputRows +
+    l +
+    'T&C: ' + this.opTncNo + l +
+    this.opTncRows;
 
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
