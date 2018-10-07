@@ -29,27 +29,27 @@ export class EditSessionComponent implements OnInit {
     ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60							
     Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			`;
 
-  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple				
-  Description	Top / Pour liquid from a recipient to another																				
-  Tags	content, available																				
-  INPUT	1	2																			
-    Jar	,	name	:	fromJar	,	content	>	0												
-    Jar	,	name	:	toJar	,	available	>	0												
-                                            
-  nGenes	2	2																			
-    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	=	MIN(fromJar.content;toJar.available)								
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	=	Math.min(fromJar.content;toJar.available)								
-                                            
-  OUTPUT	1	2																			
-    Jar	,	name	:	fromJar	,	content	-=	top	,	available	 +=	top								
-    Jar	,	name	:	toJar	,	content	 +=	top	,	available	-=	top								
-                                            
-  T&C	5	5																			
-    ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2								
-  English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5				
-  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5				
-  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}												
-  Chinese	ZH	,	动词	:	最佳	,	表达	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}												`;
+  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple			
+  Description	Top / Pour liquid from a recipient to another																			
+  Tags	content, available																			
+  INPUT	1	2																		
+    Jar	,	name	:	fromJar	,	content	>	0											
+    Jar	,	name	:	toJar	,	available	>	0											
+                                          
+  nGenes	2	2																		
+    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	:	MIN(fromJar.content, toJar.available)							
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min(fromJar.content, toJar.available)							
+                                          
+  OUTPUT	1	2																		
+    Jar	,	name	:	fromJar	,	content	-=	top	;	available	 +=	top							
+    Jar	,	name	:	toJar	,	content	 +=	top	;	available	-=	top							
+                                          
+  T&C	5	5																		
+    ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
+  English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
+  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5			
+  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
+  Chinese	ZH	,	动词	:	最佳	,	expression	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
@@ -137,6 +137,7 @@ export class EditSessionComponent implements OnInit {
   ngOnInit() {
     // Initialize Problem structures from defaultProject in accordance with the Excel/GSheets structure
     this.prRows = h.lines(this.defaultProject);
+    // console.log(this.prRows);
     this.prDefLines = this.prRows.length;
     this.prTitle = h.tokens(h.pipes(this.prRows[0]))[1];
     this.prDescription = h.tokens(h.pipes(this.prRows[1]))[1];
@@ -211,6 +212,7 @@ export class EditSessionComponent implements OnInit {
 
     // Initialize Operation structures from --------- defaultOperation -------- //
     this.opRows = h.lines(this.defaultOperation);
+    // console.log(this.opRows);
     this.opDefLines = this.opRows.length;
     this.opTitle = h.tokens(h.pipes(this.opRows[0]))[1];
     this.opDescription = h.tokens(h.pipes(this.opRows[1]))[1];
@@ -299,10 +301,14 @@ export class EditSessionComponent implements OnInit {
         let row = '';
         let rowA = [];
         row = h.pipes(eRows[startRow + e]);
+        console.log('-- Row after h.pipes: ' + row);
+        const colons = /\b\|:\|\b/g; const colons_ = /\b\|: \|\b/g;
+        const commas = /\b\|,\|\b/g; const commas_ = /\b\|, \|\b/g;
+        const spaces = /\b\| \|\b/g;
         row = row.replace('    ', '');
-        row = row.replace(/[|:|]+/g, '|');
-        row = row.replace(/[|,|]+/g, '|');
-        row = row.replace(/[| |]+/g, '|');
+        row = row.replace(colons, '|'); row = row.replace(colons_, '|');
+        row = row.replace(commas, '|'); row = row.replace(commas_, '|');
+        row = row.replace(spaces, '|');
         eLines.push(row + l);
         rowA = h.tokens(row);
         rowA.splice(0, 0, 'id', e + 1, type);

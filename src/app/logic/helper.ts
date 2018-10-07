@@ -12,7 +12,8 @@ function lines(str: string): Array<string> {
 
 // Replace non printable characters with a pipe '|'
 function pipes(str: string): string {
-    return str.replace(/[^ -~]+/g, '|');
+//    return str.replace(/[^ -~]+/g, '|');
+    return str.replace(/[	]+/g, '|');     // replace the tabs with pipe
 }
 
 // Split string into token strings
