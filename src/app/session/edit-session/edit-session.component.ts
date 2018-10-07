@@ -17,8 +17,8 @@ export class EditSessionComponent implements OnInit {
   Tags	content, available																			
   INPUT	1	3																		
     Jar	,	name	:	Jar3L	,	volume	:	3	,	content	:	0	,	available	:	3			
-    Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	4	,	available	:	1			
-    Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	4	,	available	:	4			
+    Jar	,	name	:	Jar5L	,	volume	:	5	,	content	:	0	,	available	:	5			
+    Jar	,	name	:	Jar8L	,	volume	:	8	,	content	:	8	,	available	:	0			
                                           
   nGenes	?	1																		
                                           
@@ -29,27 +29,27 @@ export class EditSessionComponent implements OnInit {
     ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60							
     Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			`;
 
-  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple			
-  Description	Top / Pour liquid from a recipient to another																			
-  Tags	content, available																			
-  INPUT	1	2																		
-    Jar	,	name	:	fromJar	,	content	>	0											
-    Jar	,	name	:	toJar	,	available	>	0											
-                                          
-  nGenes		2																		
-    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	=	MIN( fromJar.content, toJar.available )							
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	=	Math.min( fromJar.content, toJar.available )							
-                                          
-  OUTPUT	1	2																		
-    Jar	1	name	:	fromJar		content	-=	top	,	available	 +=	top							
-    Jar	2	name		toJar		content	 +=	top	,	available	-=	top							
-                                          
-  T&C	5																			
-    ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
-  English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
-  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5			
-  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
-  Chinese	ZH	,	动词	:	最佳	,	表达	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
+  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple				
+  Description	Top / Pour liquid from a recipient to another																				
+  Tags	content, available																				
+  INPUT	1	2																			
+    Jar	,	name	:	fromJar	,	content	>	0												
+    Jar	,	name	:	toJar	,	available	>	0												
+                                            
+  nGenes	2	2																			
+    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	=	MIN(fromJar.content;toJar.available)								
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	=	Math.min(fromJar.content;toJar.available)								
+                                            
+  OUTPUT	1	2																			
+    Jar	,	name	:	fromJar	,	content	-=	top	,	available	 +=	top								
+    Jar	,	name	:	toJar	,	content	 +=	top	,	available	-=	top								
+                                            
+  T&C	5	5																			
+    ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2								
+  English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5				
+  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5				
+  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}												
+  Chinese	ZH	,	动词	:	最佳	,	表达	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}												`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate all emerging contexts
@@ -149,12 +149,12 @@ export class EditSessionComponent implements OnInit {
     // console.log("prDefCounter:" + this.prDefCounter);
     this.prSolNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     // TODO - [ ] - To Format prSolRows(+ branches) for Resuming Projects
-    this.prDefCounter += 2;   // including a blank line to OUTPUT / Tests
+    this.prDefCounter += this.prSolNo + 1;   // including a blank line to OUTPUT / Tests <------- TODO - [ ] - here to add the prSolNo !!!
     this.prTestNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     this.prDefCounter += 1;
     // Format prTestRows
     this.prTestArray = this.formatRows(this.prRows, 'test', this.prDefCounter, this.prTestNo, this.prTestRows, this.prTestArray);
-    this.prDefCounter += 2;   // including a blank line to T&C
+    this.prDefCounter += this.prTestNo + 1;   // including a blank line to T&C
     this.prTncNo = Number(h.tokens(h.pipes(this.prRows[this.prDefCounter]))[2]);
     this.prDefCounter += 1;
     this.prTncArray = this.formatRows(this.prRows, 'TnC', this.prDefCounter, this.prTncNo, this.prTncRows, this.prTncArray);
@@ -177,28 +177,28 @@ export class EditSessionComponent implements OnInit {
     }
 
     // -- After problemIni:
-    console.log('-- After problemIni:');
-    console.log('Problem - prEntArray:');
-    console.log(this.prEntArray);
-    console.log('Problem - Context:');
-    console.log(this.c);
-    console.log('Problem - prSolArray:');
-    console.log(this.prSolArray);
-    console.log('Problem - prTestArray:');
-    console.log(this.prTestArray);
-    this.m = this.c;
-    console.log('Memory - m initialized:');
-    console.log(this.m);
+    // console.log('-- After problemIni:');
+    // console.log('Problem - prEntArray:');
+    // console.log(this.prEntArray);
+    // console.log('Problem - Context:');
+    // console.log(this.c);
+    // console.log('Problem - prSolArray:');
+    // console.log(this.prSolArray);
+    // console.log('Problem - prTestArray:');
+    // console.log(this.prTestArray);
+    // this.m = this.c;
+    // console.log('Memory - m initialized:');
+    // console.log(this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
     'Description: '+ this.prDescription + l + 
     'Tags: '+ this.prTags + l +
     l +
-    'INPUT ' + this.prCtxtEntitiesNo + l +
+    'INPUT: ' + this.prCtxtEntitiesNo + l +
     this.prCtxtRows +
     l +
-    'SOLUTIONS Min: ' + this.prSolNo + l +
+    'Solutions/Plans Min: ' + this.prSolNo + l +
     l + 
     'OUTPUT Tests: ' + this.prTestNo + l +
     this.prTestRows + 
@@ -223,7 +223,11 @@ export class EditSessionComponent implements OnInit {
     this.opDefCounter += this.opInputEntitiesNo + 1;
     // console.log("opDefCounter:" + this.opDefCounter);
     this.opFunctionNo = Number(h.tokens(h.pipes(this.opRows[this.opDefCounter]))[2]);
-
+    this.opDefCounter += 1;
+    this.opFunctionArray = this.formatRows(this.opRows, 'nGene', this.opDefCounter, this.opFunctionNo, this.opFunctionRows, this.opFunctionArray);
+    this.opDefCounter += this.opFunctionNo + 1;
+    this.opOutputNo = Number(h.tokens(h.pipes(this.opRows[this.opDefCounter]))[2]);
+    this.opDefCounter += 1;
 
     this.opFormatted = 
     'Title: ' + this.opTitle + l +
@@ -232,7 +236,11 @@ export class EditSessionComponent implements OnInit {
     l +
     'INPUT ' + this.opInputEntitiesNo + l +
     this.opInputRows +
-    l;
+    l + 
+    'nGenes: ' + this.opFunctionNo + l + 
+    this.opFunctionRows +
+    l + 
+    'Output: ' + this.opOutputNo + l;
 
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
@@ -263,9 +271,10 @@ export class EditSessionComponent implements OnInit {
         let row = '';
         let rowA = [];
         row = h.pipes(eRows[startRow + e]);
+        row = row.replace('    ', '');
         row = row.replace(/[|:|]+/g, '|');
         row = row.replace(/[|,|]+/g, '|');
-        row = row.replace('    ', '');
+        row = row.replace(/[| |]+/g, '|');
         eLines.push(row + l);
         rowA = h.tokens(row);
         rowA.splice(0, 0, 'id', e + 1, type);
@@ -283,5 +292,4 @@ export class EditSessionComponent implements OnInit {
       this.oddNumbers.push(firedNumber);
     }
   }
-
 }
