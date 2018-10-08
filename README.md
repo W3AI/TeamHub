@@ -1,14 +1,14 @@
-# TeamHub Repo for Agile Teams Web App / Internet Brain
-[live POC 0.21](https://teamhub.w3ai.net)
+# TeamHub Repo for Internet Brain - nTeams/nGenes Web App
+[live nTeams PoC 0.3](https://teamhub.w3ai.net)
 
-TeamHub is the core cell app for building distributed evolutionary social networks for businesses, communities and individuals.
+nTeams/Teamhub is the core nGene dev app for building distributed evolutionary social networks for businesses, communities and professionals.
 It consists of a trinity of modules that add realtime interactions to build the progressive nature of your network:
 
-### Skills + Projects => Ventures
+### nGenes + nProjects = nVentures
 
-TeamHub is being built to be used on any mobile device or desktop or as a side app to Microsoft Excel or Google Sheets.
+nTeams is being built to be used on any mobile device or desktop or as a side app to Microsoft Excel or Google Sheets.
 
-The TeamHub web app is developed dynamically by Agile teams of volunteers from the W3AI Meetups network in:
+The nTeams web app is developed dynamically by Agile teams of volunteers from the W3AI Meetups network in:
 - Toronto - [TCP1P - Transformative Code Pile 1 Programing Meetup](https://www.meetup.com/SocialAI/)
 - New York - [Manhatan AIR - Algorithmic Innovations Reactor](https://www.meetup.com/Manhattan-AIR/)
 - Halifax - [AIG - Halifax Algorithmic Innovation Group](https://www.meetup.com/HalifaxAIG/)
