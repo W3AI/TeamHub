@@ -1,4 +1,4 @@
-# nTeams Hub Repo for Internet Brain: nTeams & nGenes Web Dev App
+# nTeams Hub for Internet Brain: nTeams & nGenes Web Dev App
 [live nTeams PoC 0.3](https://teamhub.w3ai.net)
 
 nTeams/TeamHub is the core nGene dev app for building distributed evolutionary social networks for businesses, communities and professionals.
