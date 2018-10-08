@@ -15,16 +15,21 @@ export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
   isAuth$: Observable<boolean>;
   user = {initials: 'SI', default: 'Me'};
-  nTeams = [{langCode: 'en', lang:'en', teams: 514},
-            {langCode: 'ro', lang:'ro', teams: 37},
-            {langCode: 'de', lang:'de', teams: 9},
-            {langCode: 'hi', lang:'हिंदी', teams: 6},
-            {langCode: 'fr', lang:'fr', teams: 5},
-            {langCode: 'zh', lang:'中文', teams: 3},
-            {langCode: 'es', lang:'es', teams: 2},
-            {langCode: 'ar', lang:'عربى', teams: 2},
-            {langCode: 'hu', lang:'hu', teams: 2},
-            {langCode: 'ru', lang:'ru', teams: 2}
+  nTeams = [{langType: 'nLinks', langCode: 'en', lang:'en', nr: 514},
+            {langType: 'nLinks', langCode: 'ro', lang:'ro', nr: 37},           
+            {langType: 'nLinks', langCode: 'de', lang:'de', nr: 29},
+            {langType: 'nLinks', langCode: 'hi', lang:'हिंदी', nr: 56},
+            {langType: 'nLinks', langCode: 'fr', lang:'fr', nr: 25},
+            {langType: 'nLinks', langCode: 'zh', lang:'中文', nr: 113},
+            {langType: 'nLinks', langCode: 'es', lang:'es', nr: 32},
+            {langType: 'nLinks', langCode: 'ar', lang:'عربى', nr: 24},
+            {langType: 'nLinks', langCode: 'hu', lang:'hu', nr: 11},
+            {langType: 'nLinks', langCode: 'ru', lang:'ru', nr: 28},
+            {langType: 'nGenes', langCode: 'ag', lang:'agile', nr: 981},            
+            {langType: 'nGenes', langCode: 'pm', lang:'pmi', nr: 32}, 
+            {langType: 'nGenes', langCode: 'fi', lang:'fin', nr: 12}, 
+            {langType: 'nGenes', langCode: 'js', lang:'js', nr: 55},
+            {langType: 'nGenes', langCode: 'ts', lang:'ts', nr: 112}, 
           ];
   interval;
 

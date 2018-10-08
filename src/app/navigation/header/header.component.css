@@ -29,6 +29,11 @@ a:active {
     background-size: cover;
   }
 
-  #user {
-      color: goldenrod;
+  .links {
+    color: lightgray;
   }
+
+  #user {
+    color: white;
+  }
+
