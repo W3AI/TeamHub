@@ -1,4 +1,4 @@
-# nTeams Internet Brain Project: nTeams & nGenes Web Dev App
+# nTeams Internet Brain Project: nGenes Web Dev App
 [live nTeams PoC 0.3](https://teamhub.w3ai.net)
 
 nTeams/TeamHub is the core nGene dev app for building distributed social neural networks for businesses, communities and professionals.
