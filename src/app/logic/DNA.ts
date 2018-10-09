@@ -39,12 +39,50 @@ function nBasicTestsCoder(entType: string, propName: string, condition: string, 
   return testFunction;
 }
 
-// nBasicQueryCoder() - Generates the query/conditional codes to be included in the && structure of the Input Query
+// qNames() array of the names in the q context
+function qNames() {
+  let qNamesFunction: string = `
+    let qN = this.q.slice();
+    let names = [];
+    this.qNamesArray = [];
+    for (let i = 1; i < qN.length; i++) {
+      names.push(qN[i][5]);    // name eg: Jar5L is the  6th element of the entity row in a context array
+    }
+    this.qNamesArray = names;
+  `;
+  return qNamesFunction;
+}
+
+function qOthers() {
+  let qOthersFunction: string = `
+    let qNArray = this.qNamesArray.slice();
+    let others = [];
+    this.qOtherNames = [];
+    for (let i = 0; i < qNArray.length; i++) {
+      let qNA = qNArray.slice();
+      qNA.splice(i,1);
+      let joinedNames = '';
+      joinedNames = qNA.join('|');
+      others.push(joinedNames) ;    // name eg: Jar5L is the  6th element of the entity row in a context array
+    }
+    this.qOtherNames = others;
+  `;
+  return qOthersFunction;
+}
+
+// nBasicQueriesCoder() - Generates the query/conditional codes to be included in the && structure of the Input Query
 // to be evaluated after the opInputArray is built by parsing the nGene spreadsheet structure
 // to use the q[][] array of the context to query
-function nBasicQueryCoder() {
+// based on line 472 in the dnas.js which is included in the body of the nested for loops (see below nForHeader()):
+// if ( ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) && 
+// (q[i][q[i].indexOf(conditionalValue[0]) + 1] > conditionalValue[1]) && 
+// (q[j][q[j].indexOf(conditionalValue[2]) + 1] > conditionalValue[3]) ) {
+// -- for name unicity / difference we'll use:
+//   !(qOtherNames[<s>].icludes(q[ni<s>][5])  
+// To include a closing bracket } in the core DNA nGene
+function nBasicQueriesCoder() {
 
-  // remove the current entity name from the array - to use the remaining sub array for testing the condition of different names
+  // remove the current entity name from the opInputQNames array - to use the remaining sub array/concat string for testing the condition of different names
 
 }
 
@@ -134,4 +172,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, nForHeader, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nForHeader, nForFooter };

@@ -56,6 +56,8 @@ export class EditSessionComponent implements OnInit {
   t: any[];                       // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
   q: any[][];                     // the context to query to get the input param for the function / nGene
+  qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
+  qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -91,7 +93,6 @@ export class EditSessionComponent implements OnInit {
   opInputEntitiesNo: number = 0;  // there might be no innput entities - nGene might generate entities in the context
   opInputRows: string[] = [];
   opInputArray: any[][];
-  opInputQNames: string[] = [];   // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   opFunctionNo: number = 0;
   opFunctionRows: string[] = []; 
   opFunctionArray: any[][];
@@ -182,18 +183,18 @@ export class EditSessionComponent implements OnInit {
     }
 
     // -- After problemIni:
-    // console.log('-- After problemIni:');
-    // console.log('Problem - prEntArray:');
-    // console.log(this.prEntArray);
-    // console.log('Problem - Context:');
-    // console.log(this.c);
-    // console.log('Problem - prSolArray:');
-    // console.log(this.prSolArray);
-    // console.log('Problem - prTestArray:');
-    // console.log(this.prTestArray);
-    // this.m = this.c;
-    // console.log('Memory - m initialized:');
-    // console.log(this.m);
+    console.log('-- After problemIni:');
+    console.log('Problem - prEntArray:');
+    console.log(this.prEntArray);
+    console.log('Problem - Context:');
+    console.log(this.c);
+    console.log('Problem - prSolArray:');
+    console.log(this.prSolArray);
+    console.log('Problem - prTestArray:');
+    console.log(this.prTestArray);
+    this.m = this.c;
+    console.log('Memory - m initialized:');
+    console.log(this.m);
 
     this.prFormatted = 
     'Title: ' + this.prTitle + l +
@@ -243,17 +244,10 @@ export class EditSessionComponent implements OnInit {
     this.opTnc.ask = this.opTncArray[0][7];
     this.opTnc.timeframe = this.opTncArray[0][9];
 
-    // build opInputQNames array of the names in the opInputArray
-    for (let i = 0; i < this.opInputArray.length; i++) {
-      this.opInputQNames.push(this.opInputArray[i][5]); // name eg: fromJar is the  6th element of the row
-    }
-
     // -- After operationIni:
     console.log('-- After nGeneIni:');
     console.log('Operation - opInputArray:');
     console.log(this.opInputArray);
-    console.log('Operation - opInputQNames:');
-    console.log(this.opInputQNames);
     console.log('Operation - opFunctionArray:');
     console.log(this.opFunctionArray);
     console.log('Operation - opOutputArray:');
@@ -281,6 +275,18 @@ export class EditSessionComponent implements OnInit {
     'T&C: ' + this.opTncNo + l +
     this.opTncRows;
 
+    // Test qNames and qOthers functions
+    this.q = this.c;
+    console.log('-- this.q:');
+    console.log(this.q);
+    eval(dna.qNames());
+    eval(dna.qOthers());
+    console.log('-- qNamesArray:');
+    console.log(this.qNamesArray);
+    console.log('-- qOtherNames:');
+    console.log(this.qOtherNames);
+    console.log('-- this.q:');
+    console.log(this.q);
 
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
     let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval
