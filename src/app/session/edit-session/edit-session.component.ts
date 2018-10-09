@@ -55,6 +55,7 @@ export class EditSessionComponent implements OnInit {
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
   t: any[];                       // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
+  q: any[][];                     // the context to query to get the input param for the function / nGene
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -90,6 +91,7 @@ export class EditSessionComponent implements OnInit {
   opInputEntitiesNo: number = 0;  // there might be no innput entities - nGene might generate entities in the context
   opInputRows: string[] = [];
   opInputArray: any[][];
+  opInputQNames: string[] = [];   // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   opFunctionNo: number = 0;
   opFunctionRows: string[] = []; 
   opFunctionArray: any[][];
@@ -241,10 +243,17 @@ export class EditSessionComponent implements OnInit {
     this.opTnc.ask = this.opTncArray[0][7];
     this.opTnc.timeframe = this.opTncArray[0][9];
 
+    // build opInputQNames array of the names in the opInputArray
+    for (let i = 0; i < this.opInputArray.length; i++) {
+      this.opInputQNames.push(this.opInputArray[i][5]); // name eg: fromJar is the  6th element of the row
+    }
+
     // -- After operationIni:
     console.log('-- After nGeneIni:');
     console.log('Operation - opInputArray:');
     console.log(this.opInputArray);
+    console.log('Operation - opInputQNames:');
+    console.log(this.opInputQNames);
     console.log('Operation - opFunctionArray:');
     console.log(this.opFunctionArray);
     console.log('Operation - opOutputArray:');

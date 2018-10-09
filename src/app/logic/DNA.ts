@@ -36,8 +36,16 @@ function nBasicTestsCoder(entType: string, propName: string, condition: string, 
       }
     }
   `;
-
   return testFunction;
+}
+
+// nBasicQueryCoder() - Generates the query/conditional codes to be included in the && structure of the Input Query
+// to be evaluated after the opInputArray is built by parsing the nGene spreadsheet structure
+// to use the q[][] array of the context to query
+function nBasicQueryCoder() {
+
+  // remove the current entity name from the array - to use the remaining sub array for testing the condition of different names
+
 }
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
