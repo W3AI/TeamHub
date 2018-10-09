@@ -171,6 +171,9 @@ export class EditSessionComponent implements OnInit {
     // console.log("-- T&C : " + this.prTnc.currency + " , " + this.prTnc.bid +  " , " + this.prTnc.timeframe);
 
     // Generating the code for each test = the Function code to be added to each test/row of the prTest Array
+    // TODO - [ ] - change t to test? or row? in below for loop 
+    // TODO - [ ] - expand to include multiple conditions on multiple properties
+    // + same for query/cond coder on the operation side
     for ( let t = 0; t<this.prTestNo; t++) {
       this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
     }
@@ -243,6 +246,12 @@ export class EditSessionComponent implements OnInit {
     this.opTnc.currency = this.opTncArray[0][5];
     this.opTnc.ask = this.opTncArray[0][7];
     this.opTnc.timeframe = this.opTncArray[0][9];
+
+    // Generating the code for each opInputArray row
+    // TODO - [ ] - expand to include multiple conditions on multiple properties
+    for (let row = 0; row<this.opInputEntitiesNo; row++ ) {
+      this.opInputArray[row][9] = dna.nBasicQueryCoder(row + 1, this.opInputArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
+    }
 
     // -- After operationIni:
     console.log('-- After nGeneIni:');

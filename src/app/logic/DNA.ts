@@ -5,6 +5,7 @@ const l = '\n';
 const iB = 'n';   // index Base: ni0, ni1, ni2 ...
 
 // nBasicTestsCoder() - Generates the code of the test functions to include in the prTestArray
+// TODO - [ ] - To add tests for multiple properties of the same entity
 // based on test_1 template in dnas.js lines 120 - 136
 // function test_1(contextArray, entityType, propertyName, conditionalTest, propertyValue) {
 //   var context = contextArray.slice();
@@ -71,20 +72,26 @@ function qOthers() {
 }
 
 // nBasicQueriesCoder() - Generates the query/conditional codes to be included in the && structure of the Input Query
-// to be evaluated after the opInputArray is built by parsing the nGene spreadsheet structure
+// to be evaluated after a ToDo context is copied/slice into the q context
+// Each opInputArraay will get in its 9 element a string representing its query conditions:
+// There will be 2 parts of this string:
+// 1. To ensure a unique name / entity (equivalent to entity.name not matching itself in the overall query)
+// like ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) 
+// 2. A conditional representing the property condition of the line:
+// like ( q[i][q[i].indexOf(conditionalValue[0]) + 1] > conditionalValue[1])
 // to use the q[][] array of the context to query
 // based on line 472 in the dnas.js which is included in the body of the nested for loops (see below nForHeader()):
 // if ( ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) && 
 // (q[i][q[i].indexOf(conditionalValue[0]) + 1] > conditionalValue[1]) && 
 // (q[j][q[j].indexOf(conditionalValue[2]) + 1] > conditionalValue[3]) ) {
 // -- for name unicity / difference we'll use:
-//   !(qOtherNames[<s>].icludes(q[ni<s>][5])  
+//   !(qOtherNames[<s>].includes(q[ni<s>][5])  
 // To include a closing bracket } in the core DNA nGene
-function nBasicQueriesCoder() {
-
-  // remove the current entity name from the opInputQNames array - to use the remaining sub array/concat string for testing the condition of different names
-
+function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
+  let queryCoder: string = `( !( this.qOtherNames[ni${qEntNo}].includes(q[ni${qEntNo}][5]) ) && (( q[ni${qEntNo}][3] == '${entType}' ) && ( q[ni${qEntNo}][q[ni${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ))`;
+  return queryCoder;
 }
+
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
 // indexes will have a default const indexBase iB
@@ -172,4 +179,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nForHeader, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nForHeader, nForFooter };
