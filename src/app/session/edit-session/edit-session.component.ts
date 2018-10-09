@@ -301,11 +301,12 @@ export class EditSessionComponent implements OnInit {
         let row = '';
         let rowA = [];
         row = h.pipes(eRows[startRow + e]);
-        console.log('-- Row after h.pipes: ' + row);
+        // console.log('-- Row after h.pipes: ' + row);
         const colons = /\b\|:\|\b/g; const colons_ = /\b\|: \|\b/g;
         const commas = /\b\|,\|\b/g; const commas_ = /\b\|, \|\b/g;
         const spaces = /\b\| \|\b/g;
         row = row.replace('    ', '');
+        row = row.replace('  ', '');
         row = row.replace(colons, '|'); row = row.replace(colons_, '|');
         row = row.replace(commas, '|'); row = row.replace(commas_, '|');
         row = row.replace(spaces, '|');
