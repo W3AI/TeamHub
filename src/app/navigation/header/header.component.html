@@ -10,9 +10,14 @@
                 <mat-icon class="teamhub-header-icon"></mat-icon>
             </button>nTeams 
         </a>
-        <a id="user" routerLink="/signup">
-            <span class="links">-</span> Web <span class="links">- Links -</span> 中文 14B 
+        <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
+            <span class="links">-</span> W3AI <span class="links">- Links -</span> .4Trillion 
         </a> 
+        <ng-template #Auth>
+            <a id="user" routerLink="/session">
+                <span class="links">-</span> IL <span class="links">- Links -</span> .5Million
+            </a>
+        </ng-template>
 
     </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
