@@ -117,7 +117,9 @@ export class EditSessionComponent implements OnInit {
   result: string = 'console.log("Eval solution = ") + this.solution;'; 
 
   sum: any = 0;
-  testSumString: string = 'this.sum += 10;';
+  testSumString: string = 'this.sum += 10;';   
+  queryResult: string = '';
+  queryResultString = `this.queryResult += this.q[ni1][5] +  ' ' + this.q[ni2][5];` ;
 
   constructor() {
   this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
@@ -300,14 +302,28 @@ export class EditSessionComponent implements OnInit {
     // Test eval Solver function - to be launched from Project Start / Stop button(s)
     let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval
     this.opInputFunction = 
-    dna.nForHeader(2, '  ', 'i', 1, '<=', 'entitiesNo', '++') + 
-    this.testSumString + 
+    dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
+    dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
+    this.queryResultString + 
+    dna.nQueryIfFooter() + 
     dna.nForFooter(2, '  ');
     console.log('-- String/Function to evaluate: this.opInputFunction');
-    console.log(this.opInputFunction);
+    console.log(this.opInputFunction); 
+
     this.solution = eval(this.opInputFunction);
+
+    // this.solution = eval(`for ( let ni1 = 1; ni1 <= entitiesNo ; ni1++ ) {
+    //   for ( let ni2 = 1; ni2 <= entitiesNo ; ni2++ ) {
+    //       if ( ( !( this.qOtherNames[ni1].includes(q[ni1][5]) ) && (( q[ni1][3] == 'Jar' ) && ( q[ni1][q[ni1].indexOf('content' ) + 1] > 0 )) && ( !( this.qOtherNames[ni2].includes(q[ni2][5]) ) && (( q[ni2][3] == 'Jar' ) && ( q[ni2][q[ni2].indexOf('available' ) + 1] > 0 )) )  { 
+    // this.queryResult += this.q[ni1][5] +  ' ' + this.q[ni2][5];}
+    //   }
+    // }`);
+
     console.log('-- this.solution:');
     console.log(this.solution);
+
+    console.log('-- this.queryResult:');
+    console.log(this.queryResult);
 
     // End Test eval
   }

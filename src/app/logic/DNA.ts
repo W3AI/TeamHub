@@ -88,17 +88,16 @@ function qOthers() {
 //   !(qOtherNames[<s>].includes(q[ni<s>][5])  
 // To include a closing bracket } in the core DNA nGene
 function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
-  let queryCoder: string = `( !( this.qOtherNames[ni${qEntNo}].includes(q[ni${qEntNo}][5]) ) && (( q[ni${qEntNo}][3] == '${entType}' ) && ( q[ni${qEntNo}][q[ni${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ))`;
+  let queryCoder: string = `( !( this.qOtherNames[ni${qEntNo} - 1].includes(this.q[ni${qEntNo}][5]) ) && (( this.q[ni${qEntNo}][3] == '${entType}' ) && ( this.q[ni${qEntNo}][this.q[ni${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ) ) )`;
   return queryCoder;
 }
-
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
 // indexes will have a default const indexBase iB
 // For now all index, start, compare, stop, increment will be the same for all for all generated loops
 // Future implementations could include matrices for these arguments
 // TODO - [ ] to add a pre-indent string for formatting
-function nForHeader(n: number, indent: string, index: string, start: number, compare: string, stop: string, increment: string): string {
+function nForHeader(n: number, indent: string, index: string, start: number, compare: string, stop: number, increment: string): string {
   let nForHeader = '';
   for ( let i = 1; i <= n; i++) {
     const forStatement = `for ( let ${iB + index}${i} = ${start}; ${iB + index}${i} ${compare} ${stop} ; ${iB + index}${i}${increment} ) {
@@ -107,6 +106,20 @@ ${indent}`;
   }
   return nForHeader;
 } 
+
+function nQuery2IfHeader(indent: string, arg1: string, arg2: string): string {
+  let nQuery = indent + `if ( ${arg1} && ${arg2} ) `;
+
+  nQuery += ' { \n';
+  return nQuery;
+}
+
+// nQueryIfFooter() - Returns the closing bracket for the nQHeader() if() statement
+// TODO - [ ] to add a pre-indent string for formatting
+function nQueryIfFooter(): string {
+  let nQFooter = '}';
+  return nQFooter;
+}
 
 // nForFooter() - Retruns the footer of a compact nFor Statement
 // TODO - [ ] to add a pre-indent string for formatting
@@ -126,41 +139,6 @@ function nForFooter(n: number, indent: string): string {
   return nForFooter;
 }
 
-// nQHeader - Generates the if() statment equivalent to querying a Join table built(structured) with nForHeader 
-// for querying n entities/with 1 property TODO - [ ] - to consider expanding to an arbitrary number of properties for each entity - as from operation inputRows[] in edit-session / demo
-// TODO - [ ] to add a pre-indent string for formatting
-// q must be initialized previously as multi-dimensional array with dimensions = nr entities in the Join table = 
-// number of inputRows for the operation
-// indexes for the q array must be the same as the index of the nForHeader ie ni1, ni2, ... built there as ${iB + index}${i} 
-// Sample below from dnas.js / Flipper Project Apr 2018
-// if ( ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) && (q[i][q[i].indexOf(conditionalValue[0]) + 1] > conditionalValue[1]) && (q[j][q[j].indexOf(conditionalValue[2]) + 1] > conditionalValue[3]) ) {
-
-function nQHeader(n: number, index: string, ): string {
-  // TODO - [ ] - add first the condition of different entities
-  // ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] )
-  // TODO - [ ] - how to check difference / unique for n > 2 ? => some kind of combinatorics of pairs?
-  // difference is important only if querying entities of the same type ...
-  // We could have different type of queries generated:
-  // 1 - on several entities of the same type
-  // 2 -  multiple entities of unique types
-  // 3 - some combination
-  // for now we should implement only for 2 ent of same type and unique entities with 1 or multiple properties
-  let nQHeader = ` ( q[i][q[i].indexOf("name") + 1] != q[j][q[j].indexOf("name") + 1] ) `;
-
-  for ( let i = 1; i <= n;  i++) {
-    const qHeader = `( ( q[${iB + index}${i}] ) ) ... TO BE CONTINUED ... Sep 30 2018 ...`;
-    nQHeader += qHeader;
-  }
-
-  return nQHeader;
-}
-
-// nQFooter() - Returns the closing bracket for the nQHeader() if() statement
-// TODO - [ ] to add a pre-indent string for formatting
-function nQFooter(): string {
-  let nQFooter = '}';
-  return nQFooter;
-}
 
 // Build the Operation/Service string function to evaluate and assign to intermediary var
 // eg: bellow line 518 from dnas.js
@@ -179,4 +157,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nForHeader, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
