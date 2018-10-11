@@ -59,13 +59,17 @@ export class EditSessionComponent implements OnInit {
   qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
   
-  // RNA vars - mainly from dnas.js
+  // RNA vars - (mainly) from dnas.js
   nodeIndex: number = 1;          // dnas.js - line: 10 - There will alwasy be at least an initial context
   txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
   n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
-
+  steps: number = 1;              // dnas.js - line: 357 - steps - the depth of the solution graph
+  branch: number = 1;             // branch - number of branches / results from the input query
+  contextIdsList: number[] = [0]; // dnas.js - line: 363 - We start with a list with just the Id of the initial context = 0
+  contextIdsToDo: number[] = [0]; // dnas.js - line: 369 - We'll keep and manage in this list the Ids of context ToDo
+                                  // This will help to monitor combinatorial explosion, memory/resource usage, etc if list will grow exponential from step to step
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -307,7 +311,10 @@ export class EditSessionComponent implements OnInit {
     let partialRnaString = '';  // `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
 
     // Start building the rnaCode string to evaluate
-    this.rnaCode = 
+    this.rnaCode = `
+    // dnas.js line: 446
+    this.branch = 1;
+    `+ 
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
     `// -- Start Testing Query results
@@ -325,6 +332,7 @@ export class EditSessionComponent implements OnInit {
       this.n[x][1] = this.nodeIndex;
       this.nodeIndex++;
     }
+
     // dnas.js line: 490 - also update the transformations / transactions index
     this.txIndex++;
     // add for Context node the index of the transformation/tx that generated the context
@@ -334,6 +342,16 @@ export class EditSessionComponent implements OnInit {
     this.n[0][11] = "ToDo";
     // Update currentContextId
     this.currentContextId = this.n[0][1];
+
+    // dnas.js line: 503 - Add every new context to the contextIdsList
+    this.contextIdsList.push(this.currentContextId);
+    // Here we just copyed a context with a ToDo status
+    // so we have to add it to the ToDo contexts list at the end - with method push
+    this.contextIdsToDo.push(this.currentContextId);
+    // Update step and branch for the new copied context
+    this.n[0][this.n[0].indexOf("step") + 1] = this.steps;
+    this.n[0][this.n[0].indexOf("branch") + 1] = this.branch;
+    // TODO - [ ] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
     `+
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
@@ -353,8 +371,6 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.previousContextId: ' + this.previousContextId);
     console.log('-- this.currentContextId: ' + this.currentContextId);
     console.log('-- this.nodeIndex: ' + this.nodeIndex);
-
-    
 
     // End eval rnaCode
   }
