@@ -58,6 +58,12 @@ export class EditSessionComponent implements OnInit {
   q: any[][];                     // the context to query to get the input param for the function / nGene
   qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
+  
+  // RNA vars - mainly from dnas.js
+  n: any[];                       // new context holder from query result
+  previousContextId: number = 0;  // dnas.js - line: 347
+
+
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -293,18 +299,26 @@ export class EditSessionComponent implements OnInit {
     // Eval Solver function - to be launched from Project Start / Stop button(s)
 
     let partialRnaResult: any;  // To test intermediary results
-    let partialRnaString = `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
+    let partialRnaString = '';  // `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
 
-    // building the string to evaluate
+    // Start building the rnaCode string to evaluate
     this.rnaCode = 
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
     `// -- Start Testing Query results
     this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';
     // -- End Testing Query results
-    ` + 
+    `+ 
+    `// dnas.js line: 477
+    this.n = [];  
+    for (let id = 0; id < this.q.length; id++) {
+      this.n[id] = this.q[id].slice();
+    }
+    this.previousContextId = this.n[0][1];
+    `+
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
+    // End of rnaCode string
 
     console.log('-- String to evaluate: this.rnaCode');
     console.log(this.rnaCode); 
@@ -314,7 +328,13 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.partialRnaResult:');
     console.log(this.partialRnaResult);
 
-    // End Test eval
+    console.log('-- this.n:');
+    console.log(this.n);
+
+    console.log('-- this.previousContextId:');
+    console.log(this.previousContextId);
+
+    // End eval rnaCode
   }
 
     // Function formatRows to be used for formatting 
