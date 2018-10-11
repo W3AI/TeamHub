@@ -107,6 +107,8 @@ ${indent}`;
   return nForHeader;
 } 
 
+// nQuery2IfHeader() - for now 2 arguments for the 2 entities in demo
+// TODO - [ ] - add either a switch by nr args or try some args array option?
 function nQuery2IfHeader(indent: string, arg1: string, arg2: string): string {
   let nQuery = indent + `if ( ${arg1} && ${arg2} ) `;
 
