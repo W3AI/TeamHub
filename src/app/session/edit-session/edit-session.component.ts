@@ -60,6 +60,8 @@ export class EditSessionComponent implements OnInit {
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
   
   // RNA vars - mainly from dnas.js
+  nodeIndex: number = 1;          // dnas.js - line: 10 - There will alwasy be at least an initial context
+  txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
   n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
 
@@ -296,7 +298,10 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.q:');
     console.log(this.q);
 
-    // Eval Solver function - to be launched from Project Start / Stop button(s)
+    // -- Eval Solver / rnaCoder function - based on the dnas.js - to be launched from Project Start / Stop button(s) --- !!!
+
+    // dnas.js line: 93 - number of nodes in the initial context including the context node
+    this.nodeIndex = this.c.length;
 
     let partialRnaResult: any;  // To test intermediary results
     let partialRnaString = '';  // `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
@@ -315,6 +320,11 @@ export class EditSessionComponent implements OnInit {
       this.n[id] = this.q[id].slice();
     }
     this.previousContextId = this.n[0][1];
+    // dnas.js line: 477 - Update the node index of the new array context + entities
+    for (let x = 0; x < this.n.length; x++) {
+      this.n[x][1] = this.nodeIndex;
+      this.nodeIndex++;
+    }
     `+
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
@@ -331,8 +341,8 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.n:');
     console.log(this.n);
 
-    console.log('-- this.previousContextId:');
-    console.log(this.previousContextId);
+    console.log('-- this.previousContextId: ' + this.previousContextId);
+    console.log('-- this.nodeIndex: ' + this.nodeIndex);
 
     // End eval rnaCode
   }
