@@ -110,9 +110,7 @@ export class EditSessionComponent implements OnInit {
   // TODO - [ ] - finalize Query generation / Results extraction 
   // from Environment/Current Context 
   rnaCode: string = '';
- 
-  queryResult: string = '';
-  queryResultString = `this.queryResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
+  partialRnaResult: string = '';
 
   constructor() {
   this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
@@ -293,22 +291,28 @@ export class EditSessionComponent implements OnInit {
     console.log(this.q);
 
     // Eval Solver function - to be launched from Project Start / Stop button(s)
-    let entitiesNo = this.prCtxtEntitiesNo;   // should be 3 in eval demo
+
+    let partialRnaResult: any;  // To test intermediary results
+    let partialRnaString = `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
+
     // building the string to evaluate
     this.rnaCode = 
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
-    this.queryResultString + 
+    `// -- Start Testing Query results
+    this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';
+    // -- End Testing Query results
+    ` + 
     dna.nQueryIfFooter() + 
-    dna.nForFooter(2, '  ');
+    dna.nForFooter(this.opInputEntitiesNo, '  ');
 
-    console.log('-- String/Function to evaluate: this.rnaCode');
+    console.log('-- String to evaluate: this.rnaCode');
     console.log(this.rnaCode); 
 
     eval(this.rnaCode);
 
-    console.log('-- this.queryResult:');
-    console.log(this.queryResult);
+    console.log('-- this.partialRnaResult:');
+    console.log(this.partialRnaResult);
 
     // End Test eval
   }
