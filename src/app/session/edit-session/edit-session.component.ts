@@ -64,7 +64,7 @@ export class EditSessionComponent implements OnInit {
   txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
   n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
-
+  currentContextId: number = 0;   // dnas.js - line: 348
 
 
   // Problem Class structures:
@@ -320,11 +320,20 @@ export class EditSessionComponent implements OnInit {
       this.n[id] = this.q[id].slice();
     }
     this.previousContextId = this.n[0][1];
-    // dnas.js line: 477 - Update the node index of the new array context + entities
+    // dnas.js line: 484 - Update the node index of the new array context + entities
     for (let x = 0; x < this.n.length; x++) {
       this.n[x][1] = this.nodeIndex;
       this.nodeIndex++;
     }
+    // dnas.js line: 490 - also update the transformations / transactions index
+    this.txIndex++;
+    // add for Context node the index of the transformation/tx that generated the context
+    // for now n[0][12] = "fromTx" and n[0][13] is the id of the tx to the context
+    this.n[0][13] += "/" + this.txIndex;
+    // Change new context status to ToDo
+    this.n[0][11] = "ToDo";
+    // Update currentContextId
+    this.currentContextId = this.n[0][1];
     `+
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
@@ -342,7 +351,10 @@ export class EditSessionComponent implements OnInit {
     console.log(this.n);
 
     console.log('-- this.previousContextId: ' + this.previousContextId);
+    console.log('-- this.currentContextId: ' + this.currentContextId);
     console.log('-- this.nodeIndex: ' + this.nodeIndex);
+
+    
 
     // End eval rnaCode
   }
