@@ -6,8 +6,14 @@
 #reactor {
   display: flex;
 
+  background-image: url('/assets/img/DNA-wpe.png');
+  background-size: 30%;
+  background-blend-mode: lighten;
+  background-position: center;
+  background-repeat: repeat-y;
+
   width: 100%;
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 #problem {
