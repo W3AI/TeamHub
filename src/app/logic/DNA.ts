@@ -54,6 +54,7 @@ function qNames() {
   return qNamesFunction;
 }
 
+// To allow testing for unique entities / with unique names
 function qOthers() {
   let qOthersFunction: string = `
     let qNArray = this.qNamesArray.slice();
@@ -90,6 +91,15 @@ function qOthers() {
 function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
   let queryCoder: string = `( !( this.qOtherNames[ni${qEntNo} - 1].includes(this.q[ni${qEntNo}][5]) ) && (( this.q[ni${qEntNo}][3] == '${entType}' ) && ( this.q[ni${qEntNo}][this.q[ni${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ) ) )`;
   return queryCoder;
+}
+
+// nBasicFunctionCoder() - Generates the function code to be included in the rnaCode string
+// TODO - [ ] - expand to include multiple arguments not just those in the opInputArray
+// It should produce an output similar to dnas.js line: 518
+// var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
+function nBasicFunctionCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
+  let functionCode: string = `( [ni${qEntNo}] );`;
+  return functionCode;
 }
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
@@ -159,4 +169,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicFunctionCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };

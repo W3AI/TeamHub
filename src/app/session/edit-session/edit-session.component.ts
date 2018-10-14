@@ -36,9 +36,8 @@ export class EditSessionComponent implements OnInit {
     Jar	,	name	:	fromJar	,	content	>	0											
     Jar	,	name	:	toJar	,	available	>	0											
                                           
-  nGenes	2	2																		
-    nr	,	name	: 	top	, 	language	:	GAS	, 	expression	:	MIN(fromJar.content, toJar.available)							
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min(fromJar.content, toJar.available)							
+  nGenes	1	1																		
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content , toJar.available )													
                                           
   OUTPUT	1	2																		
     Jar	,	name	:	fromJar	,	content	-=	top	;	available	 +=	top							
@@ -256,6 +255,13 @@ export class EditSessionComponent implements OnInit {
     // TODO - [ ] - expand to include multiple conditions on multiple properties
     for (let row = 0; row<this.opInputEntitiesNo; row++ ) {
       this.opInputArray[row][9] = dna.nBasicQueryCoder(row + 1, this.opInputArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
+    }
+
+    // Generating the code for each Step / Function in the opFunctionArray - 
+    // TODO - [ ] - nr of steps and args for each step/function could be a configuration param relatable to the memory / processors etc available 
+    // TODO - [ ] - expand to include multiple arguments (constants) not just the ones in opInputArray 
+    for (let row = 0; row<this.opFunctionNo; row++ ) {
+      this.opFunctionArray[row][10] = dna.nBasicFunctionCoder(row + 1, this.opFunctionArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
     }
 
     // -- After operationIni:
