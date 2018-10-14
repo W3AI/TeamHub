@@ -97,8 +97,8 @@ function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, con
 // TODO - [ ] - expand to include multiple arguments not just those in the opInputArray
 // It should produce an output similar to dnas.js line: 518
 // var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
-function nBasicArgCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
-  let argCode: string = `( [ni${qEntNo}] )`;
+function nBasicArgCoder(qEntNo: number, propName: string): string {
+  let argCode: string = `this.q[ni${qEntNo}][this.q[ni${qEntNo}].indexOf('${propName}') + 1]`;
   return argCode;
 }
 

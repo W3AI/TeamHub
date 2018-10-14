@@ -287,16 +287,25 @@ export class EditSessionComponent implements OnInit {
         // if true before the dot should be an entity name and after the dot should be a property name
         let entityName = '';
         let propertyName = '';
+        let qEntNo: number;
         let dotIndex = -1;
         dotIndex = expArray[p].indexOf('.');
         if (dotIndex != -1) {
           let strLength = expArray[p].length;
           entityName = expArray[p].slice(0, dotIndex);
           propertyName = expArray[p].slice(dotIndex + 1, strLength);
+
           console.log('-- Param Entity Name: ' + entityName + ' .  Param Property Name: ' + propertyName);
+          
+          // Query entity number based on the entity name
+          for(let inputIndex = 0; inputIndex < this.opInputArray.length; inputIndex++) {
+            if (this.opInputArray[inputIndex].includes(propertyName)) {
+              qEntNo = inputIndex;
+            }
+          } 
+          expArray[p] = dna.nBasicArgCoder(qEntNo, propertyName);
         }
 
-        expArray[p] = dna.nBasicArgCoder(row + 1, this.opFunctionArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
         params.push(expArray[p]);
       }
 
