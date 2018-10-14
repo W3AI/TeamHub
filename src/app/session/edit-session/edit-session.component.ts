@@ -282,7 +282,7 @@ export class EditSessionComponent implements OnInit {
       // Parse each argument of the function from spreadsheet and format with nBasicArgCoder()
       // For now we assume there is allways a spredsheet or JS function on element 0, a '(' in element 1 and ')' as last element in expArray
       let params = [];
-      for(let p = 2; p < expArray.length; p++) {
+      for(let p = 2; p < expArray.length - 1; p++) {
         // Parse each param/arg and see if contains a '.'
         // if true before the dot should be an entity name and after the dot should be a property name
         let entityName = '';
@@ -297,7 +297,7 @@ export class EditSessionComponent implements OnInit {
 
           console.log('-- Param Entity Name: ' + entityName + ' .  Param Property Name: ' + propertyName);
           
-          // Query entity number based on the entity name
+          // Get Query entity number based on the entity name
           for(let inputIndex = 0; inputIndex < this.opInputArray.length; inputIndex++) {
             if (this.opInputArray[inputIndex].includes(propertyName)) {
               qEntNo = inputIndex;
@@ -311,7 +311,7 @@ export class EditSessionComponent implements OnInit {
 
       // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
       // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
-      this.opFunctionArray[row][10] = expArray.join(' ');
+      this.opFunctionArray[row][10] = expArray[0] + expArray[1] + params.join() + expArray[expArray.length - 1];
 
       console.log('-- Function expJS:');
       console.log(this.opFunctionArray[row][10]);
