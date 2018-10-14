@@ -93,13 +93,13 @@ function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, con
   return queryCoder;
 }
 
-// nBasicFunctionCoder() - Generates the function code to be included in the rnaCode string
+// nBasicArgCoder() - Generates the argument code to be included in the rnaCode string
 // TODO - [ ] - expand to include multiple arguments not just those in the opInputArray
 // It should produce an output similar to dnas.js line: 518
 // var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
-function nBasicFunctionCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
-  let functionCode: string = `( [ni${qEntNo}] );`;
-  return functionCode;
+function nBasicArgCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
+  let argCode: string = `( [ni${qEntNo}] )`;
+  return argCode;
 }
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
@@ -169,4 +169,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicFunctionCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };

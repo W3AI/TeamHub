@@ -29,7 +29,7 @@ export class EditSessionComponent implements OnInit {
     ccy	,	name	:	CAD	,	dollar	:	1	,	seconds	:	60							
     Jar	,	name	:	dict_EN	,	volume	:	5	,	content	:	0	,	available	:	5			`;
 
-  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнить		Preencher		A umple			
+  defaultOperation = `Title	To fill				填写		भरना		لملء		Llenar		Заполнять		Preencher		A umple			
   Description	Top / Pour liquid from a recipient to another																			
   Tags	content, available																			
   INPUT	1	2																		
@@ -37,7 +37,7 @@ export class EditSessionComponent implements OnInit {
     Jar	,	name	:	toJar	,	available	>	0											
                                           
   nGenes	1	1																		
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content , toJar.available )													
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available, 10, 'age' )							
                                           
   OUTPUT	1	2																		
     Jar	,	name	:	fromJar	,	content	-=	top	;	available	 +=	top							
@@ -46,7 +46,7 @@ export class EditSessionComponent implements OnInit {
   T&C	5	5																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
   English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
-  Chinese	ZH	,	名词	:	罐	,	卷	:	5	,	内容	:	0	,	可得到	:	5			
+  Chinese	ZH	,	名词	:	罐	,	体积	:	5	,	内容	:	0	,	可得到	:	5			
   English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
   Chinese	ZH	,	动词	:	最佳	,	expression	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
 
@@ -261,7 +261,51 @@ export class EditSessionComponent implements OnInit {
     // TODO - [ ] - nr of steps and args for each step/function could be a configuration param relatable to the memory / processors etc available 
     // TODO - [ ] - expand to include multiple arguments (constants) not just the ones in opInputArray 
     for (let row = 0; row<this.opFunctionNo; row++ ) {
-      this.opFunctionArray[row][10] = dna.nBasicFunctionCoder(row + 1, this.opFunctionArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
+
+      // Parse the step / function expression
+      let exp = '';
+      exp = this.opFunctionArray[row][9]
+      // Remove the commas
+      const commas = /,/g;
+      exp = exp.replace(commas, '');
+      console.log('-- Function Expression:');
+      console.log(exp);
+      // get an array of the tokens
+      let expArray = [];
+      expArray = h.tokens(exp);
+
+      console.log('-- Function expArray:');
+      console.log(expArray.join('|'));
+
+      // TODO - [ ] - implement grouping of inputArray by step/functions input/arguments to allow multiple steps with different input arg order etc
+      // For now we'll have just functions with the same order of args as in the input query 
+      // Parse each argument of the function from spreadsheet and format with nBasicArgCoder()
+      // For now we assume there is allways a spredsheet or JS function on element 0, a '(' in element 1 and ')' as last element in expArray
+      let params = [];
+      for(let p = 2; p < expArray.length; p++) {
+        // Parse each param/arg and see if contains a '.'
+        // if true before the dot should be an entity name and after the dot should be a property name
+        let entityName = '';
+        let propertyName = '';
+        let dotIndex = -1;
+        dotIndex = expArray[p].indexOf('.');
+        if (dotIndex != -1) {
+          let strLength = expArray[p].length;
+          entityName = expArray[p].slice(0, dotIndex);
+          propertyName = expArray[p].slice(dotIndex + 1, strLength);
+          console.log('-- Param Entity Name: ' + entityName + ' .  Param Property Name: ' + propertyName);
+        }
+
+        expArray[p] = dna.nBasicArgCoder(row + 1, this.opFunctionArray[row][3], this.opInputArray[row][6], this.opInputArray[row][7], this.opInputArray[row][8]);
+        params.push(expArray[p]);
+      }
+
+      // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
+      // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
+      this.opFunctionArray[row][10] = expArray.join(' ');
+
+      console.log('-- Function expJS:');
+      console.log(this.opFunctionArray[row][10]);
     }
 
     // -- After operationIni:
@@ -395,6 +439,7 @@ export class EditSessionComponent implements OnInit {
         let rowA = [];
         row = h.pipes(eRows[startRow + e]);
         // console.log('-- Row after h.pipes: ' + row);
+        // const below are pipes + character: eg |:
         const colons = /\b\|:\|\b/g; const colons_ = /\b\|: \|\b/g;
         const commas = /\b\|,\|\b/g; const commas_ = /\b\|, \|\b/g;
         const spaces = /\b\| \|\b/g;
