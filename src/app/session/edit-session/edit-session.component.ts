@@ -40,8 +40,8 @@ export class EditSessionComponent implements OnInit {
     nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available )							
                                           
   OUTPUT	1	2																		
-    Jar	,	name	:	fromJar	,	content	-=	top	;	available	 +=	top							
-    Jar	,	name	:	toJar	,	content	 +=	top	;	available	-=	top							
+    Jar	,	name	:	fromJar	, updates	:	2	, content	-=	top	;	available	 +=	top							
+    Jar	,	name	:	toJar	,		updates : 2 , content	 +=	top	;	available	-=	top							
                                           
   T&C	5	5																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
@@ -321,6 +321,20 @@ export class EditSessionComponent implements OnInit {
 
       console.log('-- Function expJS:');
       console.log(this.opFunctionArray[row][10]);
+    }
+
+    // Generate the update codes for each result / step / row in the opFunctionArray
+    // with 3 for loops for iterating through results, entities and properties
+    for (let result = 0; result < this.opFunctionArray.length; result++) {
+      for (let entity = 0; entity < this.opOutputArray.length; entity++) {
+        // TODO - [ ] - Update nGene form with "propUpdates : <propNr> , "
+        // TODO - [ ] - Update opOutputArray = formatRows( ... ) - might not be needed if copied with tabs from nGene Form - to test
+        for (let prop = 0; prop < this.opOutputArray[entity][6]; prop++) {
+
+        }
+
+      }
+
     }
 
     // -- After operationIni:
