@@ -332,6 +332,7 @@ export class EditSessionComponent implements OnInit {
         for (let prop = 0; prop < this.opOutputArray[entity][6]; prop++) {
           // TODO - [ ] - Chek if steps codes need (likely) updated to n[] instead of q[]
           // same as in dnas.js line 518 
+          // TODO - [ ] - !!! CHECK updateCode matrix below !!! <<---------------------<<
           let updateCode = `this.n[ni${entity + 1}][n[ni${entity + 1}].indexOf(${this.opOutputArray[entity][8 + prop]}) + 1 ] ${this.opOutputArray[entity][9 + prop]} ${this.stepResults[result]} ;`;
           this.opOutputArray[entity].push(updateCode);
           console.log(`-- updateCode[${result}][${entity}][${prop}]:`);
