@@ -330,7 +330,12 @@ export class EditSessionComponent implements OnInit {
         // TODO - [ ] - Update nGene form with "propUpdates : <propNr> , "
         // TODO - [ ] - Update opOutputArray = formatRows( ... ) - might not be needed if copied with tabs from nGene Form - to test
         for (let prop = 0; prop < this.opOutputArray[entity][6]; prop++) {
-
+          // TODO - [ ] - Chek if steps codes need (likely) updated to n[] instead of q[]
+          // same as in dnas.js line 518 
+          let updateCode = `this.n[ni${entity + 1}][n[ni${entity + 1}].indexOf(${this.opOutputArray[entity][8 + prop]}) + 1 ] ${this.opOutputArray[entity][9 + prop]} ${this.stepResults[result]} ;`;
+          this.opOutputArray[entity].push(updateCode);
+          console.log(`-- updateCode[${result}][${entity}][${prop}]:`);
+          console.log(updateCode);
         }
 
       }
