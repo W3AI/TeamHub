@@ -102,6 +102,16 @@ function nBasicArgCoder(qEntNo: number, propName: string): string {
   return argCode;
 }
 
+function nForStepResults(opStepsCodes: string[]): string {
+  let nForResult = `// Calculations the result of the function for each step of operation`;
+  for (let step = 0; step < opStepsCodes.length; step++) {
+    nForResult += `
+    this.stepResults[${step}] = ${opStepsCodes[step]};\n`; 
+  }
+  nForResult += l;
+  return nForResult;
+}
+
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
 // indexes will have a default const indexBase iB
 // For now all index, start, compare, stop, increment will be the same for all for all generated loops
@@ -169,4 +179,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };

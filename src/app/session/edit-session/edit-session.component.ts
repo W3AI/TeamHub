@@ -37,7 +37,7 @@ export class EditSessionComponent implements OnInit {
     Jar	,	name	:	toJar	,	available	>	0											
                                           
   nGenes	1	1																		
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available, 10, 'age' )							
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available )							
                                           
   OUTPUT	1	2																		
     Jar	,	name	:	fromJar	,	content	-=	top	;	available	 +=	top							
@@ -57,7 +57,10 @@ export class EditSessionComponent implements OnInit {
   q: any[][];                     // the context to query to get the input param for the function / nGene
   qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
-  
+  stepResults: any[] = [];               // To store the result of the op functions 
+                                  // could also be implemented as an element of the opFunctionArray: 
+                                  // eg: opFunctionArray[][11] = stepResults[]
+
   // RNA vars - (mainly) from dnas.js
   nodeIndex: number = 1;          // dnas.js - line: 10 - There will alwasy be at least an initial context
   txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
@@ -107,6 +110,7 @@ export class EditSessionComponent implements OnInit {
   opFunctionNo: number = 0;
   opFunctionRows: string[] = []; 
   opFunctionArray: any[][];
+  opStepsCodes: string[] = []; 
   opOutputNo: number = 1;
   opOutputRows: string[] = [];
   opOutputArray: any[][];
@@ -303,7 +307,7 @@ export class EditSessionComponent implements OnInit {
               qEntNo = inputIndex;
             }
           } 
-          expArray[p] = dna.nBasicArgCoder(qEntNo, propertyName);
+          expArray[p] = dna.nBasicArgCoder(qEntNo + 1, propertyName);
         }
 
         params.push(expArray[p]);
@@ -312,6 +316,8 @@ export class EditSessionComponent implements OnInit {
       // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
       // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
       this.opFunctionArray[row][10] = expArray[0] + expArray[1] + params.join() + expArray[expArray.length - 1];
+
+      this.opStepsCodes.push(this.opFunctionArray[row][10]);
 
       console.log('-- Function expJS:');
       console.log(this.opFunctionArray[row][10]);
@@ -407,11 +413,13 @@ export class EditSessionComponent implements OnInit {
     // Here we just copyed a context with a ToDo status
     // so we have to add it to the ToDo contexts list at the end - with method push
     this.contextIdsToDo.push(this.currentContextId);
-    // Update step and branch for the new copied context
+    // Update the solution step and branch for the new copied context
     this.n[0][this.n[0].indexOf("step") + 1] = this.steps;
     this.n[0][this.n[0].indexOf("branch") + 1] = this.branch;
     // TODO - [ ] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
+    
     `+
+    dna.nForStepResults(this.opStepsCodes) + 
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string
@@ -423,6 +431,9 @@ export class EditSessionComponent implements OnInit {
 
     console.log('-- this.partialRnaResult:');
     console.log(this.partialRnaResult);
+
+    console.log('-- this.stepResults:');
+    console.log(this.stepResults);
 
     console.log('-- this.n:');
     console.log(this.n);
