@@ -417,7 +417,6 @@ export class EditSessionComponent implements OnInit {
     this.n[0][this.n[0].indexOf("step") + 1] = this.steps;
     this.n[0][this.n[0].indexOf("branch") + 1] = this.branch;
     // TODO - [ ] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
-    
     `+
     dna.nForStepResults(this.opStepsCodes) + 
     dna.nQueryIfFooter() + 

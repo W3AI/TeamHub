@@ -102,8 +102,12 @@ function nBasicArgCoder(qEntNo: number, propName: string): string {
   return argCode;
 }
 
+// nForStepResults() - Generates the code rna code for calculating the service functions results
+// similar to dnas.js line 518:
+// var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
 function nForStepResults(opStepsCodes: string[]): string {
-  let nForResult = `// Calculations the result of the function for each step of operation`;
+  let nForResult = `
+    // Calculations for the results of the function for each step of operation`;
   for (let step = 0; step < opStepsCodes.length; step++) {
     nForResult += `
     this.stepResults[${step}] = ${opStepsCodes[step]};\n`; 
