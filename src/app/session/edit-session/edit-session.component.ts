@@ -335,7 +335,7 @@ export class EditSessionComponent implements OnInit {
           // TODO - [ ] - Chek if steps codes need (likely) updated to n[] instead of q[]
           // same as in dnas.js line 518 
           // TODO - [ ] - !!! CHECK updateCode matrix below !!! <<---------------------<<
-          let updateCode = `this.n[ni${entity + 1}][n[ni${entity + 1}].indexOf(${this.opOutputArray[entity][8 + 4*prop]}) + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
+          let updateCode = `this.n[i${entity + 1}][n[i${entity + 1}].indexOf(${this.opOutputArray[entity][8 + 4*prop]}) + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
           this.opOutputArray[entity].push(updateCode);
           console.log(`-- -- -- updateCode[${result}][${entity}][${prop}]:`);
           console.log(updateCode);
@@ -395,7 +395,7 @@ export class EditSessionComponent implements OnInit {
     this.nodeIndex = this.c.length;
 
     let partialRnaResult: any;  // To test intermediary results
-    let partialRnaString = '';  // `this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';` ;
+    let partialRnaString = '';  // `this.partialRnaResult += this.q[i1][5] +  ' ' + this.q[i2][5] + '\\n';` ;
 
     // Start building the rnaCode string to evaluate
     this.rnaCode = `
@@ -405,7 +405,7 @@ export class EditSessionComponent implements OnInit {
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
     `// -- Start Testing Query results
-    this.partialRnaResult += this.q[ni1][5] +  ' ' + this.q[ni2][5] + '\\n';
+    this.partialRnaResult += this.q[i1][5] +  ' ' + this.q[i2][5] + '\\n';
     // -- End Testing Query results
     `+ 
     `// dnas.js line: 477

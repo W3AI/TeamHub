@@ -2,7 +2,6 @@
 // Copyright Ianta Labs / MIT license
 
 const l = '\n';
-const iB = 'n';   // index Base: ni0, ni1, ni2 ...
 
 // nBasicTestsCoder() - Generates the code of the test functions to include in the prTestArray
 // TODO - [ ] - To add tests for multiple properties of the same entity
@@ -86,10 +85,10 @@ function qOthers() {
 // (q[i][q[i].indexOf(conditionalValue[0]) + 1] > conditionalValue[1]) && 
 // (q[j][q[j].indexOf(conditionalValue[2]) + 1] > conditionalValue[3]) ) {
 // -- for name unicity / difference we'll use:
-//   !(qOtherNames[<s>].includes(q[ni<s>][5])  
+//   !(qOtherNames[<s>].includes(q[i<s>][5])  
 // To include a closing bracket } in the core DNA nGene
 function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, condition: string, propVal: string ): string {
-  let queryCoder: string = `( !( this.qOtherNames[ni${qEntNo} - 1].includes(this.q[ni${qEntNo}][5]) ) && (( this.q[ni${qEntNo}][3] == '${entType}' ) && ( this.q[ni${qEntNo}][this.q[ni${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ) ) )`;
+  let queryCoder: string = `( !( this.qOtherNames[i${qEntNo} - 1].includes(this.q[i${qEntNo}][5]) ) && (( this.q[i${qEntNo}][3] == '${entType}' ) && ( this.q[i${qEntNo}][this.q[i${qEntNo}].indexOf('${propName}' ) + 1] ${condition} ${propVal} ) ) )`;
   return queryCoder;
 }
 
@@ -98,7 +97,7 @@ function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, con
 // It should produce an output similar to dnas.js line: 518
 // var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
 function nBasicArgCoder(qEntNo: number, propName: string): string {
-  let argCode: string = `this.q[ni${qEntNo}][this.q[ni${qEntNo}].indexOf('${propName}') + 1]`;
+  let argCode: string = `this.q[i${qEntNo}][this.q[i${qEntNo}].indexOf('${propName}') + 1]`;
   return argCode;
 }
 
@@ -117,14 +116,14 @@ function nForStepResults(opStepsCodes: string[]): string {
 }
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
-// indexes will have a default const indexBase iB
+// indexes will look like i1, i2, ... equivalent to i, j, k indexes in regular nested loops, etc
 // For now all index, start, compare, stop, increment will be the same for all for all generated loops
 // Future implementations could include matrices for these arguments
 // TODO - [ ] to add a pre-indent string for formatting
 function nForHeader(n: number, indent: string, index: string, start: number, compare: string, stop: number, increment: string): string {
   let nForHeader = '';
   for ( let i = 1; i <= n; i++) {
-    const forStatement = `for ( let ${iB + index}${i} = ${start}; ${iB + index}${i} ${compare} ${stop} ; ${iB + index}${i}${increment} ) {
+    const forStatement = `for ( let ${index}${i} = ${start}; ${index}${i} ${compare} ${stop} ; ${index}${i}${increment} ) {
 ${indent}`;
     nForHeader += forStatement;
   }
