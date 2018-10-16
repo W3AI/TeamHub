@@ -1,18 +1,18 @@
 <mat-tab-group *ngIf="!(ongoingSession$ | async)">
 
-  <mat-tab label="nCode">
+  <mat-tab label="nScript">
     <app-edit-session></app-edit-session>
   </mat-tab>
 
-  <mat-tab label="nGenes">
+  <mat-tab label="nProject">
     <app-current-session></app-current-session>
   </mat-tab>
 
-  <mat-tab label="nTeams">
+  <mat-tab label="nVenture">
     <app-pro-session></app-pro-session>
   </mat-tab>
 
-  <mat-tab label="nGenom">
+  <mat-tab label="nGenes">
     <app-list-session></app-list-session>
   </mat-tab>
 
