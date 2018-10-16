@@ -37,11 +37,11 @@ export class EditSessionComponent implements OnInit {
     Jar	,	name	:	toJar	,	available	>	0											
                                           
   nGenes	1	1																		
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available )							
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content , toJar.available, 10, 'age' )							
                                           
   OUTPUT	1	2																		
-    Jar	,	name	:	fromJar	, updates	:	2	, content	-=	top	;	available	 +=	top							
-    Jar	,	name	:	toJar	,		updates : 2 , content	 +=	top	;	available	-=	top							
+    Jar	,	name	:	fromJar	,	updates	:	2	,	content	-=	top	;	available	 +=	top			
+    Jar	,	name	:	toJar	,	updates	:	2	,	content	 +=	top	;	available	-=	top			
                                           
   T&C	5	5																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
