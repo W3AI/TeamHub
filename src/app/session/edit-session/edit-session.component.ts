@@ -37,10 +37,10 @@ export class EditSessionComponent implements OnInit {
     Jar	,	name	:	toJar	,	available	>	0											
                                           
   nGenes	1	1																		
-    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content , toJar.available, 10, 'age' )							
+    nr	,	name	: 	top	, 	language	:	JS	, 	expression	:	Math.min ( fromJar.content, toJar.available )							
                                           
   OUTPUT	1	2																		
-    Jar	,	name	:	fromJar	,	updates	:	2	,	content	-=	top	;	available	 +=	top			
+    Jar	,	name	:	fromJar	,	updates	:	2	,	content	-=	top	;	available	+=	top			
     Jar	,	name	:	toJar	,	updates	:	2	,	content	 +=	top	;	available	-=	top			
                                           
   T&C	5	5																		
@@ -285,6 +285,7 @@ export class EditSessionComponent implements OnInit {
       // For now we'll have just functions with the same order of args as in the input query 
       // Parse each argument of the function from spreadsheet and format with nBasicArgCoder()
       // For now we assume there is allways a spredsheet or JS function on element 0, a '(' in element 1 and ')' as last element in expArray
+      
       let params = [];
       for(let p = 2; p < expArray.length - 1; p++) {
         // Parse each param/arg and see if contains a '.'
@@ -309,9 +310,10 @@ export class EditSessionComponent implements OnInit {
           } 
           expArray[p] = dna.nBasicArgCoder(qEntNo + 1, propertyName);
         }
-
         params.push(expArray[p]);
       }
+      console.log('-- params:');
+      console.log(params);
 
       // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
       // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
