@@ -330,7 +330,7 @@ export class EditSessionComponent implements OnInit {
     for (let result = 0; result < this.opFunctionArray.length; result++) {
       for (let entity = 0; entity < this.opOutputArray.length; entity++) {
         for (let prop = 0; prop < this.opOutputArray[entity][7]; prop++) {
-          let updateCode = `this.n[i${entity + 1}][n[i${entity + 1}].indexOf(${this.opOutputArray[entity][8 + 4*prop]}) + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
+          let updateCode = `this.n[i${entity + 1}][n[i${entity + 1}].indexOf('${this.opOutputArray[entity][8 + 4*prop]}') + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
           this.opOutputArray[entity].push(updateCode);
           console.log(`-- -- -- updateCode[${result}][${entity}][${prop}]:`);
           console.log(updateCode);
