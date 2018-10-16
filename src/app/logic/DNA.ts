@@ -97,7 +97,7 @@ function nBasicQueryCoder(qEntNo: number, entType: string, propName: string, con
 // It should produce an output similar to dnas.js line: 518
 // var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
 function nBasicArgCoder(qEntNo: number, propName: string): string {
-  let argCode: string = `this.q[i${qEntNo}][this.q[i${qEntNo}].indexOf('${propName}') + 1]`;
+  let argCode: string = `this.n[i${qEntNo}][this.n[i${qEntNo}].indexOf('${propName}') + 1]`;
   return argCode;
 }
 

@@ -329,20 +329,13 @@ export class EditSessionComponent implements OnInit {
     // with 3 for loops for iterating through results, entities and properties
     for (let result = 0; result < this.opFunctionArray.length; result++) {
       for (let entity = 0; entity < this.opOutputArray.length; entity++) {
-        // TODO - [ ] - Update nGene form with "propUpdates : <propNr> , "
-        // TODO - [ ] - Update opOutputArray = formatRows( ... ) - might not be needed if copied with tabs from nGene Form - to test
         for (let prop = 0; prop < this.opOutputArray[entity][7]; prop++) {
-          // TODO - [ ] - Chek if steps codes need (likely) updated to n[] instead of q[]
-          // same as in dnas.js line 518 
-          // TODO - [ ] - !!! CHECK updateCode matrix below !!! <<---------------------<<
           let updateCode = `this.n[i${entity + 1}][n[i${entity + 1}].indexOf(${this.opOutputArray[entity][8 + 4*prop]}) + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
           this.opOutputArray[entity].push(updateCode);
           console.log(`-- -- -- updateCode[${result}][${entity}][${prop}]:`);
           console.log(updateCode);
         }
-
       }
-
     }
 
     // -- After operationIni:
@@ -405,6 +398,7 @@ export class EditSessionComponent implements OnInit {
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
     `// -- Start Testing Query results
+    // TODO - [ ] - Comment partialRnaResults lines after algo dev and testing - but leave the lines in for future testing
     this.partialRnaResult += this.q[i1][5] +  ' ' + this.q[i2][5] + '\\n';
     // -- End Testing Query results
     `+ 
