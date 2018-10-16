@@ -318,7 +318,7 @@ export class EditSessionComponent implements OnInit {
 
       // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
       // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
-      this.opFunctionArray[row][10] = expArray[0] + expArray[1] + params.join() + expArray[expArray.length - 1];
+      this.opFunctionArray[row].push(expArray[0] + expArray[1] + params.join() + expArray[expArray.length - 1]);
 
       this.opStepsCodes.push(this.opFunctionArray[row][10]);
 

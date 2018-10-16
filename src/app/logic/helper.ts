@@ -25,6 +25,11 @@ function tokens(str: string): Array<any> {
     } else {
       cleanStr =  str.split(' ');
     }
+
+    // When copying from GSheets last element is always a pipe or blank from the split operation above
+    if (cleanStr[cleanStr.length - 1] == '') {
+        cleanStr.pop();
+    }
     
     for ( let element of cleanStr ) {
         let numeric = Number(element);
