@@ -17,13 +17,24 @@ function pipes(str: string): string {
 }
 
 // Split string into token strings
-function tokens(str: string): Array<string> {
+function tokens(str: string): Array<any> {
+    let cleanStr: string[] = [];
+    let array: any[] = [];
     if (str.includes('|')) {
-      return str.split('|');  
+      cleanStr = str.split('|');  
     } else {
-      return str.split(' ');
+      cleanStr =  str.split(' ');
     }
     
+    for ( let element of cleanStr ) {
+        let numeric = Number(element);
+        if ( isNaN( numeric ) ) {
+            array.push(element);
+        } else {
+            array.push(numeric);
+        }
+    }
+    return array;
 }
 
 // export all helper functions
