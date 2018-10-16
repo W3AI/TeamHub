@@ -312,8 +312,8 @@ export class EditSessionComponent implements OnInit {
         }
         params.push(expArray[p]);
       }
-      console.log('-- params:');
-      console.log(params);
+      // console.log('-- params:');
+      // console.log(params);
 
       // conactenate the function string as expArray[0] + expArray[1] + ... + expArray(last)
       // this.opFunctionArray[row][10] =    Function    + ' ( '       + ... + ')'
@@ -331,13 +331,13 @@ export class EditSessionComponent implements OnInit {
       for (let entity = 0; entity < this.opOutputArray.length; entity++) {
         // TODO - [ ] - Update nGene form with "propUpdates : <propNr> , "
         // TODO - [ ] - Update opOutputArray = formatRows( ... ) - might not be needed if copied with tabs from nGene Form - to test
-        for (let prop = 0; prop < this.opOutputArray[entity][6]; prop++) {
+        for (let prop = 0; prop < this.opOutputArray[entity][7]; prop++) {
           // TODO - [ ] - Chek if steps codes need (likely) updated to n[] instead of q[]
           // same as in dnas.js line 518 
           // TODO - [ ] - !!! CHECK updateCode matrix below !!! <<---------------------<<
-          let updateCode = `this.n[ni${entity + 1}][n[ni${entity + 1}].indexOf(${this.opOutputArray[entity][8 + prop]}) + 1 ] ${this.opOutputArray[entity][9 + prop]} ${this.stepResults[result]} ;`;
+          let updateCode = `this.n[ni${entity + 1}][n[ni${entity + 1}].indexOf(${this.opOutputArray[entity][8 + 4*prop]}) + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
           this.opOutputArray[entity].push(updateCode);
-          console.log(`-- updateCode[${result}][${entity}][${prop}]:`);
+          console.log(`-- -- -- updateCode[${result}][${entity}][${prop}]:`);
           console.log(updateCode);
         }
 
