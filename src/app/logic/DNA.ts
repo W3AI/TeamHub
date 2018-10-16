@@ -115,6 +115,20 @@ function nForStepResults(opStepsCodes: string[]): string {
   return nForResult;
 }
 
+// nForStepResults() - Generates the code rna code for calculating the service functions results
+// similar to dnas.js line 518:
+// var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
+function nForStepUpdates(opUpdatesCodes: string[]): string {
+  let nForUpdate = `
+    // The code for updating the changed propeties for each entity for after each step result calculation `;
+  for (let update = 0; update < opUpdatesCodes.length; update++) {
+    nForUpdate += `
+    ${opUpdatesCodes[update]}`; 
+  }
+  nForUpdate += l;
+  return nForUpdate;
+}
+
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
 // indexes will look like i1, i2, ... equivalent to i, j, k indexes in regular nested loops, etc
 // For now all index, start, compare, stop, increment will be the same for all for all generated loops
@@ -182,4 +196,4 @@ function nUpdates(): Array<string> {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };

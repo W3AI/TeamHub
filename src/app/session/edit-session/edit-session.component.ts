@@ -114,6 +114,7 @@ export class EditSessionComponent implements OnInit {
   opOutputNo: number = 1;
   opOutputRows: string[] = [];
   opOutputArray: any[][];
+  opUpdatesCodes: string[] = [];
   opTncNo: number = 1; 
   opTncRows: string[] = [];
   opTncArray: any[][];
@@ -330,10 +331,11 @@ export class EditSessionComponent implements OnInit {
     for (let result = 0; result < this.opFunctionArray.length; result++) {
       for (let entity = 0; entity < this.opOutputArray.length; entity++) {
         for (let prop = 0; prop < this.opOutputArray[entity][7]; prop++) {
-          let updateCode = `this.n[i${entity + 1}][n[i${entity + 1}].indexOf('${this.opOutputArray[entity][8 + 4*prop]}') + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}];`;
+          let updateCode: string = `this.n[i${entity + 1}][this.n[i${entity + 1}].indexOf('${this.opOutputArray[entity][8 + 4*prop]}') + 1 ] ${this.opOutputArray[entity][9 + 4*prop]} this.stepResults[${result}]; `;
           this.opOutputArray[entity].push(updateCode);
           console.log(`-- -- -- updateCode[${result}][${entity}][${prop}]:`);
           console.log(updateCode);
+          this.opUpdatesCodes.push(updateCode);
         }
       }
     }
@@ -435,6 +437,7 @@ export class EditSessionComponent implements OnInit {
     // TODO - [ ] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
     `+
     dna.nForStepResults(this.opStepsCodes) + 
+    dna.nForStepUpdates(this.opUpdatesCodes) + 
     dna.nQueryIfFooter() + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string
