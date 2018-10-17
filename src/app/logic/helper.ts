@@ -64,5 +64,54 @@ function hashCode(s: string): number {
     return h;
   };
 
+  function buildTableHeader(tableId, array) {
+    let table = <HTMLTableElement> document.getElementById(tableId);
+    let header = table.createTHead();
+    let row = table.insertRow(0);
+
+    let l = array.length;
+    let cell = [];
+
+    for (let i = 0; i < l; i++) {
+      cell[i] = row.insertCell(i);
+      cell[i].innerHTML = array[i];
+    }
+}
+
+function addTableRow(tableId, contextId, array) {
+    let table = <HTMLTableElement> document.getElementById(tableId);
+    let row = table.insertRow(1);
+    // row.className = "c" + contextId + " " + "b" + branchId;
+    row.className = "t" + Date.now() + " "+ "c" + contextId;
+
+    let l = array.length;
+    let cell = [];
+
+    for (let i = 0; i < l; i++) {
+      cell[i] = row.insertCell(i);
+      cell[i].innerHTML = array[i];
+    }
+}
+
+function addContextToMemoryTable(tableId, contextId, contextArray) {
+    for( let i = 0; i < contextArray.length; i++) {
+        addTableRow(tableId, contextId, contextArray[i]);
+    }
+  }
+
+// TODO - To replace with Angular string interpolation
+  function updateNodesNo(nodesNo) {
+    // Update nodes Number in the "memory" table header row
+    var displayNodes = document.getElementById("nodeIndex");
+    displayNodes.innerHTML = nodesNo;
+  }
+  
+// TODO - To replace with Angular string interpolation
+function updateTxNo(txNo) {
+    // Update transaction Number in the "memory" table header row
+    var displayNodes = document.getElementById("txIndex");
+    displayNodes.innerHTML = txNo;
+  }
+
 // export all helper functions
-export { rn, lines, pipes, tokens, hashCode };
+export { rn, lines, pipes, tokens, hashCode, buildTableHeader, addTableRow, addContextToMemoryTable, updateNodesNo, updateTxNo };
