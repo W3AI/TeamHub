@@ -153,10 +153,11 @@ function nQuery2IfHeader(indent: string, arg1: string, arg2: string): string {
   return nQuery;
 }
 
-// nQueryIfFooter() - Returns the closing bracket for the nQHeader() if() statement
-// TODO - [ ] to add a pre-indent string for formatting
-function nQueryIfFooter(): string {
-  let nQFooter = '}';
+// nQuery2IfFooter() - Returns the closing bracket for the nQHeader() if() statement
+// TODO - [X] to add a pre-indent string for formatting
+function nQuery2IfFooter(indent: string): string {
+  let nQFooter = `${indent}}
+  this.rowId++; // For nGene Dev`;
   return nQFooter;
 }
 
@@ -178,22 +179,5 @@ function nForFooter(n: number, indent: string): string {
   return nForFooter;
 }
 
-
-// Build the Operation/Service string function to evaluate and assign to intermediary var
-// eg: bellow line 518 from dnas.js
-// var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
-function nFunctions(): Array<string> {
-  let nFunction: string[] = [];
-
-  return nFunction;
-}
-
-// n Update Query/Script string
-function nUpdates(): Array<string> {
-  let nUpdates: string[] = [];
-
-  return nUpdates;
-}
-
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForHeader, nQuery2IfHeader, nQueryIfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForHeader, nQuery2IfHeader, nQuery2IfFooter, nForFooter };
