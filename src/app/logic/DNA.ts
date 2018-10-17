@@ -156,7 +156,11 @@ function nQuery2IfHeader(indent: string, arg1: string, arg2: string): string {
 // nQuery2IfFooter() - Returns the closing bracket for the nQHeader() if() statement
 // TODO - [X] to add a pre-indent string for formatting
 function nQuery2IfFooter(indent: string): string {
-  let nQFooter = `${indent}}
+  let nQFooter = `
+  this.ctxtId++;
+  this.branch++;
+  this.previousContextId = this.currentContextId;
+  ${indent}}
   this.rowId++; // For nGene Dev`;
   return nQFooter;
 }

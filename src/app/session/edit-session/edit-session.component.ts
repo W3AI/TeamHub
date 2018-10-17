@@ -55,6 +55,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   t: any[];                       // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
   q: any[][];                     // the context to query to get the input param for the function / nGene
+  n: any[];                       // new context holder from query result  
+
   qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
   stepResults: any[] = [];               // To store the result of the op functions 
@@ -77,13 +79,15 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   statesMemory = new Set();       // 294 - the statesMemory structure
   stateStampIni = '';             // 302 - to build the state/hash of the first context by adding the states of each entity
 
-  rowId: number = 0;              // 332 - rowId on the Join table - Might Not be needed - TODO - [ ] - To Delete !
+  rowId: number = 0;              // 332 - rowId on the Join table - Might Not be needed - TODO - [ ] - To Delete after nGene Dev!
+  ctxtId: number = 1;             // 344 - initially we have just the initial context
 
-  n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
+
   steps: number = 1;              // dnas.js - line: 357 - steps - the depth of the solution graph
   branch: number = 1;             // branch - number of branches / results from the input query
+  
   contextIdsList: number[] = [0]; // dnas.js - line: 363 - We start with a list with just the Id of the initial context = 0
   contextIdsToDo: number[] = [0]; // dnas.js - line: 369 - We'll keep and manage in this list the Ids of context ToDo
                                   // This will help to monitor combinatorial explosion, memory/resource usage, etc if list will grow exponential from step to step
