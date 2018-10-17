@@ -85,9 +85,14 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
 
+  solutions = [];                 // 352 - Array to store the context solutions
+  solutionPaths = [];             // 353 - In this array we'll store the strings / path of tx to a solution context e.g.: /2/7/20/31/47/57
+  nrSolutions = 0;                // 354 - We initialize this with 0 -
+  newSolution = false;
+
   steps: number = 1;              // dnas.js - line: 357 - steps - the depth of the solution graph
   branch: number = 1;             // branch - number of branches / results from the input query
-  
+
   contextIdsList: number[] = [0]; // dnas.js - line: 363 - We start with a list with just the Id of the initial context = 0
   contextIdsToDo: number[] = [0]; // dnas.js - line: 369 - We'll keep and manage in this list the Ids of context ToDo
                                   // This will help to monitor combinatorial explosion, memory/resource usage, etc if list will grow exponential from step to step
