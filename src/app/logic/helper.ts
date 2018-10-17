@@ -64,8 +64,11 @@ function hashCode(s: string): number {
     return h;
   };
 
-  function buildTableHeader(tableId, array) {
-    let table = <HTMLTableElement> document.getElementById(tableId);
+  function buildTableHeader(tableId: string, array: any[]) {
+    let table = <HTMLTableElement>document.getElementById(tableId);
+    // console.log('-- Header Table Id: ' + tableId);
+    // console.log('-- table: ' + table);
+
     let header = table.createTHead();
     let row = table.insertRow(0);
 

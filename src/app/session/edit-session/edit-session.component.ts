@@ -71,6 +71,9 @@ export class EditSessionComponent implements OnInit {
   nrSolutionsSought: number = 1;  // 101 - 
   stepsAllowed: number = 0;       // 105 - This should come either from definition of the problem or from the Innovation page where the Innovator should be able to change/experiment with different number of steps
 
+  nodeHeader: string[] = ["id", "#" ,"type" ,"C/E" ,"name" ,"title" , "step" , "#", "branch", "#", "status", "Dn/TD","path","tasks"];
+  transformationHeader = ["txId","#","from","id","to","id", "step","#","branch","#","What","verb","HMuch","Price","Changed","Chg","Sentence","Expression","Author","Provider"];
+
   n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
@@ -391,7 +394,10 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.q:');
     console.log(this.q);
 
-    // -- Eval Solver / rnaCoder function - based on the dnas.js - to be launched from Project Start / Stop button(s) --- !!!
+    // Create memory table headers in ngAfteViewInit
+
+    // -- Eval Solver / rnaCoder function - based on the innoVote() from dnas.js
+    // to be launched from Step / Start / Stop button(s)
 
     // dnas.js line: 93 - number of nodes in the initial context including the context node
     this.nodeIndex = this.c.length;
@@ -467,8 +473,16 @@ export class EditSessionComponent implements OnInit {
     console.log('-- this.currentContextId: ' + this.currentContextId);
     console.log('-- this.nodeIndex: ' + this.nodeIndex);
 
-    // End eval rnaCode
+    // END eval rnaCode
+
+  } // END ngOnInit()
+
+  ngAfterViewInit() {
+    // Build Nodes and Transformations Headers for the memory tables
+    h.buildTableHeader("nodes",this.nodeHeader);
+    h.buildTableHeader("transformations", this.transformationHeader);
   }
+
 
     // Function formatRows to be used for formatting 
     // & printing lists of entities, plans/sol, tests, 
@@ -510,4 +524,6 @@ export class EditSessionComponent implements OnInit {
       this.oddNumbers.push(firedNumber);
     }
   }
+
+
 }
