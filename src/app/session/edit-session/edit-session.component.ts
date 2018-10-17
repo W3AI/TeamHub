@@ -66,7 +66,7 @@ export class EditSessionComponent implements OnInit {
   txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
   memLimitMB: number = 1;         // dnas.js - line: 15 - memory limit in MB
   nodesMemSize: number = 0;       // 17 - We'll ccollect here the size of the nodes table
-  entitiesNo: number = 0;         // ? Needed ? - 90 - Number of Entities in Context
+  entitiesNo: number = 0;         // ? Needed ? - 90 - Number of Entities in initial/current Context
   entityType = 1;                 // ? Needed ? - 98 - Number of Entities types
   nrSolutionsSought: number = 1;  // 101 - 
   stepsAllowed: number = 0;       // 105 - This should come either from definition of the problem or from the Innovation page where the Innovator should be able to change/experiment with different number of steps
@@ -481,6 +481,20 @@ export class EditSessionComponent implements OnInit {
     // Build Nodes and Transformations Headers for the memory tables
     h.buildTableHeader("nodes",this.nodeHeader);
     h.buildTableHeader("transformations", this.transformationHeader);
+
+    this.entitiesNo = this.c.length - 1;
+    console.log("-- Entities in the Initial Context: " + this.entitiesNo);
+
+    this.nodeIndex = this.c.length;
+    console.log("NodeIndex = " + this.nodeIndex);
+
+    // Build Context 0 in the nodes table
+    for( let i = 0; i <= this.entitiesNo; i++) {
+      h.addTableRow("nodes", 0, this.c[i]);
+      // Summing up the memory for the nodes in the initial context
+      this.nodesMemSize += JSON.stringify(this.c[i]).length*8;
+    }
+
   }
 
 

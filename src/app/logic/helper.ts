@@ -81,7 +81,7 @@ function hashCode(s: string): number {
     }
 }
 
-function addTableRow(tableId, contextId, array) {
+function addTableRow(tableId: string, contextId: number, array: any[]) {
     let table = <HTMLTableElement> document.getElementById(tableId);
     let row = table.insertRow(1);
     // row.className = "c" + contextId + " " + "b" + branchId;
