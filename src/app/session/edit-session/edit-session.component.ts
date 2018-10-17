@@ -64,6 +64,13 @@ export class EditSessionComponent implements OnInit {
   // RNA vars - (mainly) from dnas.js
   nodeIndex: number = 1;          // dnas.js - line: 10 - There will alwasy be at least an initial context
   txIndex: number = 0;            // dnas.js - line: 11 - To count the number of transformations (relations in the graph of context)
+  memLimitMB: number = 1;         // dnas.js - line: 15 - memory limit in MB
+  nodesMemSize: number = 0;       // 17 - We'll ccollect here the size of the nodes table
+  entitiesNo: number = 0;         // ? Needed ? - 90 - Number of Entities in Context
+  entityType = 1;                 // ? Needed ? - 98 - Number of Entities types
+  nrSolutionsSought: number = 1;  // 101 - 
+  stepsAllowed: number = 0;       // 105 - This should come either from definition of the problem or from the Innovation page where the Innovator should be able to change/experiment with different number of steps
+
   n: any[];                       // new context holder from query result
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
