@@ -61,3 +61,24 @@ a {
   color: grey;
 }
 
+#log {
+  width: 100%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  font-size: x-small;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 3px;
+}
+#nodes tr:nth-child(even),
+#transformations tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+

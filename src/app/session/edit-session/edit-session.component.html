@@ -86,45 +86,58 @@
   <section id="log">
     <h3>Listing Possible Plans</h3>
 
-    <div id="logHeader">
+    <!-- From Memory Tables Headers From Flipper main.html  -->
+    <table id="workingMemory" bgcolor="#FFFFFF">
+      <tr><td>
+        <h2 align="center">Working Memory</h2>
+        <p align="center">Memory usage Bytes: <span id="memoryUsed"></span></p>
+      </td></tr>
+    </table>
+    
+    <table id="memory" bgcolor="#FFFFFF">
+      <tr>
+        <td style="width:50%"><h3 align="right">Contexts and Entities Nodes - <span id="nodeIndex"></span></h3></td>
+        <td style="width:50%"><h3 align="left"><span id="txIndex"></span> - Tasks | Steps | Transformations</h3></td>
+      </tr>
+      <tr>
+        <td style="width:50%"><table id="nodes"></table></td>
+        <td style="vertical-align:top"><table id="transformations"></table></td>
+      </tr>
+    </table>
+    <!-- END Memory Tables Headers From Flipper main.html  -->
 
+    <div id="logHeader">
     </div>
 
     <div id="logTx" fxLayout="row">
-
       <div id="Contexts" fxLayout="column">
-
         <app-dna-problem
         *ngFor="let oddNumber of oddNumbers" 
         [number]="oddNumber">
         </app-dna-problem>
-
       </div>
-
       <div id="Transformations" fxLayout="column">
-
         <app-dna-operation
         *ngFor="let evenNumber of evenNumbers" 
         [number]="evenNumber">
         </app-dna-operation>
-
       </div>
-
     </div>
-
   </section>
 
-  <ul class="footer">
-    <li>Learn nSkills at our Meetups</li>
-    <li>
-        <a href="https://www.meetup.com/SocialAI/">Toronto</a> - 
-        <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
+  <section id="footer">
+    <ul class="footer">
+      <li>Learn nSkills at our Meetups</li>
+      <li>
+        <a href="https://www.meetup.com/SocialAI/">Toronto</a> -
+        <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> -
         <a href="https://www.meetup.com/HalifaxAIG/">Halifax</a>
-    </li>
-    <li><a href="https://github.com/W3AI/TeamHub">Clone nTeams @ GitHub</a></li>
-    <li>Live PoC 0.3</li>
-    <li>© Ianta Labs / MIT License</li>  
-</ul>
+      </li>
+      <li><a href="https://github.com/W3AI/TeamHub">Clone nTeams @ GitHub</a></li>
+      <li>Live PoC 0.3</li>
+      <li>© Ianta Labs / MIT License</li>
+    </ul>
+  </section>
 
 </section>
 
