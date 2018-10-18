@@ -43,11 +43,13 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     Jar	,	name	:	fromJar	,	updates	:	2	,	content	-=	top	;	available	+=	top			
     Jar	,	name	:	toJar	,	updates	:	2	,	content	 +=	top	;	available	-=	top			
                                           
-  T&C	5	5																		
+  T&C	7	7																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
+  PartsOfSpeech	ctxt	,	fromJar	:	this.n[i1][this.n[i1].indexOf('name') + 1 ]	,	toJar	:	this.n[i2][this.n[i2].indexOf('name') + 1 ]	,	top	:	this.stepResults[0];							
+  PartsOfSpeech	EN	,	fromJar	:	ctxtNoun	,	toJar	:	ctxtNoun	,	top	:	ctxtAdvHowMuch							
   English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
-  Chinese	ZH	,	名词	:	罐	,	体积	:	5	,	内容	:	0	,	可得到	:	5			
   English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
+  Chinese	ZH	,	名词	:	罐	,	体积	:	5	,	内容	:	0	,	可得到	:	5			
   Chinese	ZH	,	动词	:	最佳	,	expression	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
@@ -353,6 +355,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // Generate the update codes for each result / step / row in the opFunctionArray
     // with 3 for loops for iterating through results, entities and properties
+    // Sample generated update codes:
+    // this.n[i1][this.n[i1].indexOf('content') + 1 ] -= this.stepResults[0]; 
+    // this.n[i1][this.n[i1].indexOf('available') + 1 ] += this.stepResults[0]; 
+    // this.n[i2][this.n[i2].indexOf('content') + 1 ]  += this.stepResults[0]; 
+    // this.n[i2][this.n[i2].indexOf('available') + 1 ] -= this.stepResults[0]; 
     for (let result = 0; result < this.opFunctionArray.length; result++) {
       for (let entity = 0; entity < this.opOutputArray.length; entity++) {
         for (let prop = 0; prop < this.opOutputArray[entity][7]; prop++) {
@@ -414,7 +421,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // Create memory table headers in ngAfteViewInit
     // and show the initial context same as in flipper / main.html
 
-  } // END ngOnInit()
+  } // END ngOnInit() ----------------------------- END ngOnInit() ----------------------- END ngOnInit() --------------------------
 
   onInnoVote() {
 
