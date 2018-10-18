@@ -7,6 +7,9 @@
       <app-dna-control (intervalFired)="onIntervalFired($event)">
       </app-dna-control>
     </section>
+    <div>
+        <p>Steps: {{ stepsInInvestorTable }}</p>
+    </div>
   </section>
 
   <section id="reactor" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
@@ -62,11 +65,6 @@
       <h6>{{ opTitle }}</h6>
 
       <textarea rows="20"> {{ opFormatted }} </textarea>
-
-      <h6>operationInputFunction</h6>
-      <textarea rows="5"> {{ opInputFunction }} </textarea>
-
-      <h6>solution = {{ solution }} </h6>
 
       <section id="contexts" class="operation">
         <h6>INPUT - Queries</h6>
