@@ -449,8 +449,6 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // Start building the rnaCode string to evaluate
     this.rnaCode = `
-    // dnas.js line: 446
-    this.branch = 1;
     `+ 
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
@@ -489,7 +487,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // Update the solution step and branch for the new copied context
     this.n[0][this.n[0].indexOf("step") + 1] = this.steps;
     this.n[0][this.n[0].indexOf("branch") + 1] = this.branch;
-    // TODO - [ ] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
+    // TODO - [X] - To update ++ branch and ctxtId as in dnas.js line 749-750-751, etc
     `+
     dna.nForStepResults(this.opStepsCodes) + 
     dna.nForStepUpdates(this.opUpdatesCodes) + 
@@ -511,13 +509,49 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     this.stepsAllowed = this.stepsInInvestorTable;    // 388
 
     // mainLoop:                                      // 391
+    while ( (this.steps<=this.stepsAllowed) && (this.nrSolutions<=this.nrSolutionsSought) && (this.contextIdsToDo.length>0) && (this.nodesMemSize<this.memLimitMB*1000000) ) {
+
+      // 401 - adding context free & ops free statements until the Input Query for loops
+      let xIdToDoThisStep = this.contextIdsToDo.length;
+
+      // 404 - Iterate through the contextIdsToDo array
+      for (let xId = 0; xId < xIdToDoThisStep; xId++) {
+
+        // 412 - 419
+        console.log("xId : " + xId);
+        console.log("contextIdsToDo.length : " + this.contextIdsToDo.length);
+        console.log("steps : " + this.steps);
+        console.log("xIdToDoThisStep:");
+        console.log(xIdToDoThisStep);
+        console.log("contextIdsToDo[xId]:");
+        console.log(this.contextIdsToDo[xId]);
+        console.log("m[contextIdsToDo[xId]][5] : " + this.m[this.contextIdsToDo[xId]][5]);
+
+        // 420 - Copy in a context q the context to query
+        this.q = [];
+        // Index of nr of entities is 5; in condition we have +1 to include the node of the context
+        for (let qId = 0; qId < this.m[this.contextIdsToDo[xId]][5] + 1; qId++) {
+          this.q[qId] = this.m[this.contextIdsToDo[xId] + qId].slice();
+        }
+        console.log("q:");
+        console.log(this.q);
+
+        this.m[this.contextIdsToDo[xId]][11] = "Done";  // 432
+
+        console.log("######### contextIdsToDo at " + this.q[0][1] + " : " + this.contextIdsToDo.join());  // 434
+
+        this.branch = 1;  // 446
+
+        // rnaCode includes equivalent dnas lines ~ 450 - 526  with nForHeaders and nQuery2IfHeader to closing brakets <<<<<<<<-----------<<<<<<< eval rnaCode
+        eval(this.rnaCode);
 
 
 
-    eval(this.rnaCode);
+      } // END Iterate through the contextIdsToDo array
 
 
-    
+    } // END main while loop
+
     console.log('-- this.partialRnaResult:');
     console.log(this.partialRnaResult);
 
