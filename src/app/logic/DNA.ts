@@ -115,7 +115,7 @@ function nForStepResults(opStepsCodes: string[]): string {
   return nForResult;
 }
 
-// nForStepResults() - Generates the code rna code for calculating the service functions results
+// nForStepResults() - Generates the rna code for calculating the service functions results
 // similar to dnas.js line 518:
 // var serviceFunction = pour( n[i][n[i].indexOf(functionInput[0]) + 1], n[j][n[j].indexOf(functionInput[1]) + 1]);
 function nForStepUpdates(opUpdatesCodes: string[]): string {
@@ -127,6 +127,23 @@ function nForStepUpdates(opUpdatesCodes: string[]): string {
   }
   nForUpdate += l;
   return nForUpdate;
+}
+
+// nForTxExpression() - Generates the rna code for assigning context values to the Parts of Speech 
+// PoS that will be used later to generate a natural language sentence as a transformation/task command, description, etc
+// similar to dnas.js line 531-532:
+// problemChangeEntity1Name = n[i][n[i].indexOf(serviceChangeEntity1[2]) + 1];
+// problemChangeEntity2Name = n[j][n[j].indexOf(serviceChangeEntity2[2]) + 1];
+function nForTxExpression(opPartsOfSpeech: string[]): string {
+  let nForExpression = `
+    // The code for getting the Parts of Speech Values from the context 
+    this.txExpression.clear(); `;
+  for (let pos = 0; pos < opPartsOfSpeech.length / 2; pos++) {
+    nForExpression += `
+    this.txExpression.set('${opPartsOfSpeech[2*pos]}', ${opPartsOfSpeech[2*pos + 1]});`; 
+  }
+  nForExpression += l;
+  return nForExpression;
 }
 
 // nForHeader() - Generates header for an n level nested for loop - for multi entities/dimensional join/queries
@@ -184,4 +201,4 @@ function nForFooter(n: number, indent: string): string {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForHeader, nQuery2IfHeader, nQuery2IfFooter, nForFooter };
+export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForTxExpression, nForHeader, nQuery2IfHeader, nQuery2IfFooter, nForFooter };

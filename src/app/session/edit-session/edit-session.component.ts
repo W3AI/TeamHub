@@ -5,6 +5,7 @@ import * as h from "../../logic/helper";
 
 // l = new line - used in formatting
 const l = '\n';
+const L = 'L';
 
 @Component({
   selector: 'app-edit-session',
@@ -45,7 +46,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
                                           
   T&C	6	6																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
-  PartsOfSpeech	ctxt	,	top	:	this.stepResults[0];	,	unit	:	L	,	fromJar	:	this.n[i1][this.n[i1].indexOf('name') + 1 ];	,	toJar	:	this.n[i2][this.n[i2].indexOf('name') + 1 ];			
+  PartsOfSpeech	ctxt	,	top	:	this.stepResults[0]	,	unit	:	L	,	fromJar	:	this.n[i1][this.n[i1].indexOf('name') + 1 ]	,	toJar	:	this.n[i2][this.n[i2].indexOf('name') + 1 ]			
   English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
   English	EN	,	verb	:	top	,	expression	:	top {top} {unit} from {fromJar} to {toJar}											
   Chinese	ZH	,	名词	:	罐	,	体积	:	5	,	内容	:	0	,	可得到	:	5			
@@ -99,7 +100,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
                                   // This will help to monitor combinatorial explosion, memory/resource usage, etc if list will grow exponential from step to step
   stepsInInvestorTable: number = 0; // 382 - First read the number of steps so far from the Investor Cell table
 
-  txExpression: string[];         // 670 - to express the sentence / verb / step details through a Natural Language verb expression rule
+  txExpression = new Map();         // 670 - to express the sentence / verb / step details through a Natural Language verb expression rule
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -147,7 +148,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   opTncRows: string[] = [];
   opTncArray: any[][];
   opTnc: {currency: string, ask: number, timeframe: number};
-  opPartsOfSpeech: any[] = [];
+  opPartsOfSpeech: any[] = [];      // the array of key : code pairs fior the parts of speech from the Operation Spreadsheet 
   opPofSNo: number = 1;             // The number of Parts od Speech to express in some Natural Language the Step / Operation as a command, etc
   opFormatted: string = '';
 
@@ -512,6 +513,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     `+
     dna.nForStepResults(this.opStepsCodes) + 
     dna.nForStepUpdates(this.opUpdatesCodes) + 
+    dna.nForTxExpression(this.opPartsOfSpeech) + 
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string
@@ -566,7 +568,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         // rnaCode includes equivalent dnas lines ~ 450 - 526  with nForHeaders and nQuery2IfHeader to closing brakets <<<<<<<<-----------<<<<<<< eval rnaCode
         eval(this.rnaCode);
 
-
+        // Check txExpression
+        console.log("######### txExpression: ");
+        console.log(this.txExpression);
 
       } // END Iterate through the contextIdsToDo array
 
