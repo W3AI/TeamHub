@@ -15,7 +15,7 @@
   <section id="reactor" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
   
     <section id="problem">
-      <h3>nProject</h3>
+      <h3>neo Project</h3>
 
       <mat-form-field class="right">
         <textarea 
@@ -48,14 +48,14 @@
     </section>
 
     <section id="operation">
-      <h3>nGene</h3>
+      <h3>neo Gene</h3>
 
       <mat-form-field>
         <textarea 
         matInput [(ngModel)]="defaultOperation"
         name="operation"
         rows="20"
-        placeholder="Insert Service cells">
+        placeholder="Insert Operation cells">
         </textarea>
         <button mat-button *ngIf="defaultOperation" matSuffix mat-icon-button aria-label="Clear" (click)="defaultOperation=''">
           <mat-icon>close</mat-icon>
