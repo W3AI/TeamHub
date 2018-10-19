@@ -5,7 +5,7 @@ import * as h from "../../logic/helper";
 
 // l = new line - used in formatting
 const l = '\n';
-const L = 'L';
+const L = 'L';  // TODO - [ ] - find other ways to include in txExpressions units of measure L - liter, etc
 
 @Component({
   selector: 'app-edit-session',
