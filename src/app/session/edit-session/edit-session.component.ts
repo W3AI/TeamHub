@@ -43,14 +43,13 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     Jar	,	name	:	fromJar	,	updates	:	2	,	content	-=	top	;	available	+=	top			
     Jar	,	name	:	toJar	,	updates	:	2	,	content	 +=	top	;	available	-=	top			
                                           
-  T&C	7	7																		
+  T&C	6	6																		
     ccy	,	name	:	CAD	,	dollar	:	0.01	,	seconds	:	2							
-  PartsOfSpeech	ctxt	,	fromJar	:	this.n[i1][this.n[i1].indexOf('name') + 1 ]	,	toJar	:	this.n[i2][this.n[i2].indexOf('name') + 1 ]	,	top	:	this.stepResults[0];							
-  PartsOfSpeech	EN	,	fromJar	:	ctxtNoun	,	toJar	:	ctxtNoun	,	top	:	ctxtAdvHowMuch							
+  PartsOfSpeech	ctxt	,	top	:	this.stepResults[0];	,	unit	:	L	,	fromJar	:	this.n[i1][this.n[i1].indexOf('name') + 1 ];	,	toJar	:	this.n[i2][this.n[i2].indexOf('name') + 1 ];			
   English	EN	,	noun	:	Jar	,	volume	:	5	,	content	:	0	,	available	:	5			
-  English	EN	,	verb	:	top	,	expression	:	top $_{top} $_{unit} from $_{from_Jar} to $_{to_Jar}											
+  English	EN	,	verb	:	top	,	expression	:	top {top} {unit} from {fromJar} to {toJar}											
   Chinese	ZH	,	名词	:	罐	,	体积	:	5	,	内容	:	0	,	可得到	:	5			
-  Chinese	ZH	,	动词	:	最佳	,	expression	:	最佳 $_{最佳} $_{单元} 从 $_{fromJar} 至 $_{toJar}											`;
+  Chinese	ZH	,	动词	:	最佳	,	expression	:	最佳 {最佳} {单元} 从 {fromJar} 至 {toJar}											`;
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
@@ -146,6 +145,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   opTncRows: string[] = [];
   opTncArray: any[][];
   opTnc: {currency: string, ask: number, timeframe: number};
+  opPartsOfSpeech: any[] = [];
+  opPofSNo: number = 1;
   opFormatted: string = '';
 
   evenNumbers: number[] = [];
@@ -282,6 +283,17 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     this.opTnc.currency = this.opTncArray[0][5];
     this.opTnc.ask = this.opTncArray[0][7];
     this.opTnc.timeframe = this.opTncArray[0][9];
+
+    // Experimental - Reading the codes for the Parts of Speech from the spreadsheet
+    // Get the number of PofS from the 2nd row of opTncArray
+    this.opPofSNo = this.opTncArray[1].length - 5;
+    console.log('-- Parts of Speech Number: ' + this.opPofSNo);
+    // Read pairs of PoS from the opTncArray
+    for (let pos = 0; pos < this.opPofSNo; pos++) {
+       this.opPartsOfSpeech.push(this.opTncArray[1][5 + pos]);
+    }
+    console.log('-- Parts of Speech: ');
+    console.log(this.opPartsOfSpeech.join('|'));
 
     // Generating the code for each opInputArray row
     // TODO - [ ] - expand to include multiple conditions on multiple properties
@@ -622,6 +634,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         row = row.replace(spaces, '|');
         eLines.push(row + l);
         rowA = h.tokens(row);
+        // remove single comma tokens ','
+        for (let t = 0; t < rowA.length; t++) {
+          if (rowA[t] == ',') {
+            rowA.splice(t, 1);
+          }
+        } 
         rowA.splice(0, 0, 'id', e + 1, type);
         // console.log(rowA);
         eArray[e] = rowA;
