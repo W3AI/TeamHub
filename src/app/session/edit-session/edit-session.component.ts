@@ -99,6 +99,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
                                   // This will help to monitor combinatorial explosion, memory/resource usage, etc if list will grow exponential from step to step
   stepsInInvestorTable: number = 0; // 382 - First read the number of steps so far from the Investor Cell table
 
+  txExpression: string[];         // 670 - to express the sentence / verb / step details through a Natural Language verb expression rule
+
   // Problem Class structures:
   prRows: any[] = [];
   prDefLines: number = 0;
@@ -146,7 +148,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   opTncArray: any[][];
   opTnc: {currency: string, ask: number, timeframe: number};
   opPartsOfSpeech: any[] = [];
-  opPofSNo: number = 1;
+  opPofSNo: number = 1;             // The number of Parts od Speech to express in some Natural Language the Step / Operation as a command, etc
   opFormatted: string = '';
 
   evenNumbers: number[] = [];
@@ -288,7 +290,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // Get the number of PofS from the 2nd row of opTncArray
     this.opPofSNo = this.opTncArray[1].length - 5;
     console.log('-- Parts of Speech Number: ' + this.opPofSNo);
-    // Read pairs of PoS from the opTncArray
+    // Read pairs of PoS from the opTncArray into the opPartsOfSpeech
     for (let pos = 0; pos < this.opPofSNo; pos++) {
        this.opPartsOfSpeech.push(this.opTncArray[1][5 + pos]);
     }
