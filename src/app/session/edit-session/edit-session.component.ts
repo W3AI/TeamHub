@@ -591,7 +591,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // 650 - add new context to memory nodes m array
     this.m = this.m.concat(this.n);
 
-    
+
 
     `+
     dna.nQuery2IfFooter('    ') + 
@@ -661,6 +661,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
       } // END Iterate through the contextIdsToDo array
 
+      // 785 - Here must be operated the changes additions/deletions to the contextIdsToDo array
+      this.contextIdsToDo.splice(0,xIdToDoThisStep);
+
+      // 792
+      this.steps++;
 
     } // END main while loop
 
