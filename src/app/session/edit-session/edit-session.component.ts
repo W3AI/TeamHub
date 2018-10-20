@@ -554,7 +554,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         // Test if we have a solution
         if( this.testsPassed >= this.prTestNo ) {
           // 599 - Copy the id of the context passing test 1/i into the array of solutions
-          this.solutions = this.solutions.concat(n[0][1]);
+          this.solutions = this.solutions.concat(this.n[0][1]);
           this.solutionPaths.push(this.n[0][13]);
           this.nrSolutions++;
           this.newSolution = true;
@@ -562,7 +562,13 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       }
     }
 
-    // Build the table rows for nodes (contexts, entities) and transformations + later D3
+    // Build/update the table rows for nodes (contexts, entities) and transformations 
+    // + TODO - [ ] - later add D3 visualization of the evolving solution search graph
+
+    // Adding the memory used in b for each of the nodes in the new context n
+    for (let iMem = 0; iMem < this.n.length; iMem++) {
+      this.nodesMemSize += JSON.stringify(this.n[iMem]).length*8;
+    }
 
     `+
     dna.nQuery2IfFooter('    ') + 
