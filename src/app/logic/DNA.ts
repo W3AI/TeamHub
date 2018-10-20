@@ -45,6 +45,7 @@ function nBasicTestsCoder(entType: string, propName: string, condition: string, 
 function nTests(testArray: any[][]):string {
   let testScripts: string = `
   // Run all project tests on the current context n[] - as coded in nBasicTestsCoder()
+  // Test results will be in the Project Tests Array prTestArray[test][10 + nrResult]
   // TODO - [ ] - Add option for successive / integration / e2e testing on the same context
   `;
   for ( let t = 0; t<testArray.length; t++) {

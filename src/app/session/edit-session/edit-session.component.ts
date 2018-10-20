@@ -102,6 +102,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   txExpression = new Map();         // 670 - to express the sentence / verb / step details through a Natural Language verb expression rule
 
+  testsPassed: number = 0;        // number of tests passes - we have a solution when when all tests prTestNo are passed 
+
   stateStamp: string = '';
 
   // Problem Class structures:
@@ -535,8 +537,34 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       this.statesMemory.add(this.hashCode(this.stateStamp));
     }
     // TODO - [ ] - to check hashCodes / statesMemory after this point <<<<-------<<<< TODO !!!
+    
+    // 587 - Testing the current contexts
     `+
     dna.nTests(this.prTestArray) +
+    `
+    // 588 - Updating the current contexts line
+    for ( let test = 0; test < this.prTestNo; test++) {
+      this.testsPassed = 0;
+      if (this.prTestArray[test].length >= 10) {
+        // TODO - [ ] - Consider options for multiple results in one context
+        // 595 - updating the context status with the number of the test passed
+        this.n[0][this.n[0].indexOf("status") + 1] += "t" + test;
+        // updating the nr of tests passed in current context
+        this.testsPassed++;
+        // Test if we have a solution
+        if( this.testsPassed >= this.prTestNo ) {
+          // 599 - Copy the id of the context passing test 1/i into the array of solutions
+          this.solutions = this.solutions.concat(n[0][1]);
+          this.solutionPaths.push(this.n[0][13]);
+          this.nrSolutions++;
+          this.newSolution = true;
+        }
+      }
+    }
+
+    // Build the table rows for nodes (contexts, entities) and transformations + later D3
+
+    `+
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string
