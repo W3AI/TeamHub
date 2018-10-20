@@ -579,9 +579,14 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // 634 - update the nodes and transformations number in the memory table on the page
     // TODO - [ ] - replace with string interpolation {{ nodeIndex }} and {{ txIndex }}
-    // Or move after the rnaCode
+    // For now moved after the rnaCode
     // h.updateNodesNo(nodeIndex);
     // h.updateTxNo(txIndex);
+
+    // 638 - add context n [] to nodes table on the page
+    // TODO - [ ] - replace with string / textrea interpolation or Angular Mat Table, etc
+    // For now moved after the rnaCode
+    // addContextToMemoryTable("nodes", ctxtId, n);
 
     `+
     dna.nQuery2IfFooter('    ') + 
@@ -642,8 +647,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         console.log("######### txExpression: ");
         console.log(this.txExpression);
 
+        // 635 - update the nodes and transformations number in the memory table on the page
         h.updateNodesNo(this.nodeIndex);
         h.updateTxNo(this.txIndex);
+
+        // 638 - add to nodes table on the page
+        h.addContextToMemoryTable("nodes", this.ctxtId, this.n);
 
       } // END Iterate through the contextIdsToDo array
 
