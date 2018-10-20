@@ -535,8 +535,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       this.statesMemory.add(this.hashCode(this.stateStamp));
     }
     // TODO - [ ] - to check hashCodes / statesMemory after this point <<<<-------<<<< TODO !!!
-
     `+
+    dna.nTests(this.prTestArray) +
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string

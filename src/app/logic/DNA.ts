@@ -28,7 +28,7 @@ function nBasicTestsCoder(entType: string, propName: string, condition: string, 
     let c = this.c.slice();
     let result = [];
     let n = 0;  // Number of results
-    for (var i = 1; i < c.length; i++) {
+    for (let i = 1; i < c.length; i++) {
       if ( ( c[i][c[i].indexOf("type") + 1] == '${entType}' ) & ( c[i][c[i].indexOf('${propName}') + 1] ${condition} ${propVal} )) {
         result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", "${entType}", "${propName}", ${propVal}];
         this.prTestArray[t][10 + n] = result[n];  // 10 is the next available index
@@ -37,6 +37,24 @@ function nBasicTestsCoder(entType: string, propName: string, condition: string, 
     }
   `;
   return testFunction;
+}
+
+// nTests() - includes in the rnaCode all the test scripts (from prTestArray) to be run on the current context
+// the test scripts are those generated above in the nBasicTestsCoder() - 
+// for now - test scripts will put the passed test result strings in the prTestArray starting with cell rTestArray[t][10 + n]
+function nTests(testArray: any[][]):string {
+  let testScripts: string = `
+  // Run all project tests on the current context n[] - as coded in nBasicTestsCoder()
+  // TODO - [ ] - Add option for successive / integration / e2e testing on the same context
+  `;
+  for ( let t = 0; t<testArray.length; t++) {
+    testScripts += `{
+      // Project Test script ${t+1}
+      ${testArray[t][9]}
+    } // END Project Test script ${t+1}`;
+  }
+  testScripts += l;
+  return testScripts;
 }
 
 // qNames() array of the names in the q context
@@ -201,4 +219,4 @@ function nForFooter(n: number, indent: string): string {
 }
 
 // export all helper functions
-export { nBasicTestsCoder, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForTxExpression, nForHeader, nQuery2IfHeader, nQuery2IfFooter, nForFooter };
+export { nBasicTestsCoder, nTests, qNames, qOthers, nBasicQueryCoder, nBasicArgCoder, nForStepResults, nForStepUpdates, nForTxExpression, nForHeader, nQuery2IfHeader, nQuery2IfFooter, nForFooter };
