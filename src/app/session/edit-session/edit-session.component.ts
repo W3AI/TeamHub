@@ -577,6 +577,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       // break mainLoop;
     }
 
+    // 634 - update the nodes and transformations number in the memory table on the page
+    // TODO - [ ] - replace with string interpolation {{ nodeIndex }} and {{ txIndex }}
+    // Or move after the rnaCode
+    // h.updateNodesNo(nodeIndex);
+    // h.updateTxNo(txIndex);
+
     `+
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
@@ -635,6 +641,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         // Check txExpression
         console.log("######### txExpression: ");
         console.log(this.txExpression);
+
+        h.updateNodesNo(this.nodeIndex);
+        h.updateTxNo(this.txIndex);
 
       } // END Iterate through the contextIdsToDo array
 
