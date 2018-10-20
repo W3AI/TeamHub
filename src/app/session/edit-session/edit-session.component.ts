@@ -588,6 +588,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // For now moved after the rnaCode
     // addContextToMemoryTable("nodes", ctxtId, n);
 
+    // 650 - add new context to memory nodes m array
+    this.m = this.m.concat(this.n);
+
+    
+
     `+
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
