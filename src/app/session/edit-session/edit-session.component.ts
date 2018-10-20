@@ -565,9 +565,16 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // Build/update the table rows for nodes (contexts, entities) and transformations 
     // + TODO - [ ] - later add D3 visualization of the evolving solution search graph
 
-    // Adding the memory used in b for each of the nodes in the new context n
+    // 620 - Adding the memory used in b for each of the nodes in the new context n
     for (let iMem = 0; iMem < this.n.length; iMem++) {
       this.nodesMemSize += JSON.stringify(this.n[iMem]).length*8;
+    }
+
+    // 628 - Break out of the mainLoop = all loops if reched memory limit
+    // TODO - [ ] - deactivate the TypeScript error TS7028: Unused label
+    if (this.nodesMemSize >= this.memLimitMB*1000000) {
+      console.log("--- Nodes Memory used: " + this.nodesMemSize + " Passed Memory Limit of: " + this.memLimitMB + "MB");
+      // break mainLoop;
     }
 
     `+
