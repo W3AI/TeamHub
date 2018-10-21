@@ -61,7 +61,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   qNamesArray: string[] = [];     // TODO - [ ] - to consider adding a symetric structure for test entity names that should also be unique 
   qOtherNames: string[] = [];     // the array of n strings (pipe concat) of n-1 names - to test / ensure unicity of entities in query results
-  stepResults: any[] = [];               // To store the result of the op functions 
+  stepResults: any[] = [];        // To store the result of the op functions 
                                   // could also be implemented as an element of the opFunctionArray: 
                                   // eg: opFunctionArray[][11] = stepResults[]
 
@@ -109,7 +109,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   transformation: any[] = [];
   serviceVerb: string = 'pour';     // Default dev/test values -  to be update dynamically for each service / operation
   servicePrice: string = '1$';      // Default dev/test values -  to be update dynamically for each service / operation
-  serviceAuthor: string = 'IL';     // Default dev/test values -  to be update dynamically for each service / operation 
+  serviceAuthor: string = 'DNA IL nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -607,10 +607,10 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       "branch",this.branch,
       "verb",this.serviceVerb,
       "cost",this.servicePrice,
-      "changed",this.serviceFunction,
+      "changed",this.stepResults[0],
       // For DNA Engine testing - TODO - [ ] - add/use for sentence build txExpArray = txExpression.entries !!! 
       "sentence", "from" + " " + this.txExpression.get('fromJar') + " " + "to" + " " + this.txExpression.get('toJar'),
-      "author",this.serviceAuthor
+      "MIT / © ",this.serviceAuthor
     ];
 
     // 674 - Add transformation to Transformations table
@@ -683,6 +683,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         h.updateNodesNo(this.nodeIndex);
         h.updateTxNo(this.txIndex);
 
+        // Deduct 1 from the branch due to the last branch++ increment in the rnaCode
+        this.branch--;
+        // Show nr of branches = contexts and tx to add from the Memory m[] and Transformation t[] arrays 
+        console.log('-- =============== -- this.branch:');
+        console.log(this.branch);
+
         // 638 - add to nodes table on the page
         h.addContextToMemoryTable("nodes", this.ctxtId, this.n);
 
@@ -711,6 +717,15 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     console.log('-- this.previousContextId: ' + this.previousContextId);
     console.log('-- this.currentContextId: ' + this.currentContextId);
     console.log('-- this.nodeIndex: ' + this.nodeIndex);
+
+    console.log('-- this.m:');
+    console.log(this.m);
+
+    console.log('-- this.t:');
+    console.log(this.t);
+
+    console.log('-- this.contextIdsToDo:');
+    console.log(this.contextIdsToDo);
 
     // END eval rnaCode
 
