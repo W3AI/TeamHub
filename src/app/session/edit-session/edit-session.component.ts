@@ -54,7 +54,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
-  t: any[];                       // the transformations array - as in the dnas.js
+  t: any[][];                       // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
   q: any[][];                     // the context to query to get the input param for the function / nGene
   n: any[];                       // new context holder from query result  
@@ -109,7 +109,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   transformation: any[] = [];
   serviceVerb: string = 'pour';     // Default dev/test values -  to be update dynamically for each service / operation
   servicePrice: string = '1$';      // Default dev/test values -  to be update dynamically for each service / operation
-  serviceAuthor: string = 'DNA IL nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
+  serviceAuthor: string = 'IL DNA nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -618,7 +618,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // addTableRow("transformations",ctxtId, transformation);
 
     // 677 - add new transformation to memory transformations t array
-    this.t = this.t.concat(this.transformation);
+    this.t.push(this.transformation);
 
     `+
     dna.nQuery2IfFooter('    ') + 
