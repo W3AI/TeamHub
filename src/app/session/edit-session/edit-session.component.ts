@@ -106,6 +106,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   stateStamp: string = '';
 
+  transformation: any[] = [];
+  serviceVerb: string = 'pour';     // Default dev/test values -  to be update dynamically for each service / operation
+  servicePrice: string = '1$';      // Default dev/test values -  to be update dynamically for each service / operation
+  serviceAuthor: string = 'IL';     // Default dev/test values -  to be update dynamically for each service / operation 
+
   // Problem Class structures:
   prRows: any[] = [];
   prDefLines: number = 0;
@@ -591,7 +596,29 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // 650 - add new context to memory nodes m array
     this.m = this.m.concat(this.n);
 
+    // 653 - Add Transformations / relations / links to describe the steps of the solutions
+    // TODO - [ ] - Add to DNA Script Editor T&C one or more expression patterns in the advance section
+    this.transformation = [];
+    this.transformation = [
+      "txId",this.txIndex,
+      "source",this.previousContextId,
+      "target",this.currentContextId,
+      "step",this.steps,
+      "branch",this.branch,
+      "verb",this.serviceVerb,
+      "cost",this.servicePrice,
+      "changed",this.serviceFunction,
+      // For DNA Engine testing - TODO - [ ] - add/use for sentence build txExpArray = txExpression.entries !!! 
+      "sentence", "from" + " " + this.txExpression.get('fromJar') + " " + "to" + " " + this.txExpression.get('toJar'),
+      "author",this.serviceAuthor
+    ];
 
+    // 674 - Add transformation to Transformations table
+    // TODO - [ ] - replace with string / textrea interpolation or Angular Mat Table, etc
+    // addTableRow("transformations",ctxtId, transformation);
+
+    // 677 - add new transformation to memory transformations t array
+    this.t = this.t.concat(this.transformation);
 
     `+
     dna.nQuery2IfFooter('    ') + 
@@ -658,6 +685,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
         // 638 - add to nodes table on the page
         h.addContextToMemoryTable("nodes", this.ctxtId, this.n);
+
+        // 674 - Add transformation to Transformations table
+        h.addTableRow("transformations",this.ctxtId, this.transformation);
 
       } // END Iterate through the contextIdsToDo array
 
