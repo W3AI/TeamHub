@@ -442,19 +442,10 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     console.log('-- this.q:');
     console.log(this.q);
 
-    console.log('== END of ngOnInit() ==');
+    // Initializations on the initial Context before the step by step function / onInnoVote()
 
-    // Create memory table headers in ngAfteViewInit
-    // and show the initial context same as in flipper / main.html
-
-  } // END ngOnInit() ----------------------------- END ngOnInit() ----------------------- END ngOnInit() --------------------------
-
-  onInnoVote() {
-
-    // -- Eval Solver / rnaCoder function - based on the innoVote() from dnas.js - lines 379 - 796 <<<<<----------------------<<<<<<
-    // to be launched / controlled from Step / Start / Stop button(s)
-
-    // All basic initializations and test and step/functions codes are generated in ngOnInit() 
+    // dnas.js line: 93 - number of nodes in the initial context including the context node
+    this.nodeIndex = this.c.length;
 
     // dnas - 301 - Buid the state/hash of the first context by adding the states of each entity
     for (let entityId = 1; entityId <= this.c.length-1; entityId++) {
@@ -474,14 +465,26 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // console.log(this.statesMemory.size);
     // console.log(this.statesMemory);
 
-    // dnas.js line: 93 - number of nodes in the initial context including the context node
-    this.nodeIndex = this.c.length;
+    console.log('== END of ngOnInit() ==');
+
+    // Create memory table headers in ngAfteViewInit
+    // and show the initial context same as in flipper / main.html
+
+  } // END ngOnInit() ----------------------------- END ngOnInit() ----------------------- END ngOnInit() --------------------------
+
+  onInnoVote() {
+
+    // -- Eval Solver / rnaCoder function - based on the innoVote() from dnas.js - lines 379 - 796 <<<<<----------------------<<<<<<
+    // to be launched / controlled from Step / Start / Stop button(s)
+
+    // All basic initializations and test and step/functions codes are generated in ngOnInit() 
 
     let partialRnaResult: any;  // To test intermediary results
     let partialRnaString = '';  // `this.partialRnaResult += this.q[i1][5] +  ' ' + this.q[i2][5] + '\\n';` ;
 
     // Start building the rnaCode string to evaluate
     this.rnaCode = `
+    this.partialRnaResult = '';
     `+ 
     dna.nForHeader(this.opInputEntitiesNo, '  ', 'i', 1, '<', this.q.length, '++') +
     dna.nQuery2IfHeader('    ', this.opInputArray[0][9], this.opInputArray[1][9]) + 
@@ -552,10 +555,10 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // 588 - Updating the current contexts line
     for ( let test = 0; test < this.prTestNo; test++) {
       this.testsPassed = 0;
-      if (this.prTestArray[test].length >= 10) {
+      if (this.prTestArray[test].length > 10) {
         // TODO - [ ] - Consider options for multiple results in one context
         // 595 - updating the context status with the number of the test passed
-        this.n[0][this.n[0].indexOf("status") + 1] += "t" + test;
+        this.n[0][this.n[0].indexOf("status") + 1] = "t" + test;
         // updating the nr of tests passed in current context
         this.testsPassed++;
         // Test if we have a solution
@@ -642,6 +645,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     this.stepsAllowed = this.stepsInInvestorTable;    // 388
 
+    console.log("-- ========= -- q before mainLoop q:");
+    console.log(this.q);
+
+    console.log('-- ======== -- before mainLoop -- this.contextIdsToDo:');
+    console.log(this.contextIdsToDo);
+
     // mainLoop:                                      // 391
     while ( (this.steps<=this.stepsAllowed) && (this.nrSolutions<=this.nrSolutionsSought) && (this.contextIdsToDo.length>0) && (this.nodesMemSize<this.memLimitMB*1000000) ) {
 
@@ -670,7 +679,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         console.log("q:");
         console.log(this.q);
 
+        console.log('--#######: this.m[this.contextIdsToDo[xId]][11]: ' + this.m[this.contextIdsToDo[xId]][11]);
         this.m[this.contextIdsToDo[xId]][11] = "Done";  // 432
+        console.log('--#######: this.m[this.contextIdsToDo[xId]][11]: ' + this.m[this.contextIdsToDo[xId]][11]);
 
         console.log("######### contextIdsToDo at " + this.q[0][1] + " : " + this.contextIdsToDo.join());  // 434
 
@@ -738,6 +749,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     console.log('-- this.contextIdsToDo:');
     console.log(this.contextIdsToDo);
+
+    console.log('-- this.prTestArray[0].length:');
+    console.log(this.prTestArray[0].length);
+
+    console.log('-- this.solutions:');
+    console.log(this.solutions);
 
     // END eval rnaCode
 
