@@ -77,7 +77,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   stepsAllowed: number = 0;       // 105 - This should come either from definition of the problem or from the Innovation page where the Innovator should be able to change/experiment with different number of steps
 
   nodeHeader: string[] = ["id", "#" ,"type" ,"C/E" ,"name" ,"title" , "step" , "#", "branch", "#", "status", "Dn/TD","path","tasks"];
-  transformationHeader = ["txId","#","from","id","to","id", "step","#","branch","#","What","verb","HMuch","Price","Changed","Chg","Sentence","Expression","Author","Provider"];
+  transformationHeader = ["txId","#","from","id","to","id", "step","#","branch","#","What","verb","HMuch","Price","Changed","Chg","Sentence","Expression","License","Provider"];
 
   statesMemory = new Set();       // 294 - the statesMemory structure
   stateStampIni = '';             // 302 - to build the state/hash of the first context by adding the states of each entity
@@ -110,7 +110,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   transformation: any[] = [];
   serviceVerb: string = 'pour';     // Default dev/test values -  to be update dynamically for each service / operation
   servicePrice: string = '1$';      // Default dev/test values -  to be update dynamically for each service / operation
-  serviceAuthor: string = 'IL DNA nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
+  serviceAuthor: string = 'IL nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
 
   // Problem Class structures:
   prRows: any[] = [];
@@ -620,7 +620,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       "changed",this.stepResults[0],
       // For DNA Engine testing - TODO - [ ] - add/use for sentence build txExpArray = txExpression.entries !!! 
       "sentence", "from" + " " + this.txExpression.get('fromJar') + " " + "to" + " " + this.txExpression.get('toJar'),
-      "MIT / © ",this.serviceAuthor
+      "MIT",this.serviceAuthor
     ];
 
     // 674 - Add transformation to Transformations table

@@ -1,6 +1,7 @@
 .venture {
   width: 100%;
   padding: 10px;
+  text-align: center;
 }
 
 #reactor {
@@ -10,9 +11,9 @@
   border: 0px solid black;
 
   background-image: url('/assets/img/DNA-3AI.png');
-  background-size: 50%;
+
   background-blend-mode: lighten;
-  background-position: center;
+  background-position: center top;
   background-repeat: repeat-y;
 }
 
@@ -63,6 +64,7 @@ a {
 
 #log {
   width: 100%;
+  text-align: center;
 }
 
 table {
@@ -76,9 +78,7 @@ td, th {
   text-align: left;
   padding: 3px;
 }
-#nodes tr:nth-child(even),
-#transformations tr:nth-child(even) {
-  background-color: #dddddd;
-}
+
+
 
 
