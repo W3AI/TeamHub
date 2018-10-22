@@ -54,7 +54,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   // m is the memory of contexts and entities - initialized with context id = 0 ;
   m: any[][];                     // the memory array m - as in the dnas.js - to concatenate into it all emerging contexts
-  t: any[][];                       // the transformations array - as in the dnas.js
+  stepCtxts: any[][];             // to concat during rnaCode execution the context arrays generated during the step - nr of them = nr branches
+  t: any[][];                     // the transformations array - as in the dnas.js
   c: any[][];                     // the current context
   q: any[][];                     // the context to query to get the input param for the function / nGene
   n: any[];                       // new context holder from query result  
@@ -170,6 +171,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   constructor() {
   this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
+  this.stepCtxts = [];  // each new step will start with a blanc stepCtxts array to accumulate all ctxt nodes during the step
   this.t = [];  // TODO - [ ] - previous transfromations to be eventually added / concat to t in case of previous runs and multiple ini contexts
   this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
   
@@ -595,6 +597,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // 650 - add new context to memory nodes m array
     this.m = this.m.concat(this.n);
+    // also add context n[] to the list of nodes (ctxts and entities) generated during the step - nr of ctxts = nr branches
+    this.stepCtxts = this.stepCtxts.concat(this.n);
 
     // 653 - Add Transformations / relations / links to describe the steps of the solutions
     // TODO - [ ] - Add to DNA Script Editor T&C one or more expression patterns in the advance section
@@ -683,17 +687,25 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
         h.updateNodesNo(this.nodeIndex);
         h.updateTxNo(this.txIndex);
 
-        // Deduct 1 from the branch due to the last branch++ increment in the rnaCode
+        // Deduct 1 from the branch and ctxtId due to the last branch++ and ctxtId++ increment in the rnaCode
         this.branch--;
+        // this.ctxtId--;  // ? we might need to increase after adding to tables
         // Show nr of branches = contexts and tx to add from the Memory m[] and Transformation t[] arrays 
-        console.log('-- =============== -- this.branch:');
-        console.log(this.branch);
+        console.log('-- =============== -- this.branch: ' + this.branch);
+        console.log('-- ============== -- this.ctxtId: ' + this.ctxtId);
+        console.log('-- ============== -- this.steps: ' + this.steps);
+        console.log('-- ============== -- this.m.length: ' + this.m.length);
 
-        // 638 - add to nodes table on the page
-        h.addContextToMemoryTable("nodes", this.ctxtId, this.n);
+        // 638 - add step's contexts to the nodes table on the page 
+        h.addContextToMemoryTable("nodes", this.steps, this.stepCtxts);
+        // clear the stepsCtxts
+        this.stepCtxts = [];
 
-        // 674 - Add transformation to Transformations table
-        h.addTableRow("transformations",this.ctxtId, this.transformation);
+        for (let b = 0; b < this.branch; b++) {
+          // using ctxtId - 1 to include the ids of the contexts generated on this step
+          // 674 - Add transformation to Transformations table
+          h.addTableRow("transformations", b + this.ctxtId - 1, this.t[this.t.length - this.branch + b]);
+        }
 
       } // END Iterate through the contextIdsToDo array
 
