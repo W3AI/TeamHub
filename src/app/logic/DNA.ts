@@ -23,15 +23,17 @@ const l = '\n';
 //   }
 //   return result;
 // }
-function nBasicTestsCoder(entType: string, propName: string, condition: string, propVal: string ): string {
+// TODO - [X] - arrange for testing the initial context that n[] = c[] - the initial context
+function nBasicTestsCoder(testId: number, entType: string, propName: string, condition: string, propVal: string ): string {
   let testFunction: string = `
-    let c = this.c.slice();
+    let c = this.n.slice();
     let result = [];
     let n = 0;  // Number of results
+    // iterate through the entities in the context
     for (let i = 1; i < c.length; i++) {
       if ( ( c[i][c[i].indexOf("type") + 1] == '${entType}' ) & ( c[i][c[i].indexOf('${propName}') + 1] ${condition} ${propVal} )) {
         result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", "${entType}", "${propName}", ${propVal}];
-        this.prTestArray[t].push(result[n]);  //  push result[n]
+        this.prTestArray[${testId}].push(result[n]);  //  push result[n]
         n++;
       }
     }

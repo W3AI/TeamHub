@@ -174,7 +174,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   this.stepCtxts = [];  // each new step will start with a blanc stepCtxts array to accumulate all ctxt nodes during the step
   this.t = [];  // TODO - [ ] - previous transfromations to be eventually added / concat to t in case of previous runs and multiple ini contexts
   this.c = [["id",	0, "type", "Ctxt", "entities", 0,"step",   0,  "branch",   0, "status",     "ToDo", "path",""]];
-  
+  this.n = [];
+
   this.prEntArray = [];
   this.prSolArray = [];
   this.prTestArray = [];
@@ -226,12 +227,13 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // TODO - [ ] - expand to include multiple conditions on multiple properties
     // + same for query/cond coder on the operation side
     for ( let t = 0; t<this.prTestNo; t++) {
-      this.prTestArray[t][9] = dna.nBasicTestsCoder(this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
+      this.prTestArray[t][9] = dna.nBasicTestsCoder(t, this.prTestArray[t][3], this.prTestArray[t][6], this.prTestArray[t][7], this.prTestArray[t][8]);
     }
 
     // Run all tests on the initial context - same procedure to run later for all tests on all current contexts
     // - as coded in nBasicTestsCoder() with 
     //"... this.prTestArray[t][10 + n] = result[n]; ..." n = nr of results in a context
+    this.n = this.c;
     for ( let t = 0; t<this.prTestNo; t++) {
       eval(this.prTestArray[t][9]);
     }
@@ -555,6 +557,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // 588 - Updating the current contexts line
     for ( let test = 0; test < this.prTestNo; test++) {
       this.testsPassed = 0;
+      // TODO - [ ] - There should be a better test !!!!!! - ALL FOLLOWING CONTEXTS WILL PASS THE TEST ON THIS CONDITION - WRONG !!!
       if (this.prTestArray[test].length > 10) {
         // TODO - [ ] - Consider options for multiple results in one context
         // 595 - updating the context status with the number of the test passed
@@ -752,6 +755,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     console.log('-- this.prTestArray[0].length:');
     console.log(this.prTestArray[0].length);
+
+    console.log('-- this.prTestArray:');
+    console.log(this.prTestArray);
 
     console.log('-- this.solutions:');
     console.log(this.solutions);
