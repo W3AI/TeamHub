@@ -96,7 +96,7 @@ function addTableRow(tableId: string, contextId: number, array: any[]) {
     }
 }
 
-function addContextToMemoryTable(tableId, contextId, contextArray) {
+function addContextToMemoryTable(tableId: string, contextId: number, contextArray: any[]) {
     for( let i = 0; i < contextArray.length; i++) {
         addTableRow(tableId, contextId, contextArray[i]);
     }
@@ -116,5 +116,45 @@ function updateTxNo(txNo) {
     displayNodes.innerHTML = txNo;
   }
 
+// DNA editor functions from the Flipper project: flipper/webroot/js/dna-editor.js
+
+// TODO - check table/rows/cells length, etc
+function readCell(tableId: string, row: number, col: number) {
+    let table = <HTMLTableElement> document.getElementById(tableId);
+    let x = table.rows[row].cells;
+    let value = x[col].innerHTML;
+    return value;
+}
+
+// TODO - check table/rows/cells length, etc
+function setCell(tableId: string, row: number, col: number, value: any) {
+    let table = <HTMLTableElement> document.getElementById(tableId);
+    let x = table.rows[row].cells;
+    x[col].innerHTML = value;
+}
+
+// TODO - check table/rows/cells length, etc
+function readTableInArray(tableId: string) {
+    let table = <HTMLTableElement> document.getElementById(tableId);
+    let tableRows = table.rows;
+    // console.log(" Rows #: " + tableRows.length);
+    let tableArray = [];
+
+    for (let rowId = 0; rowId < tableRows.length; rowId++) {
+      let rowCells = table.rows[rowId].cells;
+      // console.log(table + " Cells in Row " + rowId + " : " + rowCells.length);
+      tableArray.push([]);
+      for (let colId = 0; colId < rowCells.length; colId++) {
+        if (rowCells[colId].innerHTML != "<br>") {
+          tableArray[rowId][colId] = rowCells[colId].innerHTML;
+        } else {
+          // TODO - Check "" and " "
+          tableArray[rowId][colId] = " ";
+        }
+      }
+    }
+    return tableArray;
+}
+
 // export all helper functions
-export { rn, lines, pipes, tokens, buildTableHeader, addTableRow, addContextToMemoryTable, updateNodesNo, updateTxNo };
+export { rn, lines, pipes, tokens, buildTableHeader, addTableRow, addContextToMemoryTable, updateNodesNo, updateTxNo, readCell, setCell, readTableInArray };

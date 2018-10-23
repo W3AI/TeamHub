@@ -767,6 +767,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     console.log('-- this.solutions:');
     console.log(this.solutions);
 
+    console.log('-- this.solutionPaths:');
+    console.log(this.solutionPaths);
+
     // END eval rnaCode
 
   }
