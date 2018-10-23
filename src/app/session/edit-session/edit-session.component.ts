@@ -737,6 +737,62 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     } // END main while loop
 
+    // 697 - Including here for now, showing one solution in the Investor table
+    // TODO - [ ] - Consider the obvious options of having several solution after s steps:
+    // How to browse, rank, select, archive, etc ??? 
+    if ( this.newSolution == true ) {
+
+      // we entered the block for processing the new solution - now we can turn newSolution to false
+      this.newSolution = false;
+
+      // Print the path of the context - we'll parse it then to read the tasks / transactions that lead to it
+      // console.log(" $$$$$$$$$$$$$ - Path to Solution context: " + n[0][13]);
+      // TODO - refactor this - do we need path on contexts and expression on transformations / txs?
+      let txPath = this.solutionPaths[this.nrSolutions - 1];  // -1 to count from 0 index
+
+      // TODO - to ensure txPath is the one of the solution - for now is the path to the current context
+      // to write in the solution array the path strings
+      let taskId = txPath.split("/"); // In taskId array we have the list of tasks to solution context
+
+      // TODO - Do we want all this to be a function?
+      // Iterate through taskId array and fill in the task lines in Investor cell
+      // starting with 1 as 0 is blank
+      for (let tskIx = 1; tskIx<taskId.length; tskIx++) {
+        // for now write in Investor cell in collumn 3 starting with line 4 the txIds of the solution path
+        h.setCell("Investor", 3 + tskIx, 2 , taskId[tskIx]);
+        // This line must happen after writing the tx in the html transformations table
+
+        // HERE is formating/writing the solution in the Investor cell
+
+        // Writing the verb = column 12 from transformations (index 11)
+        h.setCell("Investor", 3 + tskIx, 3 , h.readCell( "transformations", this.txIndex - taskId[tskIx] + 1, 11));
+        // txIndex - taskId[tskIx] + 1 to count the tasks from bottom up
+
+        // Writing the change = column 16 from transformations (index 15)
+        h.setCell("Investor", 3 + tskIx, 4 , h.readCell( "transformations", this.txIndex - taskId[tskIx] + 1, 15));
+
+        // TODO - for each taskId Read from tx or t array the Expression / index = 17 into a var expression
+        // then split the expression on the blank " " character into an array of tokens
+        // then write each token in a cell, starting from col 4 in the taskId row in "Investor" table
+        let sentenceExpression = h.readCell( "transformations", this.txIndex - taskId[tskIx] + 1, 17);
+        // console.log("$$$$$$$$$$$$$$$$$ - sentenceExpression: " + sentenceExpression);
+        // var sentenceExpression = t[taskId[tskIx]][17]; // TODO - fix also reading from t and m !!!!!!!!
+
+        let token = sentenceExpression.split(" ");
+        // console.log("$$$$$$$$$$$$$$$$$ - token: " + token.join("|"));
+        // console.log("$$$$$$$$$$$$$$$$$ - token.length: " + token.length);
+
+        // TODO - Thhis all must be reviewed for DNA Editor formatting, setCell
+        // 5 + (2 * tokenIx) - writing every second column starting from 5th one
+        for (let tokenIx = 0; tokenIx < token.length; tokenIx++) {
+          h.setCell("Investor", 3 + tskIx, 5 + (2 * tokenIx) , token[tokenIx]);
+        }
+
+      }
+
+    } // END of IF newSolution == true - and showing 1? last? solution in Investor table 
+    
+
     console.log('-- this.partialRnaResult:');
     console.log(this.partialRnaResult);
 

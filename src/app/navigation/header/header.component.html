@@ -11,11 +11,11 @@
             </button>nCortex 
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links">-</span> W3AI <span class="links">- DNA links -</span> 1Trillion 
+            <span class="links">-</span> W3AI <span class="links">- live links ~</span> 1Trillion 
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links">-</span> IL <span class="links">- DNA links -</span> 1Million
+                <span class="links">~</span> IL <span class="links">~ live links ~</span> 1Million
             </a>
         </ng-template>
 

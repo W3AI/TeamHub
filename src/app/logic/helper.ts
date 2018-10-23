@@ -130,12 +130,12 @@ function readCell(tableId: string, row: number, col: number): any {
 function setCell(tableId: string, row: number, col: number, value: any) {
     let table = <HTMLTableElement> document.getElementById(tableId);
     let x = table.rows[row].cells;
-    console.log('Investor table row: ');
-    console.log(x);
-    console.log('Investor table cell: ');
-    console.log(x[col].innerHTML);
-    console.log('Function passed value: ');
-    console.log(value);
+    // console.log('Investor table row: ');
+    // console.log(x);
+    // console.log('Investor table cell: ');
+    // console.log(x[col].innerHTML);
+    // console.log('Function passed value: ');
+    // console.log(value);
     x[col].innerHTML = value;
 }
 
