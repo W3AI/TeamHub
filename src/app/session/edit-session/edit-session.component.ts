@@ -644,9 +644,13 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // Here we code the mainLoop (391) non-specific statements surrounding the eval(rnaCode)
 
     // TODO - [] - Add input fields (steps, budget, timeframe) and a textarea for solution/plan just below the buttons
-    // For now we have stepsInInvestorTable initialized to 0 in ngOnInit
+    // We have stepsInInvestorTable initialized to 0 in ngOnInit
+    // But now we read it from the Investor table
+    this.stepsInInvestorTable = h.readCell("Investor",3,9);
+
     // Increase the number of steps and write it back to the table
     this.stepsInInvestorTable++;                      // 385
+    h.setCell("Investor", 3, 9, this.stepsInInvestorTable);
 
     this.stepsAllowed = this.stepsInInvestorTable;    // 388
 
