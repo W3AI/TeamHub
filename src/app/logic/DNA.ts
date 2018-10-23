@@ -28,12 +28,18 @@ function nBasicTestsCoder(testId: number, entType: string, propName: string, con
   let testFunction: string = `
     let c = this.n.slice();
     let result = [];
+    let resultStr = '';
     let n = 0;  // Number of results
     // iterate through the entities in the context
     for (let i = 1; i < c.length; i++) {
+      // Check if a property value pass the condition
       if ( ( c[i][c[i].indexOf("type") + 1] == '${entType}' ) & ( c[i][c[i].indexOf('${propName}') + 1] ${condition} ${propVal} )) {
         result[n] = ["contextId", c[0][1], "step", c[0][c[0].indexOf("step") + 1], "branch", c[0][c[0].indexOf("branch") + 1], "entityId", i, "entType", "${entType}", "${propName}", ${propVal}];
-        this.prTestArray[${testId}].push(result[n]);  //  push result[n]
+        this.prTestArray[${testId}].push(result[n]);  //  testId + 1 in order to start test numbers from 1 not 0
+        // also update the prCtxtsTestsResultsMatrix
+        resultStr = "test " + ${testId + 1} + " on entity " + c[i][c[i].indexOf("name") + 1];   // t1, etc +
+        this.prCtxtResultRow[0].push(resultStr);
+        // TODO - [ ] - later consider the option of multiple entities test passes in the same context 
         n++;
       }
     }
@@ -49,6 +55,10 @@ function nTests(testArray: any[][]):string {
   // Run all project tests on the current context n[] - as coded in nBasicTestsCoder()
   // Test results will be in the Project Tests Array prTestArray[test][10 + nrResult]
   // TODO - [ ] - Add option for successive / integration / e2e testing on the same context
+  this.prCtxtResultRow = [];  
+  // TODO - [ ] - add in testsRow below logging data, time, branch, step, etc
+  let testsRow = ["ctxtId", this.currentContextId,"passed"];
+  this.prCtxtResultRow.push(testsRow);
   `;
   for ( let t = 0; t<testArray.length; t++) {
     testScripts += `{
@@ -56,6 +66,10 @@ function nTests(testArray: any[][]):string {
       ${testArray[t][9]}
     } // END Project Test script ${t+1}`;
   }
+  testScripts += `
+  // Add all test results of the context to the project Contexts Test Results Matrix
+  this.prCtxtsTestsResultsMatrix.push(this.prCtxtResultRow);
+  `;
   testScripts += l;
   return testScripts;
 }

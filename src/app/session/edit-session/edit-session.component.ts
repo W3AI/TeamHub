@@ -88,6 +88,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   previousContextId: number = 0;  // dnas.js - line: 347
   currentContextId: number = 0;   // dnas.js - line: 348
 
+  prCtxtResultRow: any[] = [];    // to store the results of the tests for the current context
+  prCtxtsTestsResultsMatrix: any[][] = [];  // Matrix to store on lines for each context the result of the test on columns 
+                                  // for now if the tests pass we push on the context line a string t + 'nr test' => [t1] [t2][t7] ... [tn]
+                                  // TODO - [ ] - consider the option of storing? all results = full matrix!
+
   solutions = [];                 // 352 - Array to store the context solutions
   solutionPaths = [];             // 353 - In this array we'll store the strings / path of tx to a solution context e.g.: /2/7/20/31/47/57
   nrSolutions = 0;                // 354 - We initialize this with 0 -
@@ -476,6 +481,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   onInnoVote() {
 
+    // TODO - [ ] - move rnaCode builder out of onInnoVote() to not have it recalculated at each click 
+
     // -- Eval Solver / rnaCoder function - based on the innoVote() from dnas.js - lines 379 - 796 <<<<<----------------------<<<<<<
     // to be launched / controlled from Step / Start / Stop button(s)
 
@@ -554,26 +561,21 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     `+
     dna.nTests(this.prTestArray) +
     `
-    // 588 - Updating the current contexts line
-    for ( let test = 0; test < this.prTestNo; test++) {
-      this.testsPassed = 0;
-      // TODO - [ ] - There should be a better test !!!!!! - ALL FOLLOWING CONTEXTS WILL PASS THE TEST ON THIS CONDITION - WRONG !!!
-      if (this.prTestArray[test].length > 10) {
-        // TODO - [ ] - Consider options for multiple results in one context
-        // 595 - updating the context status with the number of the test passed
-        this.n[0][this.n[0].indexOf("status") + 1] = "t" + test;
-        // updating the nr of tests passed in current context
-        this.testsPassed++;
-        // Test if we have a solution
-        if( this.testsPassed >= this.prTestNo ) {
-          // 599 - Copy the id of the context passing test 1/i into the array of solutions
-          this.solutions = this.solutions.concat(this.n[0][1]);
-          this.solutionPaths.push(this.n[0][13]);
-          this.nrSolutions++;
-          this.newSolution = true;
-        }
-      }
+    // 588 - Checking to see if all tests are passed in current context
+    // the project Contexts Test Results Matrix was updated above
+    // We have a solution passing all test when length of prCtxtResultRow - 3 >=  this.prTestNo
+    let nrTestsPassed = this.prCtxtResultRow[0].length - 3;
+    if ( nrTestsPassed >= this.prTestNo ) {
+      // TODO - [ ] - Consider options for multiple results in one context
+      // 595 - updating the context status with the number of the test Passed
+      this.n[0][this.n[0].indexOf("status") + 1] = "P" + nrTestsPassed;
+      // ~ 599 - Copy the id of the solution context into the array of solutions
+      this.solutions = this.solutions.concat(this.n[0][1]);   // TODO - [ ] - make it a push
+      this.solutionPaths.push(this.n[0][13]);
+      this.nrSolutions++;
+      this.newSolution = true; 
     }
+    
 
     // Build/update the table rows for nodes (contexts, entities) and transformations 
     // + TODO - [ ] - later add D3 visualization of the evolving solution search graph
@@ -758,6 +760,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     console.log('-- this.prTestArray:');
     console.log(this.prTestArray);
+
+    console.log('-- this.prCtxtsTestsResultsMatrix');
+    console.log(this.prCtxtsTestsResultsMatrix);
 
     console.log('-- this.solutions:');
     console.log(this.solutions);
