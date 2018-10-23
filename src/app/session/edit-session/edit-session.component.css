@@ -4,6 +4,16 @@
   text-align: center;
 }
 
+#cell {
+  width: 100%;
+  background-image: url('/assets/img/AAAIII-Cell.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  padding:0px; 
+  margin:0px; 
+  border:0px
+}
+
 #reactor {
   display: flex;
 
