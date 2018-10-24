@@ -1,9 +1,26 @@
+.world-brain {
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 5px;
+
+    width: 100%;
+    height: 200px;
+    background-image: url('/assets/img/3AI-World.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
 .quote {
     text-align: center; 
     color: #8c828c;
     font-size: 60%;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #main-title {

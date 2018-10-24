@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
+// import * as d3 from "d3";
+import * as d3rna from "../../logic/D3-RNA";
 
 // l = new line - used in formatting
 const l = '\n';
@@ -479,6 +481,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   } // END ngOnInit() ----------------------------- END ngOnInit() ----------------------- END ngOnInit() --------------------------
 
+
+
   onInnoVote() {
 
     // TODO - [ ] - move rnaCode builder out of onInnoVote() to not have it recalculated at each click 
@@ -791,7 +795,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
       }
 
     } // END of IF newSolution == true - and showing 1? last? solution in Investor table 
-    
+
 
     console.log('-- this.partialRnaResult:');
     console.log(this.partialRnaResult);
@@ -835,6 +839,15 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+
+    // This is just for the 3Jars Demo
+    if (d3rna.d3Entity == true) {
+      d3rna.createNode(this.c[1], 0, d3rna.d3Switch);
+      d3rna.createNode(this.c[2], 0, d3rna.d3Switch);
+      d3rna.createNode(this.c[3], 0, d3rna.d3Switch);
+      }
+
     // Build Nodes and Transformations Headers for the memory tables
     h.buildTableHeader("nodes",this.nodeHeader);
     h.buildTableHeader("transformations", this.transformationHeader);
