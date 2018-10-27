@@ -30,6 +30,7 @@ ngOnInit() {
       source: this.source
     });
 
+    // TODO - [ ] - change center to user LonLat
     this.view = new OlView({
       center: fromLonLat([24.9667, 45.85]),
       zoom: 1.2
