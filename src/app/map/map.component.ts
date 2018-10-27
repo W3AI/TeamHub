@@ -31,8 +31,8 @@ ngOnInit() {
     });
 
     this.view = new OlView({
-      center: fromLonLat([6.661594, 50.433237]),
-      zoom: 3
+      center: fromLonLat([24.9667, 45.85]),
+      zoom: 1.2
     });
 
     this.map = new OlMap({
