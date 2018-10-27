@@ -36,9 +36,11 @@ ngOnInit() {
       zoom: 1.2
     });
 
+    // Added controls: [], - to remove default controls
     this.map = new OlMap({
       target: 'map',
       layers: [this.layer],
+      controls: [],
       view: this.view
     });
   }
