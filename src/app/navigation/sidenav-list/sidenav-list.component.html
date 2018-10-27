@@ -2,7 +2,7 @@
 
     <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About nCortex</span>
+        <span class="nav-caption">About W3AI</span>
     </a>
     <a mat-list-item routerLink="/session" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>code</mat-icon>
@@ -40,13 +40,13 @@
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">nProjects</span>            
     </a>
-    <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
+<!--    <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">nSkills</span>            
-    </a>
+    </a> -->
     <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">nVentures</span>            
+        <span class="nav-caption">nTeams</span>            
     </a>
     <mat-list-item> 
         <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
@@ -64,7 +64,7 @@
             <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
             <a href="https://www.meetup.com/HalifaxAIG/">Halifax</a>
         </li>
-        <li class="nav-footer-small"><a href="https://github.com/W3AI/TeamHub">Clone nTeams PoC 0.4 @ GitHub</a></li>
+        <li class="nav-footer-small"><a href="https://github.com/W3AI/TeamHub">Clone nGene PoC 0.4 @ GitHub</a></li>
         <li>© Ianta Labs / MIT License</li>
     </ul>
 </div>

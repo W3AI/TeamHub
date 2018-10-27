@@ -8,10 +8,10 @@
         <a routerLink="/">
             <button mat-icon-button fxHide.lt-md>
                 <mat-icon class="teamhub-header-icon"></mat-icon>
-            </button>nTeams 
+            </button>W3AI 
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links">-</span> 3AI <span class="links">- live links ~</span> 1Trillion 
+            <span class="links"></span> nGenes <span class="links">- live links ~</span> 1Trillion 
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
@@ -23,15 +23,15 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
 
-            <li><a routerLink="/about">About</a></li>
+            <li><a routerLink="/about">About W3AI</a></li>
         <!--    <li><a routerLink="/team">nBots</a></li>
             <li><a routerLink="/market">Jobs</a></li>
             <li><a routerLink="/friend">Friends</a></li> -->
 
             <li *ngIf="isAuth$ | async"><a routerLink="/session">nGenes</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/project">nProjects</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/skill">nSkills</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/venture">nVentures</a></li>
+            <!-- <li *ngIf="isAuth$ | async"><a routerLink="/skill">nSkills</a></li> -->
+            <li *ngIf="isAuth$ | async"><a routerLink="/venture">nTeams</a></li>
 
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
