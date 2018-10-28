@@ -1,7 +1,14 @@
-#spinner {
+#OpenLayers {
     z-index: -1;
     position: absolute;
 }
+
+table {
+    font-family: arial, sans-serif;
+    font-size: x-small;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
 .world-brain {
     text-align: center;
