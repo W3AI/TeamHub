@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+
+import * as h from "../logic/helper";
+import * as q from "../logic/AlgoQueue";
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
 
@@ -67,6 +70,13 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+
+    // testing writing in the loop table from the queue matric
+    h.setCell('loop', 3, 3, 'test loop');
+    h.setCell('loop', 4, 4, q.queue[3][0]);
   }
 
 }
