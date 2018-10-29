@@ -11,6 +11,8 @@ import * as q from "../logic/AlgoQueue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
+  interval: number = 300;   // set interval timer to 300ms
+
   tagsCounter: number;
   i: number = 0;
 
@@ -193,7 +195,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
         - Math.floor(Math.random() * Math.floor(2))) / 100;
 
-    }, 300);
+    }, this.interval );
 
   }
 
