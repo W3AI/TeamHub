@@ -28,6 +28,15 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   realtime = false;
 
+  // vars for spinner
+  link1: string = '';
+  link2: string = '';
+  link3: string = '';
+  link4: string = '';
+  link5: string = '';
+  link6: string = '';
+  link7: string = '';
+
   constructor() {
 
     // this.timer = setInterval( ()=> {
