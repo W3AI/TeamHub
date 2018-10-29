@@ -11,7 +11,7 @@ import * as q from "../logic/AlgoQueue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
-  interval: number = 300;   // set interval timer to 300ms
+  interval: number = 1000;   // set interval timer to 300ms
 
   tagsCounter: number;
   i: number = 0;
