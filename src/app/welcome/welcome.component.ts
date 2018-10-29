@@ -65,6 +65,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   nProject5: string = '';
   nProject6: string = '';
   nProject7: string = '';
+  // Country Flag / Code for Project
+  pF1: string = '';
+  pF2: string = '';
+  pF3: string = '';
+  pF4: string = '';
+  pF5: string = '';
+  pF6: string = '';
+  pF7: string = '';
 
   nService1: string = '';
   nService2: string = '';
@@ -73,6 +81,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   nService5: string = '';
   nService6: string = '';
   nService7: string = '';
+  // Country Flag / Code for Service
+  sF1: string = '';
+  sF2: string = '';
+  sF3: string = '';
+  sF4: string = '';
+  sF5: string = '';
+  sF6: string = '';
+  sF7: string = '';
 
   constructor() {
 
@@ -158,6 +174,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.nProject5 = problems[(this.i + 3) % nrLinks][5];
       this.nProject6 = problems[(this.i + 3) % nrLinks][6];
       this.nProject7 = problems[(this.i + 3) % nrLinks][7];
+      // Show Country code for each Project associated to tag 3
+      this.pF1 = pFlags[(this.i + 3) % nrLinks][0];
+      this.pF2 = pFlags[(this.i + 3) % nrLinks][1];
+      this.pF3 = pFlags[(this.i + 3) % nrLinks][2];
+      this.pF4 = pFlags[(this.i + 3) % nrLinks][3];
+      this.pF5 = pFlags[(this.i + 3) % nrLinks][4];
+      this.pF6 = pFlags[(this.i + 3) % nrLinks][5];
+      this.pF7 = pFlags[(this.i + 3) % nrLinks][6];
 
       // Write the Titles of the Services associated with the mid Tag / Link - nr 4
       this.nService1 = services[(this.i + 3) % nrLinks][1];
@@ -167,6 +191,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.nService5 = services[(this.i + 3) % nrLinks][5];
       this.nService6 = services[(this.i + 3) % nrLinks][6];
       this.nService7 = services[(this.i + 3) % nrLinks][7];
+      // Show Country code for each Service associated to tag 3
+      this.sF1 = sFlags[(this.i + 3) % nrLinks][0];
+      this.sF2 = sFlags[(this.i + 3) % nrLinks][1];
+      this.sF3 = sFlags[(this.i + 3) % nrLinks][2];
+      this.sF4 = sFlags[(this.i + 3) % nrLinks][3];
+      this.sF5 = sFlags[(this.i + 3) % nrLinks][4];
+      this.sF6 = sFlags[(this.i + 3) % nrLinks][5];
+      this.sF7 = sFlags[(this.i + 3) % nrLinks][6];
 
       // Move to next tag / link in the queue
       this.i++;
