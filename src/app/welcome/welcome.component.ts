@@ -15,6 +15,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   tagsCounter: number;
   i: number = 0;
+  nrInterests = 7;  // 7 Default interests :-)
 
   // TODO - Build Account Setup page to setup like these
 
@@ -95,6 +96,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     // Translating gs code from function intlTeams() from WorldMarket.gs / W3AI spreadsheet / @W3AI.net 
     // 14 - Starting from line 14 - skipping the gs files initializations
     let nrLinks = q.queue.length;
+    this.nrInterests = nrLinks;
     console.log('-- Queue Length: ' + nrLinks);
 
     // 15 - TODO - [ ] - add top header line to the matrix? including the nrProblems and Services

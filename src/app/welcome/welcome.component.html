@@ -12,13 +12,13 @@
 
 <table id="loop">
   <tr>
-    <td>A</td><td>B</td><td width="30%">C</td><td>D</td><td>E</td><td  width="20%">F</td><td>G</td><td>H</td><td width="30%">I</td><td>J</td><td>K</td>
+    <td>A</td><td>B</td><td width="30%">C</td><td width="3">D</td><td width="2">E</td><td  width="20%">F</td><td width="2">G</td><td width="3">H</td><td width="30%">I</td><td>J</td><td>K</td>
   </tr>
   <tr>
     <td>1</td><td></td><td><b>AI PMO</b></td><td></td><td></td><td><b>Agile AI</b></td><td></td><td></td><td><b>AI COE</b></td><td></td><td></td>
   </tr>
   <tr>
-    <td>2</td><td></td><td>nProjects</td><td></td><td>#P</td><td>nTeams</td><td>#S</td><td></td><td>nGenes</td><td></td><td></td>
+    <td>2</td><td></td><td>nProjects</td><td></td><td>#</td><td>nTeams</td><td>#</td><td></td><td>nGenes</td><td></td><td></td>
   </tr>
   <tr>
     <td>3</td><td></td><td>{{nProject1 | slice:0:20 }}</td><td>{{pF1 | uppercase }}</td><td>{{pT1}}</td><td>{{link1 | slice:0:20}}</td><td>{{sT1}}</td><td>{{sF1 | uppercase }}</td><td>{{nService1 | slice:0:20}}</td><td></td><td></td>
@@ -42,10 +42,10 @@
     <td>9</td><td></td><td>{{nProject7 | slice:0:20}}</td><td>{{pF7 | uppercase }}</td><td>{{pT7}}</td><td>{{link7 | slice:0:20}}</td><td>{{sT7}}</td><td>{{sF7 | uppercase }}</td><td>{{nService7 | slice:0:20}}</td><td></td><td></td>
   </tr>
   <tr>
-    <td>a</td><td></td><td></td><td></td><td></td><td>i: {{i}}</td><td></td><td></td><td></td><td></td><td></td>
+    <td>a</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td>b</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td>b</td><td></td><td>i: {{(i +3) % nrInterests}} - {{link4| slice:0:12}}</td><td></td><td></td><td>interests: {{nrInterests}}</td><td></td><td></td><td>i: {{(i +3) % nrInterests}} - {{link4| slice:0:12}}</td><td></td><td></td>
   </tr>
   <tr>
     <td>c</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
