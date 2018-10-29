@@ -30,42 +30,42 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   constructor() {
 
-    this.timer = setInterval( ()=> {
+    // this.timer = setInterval( ()=> {
 
-      // Super Neural Net Teams
-      this.superFriendsNo = this.superFriendsNo + Math.floor(Math.random() * Math.floor(4))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   // Super Neural Net Teams
+    //   this.superFriendsNo = this.superFriendsNo + Math.floor(Math.random() * Math.floor(4))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.superProjectsNo = this.superProjectsNo + Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.superProjectsNo = this.superProjectsNo + Math.floor(Math.random() * Math.floor(3))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.superServicesNo = this.superServicesNo + Math.floor(Math.random() * Math.floor(5))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.superServicesNo = this.superServicesNo + Math.floor(Math.random() * Math.floor(5))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.superTxPerMs = this.superTxPerMs + Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.superTxPerMs = this.superTxPerMs + Math.floor(Math.random() * Math.floor(3))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.superRatePerMin = this.superRatePerMin + (Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2))) / 100;
+    //   this.superRatePerMin = this.superRatePerMin + (Math.floor(Math.random() * Math.floor(3))
+    //     - Math.floor(Math.random() * Math.floor(2))) / 100;
 
 
-      // Office Teams
-      this.officeFriendsNo = this.officeFriendsNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   // Office Teams
+    //   this.officeFriendsNo = this.officeFriendsNo + Math.floor(Math.random() * Math.floor(2))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.officeProjectsNo = this.officeProjectsNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.officeProjectsNo = this.officeProjectsNo + Math.floor(Math.random() * Math.floor(2))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.officeServicesNo = this.officeServicesNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.officeServicesNo = this.officeServicesNo + Math.floor(Math.random() * Math.floor(2))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.officeTxPerMs = this.officeTxPerMs + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
+    //   this.officeTxPerMs = this.officeTxPerMs + Math.floor(Math.random() * Math.floor(2))
+    //     - Math.floor(Math.random() * Math.floor(2));
 
-      this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2))) / 100;
+    //   this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
+    //     - Math.floor(Math.random() * Math.floor(2))) / 100;
 
-    }, 500);
+    // }, 500);
 
   }
 
@@ -132,12 +132,67 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   // 69 - var urlFlags = "https://tcp1pnet.files.wordpress.com/2018/06/";
   let urlFlags = 'assets/flags/';
 
-    this.timer = setInterval( ()=> {
+  // 71 - Now Start the Market Wheel
+  // TODO - [ ] - To use some modulo nrLinks?
+  let nrCycles = 10;  // TODO - [ ] - To change after fixing the speed
+  let i = 1;
+  // while (i <= nrLinks * nrCycles) {
+
+  //     for (let s = 0; s < spikes; s++) {
+
+  //       // Write the new wheel moved by one cell up
+  //       h.setCell('loop', row0 + s, 3, '');  // market.getRange(row0 + s, 3).setValue(""); // Equivalent to eraseing the problem
+  //       h.setCell('loop', row0 + s, 4, '');  // market.getRange(row0 + s, 4).setValue("");// TODO - Erase the Flag for problems
+
+  //       h.setCell('loop', row0 + s, 9, '');  // market.getRange(row0 + s, 9).setValue(""); // Equivalent to eraseing the service
+  //       h.setCell('loop', row0 + s, 8, '');  // market.getRange(row0 + s, 8).setValue(""); // TODO - Erase the Flag for services
+
+  //       h.setCell('loop', row0 + s, 6, tag[(i - 1 + s) % nrLinks][0]);  // market.getRange(row0 + s, 6).setValue(tag[(i-1+s)%nrLinks][0]);  // Write the links / tags
+  //       h.setCell('loop', row0 + s, 5, tag[(i - 1 + s) % nrLinks][1]);  // market.getRange(row0 + s, 5).setValue(tag[(i-1+s)%nrLinks][1]);  // Write Nr problems for the link tag
+  //       h.setCell('loop', row0 + s, 7, tag[(i - 1 + s) % nrLinks][2]);  // market.getRange(row0 + s, 7).setValue(tag[(i-1+s)%nrLinks][2]);  // Write Nr services for the link tag
+
+  //       // Write the Top 7 Problems associated with the Link in the middle (s+3) ; starting from col 3 / problems__001 ; i-1+3 to display the problems for the middle tag
+  //       if (tag[(i - 1 + 3) % nrLinks][1] > 0) {
+  //         for (let pn = 0; pn < tag[(i - 1 + 3) % nrLinks][1]; pn++) {
+  //           h.setCell('loop', row0 + pn, 3, problems[(i - 1 + 3) % nrLinks][pn]);   // market.getRange(row0 + pn, 3).setValue(problems[(i-1+3)%nrLinks][pn]);  // Write the Problems associated with the link tag     
+
+  //           // market.getRange(row0 + pn, 4).setFormula('=image("'+ urlFlags + pFlags[(i-1+3)%nrLinks][pn] + '.png")'); // display the flag
+  //         }
+  //       }
+
+  //       // Write the Top 7 Services associated with the Link in the middle (s+3) ; starting from col 10 / services__001 ; i-1+3 to display the problems for the middle tag
+  //       if (tag[(i - 1 + 3) % nrLinks][2] > 0) {
+  //         for (let sn = 0; sn < tag[(i - 1 + 3) % nrLinks][2]; sn++) {
+  //           h.setCell('loop', row0 + sn, 3, services[(i - 1 + 3) % nrLinks][sn]);   // market.getRange(row0 + sn, 9).setValue(services[(i-1+3)%nrLinks][sn]);  // display the services
+
+  //           // market.getRange(row0 + sn, 8).setFormula('=image("'+ urlFlags + sFlags[(i-1+3)%nrLinks][sn] + '.png")'); // display the flag
+  //         }
+  //       }
+
+  //     }
+
+  //     h.setCell('loop', row0 + 7, 6, i); // market.getRange(row0 + 7, 6).setValue(i);  
+
+  //     i++;
+
+  //     // this.timer = setInterval(() => {
+  //     //   // Just wait ms 100, etc
+  //     //   i++;
+  //     //   // TODO - [ ] - to change dynamically the interval time ms - to increase or decrease loop speed, stop, resume etc
+  //     // }, 100);
+
+  //     // this.delay(300).then(any=>{
+  //     //   //your task after delay
+  //     //   i++;
+  //     // });
+
+  //   } // END of while loop
 
 
-      // TODO - [ ] - to change dynamically the interval time ms - to increase or decrease loop speed, stop, resume etc
-    }, 500);
+  } // END of ngAfterViewInit
 
-  }
+  // async delay(ms: number) {
+  //   await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+  // }
 
 }
