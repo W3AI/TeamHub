@@ -840,7 +840,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    // This is just for the 3Jars d3 Demo if will work
+    // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
     if (d3rna.d3Entity == true) {
       d3rna.createNode(this.c[1], 0, d3rna.d3Switch);
       d3rna.createNode(this.c[2], 0, d3rna.d3Switch);
