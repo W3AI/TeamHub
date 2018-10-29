@@ -236,8 +236,9 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   getPrjFlag1() {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF1 && (this.pF1 != '')) {
-      // console.log('-- this.pF1: ' + this.pF1.toUpperCase());
-      flagPath += this.pF1.toUpperCase() + '.png';
+      flagPath += this.pF1.toUpperCase() + '.png)';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -245,6 +246,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF2  && (this.pF2 != '')) {
       flagPath += this.pF2.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -252,6 +255,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF3 && (this.pF3 != '' )) {
       flagPath += this.pF3.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -259,6 +264,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF4 && (this.pF4 != '' )) {
       flagPath += this.pF4.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -266,6 +273,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF5 && (this.pF5 != '' ) ) {
       flagPath += this.pF5.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -273,6 +282,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF6 && (this.pF6 != '' ) ) {
       flagPath += this.pF6.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
@@ -280,6 +291,73 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     let flagPath = 'url(/assets/flags/';
     if ( this.pF7 && (this.pF7 != '' ) ) {
       flagPath += this.pF7.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+
+  // 7 functions for getSrvFlags
+  getSrvFlag1() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF1 && (this.sF1 != '')) {
+      flagPath += this.sF1.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag2() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF2  && (this.sF2 != '')) {
+      flagPath += this.sF2.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag3() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF3 && (this.sF3 != '' )) {
+      flagPath += this.sF3.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag4() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF4 && (this.sF4 != '' )) {
+      flagPath += this.sF4.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag5() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF5 && (this.sF5 != '' ) ) {
+      flagPath += this.sF5.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag6() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF6 && (this.sF6 != '' ) ) {
+      flagPath += this.sF6.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
+    }
+    return flagPath;
+  }
+  getSrvFlag7() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.sF7 && (this.sF7 != '' ) ) {
+      flagPath += this.sF7.toUpperCase() + '.png';
+    } else {
+      flagPath = 'url(/assets/flags/bg.png)';
     }
     return flagPath;
   }
