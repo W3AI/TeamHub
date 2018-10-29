@@ -233,6 +233,57 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  getPrjFlag1() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF1 ) {
+      // console.log('-- this.pF1: ' + this.pF1.toUpperCase());
+      flagPath += this.pF1.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag2() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF2 ) {
+      flagPath += this.pF2.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag3() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF3 ) {
+      flagPath += this.pF3.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag4() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF4 ) {
+      flagPath += this.pF4.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag5() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF5 ) {
+      flagPath += this.pF5.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag6() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF6 ) {
+      flagPath += this.pF6.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+  getPrjFlag7() {
+    let flagPath = 'url(/assets/flags/';
+    if ( this.pF7 ) {
+      flagPath += this.pF7.toUpperCase() + '.png';
+    }
+    return flagPath;
+  }
+
   ngOnInit() {
   }
 
