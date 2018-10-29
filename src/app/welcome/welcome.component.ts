@@ -167,13 +167,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.sT7 = tag[(this.i + 6) % nrLinks][2];
 
       // Write the Titles of the Projects associated with the mid Tag / Link - nr 4
-      this.nProject1 = problems[(this.i + 3) % nrLinks][1];
-      this.nProject2 = problems[(this.i + 3) % nrLinks][2];
-      this.nProject3 = problems[(this.i + 3) % nrLinks][3];
-      this.nProject4 = problems[(this.i + 3) % nrLinks][4];
-      this.nProject5 = problems[(this.i + 3) % nrLinks][5];
-      this.nProject6 = problems[(this.i + 3) % nrLinks][6];
-      this.nProject7 = problems[(this.i + 3) % nrLinks][7];
+      this.nProject1 = problems[(this.i + 3) % nrLinks][0];
+      this.nProject2 = problems[(this.i + 3) % nrLinks][1];
+      this.nProject3 = problems[(this.i + 3) % nrLinks][2];
+      this.nProject4 = problems[(this.i + 3) % nrLinks][3];
+      this.nProject5 = problems[(this.i + 3) % nrLinks][4];
+      this.nProject6 = problems[(this.i + 3) % nrLinks][5];
+      this.nProject7 = problems[(this.i + 3) % nrLinks][6];
       // Show Country code for each Project associated to tag 3
       this.pF1 = pFlags[(this.i + 3) % nrLinks][0];
       this.pF2 = pFlags[(this.i + 3) % nrLinks][1];
@@ -184,13 +184,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.pF7 = pFlags[(this.i + 3) % nrLinks][6];
 
       // Write the Titles of the Services associated with the mid Tag / Link - nr 4
-      this.nService1 = services[(this.i + 3) % nrLinks][1];
-      this.nService2 = services[(this.i + 3) % nrLinks][2];
-      this.nService3 = services[(this.i + 3) % nrLinks][3];
-      this.nService4 = services[(this.i + 3) % nrLinks][4];
-      this.nService5 = services[(this.i + 3) % nrLinks][5];
-      this.nService6 = services[(this.i + 3) % nrLinks][6];
-      this.nService7 = services[(this.i + 3) % nrLinks][7];
+      this.nService1 = services[(this.i + 3) % nrLinks][0];
+      this.nService2 = services[(this.i + 3) % nrLinks][1];
+      this.nService3 = services[(this.i + 3) % nrLinks][2];
+      this.nService4 = services[(this.i + 3) % nrLinks][3];
+      this.nService5 = services[(this.i + 3) % nrLinks][4];
+      this.nService6 = services[(this.i + 3) % nrLinks][5];
+      this.nService7 = services[(this.i + 3) % nrLinks][6];
       // Show Country code for each Service associated to tag 3
       this.sF1 = sFlags[(this.i + 3) % nrLinks][0];
       this.sF2 = sFlags[(this.i + 3) % nrLinks][1];
