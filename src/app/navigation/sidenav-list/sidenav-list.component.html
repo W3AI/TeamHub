@@ -48,6 +48,10 @@
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">nTeams</span>            
     </a>
+    <a mat-list-item routerLink="/setup" (click)="onClose()">
+        <mat-icon>settings</mat-icon>
+        <span class="nav-caption">Setup</span>
+    </a>
     <mat-list-item> 
         <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
             <mat-icon>eject</mat-icon>
