@@ -11,7 +11,9 @@ import * as q from "../logic/AlgoQueue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
-  interval: number = 1000;   // set interval timer to 300ms
+  interval: number = 1000;   // set interval timer 
+  setupCycle: number = 1000;   // well use this setupCycle updated from the Setup page 
+                              // to increase / decrease the time interval
 
   tagsCounter: number;
   i: number = 0;
@@ -90,6 +92,19 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   sF5: string = '';
   sF6: string = '';
   sF7: string = '';
+
+  onSetCycle(newCycle: number) {
+    this.setupCycle = newCycle;
+  }
+
+  onSpeedUp() {
+    this.setupCycle += 100;
+    this.interval = this.setupCycle;
+  }
+  onSpeedDown() {
+    this.setupCycle -= 100;
+    this.interval = this.setupCycle;
+  }
 
   constructor() {
 

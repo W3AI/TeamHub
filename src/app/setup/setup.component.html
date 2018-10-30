@@ -9,13 +9,14 @@
             <input matInput placeholder="Set AI Loop Title" value="My AI Loop" name="aiName"
             [(ngModel)]="aiName">
           </mat-form-field>
-          <p>AI Name: {{aiName}}</p>
 
           <mat-form-field class="full-width">
               <input matInput placeholder="Set AI Loop Cycle in miliseconds" value="1000" name="aiCycle"
               [(ngModel)]="aiCycle">
             </mat-form-field>
-          <p>AI Cycle: {{aiCycle}}</p>
+          <p>AI Loop Cycle: {{aiCycle}}</p>
+
+          <button mat-raised-button color="primary" (click)="onSetCycle()">Set Cycle</button>
         
           <mat-form-field class="full-width">
             <textarea matInput placeholder="My Interests:" value="eg: AI, Innovation, Coding, Web, Business"></textarea>

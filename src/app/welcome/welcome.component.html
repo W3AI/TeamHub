@@ -48,7 +48,7 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td>i: {{(i +3) % nrInterests}} - {{link4| slice:0:12}}</td><td></td><td></td><td>interests: {{nrInterests}}</td><td></td><td></td><td>i: {{(i +3) % nrInterests}} - {{link4| slice:0:12}}</td><td></td><td></td>
+    <td></td><td></td><td><button (click)="onSpeedDown()">Cycle: {{interval}}ms</button></td><td></td><td></td><td>interests: {{nrInterests}}</td><td></td><td></td><td><button (click)="onSpeedUp()">i: {{link4| slice:0:12}}</button></td><td></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -94,6 +94,7 @@
 </div>
 </div>
 
+<!--
   <ul class="lang" fxLayout fxLayoutAlign="center center">
     <li>zh</li>
     <li>hi</li>
@@ -106,7 +107,7 @@
     <li>cs</li>
     <li>ru</li>
   </ul>
-
+-->
   <div id="south-globe">
   <h3>I'm your Free AI App</h3>
   <h3>Use me 24/7 for</h3>
