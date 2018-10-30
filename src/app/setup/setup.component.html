@@ -1,23 +1,37 @@
-<section>
-  <div>
-      <h1>Setup AI Title</h1>
-      <p>eg: My Free AI Loop</p>
-  </div>
+<section class="setup">
+
+  <h1>Setup Your Free AI Loop</h1>
 
   <div>
-      <h1>My Interests</h1>
-      <p>eg: AI, Innovation, Coding, Web, Business, Technology</p>
-  </div>
+      <form class="form">
 
-  <div>
-    <h1>Location</h1>
-    <p>eg: Transylvania, Fagaras</p>
-  </div>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Set AI Loop Title" value="My AI Loop">
+          </mat-form-field>
 
-  <div>
-    <h1>Cloud Email</h1>
-    <p>eg: name@W3AI.net</p>
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Set AI Loop Cycle in miliseconds" value="1000">
+            </mat-form-field>
+        
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="My Interests:" value="eg: AI, Innovation, Coding, Web, Business"></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Set Location Lon Lat" value="[24.9667, 45.85]">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Set World Map zoom" value="1.2">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Cloud Email Account" value="myEmail@myBusiness.com">
+          </mat-form-field>
+
+        </form>
+ 
   </div>
   
 
-</section>>
+</section>
