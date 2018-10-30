@@ -31,6 +31,7 @@ import { AddTestComponent } from './project/add-test/add-test.component';
 import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
 import { MapComponent } from './map/map.component';
+import { SetupComponent } from './setup/setup.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MapComponent } from './map/map.component';
     AddTestComponent,
     AboutComponent,
     MarketComponent,
-    MapComponent
+    MapComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
