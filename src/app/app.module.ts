@@ -55,6 +55,7 @@ import { SetupComponent } from './setup/setup.component';
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
     AngularFirestoreModule,
+    FormsModule,
     StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, TeamService, FriendService, SessionService, AccountService, ProjectService, SkillService, VentureService, UIService, LoggerService],
