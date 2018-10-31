@@ -116,7 +116,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   dnaLoop() {
-
+    this.updateLoopTable();
     this.i++;   // increment the index of the DNA Queue
   }
 

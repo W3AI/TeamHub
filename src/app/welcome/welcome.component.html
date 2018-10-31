@@ -21,7 +21,7 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td>Projects</td><td></td><td>#</td><td>New Links</td><td>#</td><td></td><td>Services</td><td></td><td></td>
+    <td></td><td></td><td>Projects {{ nrProblems }} </td><td></td><td>#</td><td>New Links</td><td>#</td><td></td><td>Services {{nrServices}}</td><td></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td>{{nProject1 | slice:0:16 }}</td><td [ngStyle]="{'background-size':'cover','background-image': getPrjFlag1()}">{{pF1 | uppercase }}</td><td>{{pT1}}</td><td>{{link1 | slice:0:12}}</td><td>{{sT1}}</td><td [ngStyle]="{'background-size':'cover','background-image': getSrvFlag1()}">{{sF1 | uppercase }}</td><td>{{nService1 | slice:0:16}}</td><td></td><td></td>
