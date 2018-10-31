@@ -54,23 +54,23 @@
 </section>
 
 <section class="speed">
-  <h5>Chose your Innovation Cycle:</h5>
+  <h5>Chose your Innovation Engine:</h5>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><b>10ms</b></div>
       <div><button class="cycle-button" mat-button (click)="onSetCycle(10)"><b>3AI nGene</b></button></div>
+      <div>c: 10ms</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><b>1s</b></div>
-      <div><button class="cycle-button" mat-button (click)="onSetCycle(1000)"><b>W3AI nGene</b></button></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(100)"><b>W3AI nGene</b></button></div>
+      <div>c: 1s</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><b>1min</b></div>
-      <div><button class="cycle-button" mat-button (click)="onSetCycle(10000)"><b>Office nGene</b></button></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(1000)"><b>Office nGene</b></button></div>
+      <div>c: 1min</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><b>1week</b></div>
       <div><button class="cycle-button" mat-button (click)="onSetCycle(60000)"><b>PMO & COE</b></button></div>
+      <div>c: 1week</div>
     </div>
   </div>
 </section>
@@ -132,9 +132,9 @@
   <h3>Use me 24/7 for</h3>
   <h1>MAXIMUM PRODUCTIVITY</h1>
 
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <a routerLink="/login"><button mat-button>Sign In</button></a>
-    <a routerLink="/signup"><button mat-button>Sign Up</button></a>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
+    <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>
+    <a routerLink="/signup"><button class="auth-button" mat-button>Sign Up</button></a>
   </div>
   </div>
 
@@ -243,7 +243,7 @@
     </ul>
 </div>
 <div class="welcome">
-    <h3>Powered by the DNA Algorithm<br>used by all live cells on Earth</h3>
+    <h3>Powered by your DNA Algorithm<br>used by all live cells on Earth</h3>
 </div>
 
   <ul class="footer">

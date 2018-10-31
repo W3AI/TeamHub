@@ -11,8 +11,8 @@ import * as q from "../logic/AlgoQueue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
-  interval: number = 500;   // set interval timer 
-  newInterval: number = 500;
+  interval: number = 300;   // set interval timer 
+  newInterval: number = 300;
   setupCycle: number = 1000;   // well use this setupCycle updated from the Setup page 
                               // to increase / decrease the time interval
 

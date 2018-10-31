@@ -8,14 +8,14 @@
         <a routerLink="/">
             <button mat-icon-button fxHide.lt-md>
                 <mat-icon class="teamhub-header-icon"></mat-icon>
-            </button>My AI 
+            </button>My 3AI 
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> nGenes <span class="links">- live links ~</span> 1Trillion 
+            <span class="links"></span> web <span class="links"> live links ~</span> 1Trillion 
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links">~</span> IL <span class="links">~ live links ~</span> 1Million
+                <span class="links"></span> IL <span class="links"> live links ~</span> 1Million
             </a>
         </ng-template>
 

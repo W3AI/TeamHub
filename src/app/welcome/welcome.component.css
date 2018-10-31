@@ -12,8 +12,8 @@ table {
 
 #link4 {
     border-style: solid;
-    border-color: #8c828c;
-    border-width: 1px 0px 1px 0px;
+    background-color:rgba(217, 190, 190, 0.5);
+    border-width: 0px 0px 0px 0px;
 }
 
 .speed {
@@ -30,7 +30,19 @@ table {
     margin: 0px;
     padding: 0px;
     border: 0px;
-    background-color:rgba(217, 190, 190, 0.5);;
+    background-color:rgba(217, 190, 190, 0.5);
+    border-radius: 8px;
+}
+
+.auth-button {
+    font-family: arial, sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+    padding: 0px;
+    border: 0px;
+    background-color:rgba(155, 201, 215, 1);
     border-radius: 8px;
 }
 
