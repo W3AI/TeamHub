@@ -12,12 +12,14 @@
 
           <mat-form-field class="full-width">
               <input matInput placeholder="Set AI Loop Cycle in miliseconds" value="1000" name="aiCycle"
-              [(ngModel)]="aiCycle">
-            </mat-form-field>
-          <p>AI Loop Cycle: {{aiCycle}}</p>
-
+              [(ngModel)]="cycle">
+          </mat-form-field>
+          <div fxLayout fx fxLayoutAlign="center center" fxLayoutGap="50px">
+            <div>Cycle: {{ cycle }} ms</div><div>Loop: {{ loop % 1000 }}</div>
+          </div>
           <button mat-raised-button color="primary" (click)="onSetCycle()">Set Cycle</button>
-        
+
+          <p> </p>
           <mat-form-field class="full-width">
             <textarea matInput placeholder="My Interests:" value="eg: AI, Innovation, Coding, Web, Business"></textarea>
           </mat-form-field>

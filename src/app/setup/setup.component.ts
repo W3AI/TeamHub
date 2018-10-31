@@ -8,17 +8,34 @@ import { NgForm } from '@angular/forms';
 })
 export class SetupComponent implements OnInit {
 
+  timer: number;
   aiName: string = 'My AI';
-  @Output() newAiCycle = new EventEmitter<number>();
-  aiCycle: number = 1000;   // nr or miliseconds for the AI Loop cycle
+  // @Output() newDnaCycle = new EventEmitter<number>();
+  cycle = 1000;   // nr or miliseconds for the DNA Loop cycle
+  loop = 100;
 
-  constructor() { }
+  constructor() { 
+    this.startDnaLoop;
+  }
+
+  startDnaLoop() {
+    this.timer = setInterval( ()=> {
+      this.dnaLoop();
+    }, this.cycle );
+  }
+
+  dnaLoop() {
+    this.loop++;
+  }
 
   ngOnInit() {
   }
 
   onSetCycle() {
-    this.newAiCycle.emit(this.aiCycle);
+    clearInterval(this.timer);
+    this.loop = this.cycle;
+    setTimeout(1000);
+    this.startDnaLoop();
   }
 
 }
