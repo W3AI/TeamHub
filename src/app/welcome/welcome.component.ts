@@ -118,6 +118,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   dnaLoop() {
     this.updateLoopTable();
     this.i++;   // increment the index of the DNA Queue
+    this.w3aiStats();
   }
 
   onSetCycle(newCycle: number) {
@@ -128,42 +129,13 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {
-
     this.readQueueIntoLoopArrays();
-
     this.timer = setInterval( ()=> {
-
       this.updateLoopTable();
-
       // Move to next tag / link in the queue
       this.i++;
-
-      // Super Neural Net Teams
-      this.superFriendsNo = this.superFriendsNo + Math.floor(Math.random() * Math.floor(4))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.superProjectsNo = this.superProjectsNo + Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.superServicesNo = this.superServicesNo + Math.floor(Math.random() * Math.floor(5))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.superTxPerMs = this.superTxPerMs + Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.superRatePerMin = this.superRatePerMin + (Math.floor(Math.random() * Math.floor(3))
-        - Math.floor(Math.random() * Math.floor(2))) / 100;
-
-      // Office Teams
-      this.officeFriendsNo = this.officeFriendsNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.officeProjectsNo = this.officeProjectsNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.officeServicesNo = this.officeServicesNo + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.officeTxPerMs = this.officeTxPerMs + Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2));
-      this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
-        - Math.floor(Math.random() * Math.floor(2))) / 100;
-
+      this.w3aiStats();
     }, this.interval );
-
   }
 
   readQueueIntoLoopArrays() {
@@ -266,6 +238,33 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.sF5 = this.sFlags[(this.i + 3) % this.nrLinks][4];
     this.sF6 = this.sFlags[(this.i + 3) % this.nrLinks][5];
     this.sF7 = this.sFlags[(this.i + 3) % this.nrLinks][6];
+
+  }
+
+  w3aiStats() {
+    // Super Neural Net Teams
+    this.superFriendsNo = this.superFriendsNo + Math.floor(Math.random() * Math.floor(4))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.superProjectsNo = this.superProjectsNo + Math.floor(Math.random() * Math.floor(3))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.superServicesNo = this.superServicesNo + Math.floor(Math.random() * Math.floor(5))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.superTxPerMs = this.superTxPerMs + Math.floor(Math.random() * Math.floor(3))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.superRatePerMin = this.superRatePerMin + (Math.floor(Math.random() * Math.floor(3))
+      - Math.floor(Math.random() * Math.floor(2))) / 100;
+
+    // Office Teams
+    this.officeFriendsNo = this.officeFriendsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.officeProjectsNo = this.officeProjectsNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.officeServicesNo = this.officeServicesNo + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.officeTxPerMs = this.officeTxPerMs + Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
+      - Math.floor(Math.random() * Math.floor(2))) / 100;
 
   }
 
