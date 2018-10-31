@@ -11,29 +11,31 @@ export class SetupComponent implements OnInit {
   timer: number;
   aiName: string = 'My AI';
   // @Output() newDnaCycle = new EventEmitter<number>();
-  cycle = 1000;   // nr or miliseconds for the DNA Loop cycle
-  loop = 100;
+  interval = 500;   // nr or miliseconds for the DNA Loop  interval
+  newInterval = 500;
 
   constructor() { 
     this.startDnaLoop;
-  }
-
-  startDnaLoop() {
-    this.timer = setInterval( ()=> {
-      this.dnaLoop();
-    }, this.cycle );
-  }
-
-  dnaLoop() {
-    this.loop++;
+    this.onSetCycle();
   }
 
   ngOnInit() {
   }
 
+  startDnaLoop() {
+    this.timer = setInterval( ()=> {
+      this.dnaLoop();
+    }, this.interval );
+  }
+
+  dnaLoop() {
+    this.newInterval++;
+  }
+
   onSetCycle() {
     clearInterval(this.timer);
-    this.loop = this.cycle;
+    // Line below is just to offer a bit of feedback onSetCycle change
+    this.newInterval = this.interval;
     setTimeout(1000);
     this.startDnaLoop();
   }

@@ -11,7 +11,8 @@ import * as q from "../logic/AlgoQueue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   timer: number;
-  interval: number = 1000;   // set interval timer 
+  interval: number = 500;   // set interval timer 
+  newInterval: number = 500;
   setupCycle: number = 1000;   // well use this setupCycle updated from the Setup page 
                               // to increase / decrease the time interval
 
@@ -93,129 +94,46 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   sF6: string = '';
   sF7: string = '';
 
-  onSetCycle(newCycle: number) {
-    this.setupCycle = newCycle;
+  // Arrays to store loop data from DNA Queue - declarations below are copied from the WorldMarket.gs file
+  nrLinks: number;
+  tag: any[] = [];
+  problems: any[] = [];
+  pFlags: any[] = [];         // Array with Country codes for Problems - country of owner
+  services: any[] = [];
+  sFlags: any[] = [];         // Array with Country codes for Services - country of owner
+  // 15 - TODO - [ ] - add top header line to the matrix? including the nrProblems and Services
+  nrProblems = 134;           // some default values for dev
+  nrServices = 43;            // some default values for dev
+  // 24 
+  spikes = 7;     // Nr rows in the market wheel in the W3AI sheet - here called spikes
+  // 28
+  row0 = 0;       // to keep some similarity / compatibility with the gs code
+
+  startDnaLoop() {
+    this.timer = setInterval( ()=> {
+      this.dnaLoop();
+    }, this.interval );
   }
 
-  onSpeedUp() {
-    this.setupCycle += 100;
-    this.interval = this.setupCycle;
+  dnaLoop() {
+
+    this.i++;   // increment the index of the DNA Queue
   }
-  onSpeedDown() {
-    this.setupCycle -= 100;
-    this.interval = this.setupCycle;
+
+  onSetCycle(newCycle: number) {
+    clearInterval(this.timer);
+    // Line below is just to offer a bit of feedback onSetCycle change
+    this.interval = newCycle;
+    this.startDnaLoop();
   }
 
   constructor() {
 
-    // Translating gs code from function intlTeams() from WorldMarket.gs / W3AI spreadsheet / @W3AI.net 
-    // 14 - Starting from line 14 - skipping the gs files initializations
-    let nrLinks = q.queue.length;
-    this.nrInterests = nrLinks;
-    console.log('-- Queue Length: ' + nrLinks);
-
-    // 15 - TODO - [ ] - add top header line to the matrix? including the nrProblems and Services
-    let nrProblems = 134;
-    let nrServices = 43;
-
-    // 24 
-    let spikes = 7;     // Nr rows in the market wheel in the W3AI sheet - here called spikes
-    // 28
-    let row0 = 0;       // to keep some similarity / compatibility with the gs code
-
-    // TODO - [ ] - to review and change vars declarations below that are copied from the WorldMarket.gs file
-    // 34 -  Define and load the tags array[][] / [tag, nr problems/tag, nr services/tag]
-    let tag = new Array(nrLinks);
-    let problems = new Array(nrLinks);
-    let pFlags = new Array(nrLinks);   // Array with Country codes for Problems
-    var services = new Array(nrLinks);
-    var sFlags = new Array(nrLinks);   // Array with Country codes for Services
-
-    // 41 - 3 is removed now - The 3 in Rows (3 + t) is the header offset - the tags/links start from line/row 3 - Jun 10, 2018       
-    for (let t=0; t<nrLinks; t++) {
-            
-    tag[t] = new Array(3); // to write 3 values 
-    tag[t][0] = q.queue[t][0]; // Read into tag[] the link value from Column 1 / A
-    tag[t][1] = q.queue[t][2]; // Read into tag[] the nr problems/tag value from Column 3 / C
-    tag[t][2] = q.queue[t][17]; // Read into tag[] the nr services/tag value from Column 18 / R
-
-    // Jun 13 SI: I just added 7 columns for countries of the originator of each problem and service 
-    problems[t] = new Array(tag[t][1]);
-    pFlags[t] = new Array(tag[t][1]);
-    for(let p=0; p<tag[t][1]; p++) {
-      problems[t][p] = q.queue[t][10+p]; // demand.getRange(t, 11 + p).getValue(); // Problems Titles start in col 11 / K
-      pFlags[t][p] = q.queue[t][3+p];   // demand.getRange(t, 4 + p).getValue(); // Problems' Flags start in col 4 / D
-    }
-    
-    services[t] = new Array(tag[t][2]);
-    sFlags[t] = new Array(tag[t][2]);
-    for(let s=0; s<tag[t][2]; s++) {
-      services[t][s] = q.queue[t][25+s]; // demand.getRange(t, 26 + s).getValue();  // Services start in col 26 / Z
-      sFlags[t][s] = q.queue[t][18+s]; // demand.getRange(t, 19 + p).getValue(); // Problems' Flags start in col 19 / S
-    }
-  } // End loading the arrays for Tags, Problems, Services and Flags for Problems and services
-
+    this.readQueueIntoLoopArrays();
 
     this.timer = setInterval( ()=> {
 
-      // Write the loop's 7 tags
-      this.link1 = tag[(this.i + 0) % nrLinks][0];
-      this.link2 = tag[(this.i + 1) % nrLinks][0];
-      this.link3 = tag[(this.i + 2) % nrLinks][0];
-      this.link4 = tag[(this.i + 3) % nrLinks][0];
-      this.link5 = tag[(this.i + 4) % nrLinks][0];
-      this.link6 = tag[(this.i + 5) % nrLinks][0];
-      this.link7 = tag[(this.i + 6) % nrLinks][0];
-      // Write the nr of Projects with the tag
-      this.pT1 = tag[(this.i + 0) % nrLinks][1];
-      this.pT2 = tag[(this.i + 1) % nrLinks][1];
-      this.pT3 = tag[(this.i + 2) % nrLinks][1];
-      this.pT4 = tag[(this.i + 3) % nrLinks][1];
-      this.pT5 = tag[(this.i + 4) % nrLinks][1];
-      this.pT6 = tag[(this.i + 5) % nrLinks][1];
-      this.pT7 = tag[(this.i + 6) % nrLinks][1];
-      // Write the nr of Services with the tag
-      this.sT1 = tag[(this.i + 0) % nrLinks][2];
-      this.sT2 = tag[(this.i + 1) % nrLinks][2];
-      this.sT3 = tag[(this.i + 2) % nrLinks][2];
-      this.sT4 = tag[(this.i + 3) % nrLinks][2];
-      this.sT5 = tag[(this.i + 4) % nrLinks][2];
-      this.sT6 = tag[(this.i + 5) % nrLinks][2];
-      this.sT7 = tag[(this.i + 6) % nrLinks][2];
-
-      // Write the Titles of the Projects associated with the mid Tag / Link - nr 4
-      this.nProject1 = problems[(this.i + 3) % nrLinks][0];
-      this.nProject2 = problems[(this.i + 3) % nrLinks][1];
-      this.nProject3 = problems[(this.i + 3) % nrLinks][2];
-      this.nProject4 = problems[(this.i + 3) % nrLinks][3];
-      this.nProject5 = problems[(this.i + 3) % nrLinks][4];
-      this.nProject6 = problems[(this.i + 3) % nrLinks][5];
-      this.nProject7 = problems[(this.i + 3) % nrLinks][6];
-      // Show Country code for each Project associated to tag 3
-      this.pF1 = pFlags[(this.i + 3) % nrLinks][0];
-      this.pF2 = pFlags[(this.i + 3) % nrLinks][1];
-      this.pF3 = pFlags[(this.i + 3) % nrLinks][2];
-      this.pF4 = pFlags[(this.i + 3) % nrLinks][3];
-      this.pF5 = pFlags[(this.i + 3) % nrLinks][4];
-      this.pF6 = pFlags[(this.i + 3) % nrLinks][5];
-      this.pF7 = pFlags[(this.i + 3) % nrLinks][6];
-
-      // Write the Titles of the Services associated with the mid Tag / Link - nr 4
-      this.nService1 = services[(this.i + 3) % nrLinks][0];
-      this.nService2 = services[(this.i + 3) % nrLinks][1];
-      this.nService3 = services[(this.i + 3) % nrLinks][2];
-      this.nService4 = services[(this.i + 3) % nrLinks][3];
-      this.nService5 = services[(this.i + 3) % nrLinks][4];
-      this.nService6 = services[(this.i + 3) % nrLinks][5];
-      this.nService7 = services[(this.i + 3) % nrLinks][6];
-      // Show Country code for each Service associated to tag 3
-      this.sF1 = sFlags[(this.i + 3) % nrLinks][0];
-      this.sF2 = sFlags[(this.i + 3) % nrLinks][1];
-      this.sF3 = sFlags[(this.i + 3) % nrLinks][2];
-      this.sF4 = sFlags[(this.i + 3) % nrLinks][3];
-      this.sF5 = sFlags[(this.i + 3) % nrLinks][4];
-      this.sF6 = sFlags[(this.i + 3) % nrLinks][5];
-      this.sF7 = sFlags[(this.i + 3) % nrLinks][6];
+      this.updateLoopTable();
 
       // Move to next tag / link in the queue
       this.i++;
@@ -245,6 +163,109 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         - Math.floor(Math.random() * Math.floor(2))) / 100;
 
     }, this.interval );
+
+  }
+
+  readQueueIntoLoopArrays() {
+    // Translating gs code from function intlTeams() from WorldMarket.gs / W3AI spreadsheet / @W3AI.net 
+    // 14 - Starting from line 14 - skipping the gs files initializations
+    this.nrLinks = q.queue.length;
+    this.nrInterests = this.nrLinks;
+    // console.log('-- Queue Length: ' + nrLinks);
+
+    // TODO - [ ] - to review and change vars declarations below that are copied from the WorldMarket.gs file
+    // 34 -  Define and load the tags array[][] / [tag, nr problems/tag, nr services/tag]
+    // let tag = new Array(nrLinks);
+    // let problems = new Array(nrLinks);
+    // let pFlags = new Array(nrLinks);   // Array with Country codes for Problems
+    // var services = new Array(nrLinks);
+    // var sFlags = new Array(nrLinks);   // Array with Country codes for Services
+
+    // 41 - 3 is removed now - The 3 in Rows (3 + t) is the header offset - the tags/links start from line/row 3 - Jun 10, 2018       
+    for (let t = 0; t < this.nrLinks; t++) {
+
+      this.tag[t] = new Array(3); // to write 3 values 
+      this.tag[t][0] = q.queue[t][0]; // Read into tag[] the link value from Column 1 / A
+      this.tag[t][1] = q.queue[t][2]; // Read into tag[] the nr problems/tag value from Column 3 / C
+      this.tag[t][2] = q.queue[t][17]; // Read into tag[] the nr services/tag value from Column 18 / R
+
+      // Jun 13 SI: I just added 7 columns for countries of the originator of each problem and service 
+      this.problems[t] = new Array(this.tag[t][1]);
+      this.pFlags[t] = new Array(this.tag[t][1]);
+      for (let p = 0; p < this.tag[t][1]; p++) {
+        this.problems[t][p] = q.queue[t][10 + p]; // demand.getRange(t, 11 + p).getValue(); // Problems Titles start in col 11 / K
+        this.pFlags[t][p] = q.queue[t][3 + p];   // demand.getRange(t, 4 + p).getValue(); // Problems' Flags start in col 4 / D
+      }
+
+      this.services[t] = new Array(this.tag[t][2]);
+      this.sFlags[t] = new Array(this.tag[t][2]);
+      for (let s = 0; s < this.tag[t][2]; s++) {
+        this.services[t][s] = q.queue[t][25 + s]; // demand.getRange(t, 26 + s).getValue();  // Services start in col 26 / Z
+        this.sFlags[t][s] = q.queue[t][18 + s]; // demand.getRange(t, 19 + p).getValue(); // Problems' Flags start in col 19 / S
+      }
+    } // End loading the arrays for Tags, Problems, Services and Flags for Problems and services
+
+  }
+
+  updateLoopTable() {
+    // Write the loop's 7 tags
+    this.link1 = this.tag[(this.i + 0) % this.nrLinks][0];
+    this.link2 = this.tag[(this.i + 1) % this.nrLinks][0];
+    this.link3 = this.tag[(this.i + 2) % this.nrLinks][0];
+    this.link4 = this.tag[(this.i + 3) % this.nrLinks][0];
+    this.link5 = this.tag[(this.i + 4) % this.nrLinks][0];
+    this.link6 = this.tag[(this.i + 5) % this.nrLinks][0];
+    this.link7 = this.tag[(this.i + 6) % this.nrLinks][0];
+    // Write the nr of Projects with the tag
+    this.pT1 = this.tag[(this.i + 0) % this.nrLinks][1];
+    this.pT2 = this.tag[(this.i + 1) % this.nrLinks][1];
+    this.pT3 = this.tag[(this.i + 2) % this.nrLinks][1];
+    this.pT4 = this.tag[(this.i + 3) % this.nrLinks][1];
+    this.pT5 = this.tag[(this.i + 4) % this.nrLinks][1];
+    this.pT6 = this.tag[(this.i + 5) % this.nrLinks][1];
+    this.pT7 = this.tag[(this.i + 6) % this.nrLinks][1];
+    // Write the nr of Services with the tag
+    this.sT1 = this.tag[(this.i + 0) % this.nrLinks][2];
+    this.sT2 = this.tag[(this.i + 1) % this.nrLinks][2];
+    this.sT3 = this.tag[(this.i + 2) % this.nrLinks][2];
+    this.sT4 = this.tag[(this.i + 3) % this.nrLinks][2];
+    this.sT5 = this.tag[(this.i + 4) % this.nrLinks][2];
+    this.sT6 = this.tag[(this.i + 5) % this.nrLinks][2];
+    this.sT7 = this.tag[(this.i + 6) % this.nrLinks][2];
+
+    // Write the Titles of the Projects associated with the mid Tag / Link - nr 4
+    this.nProject1 = this.problems[(this.i + 3) % this.nrLinks][0];
+    this.nProject2 = this.problems[(this.i + 3) % this.nrLinks][1];
+    this.nProject3 = this.problems[(this.i + 3) % this.nrLinks][2];
+    this.nProject4 = this.problems[(this.i + 3) % this.nrLinks][3];
+    this.nProject5 = this.problems[(this.i + 3) % this.nrLinks][4];
+    this.nProject6 = this.problems[(this.i + 3) % this.nrLinks][5];
+    this.nProject7 = this.problems[(this.i + 3) % this.nrLinks][6];
+    // Show Country code for each Project associated to tag 3
+    this.pF1 = this.pFlags[(this.i + 3) % this.nrLinks][0];
+    this.pF2 = this.pFlags[(this.i + 3) % this.nrLinks][1];
+    this.pF3 = this.pFlags[(this.i + 3) % this.nrLinks][2];
+    this.pF4 = this.pFlags[(this.i + 3) % this.nrLinks][3];
+    this.pF5 = this.pFlags[(this.i + 3) % this.nrLinks][4];
+    this.pF6 = this.pFlags[(this.i + 3) % this.nrLinks][5];
+    this.pF7 = this.pFlags[(this.i + 3) % this.nrLinks][6];
+
+    // Write the Titles of the Services associated with the mid Tag / Link - nr 4
+    this.nService1 = this.services[(this.i + 3) % this.nrLinks][0];
+    this.nService2 = this.services[(this.i + 3) % this.nrLinks][1];
+    this.nService3 = this.services[(this.i + 3) % this.nrLinks][2];
+    this.nService4 = this.services[(this.i + 3) % this.nrLinks][3];
+    this.nService5 = this.services[(this.i + 3) % this.nrLinks][4];
+    this.nService6 = this.services[(this.i + 3) % this.nrLinks][5];
+    this.nService7 = this.services[(this.i + 3) % this.nrLinks][6];
+    // Show Country code for each Service associated to tag 3
+    this.sF1 = this.sFlags[(this.i + 3) % this.nrLinks][0];
+    this.sF2 = this.sFlags[(this.i + 3) % this.nrLinks][1];
+    this.sF3 = this.sFlags[(this.i + 3) % this.nrLinks][2];
+    this.sF4 = this.sFlags[(this.i + 3) % this.nrLinks][3];
+    this.sF5 = this.sFlags[(this.i + 3) % this.nrLinks][4];
+    this.sF6 = this.sFlags[(this.i + 3) % this.nrLinks][5];
+    this.sF7 = this.sFlags[(this.i + 3) % this.nrLinks][6];
 
   }
 
