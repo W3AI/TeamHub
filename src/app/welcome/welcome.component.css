@@ -16,6 +16,24 @@ table {
     border-width: 1px 0px 1px 0px;
 }
 
+.speed {
+    text-align: center;
+    font-family: arial, sans-serif;
+    font-size: x-small;
+    margin: 0px;
+    padding: 0px;
+}
+
+.cycle-button {
+    font-family: arial, sans-serif;
+    font-size: x-small;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color:rgba(217, 190, 190, 0.5);;
+    border-radius: 8px;
+}
+
 .world-brain {
     text-align: center;
     margin-top: 0px;

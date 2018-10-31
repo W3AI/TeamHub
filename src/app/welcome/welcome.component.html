@@ -48,14 +48,32 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td><button (click)="onSetCycle(10)">Cycle: {{interval}}ms</button></td><td></td><td></td><td>interests: {{nrInterests}}</td><td></td><td></td><td><button (click)="onSetCycle(1000)">i: {{link4| slice:0:12}}</button></td><td></td><td></td>
-  </tr>
-  <tr>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td></td><td></td><td>cycle: {{interval}}ms</td><td></td><td></td><td>interests: {{nrInterests}}</td><td></td><td></td><td>i: {{link4| slice:0:12}}</td><td></td><td></td>
   </tr>
 </table>
+</section>
 
-  </section>
+<section class="speed">
+  <h5>Chose your Innovation Cycle:</h5>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div><b>10ms</b></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(10)"><b>3AI nGene</b></button></div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div><b>1s</b></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(1000)"><b>W3AI nGene</b></button></div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div><b>1min</b></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(10000)"><b>Office nGene</b></button></div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div><b>1week</b></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(60000)"><b>PMO & COE</b></button></div>
+    </div>
+  </div>
+</section>
 
 <h1 id="main-title">HELLO WORLD!</h1>
 
@@ -108,6 +126,7 @@
     <li>ru</li>
   </ul>
 -->
+
   <div id="south-globe">
   <h3>I'm your Free AI App</h3>
   <h3>Use me 24/7 for</h3>
