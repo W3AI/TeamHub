@@ -10,6 +10,13 @@ table {
     width: 100%;
   }
 
+.red-stat {
+    border-radius: 50%;
+    width: 20px;
+    height: 5px; 
+    background: red;
+}
+
 #link4 {
     border-style: solid;
     background-color:rgba(217, 190, 190, 0.5);
