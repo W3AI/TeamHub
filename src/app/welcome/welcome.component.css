@@ -31,9 +31,28 @@ table {
     padding: 0px;
 }
 
+.W3AI-button {
+    font-family: arial, sans-serif;
+    font-size: small;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color:rgba(217, 190, 190, 1.0);
+    border-radius: 8px;
+}
+
+.AUTO-button {
+    font-family: arial, sans-serif;
+    font-size: small;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color:rgba(217, 190, 190, 0.7);
+    border-radius: 8px;
+}
 .cycle-button {
     font-family: arial, sans-serif;
-    font-size: x-small;
+    font-size: small;
     margin: 0px;
     padding: 0px;
     border: 0px;
