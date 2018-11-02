@@ -8,14 +8,14 @@
         <a routerLink="/">
             <button mat-icon-button fxHide.lt-md>
                 <mat-icon class="teamhub-header-icon"></mat-icon>
-            </button>My 3 AI Wall Street 
+            </button>My 3 AI Wall Street OS
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> <span class="links"> deals:</span> 1Trillion 
+            <span class="links"></span> <span class="links"> - tx:</span> 1T/h
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links"></span> <span class="links"> deals:</span> 1Million
+                <span class="links"></span> <span class="links"> - tx:</span> 1M/h
             </a>
         </ng-template>
 
