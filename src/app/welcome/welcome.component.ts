@@ -141,6 +141,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   readQueueV1IntoLoopArrays() {
+    // Nov 2, 2018 - TODO - [ ] - this function will need to update the arrays whenever the Queue is updated Realtime by Firestore
     // Translating gs code from function intlTeams() from WorldMarket.gs / W3AI spreadsheet / @W3AI.net 
     // 14 - Starting from line 14 - skipping the gs files initializations
     this.nrLinks = q1.queue.length;
@@ -159,7 +160,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     // Nov 2, 2018 - switched to V1 of the Queue array with 36 fields per Project, Service as in Spreadsheet 3AI-Queue V1       
     for (let t = 0; t < this.nrLinks; t++) {
 
-      this.tag[t] = new Array(5); // to write 5 values 
+      this.tag[t] = new Array(6); // to write 5 values 
       this.tag[t][0] = q1.queue[t][0]; // Read into tag[] the link value from Column 1 / A
       this.tag[t][1] = q1.queue[t][2]; // Read into tag[] the nr problems/tag value from Column 3 / C
       this.tag[t][2] = q1.queue[t][255]; // Read into tag[] the nr services/tag value from Column 18 / R
@@ -168,6 +169,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.tag[t][3] = 0;
       // tag[t][3] to store Total Asks (Services) per tag
       this.tag[t][4] = 0;
+      this.tag[t][5] = 0; // To store the Market Delta (Sum(Bids)-Sum(Asks)) for the Tag
 
       // Populating the Projects Arrays
       this.problems[t] = new Array(this.tag[t][1]);
@@ -186,6 +188,10 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         this.sFlags[t][s] = q1.queue[t][257 + s*36];   // Services' Flags start in col 257
         this.tag[t][4] += q1.queue[t][261 + s*36];     // Services' Bids start in col 8 / I
       }
+
+      // Calculate the Market Delta
+      this.tag[t][5] = this.tag[t][3] - this.tag[t][4];
+
     } // End loading the arrays for Tags, Problems, Services and Flags for Problems and services
   }
 
@@ -316,6 +322,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.officeRatePerMin = this.officeRatePerMin + (Math.floor(Math.random() * Math.floor(2))
       - Math.floor(Math.random() * Math.floor(2))) / 100;
 
+  }
+
+  // Dynamic Styling functions
+  getDeltaColor() {
+    return this.tag[this.i%this.nrLinks][5]> 0 ? 'green' : 'red';
   }
 
   getPrjFlag1() {

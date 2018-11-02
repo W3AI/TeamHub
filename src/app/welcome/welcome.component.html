@@ -48,7 +48,7 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td><b>BID Σ:</b>{{this.tag[i%this.nrLinks][3]}}</td><td></td><td></td><td><b>Market Δ:</b> {{ this.tag[i%this.nrLinks][3] - this.tag[i%this.nrLinks][4] }}</td><td></td><td></td><td><b>ASK Σ:</b>{{this.tag[i%this.nrLinks][4]}}</td><td></td><td></td>
+    <td></td><td></td><td><b>BID Σ: </b>{{this.tag[i%this.nrLinks][3]}}</td><td></td><td></td><td [ngStyle]="{color: getDeltaColor()}"><b>Market Δ: {{ this.tag[i%this.nrLinks][5] }}</b></td><td></td><td></td><td><b>ASK Σ: </b>{{this.tag[i%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
 </table>
 </section>
