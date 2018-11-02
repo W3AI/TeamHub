@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-import * as h from "../logic/helper";
+// import * as h from "../logic/helper";
 import * as q from "../logic/AlgoQueue";
+import * as q1 from "../logic/3AI-Queue";
 
 @Component({
   selector: 'app-welcome',
@@ -129,13 +130,63 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {
-    this.readQueueIntoLoopArrays();
+    this.readQueueV1IntoLoopArrays();
+    // this.readQueueIntoLoopArrays();    the reader for first version of the Queue
     this.timer = setInterval( ()=> {
       this.updateLoopTable();
       // Move to next tag / link in the queue
       this.i++;
       this.w3aiStats();
     }, this.interval );
+  }
+
+  readQueueV1IntoLoopArrays() {
+    // Translating gs code from function intlTeams() from WorldMarket.gs / W3AI spreadsheet / @W3AI.net 
+    // 14 - Starting from line 14 - skipping the gs files initializations
+    this.nrLinks = q1.queue.length;
+    this.nrInterests = this.nrLinks;
+    // console.log('-- Queue Length: ' + nrLinks);
+
+    // TODO - [ ] - to review and change vars declarations below that are copied from the WorldMarket.gs file
+    // 34 -  Define and load the tags array[][] / [tag, nr problems/tag, nr services/tag]
+    // let tag = new Array(nrLinks);
+    // let problems = new Array(nrLinks);
+    // let pFlags = new Array(nrLinks);   // Array with Country codes for Problems
+    // var services = new Array(nrLinks);
+    // var sFlags = new Array(nrLinks);   // Array with Country codes for Services
+
+    // 41 - 3 is removed now - The 3 in Rows (3 + t) is the header offset - the tags/links start from line/row 3 - Jun 10, 2018
+    // Nov 2, 2018 - switched to V1 of the Queue array with 36 fields per Project, Service as in Spreadsheet 3AI-Queue V1       
+    for (let t = 0; t < this.nrLinks; t++) {
+
+      this.tag[t] = new Array(5); // to write 5 values 
+      this.tag[t][0] = q1.queue[t][0]; // Read into tag[] the link value from Column 1 / A
+      this.tag[t][1] = q1.queue[t][2]; // Read into tag[] the nr problems/tag value from Column 3 / C
+      this.tag[t][2] = q1.queue[t][255]; // Read into tag[] the nr services/tag value from Column 18 / R
+      // Added on Nov 2, 2018 
+      // tag[t][3] to store Total Bids (Projects) per tag
+      this.tag[t][3] = 0;
+      // tag[t][3] to store Total Asks (Services) per tag
+      this.tag[t][4] = 0;
+
+      // Populating the Projects Arrays
+      this.problems[t] = new Array(this.tag[t][1]);
+      this.pFlags[t] = new Array(this.tag[t][1]);
+      for (let p = 0; p < this.tag[t][1]; p++) {
+        this.problems[t][p] = q1.queue[t][3 + p*36]; // Problems Titles start in col 3 then + p*36 - 36=nr fields in Queue V1
+        this.pFlags[t][p] = q1.queue[t][4 + p*36];   // Problems' Flags start in col 4 / D
+        this.tag[t][3] += q1.queue[t][8 + p*36];     // Problems' Bids start in col 8 / I
+      }
+
+      // Populating the Services Arrays
+      this.services[t] = new Array(this.tag[t][2]);
+      this.sFlags[t] = new Array(this.tag[t][2]);
+      for (let s = 0; s < this.tag[t][2]; s++) {
+        this.services[t][s] = q1.queue[t][256 + s*36]; // Services start in col 256 
+        this.sFlags[t][s] = q1.queue[t][257 + s*36];   // Services' Flags start in col 257
+        this.tag[t][4] += q1.queue[t][261 + s*36];     // Services' Bids start in col 8 / I
+      }
+    } // End loading the arrays for Tags, Problems, Services and Flags for Problems and services
   }
 
   readQueueIntoLoopArrays() {
@@ -176,7 +227,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
         this.sFlags[t][s] = q.queue[t][18 + s]; // demand.getRange(t, 19 + p).getValue(); // Problems' Flags start in col 19 / S
       }
     } // End loading the arrays for Tags, Problems, Services and Flags for Problems and services
-
   }
 
   updateLoopTable() {

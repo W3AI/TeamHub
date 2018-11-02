@@ -15,7 +15,7 @@
     <td></td><td></td><td width="30%"></td><td width="20px"></td><td width="10px"></td><td  width="100px"></td><td width="10px"></td><td width="20px"></td><td width="30%"></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td><b>My AI PMO</b></td><td></td><td></td><td><b>My AI Dealer</b></td><td></td><td></td><td><b>My AI COE</b></td><td></td><td></td>
+    <td></td><td></td><td><b>My AI PMO</b></td><td></td><td></td><td><b>My AI Broker</b></td><td></td><td></td><td><b>My AI COE</b></td><td></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -48,13 +48,13 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td><b>BID:</b> {{interval}}</td><td></td><td></td><td><b>Profit:</b> {{nrInterests}}</td><td></td><td></td><td><b>ASK:</b> {{link4| slice:0:12}}</td><td></td><td></td>
+    <td></td><td></td><td><b>BID:</b>{{this.tag[i%this.nrLinks][3]}}</td><td></td><td></td><td><b>Profit:</b> {{nrInterests}}</td><td></td><td></td><td><b>ASK:</b>{{this.tag[i%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
 </table>
 </section>
 
 <section class="speed">
-  <h5>Chose your Deals Engine:</h5>
+  <h5>Chose your Innovation Engine:</h5>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
     <div fxLayout="column" fxLayoutAlign="center center">
       <div><button class="cycle-button" mat-button (click)="onSetCycle(1000)">MANUAL</button></div>
@@ -125,7 +125,7 @@
 -->
 
   <div id="south-globe">
-  <h3>I'm your 3 AI DEALS App</h3>
+  <h3>I'm your Free AI INNOVATION OS</h3>
   <h3>Use me 24/7 for</h3>
   <h1>MAXIMUM PRODUCTIVITY</h1>
 
