@@ -8,6 +8,10 @@ a:active {
     color: lightgray;
 }
 
+.title-version {
+    font-size: smaller;
+}
+
 .navigation-items {
     list-style: none;
     padding: 0;
