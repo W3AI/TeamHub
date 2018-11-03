@@ -337,6 +337,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   } // END function updateLoopTable()
 
+  onPrev() {
+    this.i--;
+  }
+
+  onNext() {
+    this.i++;
+  }
+
   w3aiStats() {
     // Super Neural Net Teams
     this.superFriendsNo = this.superFriendsNo + Math.floor(Math.random() * Math.floor(4))
