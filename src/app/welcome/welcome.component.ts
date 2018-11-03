@@ -63,6 +63,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   sT6: number = 0;
   sT7: number = 0;
 
+  // vars To Read Project titles
   nProject1: string = '';
   nProject2: string = '';
   nProject3: string = '';
@@ -78,7 +79,16 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   pF5: string = '';
   pF6: string = '';
   pF7: string = '';
+// vars to Read Project color status = g | r | y
+  pStat1 = '';
+  pStat2 = '';
+  pStat3 = '';
+  pStat4 = '';
+  pStat5 = '';
+  pStat6 = '';
+  pStat7 = '';
 
+  // Vars to store Service title
   nService1: string = '';
   nService2: string = '';
   nService3: string = '';
@@ -94,14 +104,24 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   sF5: string = '';
   sF6: string = '';
   sF7: string = '';
+  // vars to Read Service color status = g | r | y - 
+  sStat1 = '';
+  sStat2 = '';
+  sStat3 = '';
+  sStat4 = '';
+  sStat5 = '';
+  sStat6 = '';
+  sStat7 = '';
 
   // Arrays to store loop data from DNA Queue - declarations below are copied from the WorldMarket.gs file
   nrLinks: number;
   tag: any[] = [];
   problems: any[] = [];
-  pFlags: any[] = [];         // Array with Country codes for Problems - country of owner
+  pFlags: any[] = [];         // Array with Country codes for Problems - country of owner for taxation, compliance, etc
+  pStats: any[] = [];         // Array to store status of the Projects
   services: any[] = [];
   sFlags: any[] = [];         // Array with Country codes for Services - country of owner
+  sStats: any[] = [];         // Array to store status of the Services
   // 15 - TODO - [ ] - add top header line to the matrix? including the nrProblems and Services
   nrProblems = 134;           // some default values for dev
   nrServices = 43;            // some default values for dev
@@ -174,18 +194,22 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       // Populating the Projects Arrays
       this.problems[t] = new Array(this.tag[t][1]);
       this.pFlags[t] = new Array(this.tag[t][1]);
+      this.pStats[t] = new Array(this.tag[t][1]);
       for (let p = 0; p < this.tag[t][1]; p++) {
         this.problems[t][p] = q1.queue[t][3 + p*36]; // Problems Titles start in col 3 then + p*36 - 36=nr fields in Queue V1
         this.pFlags[t][p] = q1.queue[t][4 + p*36];   // Problems' Flags start in col 4 / D
+        this.pStats[t][p] = q1.queue[t][7 + p*36];    // Project Status is in col 7
         this.tag[t][3] += q1.queue[t][8 + p*36];     // Problems' Bids start in col 8 / I
       }
 
       // Populating the Services Arrays
       this.services[t] = new Array(this.tag[t][2]);
       this.sFlags[t] = new Array(this.tag[t][2]);
+      this.sStats[t] = new Array(this.tag[t][2]);
       for (let s = 0; s < this.tag[t][2]; s++) {
         this.services[t][s] = q1.queue[t][256 + s*36]; // Services start in col 256 
         this.sFlags[t][s] = q1.queue[t][257 + s*36];   // Services' Flags start in col 257
+        this.sStats[t][s] = q1.queue[t][260 + s*36];    // Service Status is in col 260
         this.tag[t][4] += q1.queue[t][261 + s*36];     // Services' Bids start in col 8 / I
       }
 
@@ -277,6 +301,14 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.pF5 = this.pFlags[(this.i + 3) % this.nrLinks][4];
     this.pF6 = this.pFlags[(this.i + 3) % this.nrLinks][5];
     this.pF7 = this.pFlags[(this.i + 3) % this.nrLinks][6];
+    // Show Status for each Project associated to tag 3
+    this.pStat1 = this.pStats[(this.i + 3) % this.nrLinks][0];
+    this.pStat2 = this.pStats[(this.i + 3) % this.nrLinks][1];
+    this.pStat3 = this.pStats[(this.i + 3) % this.nrLinks][2];
+    this.pStat4 = this.pStats[(this.i + 3) % this.nrLinks][3];
+    this.pStat5 = this.pStats[(this.i + 3) % this.nrLinks][4];
+    this.pStat6 = this.pStats[(this.i + 3) % this.nrLinks][5];
+    this.pStat7 = this.pStats[(this.i + 3) % this.nrLinks][6];
 
     // Write the Titles of the Services associated with the mid Tag / Link - nr 4
     this.nService1 = this.services[(this.i + 3) % this.nrLinks][0];
@@ -294,8 +326,16 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.sF5 = this.sFlags[(this.i + 3) % this.nrLinks][4];
     this.sF6 = this.sFlags[(this.i + 3) % this.nrLinks][5];
     this.sF7 = this.sFlags[(this.i + 3) % this.nrLinks][6];
+    // Show Status for each Service associated to tag 3
+    this.sStat1 = this.sStats[(this.i + 3) % this.nrLinks][0];
+    this.sStat2 = this.sStats[(this.i + 3) % this.nrLinks][1];
+    this.sStat3 = this.sStats[(this.i + 3) % this.nrLinks][2];
+    this.sStat4 = this.sStats[(this.i + 3) % this.nrLinks][3];
+    this.sStat5 = this.sStats[(this.i + 3) % this.nrLinks][4];
+    this.sStat6 = this.sStats[(this.i + 3) % this.nrLinks][5];
+    this.sStat7 = this.sStats[(this.i + 3) % this.nrLinks][6];
 
-  }
+  } // END function updateLoopTable()
 
   w3aiStats() {
     // Super Neural Net Teams
@@ -392,6 +432,70 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }
     return flagPath;
   }
+  // 7 functions to Get Projects status
+  getPrjStat1() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat1 && (this.pStat1 != '' ) ) {
+      statPath += this.pStat1 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat2() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat2 && (this.pStat2 != '' ) ) {
+      statPath += this.pStat2 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat3() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat3 && (this.pStat3 != '' ) ) {
+      statPath += this.pStat3 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat4() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat4 && (this.pStat4 != '' ) ) {
+      statPath += this.pStat4 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat5() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat5 && (this.pStat5 != '' ) ) {
+      statPath += this.pStat5 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat6() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat6 && (this.pStat6 != '' ) ) {
+      statPath += this.pStat6 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
+  getPrjStat7() {
+    let statPath = 'url(/assets/img/s';
+    if ( this.pStat7 && (this.pStat7 != '' ) ) {
+      statPath += this.pStat7 + '.png';
+    } else {
+      statPath = 'url(/assets/img/sbg.png)';
+    }
+    return statPath;
+  }
 
   // 7 functions for getSrvFlags
   getSrvFlag1() {
@@ -457,6 +561,71 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }
     return flagPath;
   }
+
+    // 7 functions to Get Services status
+    getSrvStat1() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat1 && (this.sStat1 != '' ) ) {
+        statPath += this.sStat1 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat2() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat2 && (this.sStat2 != '' ) ) {
+        statPath += this.sStat2 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat3() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat3 && (this.sStat3 != '' ) ) {
+        statPath += this.sStat3 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat4() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat4 && (this.sStat4 != '' ) ) {
+        statPath += this.sStat4 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat5() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat5 && (this.sStat5 != '' ) ) {
+        statPath += this.sStat5 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat6() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat6 && (this.sStat6 != '' ) ) {
+        statPath += this.sStat6 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
+    getSrvStat7() {
+      let statPath = 'url(/assets/img/s';
+      if ( this.sStat7 && (this.sStat7 != '' ) ) {
+        statPath += this.sStat7 + '.png';
+      } else {
+        statPath = 'url(/assets/img/sbg.png)';
+      }
+      return statPath;
+    }
 
   ngOnInit() {
   }
