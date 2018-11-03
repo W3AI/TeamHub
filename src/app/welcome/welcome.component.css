@@ -10,6 +10,27 @@ table {
     width: 100%;
   }
 
+.wall-1-projects {
+    font-family: arial, sans-serif;
+    font-size: xx-small;
+    text-align: right;
+    padding-right: 5px;
+    color: #8c828c;
+}
+.wall-2-services {
+    font-family: arial, sans-serif;
+    font-size: xx-small;
+    text-align: left;
+    padding-left: 5px;
+    color: #8c828c;
+}
+.wall-3-market {
+    font-family: arial, sans-serif;
+    font-size: xx-small;
+    text-align: center;
+    color: #8c828c;
+}
+
 .red-stat {
     border-radius: 50%;
     width: 20px;

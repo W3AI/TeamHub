@@ -12,7 +12,7 @@
 
 <table id="loop">
   <tr>
-    <td></td><td></td><td width="30%"></td><td width="20px"></td><td width="10px"></td><td  width="100px"></td><td width="10px"></td><td width="20px"></td><td width="30%"></td><td></td><td></td>
+    <td></td><td></td><td width="150px"></td><td width="20px"></td><td width="10px"></td><td  width="100px"></td><td width="10px"></td><td width="20px"></td><td width="150px"></td><td></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td><b>My AI PMO</b></td><td></td><td></td><td><b>My AI Broker</b></td><td></td><td></td><td><b>My AI COE</b></td><td></td><td></td>
@@ -24,7 +24,7 @@
     <td></td><td></td><td>Projects {{ nrProblems }} </td><td></td><td>#</td><td>My Interests</td><td>#</td><td></td><td>Services {{nrServices}}</td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td ></td><td>{{nProject1 | slice:0:16 }}</td><td [ngStyle]="{'background-size':'cover','background-image': getPrjFlag1()}"></td><td>{{pT1}}</td><td>{{link1 | slice:0:12}}</td><td>{{sT1}}</td><td [ngStyle]="{'background-size':'cover','background-image': getSrvFlag1()}"></td><td>{{nService1 | slice:0:16}}</td><td></td><td></td>
+    <td></td><td width="8px" [ngStyle]="{'background-size': '10px','background-image': 'url(/assets/img/dbg.png)'}"></td><td>{{nProject1 | slice:0:16 }}</td><td [ngStyle]="{'background-size':'cover','background-image': getPrjFlag1()}"></td><td>{{pT1}}</td><td>{{link1 | slice:0:12}}</td><td>{{sT1}}</td><td [ngStyle]="{'background-size':'cover','background-image': getSrvFlag1()}"></td><td>{{nService1 | slice:0:16}}</td><td width="8px" [ngStyle]="{'background-size': '10px','background-image': 'url(/assets/img/dG.png)'}"></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td>{{nProject2 | slice:0:16}}</td><td [ngStyle]="{'background-size':'cover','background-image': getPrjFlag2()}"></td><td>{{pT2}}</td><td>{{link2 | slice:0:12}}</td><td>{{sT2}}</td><td [ngStyle]="{'background-size':'cover','background-image': getSrvFlag2()}"></td><td>{{nService2 | slice:0:16}}</td><td></td><td></td>
@@ -50,6 +50,9 @@
   <tr>
     <td></td><td></td><td><b>BID Σ: </b>{{this.tag[i%this.nrLinks][3]}}</td><td></td><td></td><td [ngStyle]="{color: getDeltaColor()}"><b>Market Δ: {{ this.tag[i%this.nrLinks][5] }}</b></td><td></td><td></td><td><b>ASK Σ: </b>{{this.tag[i%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
+  <tr>
+    <td class="wall-1-projects" colspan="3">wall 1 loop - projects : demand</td><td></td><td class="wall-3-market" colspan="3">wall 3 loop : market</td><td></td><td class="wall-2-services" colspan="3">offer : services - wall 2 loop</td>
+  </tr>
 </table>
 </section>
 
@@ -57,7 +60,7 @@
   <h5>Chose your Innovation Engine:</h5>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="cycle-button" mat-button (click)="onSetCycle(1000)">MANUAL</button></div>
+      <div><button class="cycle-button" mat-button (click)="onSetCycle(3000)">MANUAL</button></div>
       <div>control</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
