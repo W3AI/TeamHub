@@ -1,10 +1,10 @@
-<div id="OpenLayers">
-  <app-map></app-map>
-</div>
+<section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px">
 
-<section>
+    <div id="OpenLayers" class="top">
+        <app-map></app-map>
+      </div>
 
-  <section class="world-brain">
+  <section class="world-brain" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px">
     <div class="quote">
       <p><q>We are all now connected by the Internet, like Neurons in a Giant Brain.</q><br>
       <i>Stephen Hawking</i></p>
@@ -12,7 +12,7 @@
 
 <table id="loop">
   <tr>
-    <td width="3px"></td><td width="7px"></td><td width="150px"></td><td width="20px"></td><td width="10px"></td><td  width="100px"></td><td width="10px"></td><td width="20px"></td><td width="150px"></td><td width="7px"></td><td width="3px"></td>
+    <td style="width:3px"></td><td style="width:7px"></td><td style="width:105px"></td><td style="width:20px"></td><td style="width:10px"></td><td style="width:85px"></td><td style="width:10px"></td><td style="width:20px"></td><td style="width:105px"></td><td style="width:7px"></td><td style="width:3px"></td>
   </tr>
   <tr>
     <td></td><td></td><td><b>My AI PMO</b></td><td></td><td></td><td><b>My AI Broker</b></td><td></td><td></td><td><b>My AI COE</b></td><td></td><td></td>
@@ -24,25 +24,25 @@
     <td></td><td></td><td>Projects {{ nrProblems }} </td><td></td><td>#</td><td>My Interests</td><td>#</td><td></td><td>Services {{nrServices}}</td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat1()}"></td><td>{{nProject1 | slice:0:14 }}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag1()}"></td><td>{{pT1}}</td><td>{{link1 | slice:0:10}}</td><td>{{sT1}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag1()}"></td><td>{{nService1 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat1()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat1()}"></td><td>{{nProject1 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag1()}"></td><td>{{pT1}}</td><td>{{link1 | slice:0:8}}</td><td>{{sT1}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag1()}"></td><td>{{nService1 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat1()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat2()}"></td><td>{{nProject2 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag2()}"></td><td>{{pT2}}</td><td>{{link2 | slice:0:10}}</td><td>{{sT2}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag2()}"></td><td>{{nService2 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat2()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat2()}"></td><td>{{nProject2 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag2()}"></td><td>{{pT2}}</td><td>{{link2 | slice:0:8}}</td><td>{{sT2}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag2()}"></td><td>{{nService2 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat2()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat3()}"></td><td>{{nProject3 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag3()}"></td><td>{{pT3}}</td><td>{{link3 | slice:0:10}}</td><td>{{sT3}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag3()}"></td><td>{{nService3 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat3()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat3()}"></td><td>{{nProject3 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag3()}"></td><td>{{pT3}}</td><td>{{link3 | slice:0:8}}</td><td>{{sT3}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag3()}"></td><td>{{nService3 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat3()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat4()}"></td><td>{{nProject4 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag4()}"></td><td>{{pT4}}</td><td id="link4">{{link4 | slice:0:10}}</td><td>{{sT4}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag4()}"></td><td>{{nService4 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat4()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat4()}"></td><td>{{nProject4 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag4()}"></td><td>{{pT4}}</td><td id="link4">{{link4 | slice:0:8}}</td><td>{{sT4}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag4()}"></td><td>{{nService4 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat4()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat5()}"></td><td>{{nProject5 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag5()}"></td><td>{{pT5}}</td><td>{{link5 | slice:0:10}}</td><td>{{sT5}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag5()}"></td><td>{{nService5 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat5()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat5()}"></td><td>{{nProject5 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag5()}"></td><td>{{pT5}}</td><td>{{link5 | slice:0:8}}</td><td>{{sT5}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag5()}"></td><td>{{nService5 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat5()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat6()}"></td><td>{{nProject6 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag6()}"></td><td>{{pT6}}</td><td>{{link6 | slice:0:10}}</td><td>{{sT6}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag6()}"></td><td>{{nService6 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat6()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat6()}"></td><td>{{nProject6 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag6()}"></td><td>{{pT6}}</td><td>{{link6 | slice:0:8}}</td><td>{{sT6}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag6()}"></td><td>{{nService6 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat6()}"></td><td></td>
   </tr>
   <tr>
-    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat7()}"></td><td>{{nProject7 | slice:0:14}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag7()}"></td><td>{{pT7}}</td><td>{{link7 | slice:0:10}}</td><td>{{sT7}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag7()}"></td><td>{{nService7 | slice:0:14}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat7()}"></td><td></td>
+    <td></td><td [ngStyle]="{'background-size': '100% 100%','background-image': getPrjStat7()}"></td><td>{{nProject7 | slice:0:11}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getPrjFlag7()}"></td><td>{{pT7}}</td><td>{{link7 | slice:0:8}}</td><td>{{sT7}}</td><td [ngStyle]="{'background-size':'100% 100%','background-image': getSrvFlag7()}"></td><td>{{nService7 | slice:0:11}}</td><td [ngStyle]="{'background-size': '100% 100%','background-image': getSrvStat7()}"></td><td></td>
   </tr>
   <tr>
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -51,7 +51,7 @@
     <td></td><td></td><td><b>BID Σ: </b>{{this.tag[i%this.nrLinks][3]}}</td><td></td><td></td><td [ngStyle]="{color: getDeltaColor()}"><b>MΔ: {{ this.tag[i%this.nrLinks][5] }}</b></td><td></td><td></td><td><b>ASK Σ: </b>{{this.tag[i%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
   <tr>
-    <td class="wall-1-projects" colspan="3">wall 1 loop - projects : demand</td><td></td><td class="wall-3-market" colspan="3">wall 3 loop : market</td><td></td><td class="wall-2-services" colspan="3">offer : services - wall 2 loop</td>
+    <td class="wall-1-projects" colspan="3">wall 1: service demand</td><td></td><td><b><</b></td><td class="wall-3-market">wall 2: market loop</td><td><b>></b></td><td></td><td class="wall-2-services" colspan="3">wall 3: service offer</td>
   </tr>
 </table>
 </section>
@@ -79,65 +79,56 @@
 
 <div class="header" fxLayout="row" fxLayoutAlign="center center">
 
-<div id="left" fxFlex="25%"><p>
-  <br><span class="side-title">Business Neural Nets</span><br>
-  nLinks<sup>2</sup>: {{ superFriendsNo }}<br>
-  nProjects: {{ superProjectsNo }}<br>
-  nSkills: {{ superServicesNo }}<br>
-  nTasks/ms: {{ superTxPerMs }}<br>
-  $/min: {{ superRatePerMin  | currency }}<br>
-  <span class="side-title">Live Internet Brain</span><br>
-</p></div>
+  <div id="left" fxFlex="25%">
+    <p>
+      <br><span class="side-title">Business Neural Nets</span><br>
+      nLinks<sup>2</sup>: {{ superFriendsNo }}<br>
+      nProjects: {{ superProjectsNo }}<br>
+      nSkills: {{ superServicesNo }}<br>
+      nTasks/ms: {{ superTxPerMs }}<br>
+      $/min: {{ superRatePerMin | currency }}<br>
+      <span class="side-title">Live Internet Brain</span><br>
+    </p>
+  </div>
 
-<div id="center" fxFlex="50%">
-  <div class="welcome">
+  <div id="center" fxFlex="50%">
+    <div class="welcome">
       <a routerLink="/signup">
         <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
       </a>
+    </div>
+  </div>
+
+  <div id="right" fxFlex="25%">
+    <div fxLayout fxLayoutAlign="end end">
+      <p>
+        <br><span class="side-title">Office Teams</span><br>
+        friends<sup>2</sup>: {{ officeFriendsNo }}<br>
+        projects: {{ officeProjectsNo }}<br>
+        skills: {{ officeServicesNo }}<br>
+        tasks/ms: {{ officeTxPerMs }}<br>
+        $/min: {{ officeRatePerMin | currency }}<br>
+        <span class="side-title">Live Office Networks</span><br>
+      </p>
+    </div>
   </div>
 </div>
-
-<div id="right" fxFlex="25%">
-  <div fxLayout fxLayoutAlign="end end">
-    <p>
-      <br><span class="side-title">Office Teams</span><br>
-      friends<sup>2</sup>: {{ officeFriendsNo }}<br>
-      projects: {{ officeProjectsNo }}<br>
-      skills: {{ officeServicesNo }}<br>
-      tasks/ms: {{ officeTxPerMs }}<br>
-      $/min: {{ officeRatePerMin | currency }}<br>
-      <span class="side-title">Live Office Networks</span><br>
-    </p>
-  </div>
-</div>
-</div>
-
-<!--
-  <ul class="lang" fxLayout fxLayoutAlign="center center">
-    <li>zh</li>
-    <li>hi</li>
-    <li>es</li>
-    <li>ar</li>
-    <li>en</li>
-    <li>fr</li>
-    <li>ro</li>
-    <li>de</li>
-    <li>cs</li>
-    <li>ru</li>
-  </ul>
--->
-
+</section>
+<section>
   <div id="south-globe">
-  <h3>I'm your Free AI INNOVATION OS</h3>
-  <h3>Use me 24/7 on HIGH SPEED for</h3>
-  <h1>MAXIMUM PRODUCTIVITY</h1>
 
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
-    <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>
-    <a routerLink="/signup"><button class="auth-button" mat-button>Sign Up</button></a>
-  </div>
-  </div>
+    <div>
+      <h3>I'm your Free AI INNOVATION OS</h3>
+      <h3>Use me 24/7 on HIGH SPEED for</h3>
+    </div>
 
+    <h1>MAXIMUM PRODUCTIVITY</h1>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
+      <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>
+      <a routerLink="/signup"><button class="auth-button" mat-button>Sign Up</button></a>
+    </div>
+  </div>
 </section>
 
 <section class="mid" fxLayout="column" fxLayoutAlign="center center">
@@ -194,7 +185,7 @@
 
 <div class="welcome">
   <section>
-      <h1>1st DNA ENGINE for WEB CORTEX</h1>
+      <h1>1st DNA ENGINE<br>for Web's Neocortex</h1>
       <h1>Online 24/7</h1>
     <h3>Connections & Results in Seconds</h3>
   </section>

@@ -8,14 +8,14 @@
         <a routerLink="/">
             <button mat-icon-button fxHide.lt-md>
                 <mat-icon class="teamhub-header-icon"></mat-icon>
-            </button>My 3AI Walls Street OS <span class="title-version">0.5</span>
+            </button>My 3AI Wall Street OS
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> <span class="links"> - tx:</span> 1T/h
+            <span class="links"></span> <span class="links"><span class="title-version">0.5</span> &alpha;</span>
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links"></span> <span class="links"> - tx:</span> 1M/h
+                <span class="links"></span> <span class="links"><span class="title-version">0.5</span> &alpha;</span>
             </a>
         </ng-template>
 
@@ -29,9 +29,9 @@
             <li><a routerLink="/friend">Friends</a></li> -->
 
             <li *ngIf="isAuth$ | async"><a routerLink="/session">nGenes</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/project">nProjects</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <!-- <li *ngIf="isAuth$ | async"><a routerLink="/skill">nSkills</a></li> -->
-            <li *ngIf="isAuth$ | async"><a routerLink="/venture">nTeams</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/venture">Teams</a></li>
 
             <li><a routerLink="/setup">Setup</a></li>
 
