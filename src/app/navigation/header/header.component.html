@@ -11,11 +11,11 @@
             </button>My 3AI Wall Street OS
         </a>
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> <span class="links"><span class="title-version">0.5</span> &alpha;</span>
+            <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
         </a> 
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links"></span> <span class="links"><span class="title-version">0.5</span> &alpha;</span>
+                <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
             </a>
         </ng-template>
 
