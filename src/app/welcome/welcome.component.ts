@@ -1,4 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from '../app.reducer';
+import { AuthService } from '../auth/auth.service';
 
 // import * as h from "../logic/helper";
 import * as q from "../logic/AlgoQueue";
@@ -10,6 +15,8 @@ import * as q1 from "../logic/3AI-Queue";
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
+
+  isAuth$: Observable<boolean>;
 
   timer: number;
   interval: number = 300;   // set interval timer 
@@ -149,7 +156,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.startDnaLoop();
   }
 
-  constructor() {
+  constructor(private store: Store<fromRoot.State>, private authService: AuthService) {
+
     this.readQueueV1IntoLoopArrays();
     // this.readQueueIntoLoopArrays();    the reader for first version of the Queue
     this.timer = setInterval( ()=> {
@@ -158,6 +166,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.i++;
       this.w3aiStats();
     }, this.interval );
+
   }
 
   readQueueV1IntoLoopArrays() {
@@ -636,6 +645,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
   }
 
   ngAfterViewInit() {

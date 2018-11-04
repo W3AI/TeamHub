@@ -93,7 +93,7 @@
 
   <div id="center" fxFlex="50%">
     <div class="welcome">
-      <a *ngIf="isAuth$ | async; else Project" routerLink="/signup">
+      <a *ngIf="!(isAuth$ | async); else Project" routerLink="/signup">
         <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
       </a>
       <ng-template #Project>
