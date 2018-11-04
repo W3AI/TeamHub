@@ -48,7 +48,7 @@
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td></td><td><b>BID Σ: </b>{{this.tag[(i+2)%this.nrLinks][3]}}</td><td></td><td></td><td [ngStyle]="{color: getDeltaColor(i+2)}"><b>MΔ: {{ this.tag[(i+2)%this.nrLinks][5] }}</b></td><td></td><td></td><td><b>ASK Σ: </b>{{this.tag[(i+2)%this.nrLinks][4]}}</td><td></td><td></td>
+    <td></td><td></td><td><b>BID Σ: </b>{{this.tag[(i+2)%this.nrLinks][3]}}</td><td></td><td></td><td [ngStyle]="{color: getDeltaColor()}"><b>MΔ: {{ this.tag[(i+2)%this.nrLinks][5] }}</b></td><td></td><td></td><td><b>ASK Σ: </b>{{this.tag[(i+2)%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
   <tr>
     <td class="wall-1-projects" colspan="3">wall 1: service demand</td><td></td><td (click)="onPrev()" ><b><</b></td><td class="wall-3-market">wall 2: market loop</td><td (click)="onNext()" ><b>></b></td><td></td><td class="wall-2-services" colspan="3">wall 3: service offer</td>
