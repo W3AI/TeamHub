@@ -374,7 +374,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   // Dynamic Styling functions
   getDeltaColor() {
-    return this.tag[this.i%this.nrLinks][5]> 0 ? 'green' : 'red';
+    return this.tag[(this.i+2)%this.nrLinks][5]> 0 ? 'green' : 'red';
   }
 
   getPrjFlag1() {
