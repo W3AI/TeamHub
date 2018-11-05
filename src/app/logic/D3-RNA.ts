@@ -28,73 +28,103 @@ import * as d3 from 'd3-3';
   //       .nodes([{ 0:"id", 1:0, 2:"type", 3:"Ctxt", 4:"name", 5:"Context", 6:"step", 7:0, 8:"branch", 9:0, 10:"status", 11:"ToDo"}])
 
 // false = NO d3 visualization
-var d3Switch = true;
+declare var d3Switch;
 // false = NO d3 visualization for Entity nodes
-var d3Entity = true;
+declare var d3Entity;
 
-   var width = 400,
-      height = 300;
+declare var width;
+declare var height;
 
 //  if (d3Switch == false) {
 //    width = 30;
 //    height = 30;
 //    }
 
-  var fill = d3.scale.category20();
+declare var fill;
 
  // initialize with a single node for initial context
-  var force = d3.layout.force()
-      .size([width, height])
-      .nodes([{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}])
-      .linkDistance(30)
-      .charge(-60)
-      .on("tick", tick);
+declare var force;
 
-  var svg = d3.select("#viz").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .on("mousemove", mousemove)
-      .on("mousedown", mousedown);
+declare var svg;
+
+declare var nodes;
+declare var links;
+declare var node;
+declare var link;
+declare var label;
+
+declare var cursor;
+
+declare var typeIndex;    // typeIndex = 3; in d3Ini
+
+function d3Ini() {
+
+  // Initialize Global vars
+
+  d3Switch = true;
+  d3Entity = true;
+
+  width = 50;
+  height = 50;
+
+  fill = d3.scale.category20();
+
+  force = d3.layout.force()
+    .size([width, height])
+    .nodes([{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}])
+    .linkDistance(30)
+    .charge(-60)
+    .on("tick", tick);
+
+  svg = d3.select("#viz").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .on("mousemove", mousemove)
+    .on("mousedown", mousedown);
 
   svg.append("rect")
-      .attr("width", width)
-      .attr("height", height);
+    .attr("width", width)
+    .attr("height", height);
 
   svg.append('defs').append('marker')
-      .attr({'id':'arrowhead',
-             'viewBox':'-0 -5 10 10',
-             'refX':15,
-             'refY':0,
-             //'markerUnits':'strokeWidth',
-             'orient':'auto',
-             'markerWidth':10,
-             'markerHeight':10,
-             'xoverflow':'visible'})
-      .append('svg:path')
-          .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-          .attr('fill', '#999')
-          .attr('stroke','#999');
-          // These attribute colors are for the arrows heads to context nodes
+    .attr({'id':'arrowhead',
+           'viewBox':'-0 -5 10 10',
+           'refX':15,
+           'refY':0,
+           //'markerUnits':'strokeWidth',
+           'orient':'auto',
+           'markerWidth':10,
+           'markerHeight':10,
+           'xoverflow':'visible'})
+    .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .attr('fill', '#999')
+        .attr('stroke','#999');
+        // These attribute colors are for the arrows heads to context nodes
 
-  var nodes = force.nodes(),
-      links = force.links(),
-      node = svg.selectAll(".node"),
-      link = svg.selectAll(".link"),
-      label = svg.selectAll(".label");
+  nodes = force.nodes();
+  links = force.links();
+  node = svg.selectAll(".node");
+  link = svg.selectAll(".link");
+  label = svg.selectAll(".label"); 
 
   console.log("Print data in the node of the initial context: ");
   console.log(nodes[0]);
 
-  var cursor = svg.append("circle")
-      .attr("r", 30)
-      .attr("transform", "translate(-100,-100)")
-      .attr("class", "cursor");
+  cursor = svg.append("circle")
+    .attr("r", 30)
+    .attr("transform", "translate(-100,-100)")
+    .attr("class", "cursor");
+
+  
+  typeIndex = 3;
 
   restart();
 
+  }
+
   //Function to choose what color circle we want for nodes
   //Let's return grey for context and green for entities
-  var typeIndex = 3;
   function circleColour(d){
     // TODO - fix the format for the first node representing the initial context
     // for which i have to use now d.type == "Ctxt"
@@ -219,4 +249,4 @@ var d3Entity = true;
 
 // } // END if d3Switch == true
 
-export {createNode, d3Switch, d3Entity};
+export {d3Ini, createNode, d3Switch, d3Entity};
