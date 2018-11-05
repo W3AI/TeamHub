@@ -6,30 +6,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pro-session.component.css']
 })
 export class ProSessionComponent implements OnInit {
-  defaultProject = `Computational Politics DoS Bot
-  tags : DoS, Denial of Service, generator
-  INPUT	3 Terms:CAD, cent:10, secs:60
-  Jar, n:Jar3L, vol:3, content:0, available:3
-  Jar, n:Jar5L, vol:5, content:0, available:5
-  Jar, n:Jar8L, vol:8, content:8, available:0
+  defaultProject = `Resume Generator
+  tags : relevant, projects, skills, keywords
+  INPUT	3 Terms:CAD, dollar:10, secs:60
+  Project, title : Free AI HRM, budget : $20M, timeframe : 5Y, skills : AI, GS, JS
+  Project, title : Progressive AI OS, budget : $1.5M, timeframe : 1.5Y, skills: TS, Angular, Firestore, IndexedDb
+  Project, title : AI Service Market, budget : $5M, timeframe : 3Y, skills : AI, blockchain, smart markets, realtime databases
                                   
-  SOLUTIONS 1
+  SOLUTIONS 3
   
   OUTPUT 1
-  Jar	WITH content = 4`;
+  Resume	WITH content > 4 pages`;
 
-  defaultOperation = `Contextual DoS Attack Generator
-tags : DoS, Denial of Service, generator
-INPUT 2 Terms:CAD, cent:1, secs:2
-Jar	1	n:fromJar,	content>0				
-Jar	2	n:toJar,	available>0				
+  defaultOperation = `Career Projects
+tags : report, ranked, projects, tags
+INPUT 
+List of keywords
+Projects from personal Free PMO of W3AI.NET			
                           
-FUNCTIONS 1
-poured=MIN(fromJar.content,toJar.available)
+FUNCTIONS 2
+extract relevant project by keywords
+rank projects by skills 
+format reports
                           
-OUTPUT 2
-fromJar.content-=poured,available+=poured				
-toJar.content+=poured,available-=poured`;
+OUTPUT n
+Catalog of Career Projects reports`;
 
   // TODO - [ ] Change oddNumbers[] to Problem Class structures:
   // ContextsScripts[]

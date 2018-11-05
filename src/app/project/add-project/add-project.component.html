@@ -3,7 +3,7 @@
 
     <mat-form-field hintLabel="Short & memorable.">
       <input type="text" 
-      matInput [ngModel]="'eg: Friendly Business Chain Reactions'" 
+      matInput [ngModel]="'eg: Business Growth Engine'" 
       name="name" 
       required 
       maxlength="40"
@@ -26,12 +26,12 @@
         </mat-expansion-panel-header>
     
         <mat-form-field class="textarea-expansion-panel">
-          <textarea matInput [ngModel]="'Copy here the START cells'" name="startScript" rows="2" placeholder="Project START:">
+          <textarea matInput [ngModel]="'Copy here the Input cells'" name="startScript" rows="2" placeholder="Project START:">
                 </textarea>
         </mat-form-field>
     
         <mat-form-field class="textarea-expansion-panel">
-          <textarea matInput [ngModel]="'Copy here the CHECK cells'" name="checkScript" rows="2" placeholder="Project CHECK List:">
+          <textarea matInput [ngModel]="'Copy here the Output cells'" name="checkScript" rows="2" placeholder="Project CHECK List:">
                 </textarea>
         </mat-form-field>
     
@@ -61,7 +61,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input type="url" matInput [ngModel]="'https://teamhub.w3ai.net/top/projects/teamup-social-web/'" name="url" placeholder="URL of your project">
+      <input type="url" matInput [ngModel]="'https://w3ai.org/open/projects/social-innovation-web/'" name="url" placeholder="URL of your project">
     </mat-form-field>
 
     <mat-radio-group ngModel name="privacy" required>
