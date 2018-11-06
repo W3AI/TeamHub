@@ -1,7 +1,19 @@
 .venture {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
+}
+
+h1 {
+  margin: 5px;
+}
+
+h3 {
+  margin: 5px;
+}
+
+h6 {
+  margin: 5px;
 }
 
 #cell {

@@ -5,21 +5,21 @@
 
     <svg id="viz" viewBox="0 0 50 50"></svg>
    -->
-   <canvas width="960px" height="480px"></canvas>
+   <canvas id="cell" width="375px" height="160px"></canvas>
 
     <h3>Options Search Engine</h3>
   <section class="venture">
     <section id="control" class="venture" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <button mat-raised-button color="primary" (click)="onInnoVote()">Step by Step</button>
       <app-dna-control (intervalFired)="onIntervalFired($event)">
       </app-dna-control>
+      <button mat-raised-button color="primary" (click)="onInnoVote()">Step by Step</button>
     </section>
     <!--
     <div>
         <p>Steps: {{ stepsInInvestorTable }}</p>
     </div>
     -->
-    <div id="cell">
+    <div >
 
       <table id="Investor" contenteditable="true">
         <tr id="DR0">
@@ -35,22 +35,22 @@
           <td>3</td><td>FIND</td><td></td><td>MAX</td><td></td><td>1</td><td></td><td>Solution</td><td>in</td><td>0</td><td></td><td>steps</td><td></td><td></td>
         </tr>
         <tr id="DR4">
-          <td>4</td><td>task 1</td><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>4</td><td>step 1</td><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr id="DR5">
-          <td>5</td><td>task 2</td><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>5</td><td>step 2</td><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr id="DR6">
-          <td>6</td><td>task 3</td><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>6</td><td>step 3</td><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr id="DR7">
-          <td>7</td><td>task 4</td><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>7</td><td>step 4</td><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr id="DR8">
-          <td>8</td><td>task 5</td><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>8</td><td>step 5</td><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr id="DR9">
-          <td>9</td><td>task 6</td><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td>9</td><td>step 6</td><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
       </table>
 

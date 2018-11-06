@@ -863,7 +863,7 @@ ngAfterViewInit() {
 // D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
 
 
-var nodes = d3.range(1000).map(function(i) {
+var nodes = d3.range(50).map(function(i) {
   return {
     index: i
   };
