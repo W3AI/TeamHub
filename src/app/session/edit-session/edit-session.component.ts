@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
-// import * as d3 from "d3";
+import * as d3 from "d3";
 // import * as d3rna from "../../logic/D3-RNA";
 
 // l = new line - used in formatting
@@ -176,21 +176,20 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   rnaCode: string = '';
   partialRnaResult: string = '';
 
-  // D3 global vars
+  // D3 global vars ---------------------------------<< D3-FORCE VARS
 
   // false = NO d3 visualization
   d3Switch = true;
   // false = NO d3 visualization for Entity nodes
   d3Entity = true;
 
-  d3width = 300;
-  d3height = 300;
+  d3width = 460;
+  d3height = 460;
 
-  // scale is the issue with d3 ver 3
-  // fill = d3.scale.category20();
+ // EXPERIMENTING WITH D3-FORCE --------------------------------<< !!!!!!
 
 
-  // END D3 global vars
+  // END D3 global vars -----------------------------------------<< !!!!!!
 
   constructor() {
   this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
@@ -860,6 +859,99 @@ ngAfterViewInit() {
 // START d3Ini statements
 // TODO - [ ] - to switch to D3 force ver 4 or 5
 
+
+// D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
+
+
+var nodes = d3.range(1000).map(function(i) {
+  return {
+    index: i
+  };
+});
+console.log('-- nodes from D3 FORCE EXAMPLE:');
+console.log(nodes);
+
+var links = d3.range(nodes.length - 1).map(function(i) {
+  return {
+    source: Math.floor(Math.sqrt(i)),
+    target: i + 1
+  };
+});
+console.log('-- links from D3 FORCE EXAMPLE:');
+console.log(links);
+
+var simulation = d3.forceSimulation(nodes)
+    .force("charge", d3.forceManyBody())
+    .force("link", d3.forceLink(links).distance(20).strength(1))
+    .force("x", d3.forceX())
+    .force("y", d3.forceY())
+    .on("tick", ticked);
+
+var canvas = document.querySelector("canvas"),
+    context = canvas.getContext("2d"),
+    width = canvas.width,
+    height = canvas.height;
+
+d3.select(canvas)
+    .call(d3.drag()
+        .container(canvas)
+        .subject(dragsubject)
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+function ticked() {
+  context.clearRect(0, 0, width, height);
+  context.save();
+  context.translate(width / 2, height / 2);
+
+  context.beginPath();
+  links.forEach(drawLink);
+  context.strokeStyle = "#aaa";
+  context.stroke();
+
+  context.beginPath();
+  nodes.forEach(drawNode);
+  context.fill();
+  context.strokeStyle = "#fff";
+  context.stroke();
+
+  context.restore();
+}
+
+function dragsubject() {
+  return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2);
+}
+
+function dragstarted() {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d3.event.subject.fx = d3.event.subject.x;
+  d3.event.subject.fy = d3.event.subject.y;
+}
+
+function dragged() {
+  d3.event.subject.fx = d3.event.x;
+  d3.event.subject.fy = d3.event.y;
+}
+
+function dragended() {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d3.event.subject.fx = null;
+  d3.event.subject.fy = null;
+}
+
+function drawLink(d) {
+  context.moveTo(d.source.x, d.source.y);
+  context.lineTo(d.target.x, d.target.y);
+}
+
+function drawNode(d) {
+  context.moveTo(d.x + 3, d.y);
+  context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
+}
+
+
+// D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
 
 
 // END d3Ini

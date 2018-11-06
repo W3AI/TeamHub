@@ -27,6 +27,7 @@
     "adm-zip": "^0.4.11",
     "angularfire2": "^5.0.0-rc.11",
     "core-js": "^2.5.4",
+    "d3": "^5.7.0",
     "d3-force": "^1.1.2",
     "firebase": "^5.4.0",
     "hammerjs": "^2.0.8",
