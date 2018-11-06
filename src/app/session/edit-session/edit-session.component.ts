@@ -3,11 +3,14 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
 import * as d3 from "d3";
-// import * as d3rna from "../../logic/D3-RNA";
 
 // l = new line - used in formatting
 const l = '\n';
 const L = 'L';  // TODO - [ ] - find other ways to include in txExpressions units of measure L - liter, etc
+
+// Declaring Global D3 const - TODO - [ ] - to annotate with d3-?
+const width = 375;
+const height = 160;
 
 @Component({
   selector: 'app-edit-session',
@@ -183,11 +186,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   // false = NO d3 visualization for Entity nodes
   d3Entity = true;
 
-  d3width = 460;
-  d3height = 460;
-
- // EXPERIMENTING WITH D3-FORCE --------------------------------<< !!!!!!
-
+  d3Nodes: any[] = [{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}];
+  d3Links: any[] = [];
+  simulation: any;
+  canvas: any;
+  context: any;
 
   // END D3 global vars -----------------------------------------<< !!!!!!
 
@@ -857,17 +860,24 @@ ngAfterViewInit() {
 
 // Initialize D3
 // START d3Ini statements
-// TODO - [ ] - to switch to D3 force ver 4 or 5
 
+  // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
+  if (this.d3Entity == true) {
+    this.createNode(this.c[1], 0, this.d3Switch);
+    this.createNode(this.c[2], 0, this.d3Switch);
+    this.createNode(this.c[3], 0, this.d3Switch);
+    }
 
 // D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
 
+// var nodes = d3.range(30).map(function(i) {
+//   return {
+//     index: i
+//   };
+// });
 
-var nodes = d3.range(50).map(function(i) {
-  return {
-    index: i
-  };
-});
+var nodes = this.d3Nodes;
+
 console.log('-- nodes from D3 FORCE EXAMPLE:');
 console.log(nodes);
 
@@ -880,21 +890,21 @@ var links = d3.range(nodes.length - 1).map(function(i) {
 console.log('-- links from D3 FORCE EXAMPLE:');
 console.log(links);
 
-var simulation = d3.forceSimulation(nodes)
+this.simulation = d3.forceSimulation(nodes)
     .force("charge", d3.forceManyBody())
     .force("link", d3.forceLink(links).distance(20).strength(1))
     .force("x", d3.forceX())
     .force("y", d3.forceY())
     .on("tick", ticked);
 
-var canvas = document.querySelector("canvas"),
-    context = canvas.getContext("2d"),
-    width = canvas.width,
-    height = canvas.height;
+this.canvas = document.querySelector("canvas");
+var context = this.canvas.getContext("2d");
+// width = this.canvas.width;
+// height = this.canvas.height;
 
-d3.select(canvas)
+d3.select(this.canvas)
     .call(d3.drag()
-        .container(canvas)
+        .container(this.canvas)
         .subject(dragsubject)
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -920,11 +930,11 @@ function ticked() {
 }
 
 function dragsubject() {
-  return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2);
+  return this.simulation.find(d3.event.x - width / 2, d3.event.y - height / 2);
 }
 
 function dragstarted() {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  if (!d3.event.active) this.simulation.alphaTarget(0.3).restart();
   d3.event.subject.fx = d3.event.subject.x;
   d3.event.subject.fy = d3.event.subject.y;
 }
@@ -935,7 +945,7 @@ function dragged() {
 }
 
 function dragended() {
-  if (!d3.event.active) simulation.alphaTarget(0);
+  if (!d3.event.active) this.simulation.alphaTarget(0);
   d3.event.subject.fx = null;
   d3.event.subject.fy = null;
 }
@@ -950,39 +960,48 @@ function drawNode(d) {
   context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
 }
 
-
-// D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
-
-
-// END d3Ini
+  // D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
 
 
-    // // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
-    // if (d3rna.d3Entity == true) {
-    //   d3rna.createNode(this.c[1], 0, d3rna.d3Switch);
-    //   d3rna.createNode(this.c[2], 0, d3rna.d3Switch);
-    //   d3rna.createNode(this.c[3], 0, d3rna.d3Switch);
-    //   }
+  // Build Nodes and Transformations Headers for the memory tables
+  h.buildTableHeader("nodes", this.nodeHeader);
+  h.buildTableHeader("transformations", this.transformationHeader);
 
-    // Build Nodes and Transformations Headers for the memory tables
-    h.buildTableHeader("nodes",this.nodeHeader);
-    h.buildTableHeader("transformations", this.transformationHeader);
+  this.entitiesNo = this.c.length - 1;
+  console.log("-- Entities in the Initial Context: " + this.entitiesNo);
 
-    this.entitiesNo = this.c.length - 1;
-    console.log("-- Entities in the Initial Context: " + this.entitiesNo);
+  this.nodeIndex = this.c.length;
+  console.log("NodeIndex = " + this.nodeIndex);
 
-    this.nodeIndex = this.c.length;
-    console.log("NodeIndex = " + this.nodeIndex);
-
-    // Build Context 0 in the nodes table
-    for( let i = 0; i <= this.entitiesNo; i++) {
-      h.addTableRow("nodes", 0, this.c[i]);
-      // Summing up the memory for the nodes in the initial context
-      this.nodesMemSize += JSON.stringify(this.c[i]).length*8;
-    }
-
+  // Build Context 0 in the nodes table
+  for (let i = 0; i <= this.entitiesNo; i++) {
+    h.addTableRow("nodes", 0, this.c[i]);
+    // Summing up the memory for the nodes in the initial context
+    this.nodesMemSize += JSON.stringify(this.c[i]).length * 8;
   }
 
+}
+
+// Create D3 node element
+createNode(e, targetId, d3Switch) {
+  if (d3Switch == true) {
+
+    var node = Object.assign( {x: width/2, y: height/2}, e );
+        // console.log("Print first the entity row form Cogito then the extended node in D3");
+        // console.log(e);
+        // console.log(node);
+
+        this.d3Nodes.push(node);
+
+        // First push line works well for IN relations for Elements in Contexts but not for successor Contexts
+        this.d3Links.push({source: node, target: this.d3Nodes[targetId]});
+       // this push line works for successive Contexts but should disable adding the arrow attribute for entities into Context nodes
+       // links.push({source: nodes[targetId], target: node});
+
+        // restart();
+
+  }
+}
 
     // Function formatRows to be used for formatting 
     // & printing lists of entities, plans/sol, tests, 
