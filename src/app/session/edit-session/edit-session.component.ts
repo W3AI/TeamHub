@@ -115,8 +115,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   stateStamp: string = '';
 
   transformation: any[] = [];
-  serviceVerb: string = 'pour';     // Default dev/test values -  to be update dynamically for each service / operation
-  servicePrice: string = '1$';      // Default dev/test values -  to be update dynamically for each service / operation
+  serviceVerb: string = 'top';     // Default dev/test values -  TODO - [ ] - to be update dynamically for each service / operation
+  servicePrice: string = '1$';      // Default dev/test values -  TODO - [ ] - to be update dynamically for each service / operation
   serviceAuthor: string = 'IL nGene';     // Default dev/test values -  to be update dynamically for each service / operation 
 
   // Problem Class structures:
