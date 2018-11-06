@@ -3,7 +3,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
 // import * as d3 from "d3";
-import * as d3rna from "../../logic/D3-RNA";
+// import * as d3rna from "../../logic/D3-RNA";
 
 // l = new line - used in formatting
 const l = '\n';
@@ -175,6 +175,22 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   // from Environment/Current Context 
   rnaCode: string = '';
   partialRnaResult: string = '';
+
+  // D3 global vars
+
+  // false = NO d3 visualization
+  d3Switch = true;
+  // false = NO d3 visualization for Entity nodes
+  d3Entity = true;
+
+  d3width = 300;
+  d3height = 300;
+
+  // scale is the issue with d3 ver 3
+  // fill = d3.scale.category20();
+
+
+  // END D3 global vars
 
   constructor() {
   this.m = [];  // TODO - [ ] - the initial context(s) will be added here 
@@ -838,17 +854,23 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
+ngAfterViewInit() {
 
-    // Initialize D3
-    d3rna.d3Ini();
+// Initialize D3
+// START d3Ini statements
+// TODO - [ ] - to switch to D3 force ver 4 or 5
 
-    // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
-    if (d3rna.d3Entity == true) {
-      d3rna.createNode(this.c[1], 0, d3rna.d3Switch);
-      d3rna.createNode(this.c[2], 0, d3rna.d3Switch);
-      d3rna.createNode(this.c[3], 0, d3rna.d3Switch);
-      }
+
+
+// END d3Ini
+
+
+    // // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
+    // if (d3rna.d3Entity == true) {
+    //   d3rna.createNode(this.c[1], 0, d3rna.d3Switch);
+    //   d3rna.createNode(this.c[2], 0, d3rna.d3Switch);
+    //   d3rna.createNode(this.c[3], 0, d3rna.d3Switch);
+    //   }
 
     // Build Nodes and Transformations Headers for the memory tables
     h.buildTableHeader("nodes",this.nodeHeader);

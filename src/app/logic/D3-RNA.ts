@@ -28,16 +28,16 @@ import * as d3 from 'd3-3';
   //       .nodes([{ 0:"id", 1:0, 2:"type", 3:"Ctxt", 4:"name", 5:"Context", 6:"step", 7:0, 8:"branch", 9:0, 10:"status", 11:"ToDo"}])
 
 // false = NO d3 visualization
-declare var d3Switch;
+let d3Switch;
 // false = NO d3 visualization for Entity nodes
-declare var d3Entity;
+let d3Entity;
 
-declare var width;
-declare var height;
+let d3width;
+let d3height;
 
 //  if (d3Switch == false) {
-//    width = 30;
-//    height = 30;
+//    d3width = 30;
+//    d3height = 30;
 //    }
 
 declare var fill;
@@ -57,34 +57,34 @@ declare var cursor;
 
 declare var typeIndex;    // typeIndex = 3; in d3Ini
 
-function d3Ini() {
+// function d3Ini() {
 
-  // Initialize Global vars
+  Initialize Global vars
 
   d3Switch = true;
   d3Entity = true;
 
-  width = 50;
-  height = 50;
+  d3width = 50;
+  d3height = 50;
 
   fill = d3.scale.category20();
 
   force = d3.layout.force()
-    .size([width, height])
+    .size([d3width, d3height])
     .nodes([{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}])
     .linkDistance(30)
     .charge(-60)
     .on("tick", tick);
 
   svg = d3.select("#viz").append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("d3width", d3width)
+    .attr("d3height", d3height)
     .on("mousemove", mousemove)
     .on("mousedown", mousedown);
 
   svg.append("rect")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("d3width", d3width)
+    .attr("d3height", d3height);
 
   svg.append('defs').append('marker')
     .attr({'id':'arrowhead',
@@ -121,7 +121,7 @@ function d3Ini() {
 
   restart();
 
-  }
+ // }
 
   //Function to choose what color circle we want for nodes
   //Let's return grey for context and green for entities
@@ -166,7 +166,7 @@ function d3Ini() {
 
     if (d3Switch == true) {
 
-      var node = Object.assign( {x: width/2, y: height/2}, e );
+      var node = Object.assign( {x: d3width/2, y: d3height/2}, e );
           // console.log("Print first the entity row form Cogito then the extended node in D3");
           // console.log(e);
           // console.log(node);
@@ -187,7 +187,7 @@ function d3Ini() {
   function mousedown() {
     var point = d3.mouse(this),
         // node = {x: point[0], y: point[1]}, // at mouse position
-        node = {x: width/2, y: height/2},  // from center frame
+        node = {x: d3width/2, y: d3height/2},  // from center frame
         // from top left corner
         // node = {x: 0, y: 0},
         n = nodes.push(node);
@@ -249,4 +249,4 @@ function d3Ini() {
 
 // } // END if d3Switch == true
 
-export {d3Ini, createNode, d3Switch, d3Entity};
+export {d3Switch, createNode, d3Entity};
