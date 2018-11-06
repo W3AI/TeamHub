@@ -2,15 +2,16 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import * as dna from "../../logic/DNA";
 import * as h from "../../logic/helper";
-import * as d3 from "d3";
+import * as f from "../../logic/Force-D3";
+// import * as d3 from "d3";
 
 // l = new line - used in formatting
 const l = '\n';
 const L = 'L';  // TODO - [ ] - find other ways to include in txExpressions units of measure L - liter, etc
 
 // Declaring Global D3 const - TODO - [ ] - to annotate with d3-?
-const width = 375;
-const height = 160;
+const width = 400;
+const height = 200;
 
 @Component({
   selector: 'app-edit-session',
@@ -181,6 +182,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   // D3 global vars ---------------------------------<< D3-FORCE VARS
 
+  // TODO - [ ] - Add toggle buttons for both D3 and Entity visualization of options
   // false = NO d3 visualization
   d3Switch = true;
   // false = NO d3 visualization for Entity nodes
@@ -191,6 +193,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   simulation: any;
   canvas: any;
   context: any;
+
+  nodes: any;
+  links: any;
 
   // END D3 global vars -----------------------------------------<< !!!!!!
 
@@ -654,10 +659,23 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // 677 - add new transformation to memory transformations t array
     this.t.push(this.transformation);
 
+    // 684 - Add Nodes to the d3Nodes array if d3Switch and d3Entity are true
+    this.createNode(this.n[0], this.previousContextId, this.d3Switch);
+    // then create all D3 entities in the new context
+    if ( this.d3Entity = true ) {
+      for (let ni = 1; ni < this.n.length; ni++) {
+        this.createNode(this.n[ni], this.currentContextId, this.d3Switch);
+        }
+      }
+
     `+
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
     // End of rnaCode string
+
+    // Visualize the new d3Nodes
+    // This way it would add all new contexts - To Review !!!
+    f.d3Force(this.d3Nodes, width, height);
 
     console.log('-- String to evaluate: this.rnaCode');
     console.log(this.rnaCode); 
@@ -759,6 +777,25 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     } // END main while loop
 
+    // Adding nodes to the d3-force Options Visualization
+    // To Validate if we need to do it here or above int he loop while n[0] and n[ni] are available
+    // Add all new contexts generated at this step
+
+    // TO FINALIZE ? just for new nodes at this step??? -------------------------<<<<<<<<<<<< !!!!!!!!!!!
+    // for (let n = 0; n < this.stepCtxts.length; n++) {
+
+    //   this.createNode(this.stepCtxts[n], this.previousContextIds[n], this.d3Switch);
+
+    //   // then create all D3 entities in the new context
+    //   if (this.d3Entity = true) {
+    //     for (let ni = 1; ni < this.n.length; ni++) {
+    //       this.createNode(this.n[ni], this.currentContextId, this.d3Switch);
+    //     }
+    //   }
+    // }
+
+    // f.d3Force(this.d3Nodes, width, height);
+
     // 697 - Including here for now, showing one solution in the Investor table
     // TODO - [ ] - Consider the obvious options of having several solution after s steps:
     // How to browse, rank, select, archive, etc ??? 
@@ -854,114 +891,23 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // END eval rnaCode
 
-  }
+} // END onInnoVote() ----------------------------- END onInnoVote() ----------------------- END onInnoVote() --------------------------
 
 ngAfterViewInit() {
 
 // Initialize D3
 // START d3Ini statements
 
-  // TODO - [ ] - To remove after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
+  // TODO - [ ] - To Generalize for all entities in c[] 
+  // after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
   if (this.d3Entity == true) {
     this.createNode(this.c[1], 0, this.d3Switch);
     this.createNode(this.c[2], 0, this.d3Switch);
     this.createNode(this.c[3], 0, this.d3Switch);
     }
 
-// D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
-
-// var nodes = d3.range(30).map(function(i) {
-//   return {
-//     index: i
-//   };
-// });
-
-var nodes = this.d3Nodes;
-
-console.log('-- nodes from D3 FORCE EXAMPLE:');
-console.log(nodes);
-
-var links = d3.range(nodes.length - 1).map(function(i) {
-  return {
-    source: Math.floor(Math.sqrt(i)),
-    target: i + 1
-  };
-});
-console.log('-- links from D3 FORCE EXAMPLE:');
-console.log(links);
-
-this.simulation = d3.forceSimulation(nodes)
-    .force("charge", d3.forceManyBody())
-    .force("link", d3.forceLink(links).distance(20).strength(1))
-    .force("x", d3.forceX())
-    .force("y", d3.forceY())
-    .on("tick", ticked);
-
-this.canvas = document.querySelector("canvas");
-var context = this.canvas.getContext("2d");
-// width = this.canvas.width;
-// height = this.canvas.height;
-
-d3.select(this.canvas)
-    .call(d3.drag()
-        .container(this.canvas)
-        .subject(dragsubject)
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-function ticked() {
-  context.clearRect(0, 0, width, height);
-  context.save();
-  context.translate(width / 2, height / 2);
-
-  context.beginPath();
-  links.forEach(drawLink);
-  context.strokeStyle = "#aaa";
-  context.stroke();
-
-  context.beginPath();
-  nodes.forEach(drawNode);
-  context.fill();
-  context.strokeStyle = "#fff";
-  context.stroke();
-
-  context.restore();
-}
-
-function dragsubject() {
-  return this.simulation.find(d3.event.x - width / 2, d3.event.y - height / 2);
-}
-
-function dragstarted() {
-  if (!d3.event.active) this.simulation.alphaTarget(0.3).restart();
-  d3.event.subject.fx = d3.event.subject.x;
-  d3.event.subject.fy = d3.event.subject.y;
-}
-
-function dragged() {
-  d3.event.subject.fx = d3.event.x;
-  d3.event.subject.fy = d3.event.y;
-}
-
-function dragended() {
-  if (!d3.event.active) this.simulation.alphaTarget(0);
-  d3.event.subject.fx = null;
-  d3.event.subject.fy = null;
-}
-
-function drawLink(d) {
-  context.moveTo(d.source.x, d.source.y);
-  context.lineTo(d.target.x, d.target.y);
-}
-
-function drawNode(d) {
-  context.moveTo(d.x + 3, d.y);
-  context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
-}
-
-  // D3-FORCE EXPERIMENT --------------------------------------<< D3-FORCE EXPERIMENT
-
+// D3 FORCE visualization for Context Ini ------------------------<< D3-Force Conetxt Ini
+f.d3Force(this.d3Nodes, width, height);
 
   // Build Nodes and Transformations Headers for the memory tables
   h.buildTableHeader("nodes", this.nodeHeader);
@@ -982,6 +928,7 @@ function drawNode(d) {
 
 }
 
+// Functions for D3 Force Visualization of Options  ----------------------------------------START OF D3 FUNCTIONS 
 // Create D3 node element
 createNode(e, targetId, d3Switch) {
   if (d3Switch == true) {
@@ -998,12 +945,11 @@ createNode(e, targetId, d3Switch) {
        // this push line works for successive Contexts but should disable adding the arrow attribute for entities into Context nodes
        // links.push({source: nodes[targetId], target: node});
 
-        // restart();
-
+      // restart();
   }
 }
 
-    // Function formatRows to be used for formatting 
+// Function formatRows to be used for formatting 
     // & printing lists of entities, plans/sol, tests, 
     // & queries, funnctions, updaters - Input: 
     // rows: any[] = prRows/opRows; type: string = "type|test|query|solution|function";
