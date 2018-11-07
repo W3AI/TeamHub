@@ -185,11 +185,11 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
   // TODO - [ ] - Add toggle buttons for both D3 and Entity visualization of options
   // false = NO d3 visualization
   d3Switch = true;
-  // false = NO d3 visualization for Entity nodes
-  d3Entity = true;
+  // false = NO d3 visualization for Entity nodes - we should see only Context/States and transformation/tx links
+  d3Entity = false;
 
   d3Nodes: any[] = [{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}];
-  d3Links: any[] = [];
+  d3Links: any[] = [{"id":0,"from":0,"to":0, "step":0,"branch":0,"Change":"","verb":"","Price":0,"Sentence":"Ini","License":"©IL/MIT"}];
   simulation: any;
   canvas: any;
   context: any;
@@ -660,13 +660,14 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     this.t.push(this.transformation);
 
     // 684 - Add Nodes to the d3Nodes array if d3Switch and d3Entity are true
-    this.createNode(this.n[0], this.previousContextId, this.d3Switch);
+    this.createNode(this.n[0], this.transformation[1], this.previousContextId);
     // then create all D3 entities in the new context
-    if ( this.d3Entity = true ) {
-      for (let ni = 1; ni < this.n.length; ni++) {
-        this.createNode(this.n[ni], this.currentContextId, this.d3Switch);
-        }
-      }
+    // Nov 7 - SI - this iteration will be part of create d3 Node function later
+    // if ( this.d3Entity = true ) {
+    //   for (let ni = 1; ni < this.n.length; ni++) {
+    //     this.createNode(this.n[ni], this.currentContextId, this.d3Switch);
+    //     }
+    //   }
 
     `+
     dna.nQuery2IfFooter('    ') + 
@@ -889,6 +890,12 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     console.log('-- this.solutionPaths:');
     console.log(this.solutionPaths);
 
+    console.log('-- this.d3Nodes:');
+    console.log(this.d3Nodes);
+
+    console.log('-- this.d3Links:');
+    console.log(this.d3Links);
+
     // END eval rnaCode
 
 } // END onInnoVote() ----------------------------- END onInnoVote() ----------------------- END onInnoVote() --------------------------
@@ -900,10 +907,12 @@ ngAfterViewInit() {
 
   // TODO - [ ] - To Generalize for all entities in c[] 
   // after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
-  if (this.d3Entity == true) {
-    this.createNode(this.c[1], 0, this.d3Switch);
-    this.createNode(this.c[2], 0, this.d3Switch);
-    this.createNode(this.c[3], 0, this.d3Switch);
+  if (this.d3Switch == true) {
+    // Showing the first 3 entities in the initil context
+    // TODO - [ ] - iterate through all entities in context ini
+    this.createNode(this.c[1], 0, 0); // entity 1 part of Context ini -with id 0
+    this.createNode(this.c[2], 0, 0);
+    this.createNode(this.c[3], 0, 0);
     }
 
 // D3 FORCE visualization for Context Ini ------------------------<< D3-Force Conetxt Ini
@@ -925,28 +934,17 @@ f.d3Force(this.d3Nodes, width, height);
     // Summing up the memory for the nodes in the initial context
     this.nodesMemSize += JSON.stringify(this.c[i]).length * 8;
   }
-
 }
 
 // Functions for D3 Force Visualization of Options  ----------------------------------------START OF D3 FUNCTIONS 
-// Create D3 node element
-createNode(e, targetId, d3Switch) {
-  if (d3Switch == true) {
-
-    var node = Object.assign( {x: width/2, y: height/2}, e );
-        // console.log("Print first the entity row form Cogito then the extended node in D3");
-        // console.log(e);
-        // console.log(node);
-
-        this.d3Nodes.push(node);
-
-        // First push line works well for IN relations for Elements in Contexts but not for successor Contexts
-        this.d3Links.push({source: node, target: this.d3Nodes[targetId]});
-       // this push line works for successive Contexts but should disable adding the arrow attribute for entities into Context nodes
-       // links.push({source: nodes[targetId], target: node});
-
-      // restart();
-  }
+// Create D3 node element - which could be a context or entity
+createNode(e, txId, targetId) {
+  // TODO - [ ] - if d3Entity switch is on we should iterate through the entities in a context
+  if (this.d3Entity == false) {
+    let node = Object.assign( {x: width/2, y: height/2, id:e[1], type:e[3], name:e[5]});
+    this.d3Nodes.push(node);
+//    this.d3Links.push({source: node, target: this.d3Nodes[targetId], id: txId, sourceId: node.id, targetId: this.d3Nodes[targetId][1]});
+  } // Else we should iterate through all or filtered entities of the context/state 
 }
 
 // Function formatRows to be used for formatting 

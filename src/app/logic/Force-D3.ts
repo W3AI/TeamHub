@@ -88,7 +88,7 @@ function d3Force(d3Nodes, width, height) {
     context.moveTo(d.source.x, d.source.y);
     context.font = "10px Arial";
     context.fillStyle = "darkgreen";
-    context.fillText("tx " + d.id , 5 + (d.source.x + d.target.x)/2, 5 + (d.source.y + d.target.y)/2); 
+    context.fillText("tx ", 5 + (d.source.x + d.target.x)/2, 5 + (d.source.y + d.target.y)/2); 
     context.lineTo(d.target.x, d.target.y);
   }
 
@@ -97,7 +97,7 @@ function d3Force(d3Nodes, width, height) {
     context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
     context.font = "10px Arial";
     context.fillStyle = "gray";
-    context.fillText("Option " + d.id , d.x + 5, d.y + 5); 
+    context.fillText("s " + d.id , d.x + 5, d.y + 5); 
   }
 }   // END Function d3Force
 
