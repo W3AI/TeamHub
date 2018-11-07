@@ -16,6 +16,17 @@ h6 {
   margin: 5px;
 }
 
+#w3ai-org {
+  width: 100%;
+  background-image: url('/assets/img/W3AIORG.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding:0px; 
+  margin:0px; 
+  border:0px
+}
+
 #cell {
   width: 100%;
   background-image: url('/assets/img/3AI-Cell.png');
