@@ -36,6 +36,9 @@ function d3Force(d3Nodes, width, height) {
   // width = this.canvas.width;
   // height = this.canvas.height;
 
+  width = canvas.width;
+  height = canvas.height;
+
   d3.select(this.canvas)
     .call(d3.drag()
       .container(this.canvas)

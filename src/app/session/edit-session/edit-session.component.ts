@@ -9,10 +9,6 @@ import * as f from "../../logic/Force-D3";
 const l = '\n';
 const L = 'L';  // TODO - [ ] - find other ways to include in txExpressions units of measure L - liter, etc
 
-// Declaring Global D3 const - TODO - [ ] - to annotate with d3-?
-const width = 400;
-const height = 200;
-
 @Component({
   selector: 'app-edit-session',
   templateUrl: './edit-session.component.html',
@@ -190,6 +186,9 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
   d3Nodes: any[] = [{"id":0,"type":"Ctxt","name":"Context","step":0,  "branch":0, "status":"ToDo"}];
   d3Links: any[] = [{"id":0,"from":0,"to":0, "step":0,"branch":0,"Change":"","verb":"","Price":0,"Sentence":"Ini","License":"©IL/MIT"}];
+  
+  width: number = 400;
+  height: number = 200;
   simulation: any;
   canvas: any;
   context: any;
@@ -676,10 +675,10 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // Visualize the new d3Nodes
     // This way it would add all new contexts - To Review !!!
-    f.d3Force(this.d3Nodes, width, height);
+    f.d3Force(this.d3Nodes, this.width, this.height);
 
-    console.log('-- String to evaluate: this.rnaCode');
-    console.log(this.rnaCode); 
+    // console.log('-- String to evaluate: this.rnaCode');
+    // console.log(this.rnaCode); 
 
     // We have the rnaCode built including references to the specific Project / Operation tuple
     // Here we code the mainLoop (391) non-specific statements surrounding the eval(rnaCode)
@@ -902,21 +901,30 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
 ngAfterViewInit() {
 
+  let canvas = document.querySelector("canvas");
+  this.width = canvas.width;
+  this.height = canvas.height;
+  console.log('Canvas Width & Heigth: ' + this.width + ' x ' + this.height);
+
 // Initialize D3
 // START d3Ini statements
 
   // TODO - [ ] - To Generalize for all entities in c[] 
   // after fixing D3!!! -  This is just for the 3Jars d3 Demo if will work
   if (this.d3Switch == true) {
+    // Create initial context node
+    // this.createNode(this.c[0], 0, 0);
     // Showing the first 3 entities in the initil context
-    // TODO - [ ] - iterate through all entities in context ini
-    this.createNode(this.c[1], 0, 0); // entity 1 part of Context ini -with id 0
-    this.createNode(this.c[2], 0, 0);
-    this.createNode(this.c[3], 0, 0);
+    if (this.d3Entity == true) {
+      // TODO - [ ] - iterate through all entities in context ini
+      this.createNode(this.c[1], 0, 0); // entity 1 part of Context ini -with id 0
+      this.createNode(this.c[2], 0, 0);
+      this.createNode(this.c[3], 0, 0);
     }
+  }
 
 // D3 FORCE visualization for Context Ini ------------------------<< D3-Force Conetxt Ini
-f.d3Force(this.d3Nodes, width, height);
+f.d3Force(this.d3Nodes, this.width, this.height);
 
   // Build Nodes and Transformations Headers for the memory tables
   h.buildTableHeader("nodes", this.nodeHeader);
@@ -941,7 +949,8 @@ f.d3Force(this.d3Nodes, width, height);
 createNode(e, txId, targetId) {
   // TODO - [ ] - if d3Entity switch is on we should iterate through the entities in a context
   if (this.d3Entity == false) {
-    let node = Object.assign( {x: width/2, y: height/2, id:e[1], type:e[3], name:e[5]});
+    console.log('Node  x & y: ' + this.width/2 + ' x ' + this.height/2);
+    let node = Object.assign( {x: this.width/2, y: this.height/2, id:e[1], type:e[3], name:e[5]});
     this.d3Nodes.push(node);
 //    this.d3Links.push({source: node, target: this.d3Nodes[targetId], id: txId, sourceId: node.id, targetId: this.d3Nodes[targetId][1]});
   } // Else we should iterate through all or filtered entities of the context/state 

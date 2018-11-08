@@ -5,14 +5,11 @@
         </button>
     </div>
     <div>
-        <a routerLink="/">
-            <button mat-icon-button fxHide.lt-md>
-                <mat-icon class="teamhub-header-icon"></mat-icon>
-            </button>my AI To Do list
-        </a>
+        <a routerLink="/">my AI To Do list </a>
+
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
             <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
-        </a> 
+        </a>
         <ng-template #Auth>
             <a id="user" routerLink="/session">
                 <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
@@ -24,26 +21,21 @@
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
 
             <li><a routerLink="/about">About AI ToDo</a></li>
-        <!--    <li><a routerLink="/team">nBots</a></li>
-            <li><a routerLink="/market">Jobs</a></li>
-            <li><a routerLink="/friend">Friends</a></li> -->
 
+            <li *ngIf="isAuth$ | async"><a routerLink="/project">Tasks</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/session">Services</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
-            <!-- <li *ngIf="isAuth$ | async"><a routerLink="/skill">nSkills</a></li> -->
             <li *ngIf="isAuth$ | async"><a routerLink="/venture">Teams</a></li>
 
             <li><a routerLink="/setup">Setup</a></li>
 
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
-        <!--    <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li> -->
-            
+            <!--    <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li> -->
+
             <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
             </li>
-            
+
         </ul>
     </div>
 </mat-toolbar>
-

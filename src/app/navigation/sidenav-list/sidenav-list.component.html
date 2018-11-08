@@ -4,24 +4,14 @@
         <mat-icon>info_outline</mat-icon>
         <span class="nav-caption">About AI ToDo</span>
     </a>
+    <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Tasks</span>            
+    </a>
     <a mat-list-item routerLink="/session" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>code</mat-icon>
         <span class="nav-caption">Services</span>            
     </a>
-    <!--
-    <a mat-list-item routerLink="/team" (click)="onClose()">
-        <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">nTeams</span>
-    </a>
-    <a mat-list-item routerLink="/market" (click)="onClose()">
-        <mat-icon>language</mat-icon>
-        <span class="nav-caption">Jobs</span>
-    </a>
-    <a mat-list-item routerLink="/friend" (click)="onClose()">
-        <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Friends</span>
-    </a>
-    -->
     <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>face</mat-icon>
         <span class="nav-caption">Signup</span>
@@ -30,20 +20,6 @@
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>            
     </a>
-    <!--
-    <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
-        <mat-icon>attach_money</mat-icon>
-        <span class="nav-caption">Accounts</span>            
-    </a>
-    -->
-    <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
-        <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Projects</span>            
-    </a>
-<!--    <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
-        <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">nSkills</span>            
-    </a> -->
     <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption">Teams</span>            
@@ -58,6 +34,28 @@
             <span class="nav-caption">Logout</span>  
         </button>
     </mat-list-item>
+    <!--
+    <a mat-list-item routerLink="/team" (click)="onClose()">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">nTeams</span>
+    </a>
+    <a mat-list-item routerLink="/market" (click)="onClose()">
+        <mat-icon>language</mat-icon>
+        <span class="nav-caption">Jobs</span>
+    </a>
+    <a mat-list-item routerLink="/friend" (click)="onClose()">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Friends</span>
+    </a>
+    <a mat-list-item routerLink="/account" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>attach_money</mat-icon>
+        <span class="nav-caption">Accounts</span>            
+    </a>
+   <a mat-list-item routerLink="/skill" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">nSkills</span>            
+    </a> -->
+
 </mat-nav-list>
 
 <div>
@@ -68,7 +66,7 @@
             <a href="https://www.meetup.com/Manhattan-AIR/">New York</a> - 
             <a href="https://www.meetup.com/HalifaxAIG/">Halifax</a>
         </li>
-        <li class="nav-footer-small"><a href="https://github.com/W3AI/TeamHub">Clone nGene PoC 0.5 @ GitHub</a></li>
+        <li class="nav-footer-small"><a href="https://github.com/W3AI/TeamHub">Clone nGene PoC 0.6 @ GitHub</a></li>
         <li>© Ianta Labs / MIT License</li>
     </ul>
 </div>
