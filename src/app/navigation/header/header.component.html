@@ -8,11 +8,11 @@
         <a routerLink="/">my AI To Do list </a>
 
         <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
+            <span class="links"></span> <span class="links"><span class="title-version">0.6</span> pre-&alpha;</span>
         </a>
         <ng-template #Auth>
             <a id="user" routerLink="/session">
-                <span class="links"></span> <span class="links"><span class="title-version">0.5</span> pre-&alpha;</span>
+                <span class="links"></span> <span class="links"><span class="title-version">0.6</span> pre-&alpha;</span>
             </a>
         </ng-template>
 
