@@ -131,7 +131,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   sStats: any[] = [];         // Array to store status of the Services
   // 15 - TODO - [ ] - add top header line to the matrix? including the nrProblems and Services
   nrProblems = 134;           // some default values for dev
-  nrServices = 43;            // some default values for dev
+  nrServices = 137;            // some default values for dev
   // 24 
   spikes = 7;     // Nr rows in the market wheel in the W3AI sheet - here called spikes
   // 28
