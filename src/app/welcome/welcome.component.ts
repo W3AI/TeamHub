@@ -344,6 +344,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.sStat6 = this.sStats[(this.i + 3) % this.nrLinks][5];
     this.sStat7 = this.sStats[(this.i + 3) % this.nrLinks][6];
 
+    this.nrProblems = this.nrProblems + Math.floor(Math.random() * Math.floor(3))
+      - Math.floor(Math.random() * Math.floor(2));
+    this.nrServices = this.nrServices + Math.floor(Math.random() * Math.floor(3))
+      - Math.floor(Math.random() * Math.floor(2));
+
   } // END function updateLoopTable()
 
   onPrev() {
