@@ -1,29 +1,35 @@
 <mat-toolbar color="primary">
     <div fxHide.gt-sm>
         <button mat-icon-button (click)="onToggleSidenav()">
-            <mat-icon class="teamhub-header-icon"></mat-icon>
+            <mat-icon>
+                <img src="/assets/img/icon_154.png" alt="W3AI" height="24" width="24">
+            </mat-icon>
         </button>
     </div>
     <div>
-        <a routerLink="/">my AI ToDo loop</a>
+        <a routerLink="/">my AI OS 0.6 pre-&alpha;</a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
-        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <ul fxLayout fxLayoutAlign="center center" fxLayoutGap="10px" class="navigation-items">
 
-            <li><a routerLink="/about">About AI ToDo</a></li>
+            <li><a routerLink="/about">About my AI</a></li>
 
-            <li *ngIf="isAuth$ | async"><a routerLink="/project">Tasks</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/session">Services</a></li>
-            <li *ngIf="isAuth$ | async"><a routerLink="/venture">Teams</a></li>
-
-            <li><a routerLink="/setup">Setup</a></li>
+            <li *ngIf="isAuth$ | async"><a routerLink="/venture">Business</a></li>
 
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
-            <!--    <li *ngIf="isAuth$ | async"><a routerLink="/account">Accounts</a></li> -->
 
             <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+            </li>
+            <li>
+                <button mat-icon-button>
+                    <mat-icon>
+                        <a routerLink="/setup"><img src="/assets/img/icon_154.png" alt="W3AI" height="24" width="24"></a>
+                    </mat-icon>
+                </button>
             </li>
 
         </ul>

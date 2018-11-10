@@ -23,26 +23,13 @@ a:active {
     padding-left: 6px;
 }
 
-mat-icon-button {
-    margin: 0px;
-    padding-left: 0px;
-}
-
-.teamhub-header-icon {
+.w3ai-icon {
     background-image: url('/assets/img/icon_154.png');
-    background-size: 100% 100%;
-  }
-
-  .teamhub-user-icon {
-    background-image: url('https://teamhub.w3ai.net/assets/img/icon_154.png');
     background-size: cover;
   }
 
-  .links {
+.links {
     color: lightgray;
-  }
+}
 
-  #user {
-    color: white;
-  }
 

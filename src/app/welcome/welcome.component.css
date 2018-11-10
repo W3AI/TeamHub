@@ -20,7 +20,7 @@ table {
 .wall-1-projects {
     font-family: arial, sans-serif;
     font-size: xx-small;
-    text-align: right;
+    text-align: left;
     padding-right: 5px;
     color: darkslategray;
 }
@@ -34,7 +34,7 @@ table {
 .wall-3-market {
     font-family: arial, sans-serif;
     font-size: xx-small;
-    text-align: center;
+    text-align: left;
     color: darkslategray;
 }
 
