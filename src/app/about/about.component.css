@@ -4,6 +4,7 @@
 
 .quote {
   text-align: center;
+  border: 0px;
   padding: 0px;
   margin: 0px;
 }
@@ -42,12 +43,12 @@ li {
     width: 100%;
     background-color: #8c828c;
     text-align: center;
-    padding: 15px 0;
-    margin: 0px;
+    padding: 10px;
+    margin-bottom: 0px;
   }
   
   .title h1 {
-    margin: 15px;
+    margin: 0px;
     color: white;
     font-size: 1.6em;
   }
@@ -61,7 +62,7 @@ li {
   
   .ai-hub-feature {
     padding: 2px;
-    margin: 0px auto;
+    margin: 0px;
   }
   
   #mobile-office {
