@@ -5,17 +5,7 @@
         </button>
     </div>
     <div>
-        <a routerLink="/">my AI ToDo loop </a>
-
-        <a *ngIf="!(isAuth$ | async); else Auth" id="user" routerLink="/signup">
-            <span class="links"></span> <span class="links"><span class="title-version">0.6</span> pre-&alpha;</span>
-        </a>
-        <ng-template #Auth>
-            <a id="user" routerLink="/session">
-                <span class="links"></span> <span class="links"><span class="title-version">0.6</span> pre-&alpha;</span>
-            </a>
-        </ng-template>
-
+        <a routerLink="/">my AI ToDo loop</a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
