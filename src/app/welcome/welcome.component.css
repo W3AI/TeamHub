@@ -118,6 +118,15 @@ table {
 }
 */
 
+.free-ai {
+    text-align: center;
+}
+
+h1 {
+    padding: 0px;
+    margin: 7px;
+}
+
 h3 {
     padding: 0px;
     margin: 3px;

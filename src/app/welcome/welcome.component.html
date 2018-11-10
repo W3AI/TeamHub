@@ -51,16 +51,16 @@
     <td></td><td></td><td class="wall-1-projects"><b>BID Σ: </b>{{this.tag[(i+2)%this.nrLinks][3]}}</td><td></td><td></td><td class="wall-3-market" [ngStyle]="{color: getDeltaColor()}"><b>MΔ: {{ this.tag[(i+2)%this.nrLinks][5] }}</b></td><td></td><td></td><td class="wall-2-services"><b>ASK Σ: </b>{{this.tag[(i+2)%this.nrLinks][4]}}</td><td></td><td></td>
   </tr>
   <tr>
-    <td class="wall-1-projects" colspan="3">wall 1: service demand</td><td></td><td (click)="onPrev()" ><b><</b></td><td class="wall-3-market">wall 2: market loop</td><td (click)="onNext()" ><b>></b></td><td></td><td class="wall-2-services" colspan="3">wall 3: service offer</td>
+    <td class="wall-1-projects" colspan="3">wall 1: service demand</td><td></td><td (click)="onPrev()"><b><</b></td><td class="wall-3-market">wall 2: market loop</td><td (click)="onNext()"><b>></b></td><td></td><td class="wall-2-services" colspan="3">wall 3: service offer</td>
   </tr>
 </table>
 </section>
 
 <section class="speed">
-  <h5>Set your AI OS:</h5>
+  <h4>Set your AI OS:</h4>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="cycle-button" mat-button (click)="onSetCycle(3000)"><b>Manual</b></button></div>
+      <div><button class="cycle-button" mat-button (click)="onSetManual(5000)"><b>Manual</b></button></div>
       <div>control</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
@@ -75,57 +75,119 @@
   </div>
 </section>
 
-<h1 id="main-title">HELLO WORLD!</h1>
 
-<div class="header" fxLayout="row" fxLayoutAlign="center center">
+<div id="manual" *ngIf="manual; else helloWorld">
 
-  <div id="left" fxFlex="25%">
-    <p>
-      <br><span class="side-title">Business Neural Nets</span><br>
-      nLinks<sup>2</sup>: {{ superFriendsNo }}<br>
-      nProjects: {{ superProjectsNo }}<br>
-      nSkills: {{ superServicesNo }}<br>
-      nTasks/ms: {{ superTxPerMs }}<br>
-      $/min: {{ superRatePerMin | currency }}<br>
-      <span class="side-title">Live Internet Brain</span><br>
-    </p>
-  </div>
+<table id="fbView">
+  <tr>
+    <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td>
+  </tr>
+  <tr>
+    <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td style="height:17px"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
 
-  <div id="center" fxFlex="50%">
-    <div class="welcome">
-      <a *ngIf="!(isAuth$ | async); else Project" routerLink="/signup">
-        <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
-      </a>
-      <ng-template #Project>
-        <a id="project" routerLink="/project">
-          <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
-        </a>
-      </ng-template>
-    </div>
-  </div>
+</table>
 
-  <div id="right" fxFlex="25%">
-    <div fxLayout fxLayoutAlign="end end">
-      <p>
-        <br><span class="side-title">Office Teams</span><br>
-        friends<sup>2</sup>: {{ officeFriendsNo }}<br>
-        projects: {{ officeProjectsNo }}<br>
-        skills: {{ officeServicesNo }}<br>
-        tasks/ms: {{ officeTxPerMs }}<br>
-        $/min: {{ officeRatePerMin | currency }}<br>
-        <span class="side-title">Live Office Networks</span><br>
-      </p>
-    </div>
-  </div>
 </div>
+
+<ng-template #helloWorld>
+  <div id="hello-world">
+
+    <h1 id="main-title">HELLO WORLD!</h1>
+
+    <div class="header" fxLayout="row" fxLayoutAlign="center center">
+
+      <div id="left" fxFlex="25%">
+        <p>
+          <br><span class="side-title">Business Neural Nets</span><br>
+          nLinks<sup>2</sup>: {{ superFriendsNo }}<br>
+          nProjects: {{ superProjectsNo }}<br>
+          nSkills: {{ superServicesNo }}<br>
+          nTasks/ms: {{ superTxPerMs }}<br>
+          $/min: {{ superRatePerMin | currency }}<br>
+          <span class="side-title">Live Internet Brain</span><br>
+        </p>
+      </div>
+
+      <div id="center" fxFlex="50%">
+        <div class="welcome">
+          <a *ngIf="!(isAuth$ | async); else Project" routerLink="/signup">
+            <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
+          </a>
+          <ng-template #Project>
+            <a id="project" routerLink="/project">
+              <img src="assets/img/icon_512.png" alt="Solve World's Problems" height="96" width="96">
+            </a>
+          </ng-template>
+        </div>
+      </div>
+
+      <div id="right" fxFlex="25%">
+        <div fxLayout fxLayoutAlign="end end">
+          <p>
+            <br><span class="side-title">Office Teams</span><br>
+            friends<sup>2</sup>: {{ officeFriendsNo }}<br>
+            projects: {{ officeProjectsNo }}<br>
+            skills: {{ officeServicesNo }}<br>
+            tasks/ms: {{ officeTxPerMs }}<br>
+            $/min: {{ officeRatePerMin | currency }}<br>
+            <span class="side-title">Live Office Networks</span><br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="free-ai">
+      <h3>I'm your &nbsp;Free &nbsp;AI OS</h3>
+      <h3>Set me up on Business for</h3>
+    </div>
+
+  </div>
+</ng-template>
+
 </section>
+
 <section>
   <div id="south-globe">
-
-    <div>
-      <h3 class="free-AI">I'm your &nbsp;Free &nbsp;AI OS</h3>
-      <h3 class="free-AI">Set me up on Business for</h3>
-    </div>
 
     <h1>MAXIMUM PRODUCTIVITY</h1>
 

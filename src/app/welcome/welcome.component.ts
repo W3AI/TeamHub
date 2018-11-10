@@ -16,6 +16,8 @@ import * as q1 from "../logic/3AI-Queue";
 })
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
+  manual = false;
+
   isAuth$: Observable<boolean>;
 
   timer: number;
@@ -149,8 +151,17 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.w3aiStats();
   }
 
+  onSetManual(newCycle: number) {
+    clearInterval(this.timer);
+    this.manual = true;   // To switch on the DNA View table
+    // Line below is just to offer a bit of feedback onSetCycle change
+    this.interval = newCycle;
+    this.startDnaLoop();
+  }
+
   onSetCycle(newCycle: number) {
     clearInterval(this.timer);
+    this.manual = false;   // To switch off the DNA View table
     // Line below is just to offer a bit of feedback onSetCycle change
     this.interval = newCycle;
     this.startDnaLoop();
