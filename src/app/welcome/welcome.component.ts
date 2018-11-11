@@ -35,8 +35,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   setupCycle: number = 1000;   // well use this setupCycle updated from the Setup page 
                               // to increase / decrease the time interval
 
+  queue = q1.queue;
+
   tagsCounter: number;
   i: number = 0;
+
   nrInterests = 7;  // 7 Default interests :-)
 
   // TODO - Build Account Setup page to setup like these
@@ -133,6 +136,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   // Arrays to store loop data from DNA Queue - declarations below are copied from the WorldMarket.gs file
   nrLinks: number;
+  row: number = 0;
   tag: any[] = [];
   problems: any[] = [];
   pFlags: any[] = [];         // Array with Country codes for Problems - country of owner for taxation, compliance, etc
@@ -157,6 +161,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   dnaLoop() {
     this.updateLoopTable();
     this.i++;   // increment the index of the DNA Queue
+    this.row = (this.i+2)%this.nrLinks; // calculate the row in the queue array to display in the manual table
     this.w3aiStats();
   }
 

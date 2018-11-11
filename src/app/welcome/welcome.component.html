@@ -82,10 +82,10 @@
     <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td>
   </tr>
   <tr>
-    <td></td><td>1</td><td><b>Title</b></td><td colspan="5">loooong tittleeeeee</td><td>1234</td><td><b>Votes</b></td><td>24</td><td></td>
+    <td></td><td>1</td><td><b>Title</b></td><td colspan="5">{{this.queue[this.row][3] | slice:0:36}}</td><td>1234</td><td><b>Votes</b></td><td>24</td><td></td>
   </tr>
   <tr>
-    <td></td><td>2</td><td><b>Country</b></td><td colspan="3">ro</td><td colspan="3">$1250</td><td><b>Budget</b></td><td>25</td><td></td>
+    <td></td><td>2</td><td><b>Country</b></td><td colspan="3">{{this.queue[this.row][4]}}</td><td colspan="3">{{this.queue[this.row][8]}}</td><td><b>Budget</b></td><td>25</td><td></td>
   </tr>
   <tr>
     <td></td><td>3</td><td>email</td><td colspan="3"></td><td colspan="3"></td><td>providers</td><td>26</td><td></td>
@@ -94,7 +94,7 @@
     <td></td><td>4</td><td>name</td><td colspan="3"></td><td colspan="3"></td><td>tests</td><td>27</td><td></td>
   </tr>
   <tr>
-    <td></td><td>5</td><td>status</td><td colspan="3"></td><td colspan="3"></td><td>passed</td><td>28</td><td></td>
+    <td></td><td>5</td><td>status</td><td colspan="3">{{this.queue[this.row][7]}}</td><td colspan="3"></td><td>passed</td><td>28</td><td></td>
   </tr>
   <tr>
     <td></td><td>6</td><td>bid/ask</td><td colspan="3"></td><td colspan="3"></td><td>steps</td><td>29</td><td></td>
@@ -106,7 +106,7 @@
     <td></td><td>8</td><td>timeframe</td><td colspan="3"></td><td colspan="3"></td><td>#ToDo</td><td>31</td><td></td>
   </tr>
   <tr>
-    <td></td><td>9</td><td>description</td><td colspan="5"></td><td>14</td><td>#Done</td><td>32</td><td></td>
+    <td></td><td>9</td><td>description</td><td colspan="5"></td><td></td><td>#Done</td><td>32</td><td></td>
   </tr>
   <tr>
     <td></td><td>10</td><td>cloud ID</td><td colspan="3"></td><td colspan="3"></td><td>contexts</td><td>33</td><td></td>
@@ -191,7 +191,7 @@
 <section>
   <div id="south-globe">
 
-    <h3 id="under-blue">Set me on {{aiSetup}}</h3>
+    <h3 id="under-blue">Set your AI OS on {{aiSetup}}</h3>
     <h5>for</h5>
     <h1 id="goal">{{goal}}</h1>
 
