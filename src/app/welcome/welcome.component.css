@@ -165,6 +165,15 @@ p {
     margin-top: 10px;
 }
 
+#under-blue {
+    margin-top: 5px;
+}
+
+#goal {
+    margin: 0 0 5px;
+    padding: 2px;
+}
+
 .header {
     width: 375px;
     margin: 1px;
@@ -192,7 +201,7 @@ p {
 
 #south-globe {
     text-align: center;
-    margin: 0px;
+    margin: 5 0 0px;
 }
 
 .welcome {
@@ -206,9 +215,14 @@ a {
     color: grey;
   }
 
+#thankyou-title {
+    margin: 10px
+}
+
 .footer {
     list-style: none;
-    padding: 10px;
+    padding: 5px;
+    margin: 0px;
     text-align: center;
 }
 
