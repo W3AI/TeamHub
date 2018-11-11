@@ -60,15 +60,15 @@
   <h4>Set your AI OS:</h4>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="cycle-button" mat-button (click)="onSetManual(5000)"><b>Manual</b></button></div>
+      <div><button class="cycle-button" mat-button (click)="onSetManual(5000)" [ngStyle]="{color: getStatusButtonManual()}"><b>Manual</b></button></div>
       <div>control</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="AUTO-button" mat-button (click)="onSetMarathon(100)"><b>Marathon</b></button></div>
+      <div><button class="AUTO-button" mat-button (click)="onSetMarathon(100)" [ngStyle]="{color: getStatusButtonMarathon()}"><b>Marathon</b></button></div>
       <div>control & speed</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="W3AI-button" mat-button (click)="onSetCompete(10)"><b>Hackathon</b></button></div>
+      <div><button class="W3AI-button" mat-button (click)="onSetCompete(10)"  [ngStyle]="{color: getStatusButtonHackathon()}"><b>Hackathon</b></button></div>
       <div>speed</div>
     </div>
 

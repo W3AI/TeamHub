@@ -8,6 +8,7 @@ import { AuthService } from '../auth/auth.service';
 // import * as h from "../logic/helper";
 import * as q from "../logic/AlgoQueue";
 import * as q1 from "../logic/3AI-Queue";
+import { color } from 'd3';
 
 @Component({
   selector: 'app-welcome',
@@ -17,6 +18,9 @@ import * as q1 from "../logic/3AI-Queue";
 export class WelcomeComponent implements OnInit, AfterViewInit {
 
   manual = false;
+
+  indigo = 'rgba(55,72,172,1)';  // Google mat indigo
+  setup = 'marathon'; // manual | marathon | hackathon
 
   aiSetup = 'Marathon';   // Marathon or Hackathon
   goalFCB = 'Family - Community - Business'; 
@@ -156,8 +160,21 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.w3aiStats();
   }
 
+  getStatusButtonManual() {
+    return this.setup === 'manual' ? this.indigo : 'black';
+  }
+
+  getStatusButtonMarathon() {
+    return this.setup === 'marathon' ? this.indigo : 'black';
+  }
+
+  getStatusButtonHackathon() {
+    return this.setup === 'hackathon' ? this.indigo : 'black';
+  }
+
   onSetManual(newCycle: number) {
     clearInterval(this.timer);
+    this.setup = 'manual';
     this.manual = true;   // To switch on the DNA View table
     // Line below is just to offer a bit of feedback onSetCycle change
     this.interval = newCycle;
@@ -166,6 +183,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   onSetMarathon(newCycle: number) {
     clearInterval(this.timer);
+    this.setup = 'marathon';
     this.aiSetup = 'Hackathon';
     this.goal = this.goalMAX; // MAXIMUM PERFORMANCE
     this.manual = false;   // To switch off the DNA View table
@@ -176,6 +194,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   onSetCompete(newCycle: number) {
     clearInterval(this.timer);
+    this.setup = 'hackathon';
     this.aiSetup = 'Marathon';
     this.goal = this.goalFCB; // Family - Community - Business
     this.manual = false;   // To switch off the DNA View table
