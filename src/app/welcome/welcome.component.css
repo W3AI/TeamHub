@@ -132,6 +132,11 @@ h3 {
     margin: 3px;
 }
 
+h4 {
+    padding: 0px;
+    margin: 7px;
+}
+
 h5 {
     padding: 0px;
     margin: 0px;
@@ -152,13 +157,17 @@ p {
 
 #main-title {
     text-align: center;
-    margin: 5px;
-    padding: 5px;
+    margin: 0px;
+    padding: 8px;
+}
+
+#hello-world {
+    margin-top: 10px;
 }
 
 .header {
     width: 375px;
-    margin: 0px;
+    margin: 1px;
     padding: 0px;
 }
 

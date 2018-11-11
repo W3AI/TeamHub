@@ -64,11 +64,11 @@
       <div>control</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="AUTO-button" mat-button (click)="onSetCycle(100)"><b>Pro</b></button></div>
+      <div><button class="AUTO-button" mat-button (click)="onSetMarathon(100)"><b>Marathon</b></button></div>
       <div>control & speed</div>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center">
-      <div><button class="W3AI-button" mat-button (click)="onSetCycle(10)"><b>Compete</b></button></div>
+      <div><button class="W3AI-button" mat-button (click)="onSetCompete(10)"><b>Hackathon</b></button></div>
       <div>speed</div>
     </div>
 
@@ -121,7 +121,10 @@
     <td>13</td><td>12</td><td>text</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td><td></td><td>13</td>
   </tr>
   <tr>
-    <td>14</td><td>13</td><td>DNA</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td><td></td>14<td style="height:17px"></td>
+    <td>14</td><td>13</td><td>DNA</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td><td></td>14<td></td>
+  </tr>
+  <tr>
+    <td>15</td><td>14</td><td>FB/FS</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td><td></td>15<td ></td>
   </tr>
 
 </table>
@@ -176,10 +179,8 @@
     </div>
 
     <div class="free-ai">
-      <h3>I'm your &nbsp;Free &nbsp;AI OS</h3>
+      <h3>I'm your &nbsp;Free AI OS</h3>
       <h3>- DECENTRALIZED -</h3>
-      <h3>Set me on Compete</h3>
-      <h5>for</h5>
     </div>
 
   </div>
@@ -190,7 +191,9 @@
 <section>
   <div id="south-globe">
 
-    <h1>MAXIMUM PERFORMANCE</h1>
+    <h3>Set me on {{aiSetup}}</h3>
+    <h5>for</h5>
+    <h1>{{goal}}</h1>
 
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
       <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>

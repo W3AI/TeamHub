@@ -18,6 +18,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   manual = false;
 
+  aiSetup = 'Marathon';   // Marathon or Hackathon
+  goalFCB = 'Family - Community - Business'; 
+  goalMAX = 'MAXIMUM PERFORMANCE';
+  goal = this.goalFCB;
+
   isAuth$: Observable<boolean>;
 
   timer: number;
@@ -159,8 +164,20 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.startDnaLoop();
   }
 
-  onSetCycle(newCycle: number) {
+  onSetMarathon(newCycle: number) {
     clearInterval(this.timer);
+    this.aiSetup = 'Hackathon';
+    this.goal = this.goalMAX; // MAXIMUM PERFORMANCE
+    this.manual = false;   // To switch off the DNA View table
+    // Line below is just to offer a bit of feedback onSetCycle change
+    this.interval = newCycle;
+    this.startDnaLoop();
+  }
+
+  onSetCompete(newCycle: number) {
+    clearInterval(this.timer);
+    this.aiSetup = 'Marathon';
+    this.goal = this.goalFCB; // Family - Community - Business
     this.manual = false;   // To switch off the DNA View table
     // Line below is just to offer a bit of feedback onSetCycle change
     this.interval = newCycle;
