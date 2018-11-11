@@ -132,6 +132,11 @@ h3 {
     margin: 3px;
 }
 
+h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
 p {
     margin: 0px;
     padding: 0px;
@@ -178,7 +183,7 @@ p {
 
 #south-globe {
     text-align: center;
-    margin-top: 10px;
+    margin: 0px;
 }
 
 .welcome {

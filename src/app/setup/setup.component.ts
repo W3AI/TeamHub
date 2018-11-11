@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class SetupComponent implements OnInit {
 
   timer: number;
-  aiName: string = 'My AI ToDo List';
+  aiName: string = 'NC1 - Network Cortex 1';
   // @Output() newDnaCycle = new EventEmitter<number>();
   interval = 500;   // nr or miliseconds for the DNA Loop  interval
   newInterval = 500;
