@@ -137,6 +137,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   // Arrays to store loop data from DNA Queue - declarations below are copied from the WorldMarket.gs file
   nrLinks: number;
   row: number = 0;
+  shares: number = 10;        // During Dev - for simulation of shares / votes on projects / services
+
   tag: any[] = [];
   problems: any[] = [];
   pFlags: any[] = [];         // Array with Country codes for Problems - country of owner for taxation, compliance, etc
@@ -162,6 +164,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     this.updateLoopTable();
     this.i++;   // increment the index of the DNA Queue
     this.row = (this.i+2)%this.nrLinks; // calculate the row in the queue array to display in the manual table
+    this.shares = 10 + Math.floor(Math.random() * Math.floor(1000))
     this.w3aiStats();
   }
 
