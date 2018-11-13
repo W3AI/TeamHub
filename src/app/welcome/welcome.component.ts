@@ -22,9 +22,9 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   indigo = 'rgba(55,72,172,1)';  // Google mat indigo
   setup = 'marathon'; // manual | marathon | hackathon
 
-  aiSetup = 'Marathon';   // Marathon or Hackathon
+  aiSetup = 'Sustainable';   // Marathon or Hackathon
   goalFCB = 'Family - Community - Business'; 
-  goalMAX = 'MAXIMUM PERFORMANCE';
+  goalMAX = 'MAXIMUM PRODUCTIVITY';
   goal = this.goalFCB;
 
   isAuth$: Observable<boolean>;
@@ -192,8 +192,8 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   onSetMarathon(newCycle: number) {
     clearInterval(this.timer);
     this.setup = 'marathon';
-    this.aiSetup = 'Hackathon';
-    this.goal = this.goalMAX; // MAXIMUM PERFORMANCE
+    this.aiSetup = 'Performance';
+    this.goal = this.goalMAX; // MAXIMUM PRODUCTIVITY
     this.manual = false;   // To switch off the DNA View table
     // Line below is just to offer a bit of feedback onSetCycle change
     this.interval = newCycle;
@@ -203,7 +203,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   onSetCompete(newCycle: number) {
     clearInterval(this.timer);
     this.setup = 'hackathon';
-    this.aiSetup = 'Marathon';
+    this.aiSetup = 'Sustainable';
     this.goal = this.goalFCB; // Family - Community - Business
     this.manual = false;   // To switch off the DNA View table
     // Line below is just to offer a bit of feedback onSetCycle change

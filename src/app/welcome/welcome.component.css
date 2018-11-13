@@ -13,6 +13,7 @@
 table {
     font-family: arial, sans-serif;
     font-size: x-small;
+    line-height: 11px;
     border-collapse: collapse;
     width: 375px;
   }
