@@ -79,52 +79,42 @@
 
 <table id="fbView">
   <tr>
-    <td style="width:3px"></td><td style="width:7px"></td><td style="width:45px"><u>nProject</u></td><td style="width:45px"></td><td colspan="4" style="width:180px; text-align:center;"><b>Neo DNA Processor</b></td><td style="width:45px"></td><td style="width:40px">nService</td><td style="width:7px"></td><td style="width:3px"></td>
+    <td style="width:3px"></td><td style="width:7px"></td><td style="width:45px"><u>nProject</u></td><td style="width:45px"></td><td colspan="4" style="width:180px; text-align:center;"><b>DNA Script Processor</b></td><td style="width:45px"></td><td style="width:40px">nService</td><td style="width:7px"></td><td style="width:3px"></td>
   </tr>
   <tr>
-    <td></td><td>1</td><td><b>Title</b></td><td colspan="5">{{this.queue[this.row][3] | slice:0:36}}</td><td style="text-align:right;"> {{shares}} &nbsp;</td><td><b>Shares</b></td><td>24</td><td></td>
+    <td></td><td></td><td><b>Title</b></td><td colspan="5">{{this.queue[this.row][2+1] | slice:0:36}}</td><td style="text-align:right;"> {{shares}} &nbsp;</td><td><b>Votes</b></td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td>2</td><td><b>Country</b></td><td colspan="3">{{this.queue[this.row][4]}}</td><td colspan="3" style="text-align:right;">$ {{this.queue[this.row][8]}} &nbsp;</td><td><b>Budget</b></td><td>25</td><td></td>
+    <td></td><td></td><td>Description</td><td colspan="5">{{this.queue[this.row][2+8] | slice:0:36}}</td><td style="text-align:right;"> {{this.queue[this.row][7]}} &nbsp;</td><td>Status</td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td>3</td><td>email</td><td colspan="3"></td><td colspan="3"></td><td>providers</td><td>26</td><td></td>
+    <td></td><td></td><td>Tags</td><td colspan="5">{{this.queue[this.row][2+10] | slice:0:36}}</td><td style="text-align:right;"> {{this.queue[this.row][4]}} &nbsp;</td><td>Country</td><td></td><td></td>
+  </tr>
+      
+  <tr>
+    <td></td><td></td><td>Name</td><td colspan="3">{{this.queue[this.row][2+4]}}</td><td colspan="3" style="text-align:right;"> &nbsp;</td><td>Email</td><td></td><td></td>
   </tr>
   <tr>
-    <td></td><td>4</td><td>name</td><td colspan="3"></td><td colspan="3"></td><td>tests</td><td>27</td><td></td>
+    <td></td><td></td><td>Bid | Ask</td><td colspan="2">$ {{this.queue[this.row][8]}}</td><td>Currency</td><td>{{this.queue[this.row][4]}}</td><td colspan="2"></td><td>Timeframe</td><td></td><td></td>
   </tr>
-  <tr>
-    <td></td><td>5</td><td>status</td><td colspan="3">{{this.queue[this.row][7]}}</td><td colspan="3"></td><td>passed</td><td>28</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>6</td><td>bid/ask</td><td colspan="3"></td><td colspan="3"></td><td>steps</td><td>29</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>7</td><td>currency</td><td colspan="3"></td><td colspan="3"></td><td>branches</td><td>30</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>8</td><td>timeframe</td><td colspan="3"></td><td colspan="3"></td><td>#ToDo</td><td>31</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>9</td><td>description</td><td colspan="5"></td><td></td><td>#Done</td><td>32</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>10</td><td>cloud ID</td><td colspan="3"></td><td colspan="3"></td><td>contexts</td><td>33</td><td></td>
-  </tr>
-  <tr>
-    <td></td><td>11</td><td>tags</td><td colspan="3"></td><td colspan="3"></td><td>errors</td><td>34</td><td></td>
-  </tr>
+
   <tr>
     <td></td><td></td><td><b>nGene</b></td><td colspan="2" style="text-align:center;"><b>Input</b></td><td colspan="2" style="text-align:center;"><b>Solution</b></td><td colspan="2" style="text-align:center;"><b>Output</b></td><td colspan="2"><b>T & C</b></td><td></td>
   </tr>
   <tr>
-    <td></td><td>12</td><td>text</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
+    <td></td><td></td><td>text</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
   </tr>
   <tr>
-    <td></td><td>13</td><td>DNA</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
+    <td></td><td></td><td>JS</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
   </tr>
   <tr>
-    <td></td><td>14</td><td>FB/FS</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
+    <td></td><td></td><td>GS</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td>FB/FS</td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
+  </tr>
+  <tr>
+    <td style="height:1px"></td><td></td><td></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td colspan="2"></td><td></td>
   </tr>
 
 </table>
@@ -178,29 +168,30 @@
       </div>
     </div>
 
-    <div class="free-ai">
-      <h3>I'm your AI Democracy OS</h3>
-      <h3>- DECENTRALIZED -</h3>
-    </div>
-
   </div>
 </ng-template>
 
 </section>
 
 <section>
-  <div id="south-globe">
+<div class="free-ai">
+  <h3>I'm your Decentralized</h3>
+  <h3>- AI Democracy System -</h3>
+</div>
 
-    <h3 id="under-blue">Set your Democracy on {{aiSetup}}</h3>
-    <h5>for</h5>
-    <h1 id="goal">{{goal}}</h1>
+<div id="south-globe">
 
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
-      <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>
-      <a routerLink="/signup"><button class="auth-button" mat-button>Sign Up</button></a>
-    </div>
+  <h3 id="under-blue">Set your Democracy on {{aiSetup}}</h3>
+  <h5>for</h5>
+  <h1 id="goal">{{goal}}</h1>
+
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
+    <a routerLink="/login"><button class="auth-button" mat-button>Sign In</button></a>
+    <a routerLink="/signup"><button class="auth-button" mat-button>Sign Up</button></a>
   </div>
+</div>
 </section>
+
 
 <section class="mid" fxLayout="column" fxLayoutAlign="center center">
   <section class="clone" fxLayout="row" fxLayoutGap="40px">
