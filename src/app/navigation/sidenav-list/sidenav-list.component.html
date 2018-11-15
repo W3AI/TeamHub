@@ -2,7 +2,7 @@
 
     <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About my AI Democracy</span>
+        <span class="nav-caption">About my AI DemOS</span>
     </a>
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
@@ -26,7 +26,7 @@
     </a>
     <a mat-list-item routerLink="/setup" (click)="onClose()">
         <mat-icon>settings</mat-icon>
-        <span class="nav-caption">Setup</span>
+        <span class="nav-caption">Install</span>
     </a>
     <mat-list-item> 
         <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
