@@ -32,6 +32,7 @@ import { AboutComponent } from './about/about.component';
 import { MarketComponent } from './market/market.component';
 import { MapComponent } from './map/map.component';
 import { SetupComponent } from './setup/setup.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SetupComponent } from './setup/setup.component';
     AboutComponent,
     MarketComponent,
     MapComponent,
-    SetupComponent
+    SetupComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
