@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutComponent } from './about/about.component';
+import { HelpComponent } from './help/help.component';
 import { SetupComponent } from './setup/setup.component';
 import { MarketComponent } from './market/market.component';
 
@@ -11,6 +12,7 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
     { path: '', component: WelcomeComponent },
     { path: 'about', component: AboutComponent },
+    { path: 'help', component: HelpComponent },
     { path: 'setup', component: SetupComponent },
     { path: 'market', component: MarketComponent },
     { path: 'team', loadChildren: './team/team.module#TeamModule', canLoad: [AuthGuard] },

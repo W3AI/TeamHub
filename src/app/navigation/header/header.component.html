@@ -21,6 +21,8 @@
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/signup">Signup</a></li>
             <li *ngIf="!(isAuth$ | async)"><a routerLink="/login">Login</a></li>
 
+            <li><a routerLink="/help">Help</a></li>
+
             <li *ngIf="isAuth$ | async">
                 <a style="cursor: pointer" (click)="onLogout()">Logout</a>
             </li>

@@ -28,6 +28,10 @@
         <mat-icon>settings</mat-icon>
         <span class="nav-caption">Install</span>
     </a>
+    <a mat-list-item routerLink="/help" (click)="onClose()">
+        <mat-icon>help_outline</mat-icon>
+        <span class="nav-caption">Help</span>
+    </a>
     <mat-list-item> 
         <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
             <mat-icon>eject</mat-icon>
