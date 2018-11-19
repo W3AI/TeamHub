@@ -2,7 +2,7 @@
     <div fxHide.gt-sm>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>
-                <img src="/assets/img/icon_154.png" alt="W3AI" height="24" width="24">
+                <img src="/assets/icons/AI_Unicorn.png" alt="W3AI" height="24" width="24">
             </mat-icon>
         </button>
     </div>
@@ -12,7 +12,7 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-md>
         <ul fxLayout fxLayoutAlign="center center" fxLayoutGap="10px" class="navigation-items">
 
-            <li><a routerLink="/about">About my AI</a></li>
+            <li><a routerLink="/about">About my Uni</a></li>
 
             <li *ngIf="isAuth$ | async"><a routerLink="/project">Projects</a></li>
             <li *ngIf="isAuth$ | async"><a routerLink="/session">Services</a></li>
@@ -29,7 +29,7 @@
             <li>
                 <button mat-icon-button>
                     <mat-icon>
-                        <a routerLink="/setup"><img src="/assets/img/icon_154.png" alt="W3AI" height="24" width="24"></a>
+                        <a routerLink="/setup"><img src="/assets/icons/Unicorn.png" alt="W3AI" height="24" width="24"></a>
                     </mat-icon>
                 </button>
             </li>
