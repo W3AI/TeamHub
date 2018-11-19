@@ -2,11 +2,15 @@
 
     <a mat-list-item routerLink="/about" (click)="onClose()">
         <mat-icon>info_outline</mat-icon>
-        <span class="nav-caption">About my AI Unicorn</span>
+        <span class="nav-caption">About Unicorns</span>
+    </a>
+    <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Network</span>            
     </a>
     <a mat-list-item routerLink="/project" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Projects</span>            
+        <span class="nav-caption">Jobs</span>            
     </a>
     <a mat-list-item routerLink="/session" (click)="onClose()" *ngIf="isAuth$ | async">
         <mat-icon>code</mat-icon>
@@ -19,10 +23,6 @@
     <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!(isAuth$ | async)">
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>            
-    </a>
-    <a mat-list-item routerLink="/venture" (click)="onClose()" *ngIf="isAuth$ | async">
-        <mat-icon>group_add</mat-icon>
-        <span class="nav-caption">Business</span>            
     </a>
     <a mat-list-item routerLink="/setup" (click)="onClose()">
         <mat-icon>settings</mat-icon>
