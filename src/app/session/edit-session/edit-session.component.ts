@@ -660,14 +660,7 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
 
     // 684 - Add Nodes to the d3Nodes array if d3Switch and d3Entity are true
     this.createNode(this.n[0], this.transformation[1], this.previousContextId);
-    // then create all D3 entities in the new context
-    // Nov 7 - SI - this iteration will be part of create d3 Node function later
-    // if ( this.d3Entity = true ) {
-    //   for (let ni = 1; ni < this.n.length; ni++) {
-    //     this.createNode(this.n[ni], this.currentContextId, this.d3Switch);
-    //     }
-    //   }
-
+    
     `+
     dna.nQuery2IfFooter('    ') + 
     dna.nForFooter(this.opInputEntitiesNo, '  ');
@@ -677,8 +670,8 @@ export class EditSessionComponent implements OnInit, AfterViewInit {
     // This way it would add all new contexts - To Review !!!
     f.d3Force(this.d3Nodes, this.width, this.height);
 
-    // console.log('-- String to evaluate: this.rnaCode');
-    // console.log(this.rnaCode); 
+    console.log('-- String to evaluate: this.rnaCode');
+    console.log(this.rnaCode); 
 
     // We have the rnaCode built including references to the specific Project / Operation tuple
     // Here we code the mainLoop (391) non-specific statements surrounding the eval(rnaCode)
